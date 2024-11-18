@@ -6,14 +6,15 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password', 'age', 'capital']
+        fields = ['username', 'password', 'age', 'capital', 'sido', 'sigungus']
 
     def create(self, validated_data):
         user = User.objects.create(
             username=validated_data['username'],
-            email=validated_data['email'],
             age=validated_data.get('age'),
             capital=validated_data.get('capital'),
+            sido=validated_data.get('sido'),
+            sigungus=validated_data.get('sigungus'),
         )
         user.set_password(validated_data['password'])  # 비밀번호 암호화
         user.save()

@@ -14,7 +14,19 @@
               :rules="[(v) => !!v || '비밀번호를 입력해주세요', (v) => v.length >= 8 || '8자 이상이어야 합니다']"
               class="mb-4"
             />
-            <v-text-field v-model="password2" label="비밀번호 확인" type="password" required :rules="[(v) => v === password1 || '비밀번호가 일치하지 않습니다']" class="mb-4" />
+            <v-text-field v-model="password2" label="비밀번호 확인" type="password" required :rules="[(v) => v === password1 || '비밀번호 일치하지 않습니다']" class="mb-4" />
+            <!-- 닉네임 -->
+            <v-text-field v-model="nickname" label="닉네임 입력" required :rules="[(v) => !!v || '닉네임을 입력해주세요']" class="mb-4" />
+            <!-- 나이 -->
+            <v-text-field v-model="age" label="나이 입력" required :rules="[(v) => !!v || '나이를 입력해주세요']" oninput="javascript: this.value = this.value.replace(/\D/g, '')" class="mb-4" />
+
+            <!-- 수입 -->
+            <v-text-field v-model="capital" label="자본금" required :rules="[(v) => !!v || '자본금을 입력해주세요']" oninput="javascript: this.value = this.value.replace(/\D/g, '')" class="mb-4" />
+
+            <!-- 시/도 선택 -->
+            <v-select v-model="sido" :items="sidoList" label="시/도 선택" required :rules="[(v) => !!v || '시/도를 선택해주세요']" class="mb-4" @change="onSidoChange" />
+            <!-- 시/군/구 선택-->
+            <v-select v-model="sigugun" :items="sigugunList" label="시/군/구 선택" required :rules="[(v) => !!v || '시/군/구를 선택해주세요']" class="mb-4" :disabled="!sigugunList.length" />
             <v-btn :disabled="!isValid" color="primary" block type="submit" :loading="isSubmitting">가입하기</v-btn>
           </v-form>
           <v-divider class="my-4"><span>또는</span></v-divider>
@@ -28,24 +40,52 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import LoginModal from "@/components/LoginModal.vue";
 import { useAccount } from "@/stores/accounts";
+import { useAddressStore } from "@/stores/address";
 
 const { signUp } = useAccount();
+
+const addressStore = useAddressStore();
 
 const username = ref("");
 const password1 = ref("");
 const password2 = ref("");
+const age = ref("");
+const nickname = ref("");
+const capital = ref("");
 const isValid = ref(false);
 const isSubmitting = ref(false);
+
+const sido = ref(null);
+const sigugun = ref(null);
+
+const sidoList = computed(() => addressStore.address_infos.map((info) => info.sido));
+const sigugunList = computed(() => {
+  const selectedSido = addressStore.address_infos.find((info) => info.sido === sido.value);
+  return selectedSido ? selectedSido.sigungus : [];
+});
+
+const onSidoChange = () => {
+  sigugun.value = null;
+};
 
 const showLoginModal = ref(false);
 
 const handleSignup = async () => {
   isSubmitting.value = true;
   try {
-    await signUp({ username: username.value, password1: password1.value, password2: password2.value });
+    await signUp({
+      username: username.value,
+      password1: password1.value,
+      password2: password2.value,
+      nickname: nickname.value,
+      age: age.value,
+      capital: capital.value,
+      sido: sido.value,
+      sigugun: sigugun.value,
+    });
     console.log("회원가입 성공");
   } catch (err) {
     console.error("회원가입 실패:", err);
