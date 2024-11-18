@@ -17,32 +17,114 @@ User = get_user_model()
 
 api_key = settings.API_KEY
 # 정기 예금 API
-BASE_URL = f"http://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json"
+DEPOSIT_BASE_URL = f"http://finlife.fss.or.kr/finlifeapi/depositProductsSearch.json"
+SAVING_BASE_URL = f"http://finlife.fss.or.kr/finlifeapi/savingProductsSearch.json"
 # print(api_key)
 # requests 모듈을 활용하여 정기 예금 상품 목록 데이터를
 # 가져와 정기 예금 상품 목록과 옵션 목록을 DB에 저장
 # 정기 예금정보'만'저장하는 상태
 @api_view(['GET'])
 def save_financial_products(request):
-    URL = BASE_URL
+    DEPOSIT_URL = DEPOSIT_BASE_URL
     params = {
         'auth':api_key,
         'topFinGrpNo':'020000',
         'pageNo':1
     }
     
-    response = requests.get(URL,params=params).json()
+    deposit_response = requests.get(DEPOSIT_URL,params=params).json()
+    SAVING_URL = SAVING_BASE_URL
+    params = {
+        'auth':api_key,
+        'topFinGrpNo':'020000',
+        'pageNo':1
+    }
+    
+    saving_response = requests.get(SAVING_URL,params=params).json()
     # print(response)
-    for product_li in response.get('result').get('baseList'):
-        fin_prdt_cd = product_li.get('fin_prdt_cd')
-        fin_co_no = product_li.get('fin_co_no')
-        kor_co_nm = product_li.get('kor_co_nm')
-        fin_prdt_nm = product_li.get('fin_prdt_nm')
-        etc_note = product_li.get('etc_note')
-        join_deny = product_li.get('join_deny')
-        join_member = product_li.get('join_member')
-        join_way = product_li.get('join_way')
-        spcl_cnd = product_li.get('spcl_cnd')
+    # 정기 예금 받아오기 
+    for deposit_product_li in deposit_response.get('result').get('baseList'):
+        fin_prdt_cd = deposit_product_li.get('fin_prdt_cd')
+        fin_co_no = deposit_product_li.get('fin_co_no')
+        kor_co_nm = deposit_product_li.get('kor_co_nm')
+        fin_prdt_nm = deposit_product_li.get('fin_prdt_nm')
+        etc_note = deposit_product_li.get('etc_note')
+        join_deny = deposit_product_li.get('join_deny')
+        join_member = deposit_product_li.get('join_member')
+        join_way = deposit_product_li.get('join_way')
+        spcl_cnd = deposit_product_li.get('spcl_cnd')
+
+
+        if FinancialProducts.objects.filter(
+            fin_prdt_cd=fin_prdt_cd,
+            kor_co_nm=kor_co_nm,
+            fin_prdt_nm=fin_prdt_nm,
+            etc_note=etc_note,
+            fin_co_no=fin_co_no,
+            join_deny=join_deny,
+            join_member=join_member,
+            join_way=join_way,
+            spcl_cnd=spcl_cnd).exists():
+            continue
+
+        deposit_save_product_data = {
+            'fin_prdt_cd':fin_prdt_cd,
+            'kor_co_nm':kor_co_nm,
+            'fin_prdt_nm':fin_prdt_nm,
+            'fin_co_no':fin_co_no,
+            'etc_note':etc_note,
+            'join_deny':join_deny,
+            'join_member':join_member,
+            'join_way':join_way,
+            'spcl_cnd':spcl_cnd
+        }
+        serializer = FinancialProductsSerializer(data=deposit_save_product_data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+
+    for deposit_option_li in deposit_response.get('result').get('optionList'):
+
+        fin_prdt_cd = deposit_option_li.get('fin_prdt_cd')
+        intr_rate_type_nm = deposit_option_li.get('intr_rate_type_nm')
+        intr_rate = deposit_option_li.get('intr_rate')
+        intr_rate2 = deposit_option_li.get('intr_rate2')
+        save_trm = deposit_option_li.get('save_trm')
+
+        product = FinancialProducts.objects.get(fin_prdt_cd=fin_prdt_cd)
+
+        if not intr_rate :
+            intr_rate = -1
+
+        if FinancialOptions.objects.filter(
+            fin_prdt_cd=fin_prdt_cd,
+            intr_rate_type_nm=intr_rate_type_nm,
+            intr_rate=intr_rate,
+            intr_rate2=intr_rate2,
+            save_trm=save_trm).exists():
+            continue
+
+        save_option_data = {
+            'fin_prdt_cd':fin_prdt_cd,
+            'intr_rate_type_nm':intr_rate_type_nm,
+            'intr_rate':intr_rate,
+            'intr_rate2':intr_rate2,
+            'save_trm':save_trm,
+        }
+        serializer = FinancialOptionsSerializer(data=save_option_data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save(product=product)
+    ## 적금 받아오기 
+    for saving_product_li in saving_response.get('result').get('baseList'):
+        fin_prdt_cd = saving_product_li.get('fin_prdt_cd')
+        fin_co_no = saving_product_li.get('fin_co_no')
+        kor_co_nm = saving_product_li.get('kor_co_nm')
+        fin_prdt_nm = saving_product_li.get('fin_prdt_nm')
+        etc_note = saving_product_li.get('etc_note')
+        join_deny = saving_product_li.get('join_deny')
+        join_member = saving_product_li.get('join_member')
+        join_way = saving_product_li.get('join_way')
+        spcl_cnd = saving_product_li.get('spcl_cnd')
+        product_type = 1
 
 
         if FinancialProducts.objects.filter(
@@ -65,19 +147,20 @@ def save_financial_products(request):
             'join_deny':join_deny,
             'join_member':join_member,
             'join_way':join_way,
-            'spcl_cnd':spcl_cnd
+            'spcl_cnd':spcl_cnd,
+            "product_type" : product_type,
         }
         serializer = FinancialProductsSerializer(data=save_product_data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
 
-    for option_li in response.get('result').get('optionList'):
+    for saving_option_li in saving_response.get('result').get('optionList'):
 
-        fin_prdt_cd = option_li.get('fin_prdt_cd')
-        intr_rate_type_nm = option_li.get('intr_rate_type_nm')
-        intr_rate = option_li.get('intr_rate')
-        intr_rate2 = option_li.get('intr_rate2')
-        save_trm = option_li.get('save_trm')
+        fin_prdt_cd = saving_option_li.get('fin_prdt_cd')
+        intr_rate_type_nm = saving_option_li.get('intr_rate_type_nm')
+        intr_rate = saving_option_li.get('intr_rate')
+        intr_rate2 = saving_option_li.get('intr_rate2')
+        save_trm = saving_option_li.get('save_trm')
 
         product = FinancialProducts.objects.get(fin_prdt_cd=fin_prdt_cd)
 
@@ -131,19 +214,53 @@ def financial_product_options(request,fin_product_cd):
 # 가입 기간에 상관 없이 금리가 가장 높은 상품과
 # 해당 상품의 옵션 리스트 출력
 @api_view(['GET'])
-def top_rate(request):
-    
+def deposit_top_rate(request):
+    save_terms = [1,3,6,12,24,36]
     if request.method == "GET":
-        highest_value_product_option = FinancialOptions.objects.order_by('-intr_rate2').first()
-        highest_value_product = highest_value_product_option.product
-        option_serializer = FinancialOptionsSerializer(highest_value_product_option)
-        product_serializer = FinancialProductsSerializer(highest_value_product)
+        deposit_highest_value_products = []
+        for term in save_terms:
+            options= FinancialOptions.objects.order_by('-intr_rate2').filter(save_trm = term)
 
-        return Response({
-            "Financial_product": product_serializer.data,
-            "option": option_serializer.data,
-        })
+            highest_option = None
+            for option in options:
+                if option.product.product_type == 0:
+                    highest_option = option
+                    break
+            if highest_option:
+                product = highest_option.product
+                deposit_highest_value_products.append({
+                "term": term,
+                "product": FinancialProductsSerializer(product).data,
+                "option": FinancialOptionsSerializer(highest_option).data,
+            })
+
+        return Response(deposit_highest_value_products, status=200)
+    
+    
+@api_view(['GET'])
+def saving_top_rate(request):
+    save_terms = [1,3,6,12,24,36]
+    if request.method == "GET":
+        saving_highest_value_products = []
+        for term in save_terms:
+            options= FinancialOptions.objects.order_by('-intr_rate2').filter(save_trm = term)
+            highest_option = None
+            for option in options:
+                if option.product.product_type == 1:
+                    highest_option = option
+                    break
+            if highest_option:
+                product = highest_option.product
+                saving_highest_value_products.append({
+                "term": term,
+                "product": FinancialProductsSerializer(product).data,
+                "option": FinancialOptionsSerializer(highest_option).data,
+            })
+
+        return Response(saving_highest_value_products, status=200)
+    
     return Response({"error": "No options found"}, status=404)
+
 
 ### 상품에 대한 댓글 생성 및 조회
 @api_view(["GET","POST"])
