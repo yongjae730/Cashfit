@@ -15,9 +15,9 @@
           {{ bank.name }}
         </option>
       </select>
-      <button @clikc="searchBranches" class="search-button">검색</button>
+      <button @click="searchBranches" class="search-button">검색</button>
     </div>
-    <div ref="mapContainer" style="width: 100%; height: 500px"></div>
+    <div ref="mapContainer" class="map-view"></div>
   </div>
 </template>
 
@@ -25,19 +25,35 @@
 import { onMounted, ref } from "vue";
 
 const KAKAO_API_KEY = import.meta.env.VITE_KAKAO_API_KEY;
+
+// 필터 상태
+const selectedRegion = ref("");
+const selectedBank = ref("");
+
+// 예시 데이터
+const regions = ref([
+  { code: "seoul", name: "서울" },
+  { code: "busan", name: "부산" },
+]);
+
+const banks = ref([
+  { code: "kb", name: "KB국민은행" },
+  { code: "shinhan", name: "신한은행" },
+]);
+
+// Kakao 지도 관련
 const mapContainer = ref(null);
-const markers = ref([]); // markers를 ref로 관리
+const markers = ref([]);
 
 onMounted(() => {
   if (!KAKAO_API_KEY) {
-    console.error("Kakao API 키가 설정되지 않았습니다.");
+    alert("Kakao API 키가 설정되지 않았습니다. .env 파일을 확인하세요.");
     return;
   }
   loadKaKaoMap(mapContainer.value);
 });
 
 const loadKaKaoMap = (container) => {
-  // 이미 로드되어 있는지 확인
   if (window.kakao && window.kakao.maps) {
     initMap(container);
     return;
@@ -48,43 +64,50 @@ const loadKaKaoMap = (container) => {
   document.head.appendChild(script);
 
   script.onload = () => {
-    window.kakao.maps.load(() => {
-      const options = {
-        center: new window.kakao.maps.LatLng(33.450701, 126.570667),
-        level: 3,
-        maxLevel: 5,
-      };
-
-      const mapInstance = new window.kakao.maps.Map(container, options);
-
-      // 마커 추가 함수
-      const addMarker = (position) => {
-        const marker = new window.kakao.maps.Marker({
-          position: position,
-        });
-
-        marker.setMap(mapInstance);
-        markers.value.push(marker); // ref 값에 접근하기 위해 .value 사용
-      };
-
-      // 모든 마커 설정/해제 함수
-      const setMarkers = (map) => {
-        markers.value.forEach((marker) => {
-          marker.setMap(map);
-        });
-      };
-
-      // 초기 마커 추가
-      addMarker(new window.kakao.maps.LatLng(33.450701, 126.570667));
-      addMarker();
-      // 마커 표시
-      setMarkers(mapInstance);
-    });
+    window.kakao.maps.load(() => initMap(container));
   };
 
   script.onerror = () => {
-    console.error("Kakao Maps API를 로드할 수 없습니다.");
+    alert("Kakao Maps API를 로드할 수 없습니다.");
   };
+};
+
+const initMap = (container) => {
+  const options = {
+    center: new window.kakao.maps.LatLng(33.450701, 126.570667),
+    level: 3,
+  };
+
+  const mapInstance = new window.kakao.maps.Map(container, options);
+
+  // 마커 추가 함수
+  const addMarker = (position) => {
+    const marker = new window.kakao.maps.Marker({ position });
+    marker.setMap(mapInstance);
+    markers.value.push(marker);
+  };
+
+  // 기본 마커 추가
+  addMarker(new window.kakao.maps.LatLng(33.450701, 126.570667));
+};
+
+// 검색 기능
+const searchBranches = () => {
+  const branches = [
+    { name: "지점 A", lat: 37.5665, lng: 126.978, region: "seoul", bank: "kb" },
+    { name: "지점 B", lat: 35.1796, lng: 129.0756, region: "busan", bank: "shinhan" },
+  ];
+
+  const filtered = branches.filter((branch) => (!selectedRegion.value || branch.region === selectedRegion.value) && (!selectedBank.value || branch.bank === selectedBank.value));
+
+  // 기존 마커 제거
+  markers.value.forEach((marker) => marker.setMap(null));
+  markers.value = [];
+
+  // 새 마커 추가
+  filtered.forEach((branch) => {
+    addMarker(new window.kakao.maps.LatLng(branch.lat, branch.lng));
+  });
 };
 </script>
 
@@ -128,13 +151,9 @@ const loadKaKaoMap = (container) => {
 
 .map-view {
   width: 100%;
-  height: 600px;
+  height: 500px;
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid #ddd;
-}
-div[ref="mapContainer"] {
-  width: 100%;
-  height: 500px;
 }
 </style>
