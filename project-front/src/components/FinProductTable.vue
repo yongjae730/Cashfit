@@ -1,10 +1,15 @@
 <template>
   <div>
+    <!-- 로딩 상태 -->
+    <div v-if="isLoading" class="text-center">
+      <v-progress-circular indeterminate color="primary" />
+      <p>데이터를 불러오는 중입니다...</p>
+    </div>
+
     <!-- 예금 정보 -->
-    <div v-if="topSaving" class="p-4 mb-6">
+    <div v-else-if="topSaving.length > 0" class="p-4 mb-6">
       <h2>가장 핫 한 예금 정보</h2>
       <v-carousel hide-delimiter-background height="400px">
-        <!-- 배열 데이터를 순회하며 각 항목 렌더링 -->
         <v-carousel-item v-for="(saving, index) in topSaving" :key="index">
           <v-card class="expanded-details-card">
             <v-card-title class="bg-blue-lighten-5 justify-space-between">
@@ -88,6 +93,11 @@
         </v-carousel-item>
       </v-carousel>
     </div>
+
+    <!-- 데이터가 없을 때 -->
+    <div v-else class="text-center">
+      <p>표시할 데이터가 없습니다.</p>
+    </div>
   </div>
 </template>
 
@@ -95,22 +105,30 @@
 import axios from "axios";
 import { onMounted, ref } from "vue";
 
-// 예금 정보 관련 데이터
+// 데이터 상태 관리
 const topSaving = ref([]);
+const isLoading = ref(true); // 로딩 상태
 
-// API 호출
+// 비동기 데이터 로드 함수
+const fetchData = async () => {
+  try {
+    const response = await axios.get(
+      "http://127.0.0.1:8000/api/financials/financial-products/deposit_top_rate/"
+    );
+
+    // 받은 데이터 정렬 (기간 기준 오름차순)
+    const sortedData = response.data.sort((a, b) => a.option.save_trm - b.option.save_trm);
+
+    topSaving.value = sortedData;
+  } catch (error) {
+    console.error("데이터 로드 실패:", error);
+  } finally {
+    isLoading.value = false; // 로딩 상태 종료
+  }
+};
+
+// 컴포넌트가 마운트될 때 데이터 로드
 onMounted(() => {
-  axios({
-    url: "http://127.0.0.1:8000/api/financials/financial-products/deposit_top_rate/",
-    method: "get",
-  })
-    .then((res) => {
-      console.log(res.data);
-      topSaving.value = res.data;
-
-      // 기간별로 데이터 정렬 (save_trm 기준 오름차순)
-      topSaving.value.sort((a, b) => a.option.save_trm - b.option.save_trm);
-    })
-    .catch((error) => console.log(error));
+  fetchData();
 });
 </script>
