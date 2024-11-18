@@ -12,7 +12,8 @@ urlpatterns = [
     path('financial-product-options/<str:fin_product_cd>/', views.financial_product_options),
     # 가입 기간에 상관 없이 최고 금리가 가장 높은 금융상품과
     # 해당 상품의 옵션 리스트 출력
-    path('financial-products/top_rate/', views.top_rate),
+    path('financial-products/deposit_top_rate/', views.deposit_top_rate),
+    path('financial-products/saving_top_rate/', views.saving_top_rate),
     # 댓글 생성 및 조회 url
     path('financial-comment/<int:fin_product_pk>/', views.financial_comment),
 ]
