@@ -220,6 +220,7 @@ def deposit_top_rate(request):
         deposit_highest_value_products = []
         for term in save_terms:
             options= FinancialOptions.objects.order_by('-intr_rate2').filter(save_trm = term)
+            options= FinancialOptions.objects.order_by('kor_co_nm')
 
             highest_option = None
             for option in options:
