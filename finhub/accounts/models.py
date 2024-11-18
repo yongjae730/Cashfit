@@ -10,8 +10,11 @@ class User(AbstractUser):
     age = models.PositiveIntegerField(null=True, blank=True, verbose_name="나이")
     # 자본금 (만원 단위)
     capital = models.PositiveIntegerField(null=True, blank=True, verbose_name="자본금")
-    
+    # 지역
+    sido = models.CharField(max_length=10)
+    sigungus = models.CharField(max_length=10)
 
+    
     # user 출력 시 유저 이름으로 나오게
     def __str__(self):
         return self.username
