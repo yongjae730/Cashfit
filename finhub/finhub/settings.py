@@ -58,8 +58,6 @@ REST_FRAMEWORK = {
 
 INSTALLED_APPS = [
     'financials',
-    'stocks',
-    'coins',
     'accounts',
     'articles',
     'rest_framework',

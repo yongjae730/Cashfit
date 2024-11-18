@@ -24,7 +24,4 @@ urlpatterns = [
     # 나중에 추가 할지말지
     path('accounts/', include('dj_rest_auth.urls')),
     path('accounts/signup/', include('dj_rest_auth.registration.urls')),
-    # 일단 없는 기능 
-    # path('api/stocks/',include('stocks.urls')),
-    # path('api/coins/',include('coins.urls')),
 ]
