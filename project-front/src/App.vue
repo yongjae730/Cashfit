@@ -1,8 +1,3 @@
-<script setup>
-import { RouterLink, RouterView } from "vue-router";
-import NavBar from "./components/NavBar.vue";
-import Footer from "./components/Footer.vue";
-</script>
 
 <template>
   <v-app>
@@ -14,4 +9,16 @@ import Footer from "./components/Footer.vue";
   </v-app>
 </template>
 
-<style scoped></style>
+<script setup>
+import { RouterLink, RouterView } from "vue-router";
+import NavBar from "./components/NavBar.vue";
+import Footer from "./components/Footer.vue";
+import { onMounted } from "vue";
+import axios from "axios";
+
+  onMounted(() => {
+    axios.get(`http://127.0.0.1:8000/api/financials/save-financial-products/`)
+  })
+ </script>
+<style scoped>
+</style>
