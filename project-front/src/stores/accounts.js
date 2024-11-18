@@ -24,8 +24,8 @@ export const useAccount = defineStore(
 
     const signUp = async (payload) => {
       try {
-        const { username, password1, password2 } = payload;
-        await axios.post(`${API_URL}/accounts/signup/`, { username, password1, password2 });
+        const { username, password1, password2, nickname, age, capital, sido, sigungus } = payload;
+        await axios.post(`${API_URL}/accounts/signup/`, { username, password1, password2, nickname, age, capital, sido, sigungus });
         await login({ username, password: password1 });
       } catch (err) {
         console.error("Signup failed:", err.response?.data || err);

@@ -84,7 +84,7 @@ const handleSignup = async () => {
       age: age.value,
       capital: capital.value,
       sido: sido.value,
-      sigugun: sigugun.value,
+      siguguns: sigugun.value,
     });
     console.log("회원가입 성공");
   } catch (err) {
