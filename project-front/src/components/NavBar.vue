@@ -22,8 +22,21 @@
 
         <!-- 로그인/회원가입 버튼 -->
         <v-col class="d-flex align-center" cols="auto">
-          <v-btn outlined class="mr-2" @click="showLoginModal = true">Sign in</v-btn>
-          <v-btn color="black" dark><router-link to="/sign_up">Register</router-link></v-btn>
+          <template v-if="isLogin">
+            <v-menu offset-y>
+              <template #activator="{ props }">
+                <v-btn text v-bind="props">{{ username }}</v-btn>
+              </template>
+              <v-list-item>
+                <a href="#">내 프로필</a>
+              </v-list-item>
+              <v-list-item @click="logout">로그아웃</v-list-item>
+            </v-menu>
+          </template>
+          <template v-else>
+            <v-btn outlined class="mr-2" @click="showLoginModal = true">Sign in</v-btn>
+            <v-btn color="black" dark><router-link to="/sign_up">Register</router-link></v-btn>
+          </template>
         </v-col>
       </v-row>
     </v-container>
@@ -33,10 +46,20 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import LoginModal from "./LoginModal.vue";
+import { useAccount } from "@/stores/accounts";
 
 const showLoginModal = ref(false);
+
+const store = useAccount();
+const isLogin = computed(() => store.isLogin);
+const username = computed(() => store.username || "User");
+
+const logout = () => {
+  store.token = null;
+  store.username = null;
+};
 </script>
 
 <style scoped>

@@ -6,8 +6,8 @@
         <v-btn icon="mdi-close" variant="text" size="small" @click="$emit('update:isOpen', false)"></v-btn>
       </div>
 
-      <v-form>
-        <v-text-field v-model="email" label="이메일" prepend-inner-icon="mdi-email" variant="outlined" class="mb-4"></v-text-field>
+      <v-form @submit.prevent="login">
+        <v-text-field v-model="username" label="이메일" prepend-inner-icon="mdi-email" variant="outlined" class="mb-4"></v-text-field>
 
         <v-text-field
           v-model="password"
@@ -36,7 +36,8 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { useAccount } from "@/stores/accounts";
+import { ref, watch } from "vue";
 
 const props = defineProps({
   isOpen: {
@@ -46,23 +47,34 @@ const props = defineProps({
 });
 
 const emit = defineEmits(["update:isOpen"]);
-
-const email = ref("");
+const store = useAccount();
+const username = ref("");
 const password = ref("");
 const showPassword = ref(false);
 const rememberMe = ref(false);
-const login = () => {
-  console.log("로그인 시도", {
-    email: email.value,
+const login = async () => {
+  const payload = {
+    username: username.value,
     password: password.value,
-    rememberMe: rememberMe.value,
-  });
+  };
+  try {
+    await store.login(payload);
+    if (store.isLogin) {
+      emit("update:isOpen", false);
+    }
+  } catch (error) {
+    console.error("로그인 실패 :", error);
+  }
 };
-// const login = () => {
-//   // 로그인 로직 구현
-//   // 성공 시 모달 닫기
-//   // emit('update:modelValue', false)
-// };
+
+watch(
+  () => store.isLogin,
+  (newValue) => {
+    if (newValue) {
+      emit("update:isOpen", false);
+    }
+  }
+);
 </script>
 
 <style scoped>
