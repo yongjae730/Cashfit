@@ -18,12 +18,12 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/accounts/',include('accounts.urls')),
+    # path('api/accounts/',include('accounts.urls')),
     path('api/financials/',include('financials.urls')),
     path('api/articles/',include('articles.urls')),
     # 나중에 추가 할지말지
-    # path('accounts/', include('dj_rest_auth.urls')),
-    # path('accounts/signup/', include('dj_rest_auth.registration.urls')),
+    path('accounts/', include('dj_rest_auth.urls')),
+    path('accounts/signup/', include('dj_rest_auth.registration.urls')),
     # 일단 없는 기능 
     # path('api/stocks/',include('stocks.urls')),
     # path('api/coins/',include('coins.urls')),
