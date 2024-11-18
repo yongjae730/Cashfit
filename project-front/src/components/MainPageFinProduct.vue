@@ -2,11 +2,13 @@
   <v-container class="product-section">
     <!-- 금융 상품 테이블 -->
     <FinProductTable />
+    <SavingProductTable />
   </v-container>
 </template>
 
 <script setup>
 import FinProductTable from "./FinProductTable.vue";
+import SavingProductTable from "./SavingProductTable.vue";
 </script>
 
 <style scoped>
