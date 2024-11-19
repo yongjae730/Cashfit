@@ -21,21 +21,6 @@ export const useArticleStore = defineStore(
         });
     };
 
-    const createArticle = function (data) {
-      axios({
-        method: "post",
-        url: `${API_URL}`,
-        data: {
-          data: data,
-        },
-      })
-        .then((res) => {
-          console.log(res.data);
-          alert("게시글 생성 완료!");
-        })
-        .catch((err) => console.log(err));
-    };
-
     return { API_URL, getArticles, articles };
   },
   { persist: true }
