@@ -8,15 +8,17 @@ export const useAccount = defineStore(
   () => {
     const API_URL = "http://127.0.0.1:8000";
     const token = ref(null);
-
+    const showLoginMoal = ref(false);
     const isLogin = computed(() => token.value !== null);
-
+    const redirectPath = ref(null);
     const login = async (payload) => {
       try {
         const { username, password } = payload;
         const response = await axios.post(`${API_URL}/accounts/login/`, { username, password });
         token.value = response.data.key;
-        router.push({ name: "Main" });
+        const redirectTo = redirectPath.value || { name: "Main" };
+        redirectPath.value = null;
+        router.push(redirectTo);
       } catch (err) {
         console.error("Login failed:", err);
       }
@@ -32,7 +34,7 @@ export const useAccount = defineStore(
       }
     };
 
-    return { API_URL, token, isLogin, login, signUp };
+    return { API_URL, token, isLogin, login, signUp, showLoginMoal, redirectPath };
   },
   { persist: true }
 );

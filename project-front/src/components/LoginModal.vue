@@ -37,8 +37,7 @@
 
 <script setup>
 import { useAccount } from "@/stores/accounts";
-import { ref, watch } from "vue";
-
+import { computed, ref, watch } from "vue";
 const props = defineProps({
   isOpen: {
     type: Boolean,
