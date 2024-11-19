@@ -275,7 +275,7 @@ def financial_comment(request,fin_product_pk):
     elif request.method == "POST":
         serializer = FinancialCommentSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            serializer.save(users=request.user, financial_product=product)
+            serializer.save(users=request.user, financial_products=product)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         
 # 댓글 수정 및 삭제
