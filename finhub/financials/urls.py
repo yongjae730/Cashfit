@@ -16,7 +16,7 @@ urlpatterns = [
     path('financial-products/saving_top_rate/', views.saving_top_rate),
     # 댓글 조회 url
     path('financial-comment/<int:fin_product_pk>/', views.financial_comment),
-    path('financial_comment_create/<int:fin_product_pk>/', views.financial_comment_create),
+    path('financial-comment_create/<int:fin_product_pk>/', views.financial_comment_create),
     # 댓글 수정 및 삭제 url
     path('financial-comment/update-delete/<int:comment_id>/', views.update_delete_comment),    
     # 좋아요 기능
