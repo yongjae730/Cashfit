@@ -14,9 +14,15 @@ class ArticleSerializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only_fields = ('user',)
 
-
 class ArticleCommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = ArticleComment
-        fields = '__all__'
-        read_only_fields = ('users', 'articles')
+        fields = ('id', 'content', 'users', 'create_at', 'is_deleted')
+
+class ArticleDetailSerializer(serializers.ModelSerializer):
+    comments = ArticleCommentSerializer(source='articlecomments', many=True)
+    comments_count = serializers.IntegerField(source='articlecomments.count', read_only=True)
+
+    class Meta:
+        model = Article
+        fields = ('id', 'title', 'content', 'users', 'create_at', 'update_at', 'comments', 'comments_count')
