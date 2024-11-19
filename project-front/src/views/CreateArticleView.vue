@@ -57,7 +57,7 @@ const handleSubmit = async () => {
     const accountStore = useAccount();
     const token = accountStore.token;
     const response = await axios.post(
-      `${API_URL}/api/articles/`,
+      `${API_URL}/api/articles/create/`,
       {
         title: title.value,
         content: content.value,
