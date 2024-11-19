@@ -28,7 +28,7 @@
                 <v-btn text v-bind="props">{{ username }}</v-btn>
               </template>
               <v-list-item>
-                <a href="#">내 프로필</a>
+                <!-- <RouterLink :to="{ name: 'profile', params: { id: user } }">내 프로필</RouterLink> -->
               </v-list-item>
               <v-list-item @click="logout">로그아웃</v-list-item>
             </v-menu>
@@ -51,11 +51,12 @@ import LoginModal from "./LoginModal.vue";
 import { useAccount } from "@/stores/accounts";
 
 const showLoginModal = ref(false);
-
+const user = ref(null);
 const store = useAccount();
 const isLogin = computed(() => store.isLogin);
 const username = computed(() => store.username || "User");
-
+console.log(store.user);
+user.value = store.user;
 const logout = () => {
   store.token = null;
   store.username = null;
