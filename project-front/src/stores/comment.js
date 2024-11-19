@@ -14,10 +14,10 @@ export const commentStore = defineStore(
     const getComments = function (articleId) {
       axios({
         method: "get",
-        url: `${API_URL}/api/articles/${articleId}/comments`,
+        url: `${API_URL}/api/articles/${articleId}/`,
       })
         .then((res) => {
-          comments.value = res.data;
+          comments.value = res.data.comments;
         })
         .catch((error) => console.log(error));
     };
@@ -28,7 +28,6 @@ export const commentStore = defineStore(
         url: `${API_URL}/api/articles/${articleId}/comments/create/`,
         data: {
           content: content,
-          users: accountStore.users,
         },
         headers: {
           Authorization: `Token ${token}`,
@@ -37,7 +36,7 @@ export const commentStore = defineStore(
         comments.value.push(res.data);
       });
     };
-    return { API_URL, getComments, createComment };
+    return { API_URL, comments, getComments, createComment };
   },
   { persist: true }
 );
