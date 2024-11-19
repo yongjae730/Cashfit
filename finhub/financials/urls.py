@@ -26,4 +26,9 @@ urlpatterns = [
 
     # 환율 정보 DB에 저장
     path('exchange-rate/', views.exchange_rate),
+    ### ai chatbot
+    path('ask-chatbot/', views.ask_chatbot, name='ask_chatbot'),
+    path('get-user-info/', views.get_user_info, name='get_user_info'),
+    path('get-financial-products/', views.get_financial_products, name='get_financial_products'),
+
 ]
