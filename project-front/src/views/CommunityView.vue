@@ -10,7 +10,7 @@
         {{ item.id }}
       </template>
       <template v-slot:item.title="{ item }">
-        <a href="#" style="color: #1976d2">{{ item.title }}</a>
+        <RouterLink :to="{ name: 'articleDetail', params: { id: item.id } }" style="color: #1976d2">{{ item.title }}</RouterLink>
       </template>
       <template v-slot:item.create_at="{ item }">
         {{ formatDate(item.create_at) }}

@@ -16,15 +16,17 @@ class ArticleSerializer(serializers.ModelSerializer):
         read_only_fields = ('users',)
 
 class ArticleCommentSerializer(serializers.ModelSerializer):
+    nickname = serializers.CharField(source="users.nickname", read_only=True)
     class Meta:
         model = ArticleComment
-        fields = ('id', 'content', 'users', 'create_at', 'is_deleted')
-        read_only_fields = ('users',"articles","create_at","is_deleted")
+        fields = ('id', 'content', 'users', 'nickname','create_at', 'is_deleted')
+        read_only_fields = ('users',"articles","create_at")
 
 class ArticleDetailSerializer(serializers.ModelSerializer):
     comments = ArticleCommentSerializer(source='articlecomments', many=True)
     comments_count = serializers.IntegerField(source='articlecomments.count', read_only=True)
+    nickname = serializers.CharField(source="users.nickname", read_only=True)
 
     class Meta:
         model = Article
-        fields = ('id', 'title', 'content', 'users', 'create_at', 'update_at', 'comments', 'comments_count')
+        fields = ('id', 'title', 'content', 'users', 'create_at', 'update_at', 'nickname', 'comments', 'comments_count')
