@@ -6,7 +6,7 @@ import { useAccount } from "./accounts";
 export const productCommentStore = defineStore(
   "comments",
   () => {
-    const comments = ref([]);
+    const comment = ref([]);
     const accountStore = useAccount();
     const token = accountStore.token;
 
@@ -19,7 +19,7 @@ export const productCommentStore = defineStore(
         url: `${API_URL}/api/financials/financial-comment/${productId}`,
       })
         .then((res) => {
-          comments.value = res.data.comments;
+          comment.value = res.data;
         })
         .catch((error) => console.log(error));
     };
@@ -28,7 +28,7 @@ export const productCommentStore = defineStore(
     const createComment = function (productId, content) {
       axios({
         method: "post",
-        url: `${API_URL}/api/financials/financial-comment/${productId}/`,
+        url: `${API_URL}/api/financials/financial-comment_create/${productId}/`,
         data: {
           content: content,
         },
@@ -37,10 +37,28 @@ export const productCommentStore = defineStore(
         },
       })
         .then((res) => {
-          console.log(res.data);
-          comments.value.push(res.data);
+          console.log("댓글 생성 응답 데이터:", res.data);
+
+          // comments.value가 제대로 초기화되어 있는지 확인하고 초기화
+          if (!Array.isArray(comment.value)) {
+            comment.value = [];
+          }
+
+          // 응답 데이터가 객체인지 확인하고 추가
+          if (res.data && typeof res.data === "object" && res.data.id) {
+            comment.value.push(res.data);
+          } else {
+            console.error("댓글 데이터가 예상한 형식이 아닙니다.");
+          }
         })
-        .catch((error) => console.error("댓글 생성 실패:", error));
+        .catch((error) => {
+          console.error("댓글 생성 실패:", error);
+
+          // comments가 정의되지 않은 경우 빈 배열로 초기화
+          if (!Array.isArray(comment.value)) {
+            comment.value = [];
+          }
+        });
     };
 
     // // 댓글 삭제 (isDelete = true로 설정)
@@ -85,7 +103,7 @@ export const productCommentStore = defineStore(
     //   }
     // };
 
-    return { API_URL, comments, getComments, createComment };
+    return { API_URL, comment, getComments, createComment };
   },
   { persist: true }
 );
