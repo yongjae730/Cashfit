@@ -22,8 +22,8 @@ const showLoginModal = computed(() => accountStore.showLoginMoal);
 const updateLoginModal = (isOpen) => {
   accountStore.showLoginMoal = isOpen;
 };
-onMounted(() => {
-  axios.get(`http://127.0.0.1:8000/api/financials/save-financial-products/`);
-});
+// onMounted(() => {
+//   axios.get(`http://127.0.0.1:8000/api/financials/save-financial-products/`);
+// });
 </script>
 <style scoped></style>
