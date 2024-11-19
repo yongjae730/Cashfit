@@ -8,6 +8,7 @@ import FinDetailView from "@/views/FinDetailView.vue";
 import CommunityView from "@/views/CommunityView.vue";
 import CreateArticleView from "@/views/CreateArticleView.vue";
 import { useAccount } from "@/stores/accounts";
+import CommunityDetailView from "@/views/CommunityDetailView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -62,6 +63,11 @@ const router = createRouter({
       name: "createArticle",
       component: CreateArticleView,
       meta: { isLogin: true },
+    },
+    {
+      path: "/community/:id",
+      name: "articleDetail",
+      component: CommunityDetailView,
     },
   ],
 });
