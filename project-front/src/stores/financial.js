@@ -7,6 +7,7 @@ export const useFinStore = defineStore(
   "financial",
   () => {
     const fin = ref([]);
+    const selectedProduct = ref(null);
     const API_URL = "http://127.0.0.1:8000";
 
     const getFins = function () {
@@ -23,7 +24,15 @@ export const useFinStore = defineStore(
         });
     };
 
-    return { API_URL, getFins, fin };
+    const setSelectedProduct = function (product) {
+      selectedProduct.value = product;
+    };
+
+    const clearSelectedProduct = function () {
+      selectedProduct.value = null;
+    };
+
+    return { API_URL, getFins, fin, selectedProduct, setSelectedProduct, clearSelectedProduct };
   },
   { persist: true }
 );
