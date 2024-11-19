@@ -3,9 +3,9 @@
     <!-- 상품 제목 섹션 -->
     <v-card class="mb-6" elevation="2">
       <v-card-title class="d-flex align-center">
-        <v-avatar size="80" class="mr-4">
-          <v-img src="https://via.placeholder.com/600x300" alt="상품 이미지"></v-img>
-        </v-avatar>
+        <!-- <v-avatar size="150"> -->
+        <v-img :src="`/bank_images/${product.kor_co_nm}.jpg`" max-width="150px" alt="상품 이미지" class="mr-4"></v-img>
+        <!-- </v-avatar> -->
         <div>
           <div class="text-h5 font-weight-bold">{{ product.fin_prdt_nm }}</div>
           <div class="text-subtitle-2 text-grey-darken-2">{{ product.kor_co_nm }}</div>
@@ -61,14 +61,8 @@
       <v-card-title class="text-h6 font-weight-bold">댓글</v-card-title>
       <v-list dense>
         <v-list-item v-for="(comment, index) in comments" :key="index">
-          <v-list-item-avatar>
-            <v-avatar size="40" color="grey lighten-3">
-              <v-icon color="grey darken-1">mdi-account</v-icon>
-            </v-avatar>
-          </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title class="text-subtitle-1">{{ comment.author }}</v-list-item-title>
-            <v-list-item-subtitle class="text-body-2">{{ comment.text }}</v-list-item-subtitle>
+            <v-list-item-subtitle class="text-body-2">{{ comment.content }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -140,6 +134,8 @@ const markers = ref([]);
 
 onMounted(async () => {
   productCommentStore.getComments(product.id);
+  comments.value = productCommentStore.comment;
+  console.log(comments.value);
   loadKaKaoMap(mapContainer.value);
 });
 
