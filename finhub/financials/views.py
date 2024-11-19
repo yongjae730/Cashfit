@@ -262,7 +262,7 @@ def saving_top_rate(request):
     return Response({"error": "No options found"}, status=404)
 
 
-### 상품에 대한 댓글 생성 및 조회
+### 상품에 대한 댓글 조회
 @api_view(["GET"])
 @permission_classes([AllowAny])
 def financial_comment(request,fin_product_pk):
@@ -273,7 +273,7 @@ def financial_comment(request,fin_product_pk):
         serializer = FinancialCommentSerializer(comments, many=True)
         return Response(serializer.data)
     
-
+### 상품에 대한 댓글 생성
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
 def financial_comment_create(request,fin_product_pk):
