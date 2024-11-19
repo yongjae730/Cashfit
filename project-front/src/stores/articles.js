@@ -14,6 +14,7 @@ export const useArticleStore = defineStore(
         url: `${API_URL}/api/articles/`,
       })
         .then((res) => {
+          console.log(res.data);
           articles.value = res.data;
         })
         .catch((err) => {

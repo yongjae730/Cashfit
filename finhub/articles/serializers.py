@@ -3,7 +3,7 @@ from .models import Article, ArticleComment
 class ArticleListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
-        fields = ('id', 'title', 'content')
+        fields = ('id', 'title', 'content', 'create_at', 'update_at')
 
 
         
