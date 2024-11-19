@@ -1,20 +1,14 @@
-'''
-게시판 기능인데 샘플코드라 주석 풀지말지 결정해야하고,
-permission_classes 데코레이터로 권한 부여함 
-''' 
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404, get_list_or_404
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
-
-# permission Decorators
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated,AllowAny
 from .serializers import ArticleCommentSerializer
-from django.shortcuts import get_object_or_404, get_list_or_404
-
 from .serializers import ArticleListSerializer, ArticleSerializer,ArticleDetailSerializer
 from .models import Article, ArticleComment
+
 
 # 게시글 리스트 조회 (권한 없음)
 @api_view(['GET'])

@@ -1,17 +1,16 @@
-# Create your views here.
-# from bson import is_valid
-from rest_framework.response import Response
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
-import requests
-from rest_framework.decorators import api_view
-from financials.models import FinancialComment,FinancialOptions,FinancialProducts,FinancialProductLike
-from finhub import settings
-from .serializers import FinancialProductsSerializer, FinancialOptionsSerializer, FinancialCommentSerializer
-from rest_framework import status
 from django.contrib.auth import get_user_model
+from financials.models import FinancialComment,FinancialOptions,FinancialProducts,FinancialProductLike
+from .serializers import FinancialProductsSerializer, FinancialOptionsSerializer, FinancialCommentSerializer
+from rest_framework.response import Response
+from rest_framework.decorators import api_view,permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework import status
+from finhub import settings
+import requests
+
 # Create your views here.
-from pprint import pprint
 
 User = get_user_model()
 
@@ -236,7 +235,7 @@ def deposit_top_rate(request):
 
         return Response(deposit_highest_value_products, status=200)
     
-    
+
 @api_view(['GET'])
 def saving_top_rate(request):
     save_terms = [1,3,6,12,24,36]
@@ -264,6 +263,7 @@ def saving_top_rate(request):
 
 ### 상품에 대한 댓글 생성 및 조회
 @api_view(["GET","POST"])
+@permission_classes([IsAuthenticated])
 def financial_comment(request,fin_product_pk):
     product = get_object_or_404(FinancialProducts,pk=fin_product_pk)
     if request.method == "GET":
@@ -275,13 +275,27 @@ def financial_comment(request,fin_product_pk):
     elif request.method == "POST":
         serializer = FinancialCommentSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            # 임시 유저 할당
-            temp_user = User.objects.first()  # 첫 번째 유저를 임시로 할당
-            serializer.save(users=temp_user, financial_products=product)
-            # serializer.save(users=request.user, financial_product=product)
+            serializer.save(users=request.user, financial_product=product)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         
+# 댓글 수정 및 삭제
+@api_view(["PUT", "DELETE"])
+@permission_classes([IsAuthenticated])
+def update_delete_comment(request, comment_id):
+    comment = get_object_or_404(FinancialComment, pk=comment_id, users=request.user)
 
+    # 댓글 수정 로직
+    if request.method == "PUT":
+        serializer = FinancialCommentSerializer(comment, data=request.data, partial=True)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+    # 댓글 삭제 로직
+    elif request.method == "DELETE":
+        comment.is_deleted = True
+        comment.save()
+        return Response({"message": "Comment deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
 
 # 환율 정보 불러오기
 def exchange_rate(request):
@@ -296,7 +310,9 @@ def exchange_rate(request):
 
     return JsonResponse({'exchange_rate':exchange_response}, status=200)
 
+# 좋아요 기능
 @api_view(['POST', 'DELETE'])
+@permission_classes([IsAuthenticated])
 def financial_product_like(request, product_id):
     product = get_object_or_404(FinancialProducts, id=product_id)
     user = request.user
@@ -316,6 +332,7 @@ def financial_product_like(request, product_id):
 
 # 유저 프로필 페이지에서 좋아요 한 상품 목록 출력
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def user_liked_products(request):
     user = request.user
     likes = FinancialProductLike.objects.filter(user=user)
