@@ -2,9 +2,10 @@ import { createRouter, createWebHistory } from "vue-router";
 import MainView from "@/views/MainView.vue";
 import SignUpView from "@/views/SignUpView.vue";
 import FinView from "@/views/FinView.vue";
-import StockView from "@/views/StockView.vue";
+import StockView from "@/views/CommunityView.vue";
 import CryptoView from "@/views/CryptoView.vue";
 import FinDetailView from "@/views/FinDetailView.vue";
+import CommunityView from "@/views/CommunityView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -40,9 +41,9 @@ const router = createRouter({
       component: FinView,
     },
     {
-      path: "/stock",
-      name: "Stock",
-      component: StockView,
+      path: "/community",
+      name: "community",
+      component: CommunityView,
     },
     {
       path: "/crypto",

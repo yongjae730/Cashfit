@@ -1,10 +1,7 @@
-
 <template>
   <v-app>
     <NavBar />
-    <keep-alive>
-      <RouterView />
-    </keep-alive>
+    <RouterView />
     <Footer />
   </v-app>
 </template>
@@ -16,9 +13,8 @@ import Footer from "./components/Footer.vue";
 import { onMounted } from "vue";
 import axios from "axios";
 
-  onMounted(() => {
-    axios.get(`http://127.0.0.1:8000/api/financials/save-financial-products/`)
-  })
- </script>
-<style scoped>
-</style>
+onMounted(() => {
+  axios.get(`http://127.0.0.1:8000/api/financials/save-financial-products/`);
+});
+</script>
+<style scoped></style>

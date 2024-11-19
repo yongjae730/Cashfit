@@ -13,7 +13,7 @@
             <v-btn text>금융상품</v-btn>
           </router-link>
           <router-link :to="{ name: 'stock' }">
-            <v-btn text>주식</v-btn>
+            <v-btn text>커뮤니티</v-btn>
           </router-link>
           <router-link :to="{ name: 'crypto' }">
             <v-btn text>비트코인</v-btn>
