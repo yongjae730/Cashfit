@@ -13,6 +13,13 @@
 
         <div v-if="finList.length > 0" class="custom-table-container">
           <v-data-table :headers="headers" :items="finList" :search="search" hover fixed-header height="calc(100vh - 250px)" class="financial-table elevation-0" :items-per-page="-1">
+            <!-- 상품명에 RouterLink 추가 -->
+            <template #item.fin_prdt_nm="{ item }">
+              <router-link :to="`/product/${item.fin_prdt_cd}`" @click="setProduct(item)" class="text-decoration-none font-weight-medium text-primary">
+                {{ item.fin_prdt_nm }}
+              </router-link>
+            </template>
+
             <!-- 변화율 템플릿 -->
             <template #item.change="{ item }">
               <v-chip :color="item.change > 0 ? 'error' : 'info'" :class="{ 'font-weight-bold': true }" size="small" variant="tonal">
@@ -95,6 +102,9 @@ const headers = [
 
 const store = useFinStore();
 const finList = ref([]);
+const setProduct = (item) => {
+  store.setSelectedProduct(item);
+};
 onMounted(() => {
   store.getFins();
   finList.value = store.fin;

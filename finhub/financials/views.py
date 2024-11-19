@@ -275,10 +275,10 @@ def financial_comment(request,fin_product_pk):
     elif request.method == "POST":
         serializer = FinancialCommentSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            # 임시 유저 할당
-            temp_user = User.objects.first()  # 첫 번째 유저를 임시로 할당
-            serializer.save(users=temp_user, financial_products=product)
-            # serializer.save(users=request.user, financial_product=product)
+            # # 임시 유저 할당
+            # temp_user = User.objects.first()  # 첫 번째 유저를 임시로 할당
+            # serializer.save(users=temp_user, financial_products=product)
+            serializer.save(users=request.user, financial_products=product)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         
 
