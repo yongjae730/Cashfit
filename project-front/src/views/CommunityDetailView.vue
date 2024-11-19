@@ -16,7 +16,12 @@
       </v-card>
 
       <!-- 댓글 제목 -->
-      <h2 class="text-h6 font-weight-bold mb-4" style="color: #333">댓글 {{ comment.length }} 개</h2>
+      <h2 v-if="comment" class="text-h6 font-weight-bold mb-4" style="color: #333">
+        댓글
+        {{ comment.length }}
+        개
+      </h2>
+      <h2 v-else class="text-h6 font-weight-bold mb-4" style="color: #333">작성된 댓글이 없어요...</h2>
 
       <!-- 댓글 리스트 -->
       <v-card flat class="pa-4 mb-6" style="background-color: #f9fafc; border-radius: 16px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1)">
