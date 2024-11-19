@@ -1,9 +1,10 @@
 from rest_framework import serializers
 from .models import Article, ArticleComment
 class ArticleListSerializer(serializers.ModelSerializer):
+    users = serializers.StringRelatedField()
     class Meta:
         model = Article
-        fields = ('id', 'title', 'content', 'create_at', 'update_at')
+        fields = ('id', 'title', 'content','create_at', 'update_at', 'users')
 
 
         
