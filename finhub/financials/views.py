@@ -5,9 +5,9 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
 import requests
 from rest_framework.decorators import api_view
-from financials.models import FinancialComment,FinancialOptions,FinancialProducts,ExchangeRate
+from financials.models import FinancialComment,FinancialOptions,FinancialProducts,FinancialProductLike
 from finhub import settings
-from .serializers import FinancialProductsSerializer, FinancialOptionsSerializer, FinancialCommentSerializer, ExchangeRateSerializer
+from .serializers import FinancialProductsSerializer, FinancialOptionsSerializer, FinancialCommentSerializer
 from rest_framework import status
 from django.contrib.auth import get_user_model
 # Create your views here.
@@ -283,47 +283,41 @@ def financial_comment(request,fin_product_pk):
         
 
 
-
-def save_exchange_rate(request):
+# 환율 정보 불러오기
+def exchange_rate(request):
     BASE_URL = "https://www.koreaexim.go.kr/site/program/financial/exchangeJSON"
-    API ="I1oqQ0O4kOJdbR1jWRsRgSt9D2FdgezQ"
-
+    API =settings.EXCHANGE_API_KEY
     params = {
         "authkey": API,
         "data": "AP01"
     }
+
     exchange_response = requests.get(BASE_URL,params=params).json()
 
-    for exchange_rate in exchange_response:
-        cur_unit = exchange_rate.get('cur_unit')
-        cur_nm = exchange_rate.get('cur_nm')
-        ttb = exchange_rate.get('ttb')
-        tts = exchange_rate.get('tts')
-        deal_bas_r = exchange_rate.get('deal_bas_r')
-        bkpr = exchange_rate.get('bkpr')
-        yy_efee_r = exchange_rate.get('yy_efee_r')
-        ten_dd_efee_r = exchange_rate.get('ten_dd_efee_r')
-        kftc_bkpr = exchange_rate.get('kftc_bkpr')
-        kftc_deal_bas_r = exchange_rate.get('kftc_deal_bas_r')
+    return JsonResponse({'exchange_rate':exchange_response}, status=200)
 
-        if ExchangeRate.objects.filter(
-            cur_unit=cur_unit,
-            cur_nm=cur_nm,
-            ttb=ttb).exists():
-            continue
+@api_view(['POST', 'DELETE'])
+def financial_product_like(request, product_id):
+    product = get_object_or_404(FinancialProducts, id=product_id)
+    user = request.user
 
-        exchange_rate_data = {
-            'cur_unit':cur_unit,
-            'cur_nm':cur_nm,
-            'ttb':ttb,
-            'tts':tts,
-            'deal_bas_r':deal_bas_r,
-            'bkpr':bkpr,
-            'yy_efee_r':yy_efee_r,
-            'ten_dd_efee_r':ten_dd_efee_r,
-            'kftc_bkpr':kftc_bkpr,
-            'kftc_deal_bas_r':kftc_deal_bas_r
-        }
-        serializer = ExchangeRateSerializer(data=exchange_rate_data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
+    if request.method == 'POST':
+        # 좋아요 추가
+        like, created = FinancialProductLike.objects.get_or_create(user=user, product=product)
+        if created:
+            return Response({"message": "Liked successfully."}, status=status.HTTP_201_CREATED)
+        return Response({"message": "Already liked."}, status=status.HTTP_200_OK)
+
+    elif request.method == 'DELETE':
+        # 좋아요 삭제
+        like = get_object_or_404(FinancialProductLike, user=user, product=product)
+        like.delete()
+        return Response({"message": "Unliked successfully."}, status=status.HTTP_204_NO_CONTENT)
+
+# 유저 프로필 페이지에서 좋아요 한 상품 목록 출력
+@api_view(['GET'])
+def user_liked_products(request):
+    user = request.user
+    likes = FinancialProductLike.objects.filter(user=user)
+    serializer = FinancialProductsSerializer([like.product for like in likes], many=True)
+    return Response(serializer.data)

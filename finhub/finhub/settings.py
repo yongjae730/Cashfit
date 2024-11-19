@@ -21,7 +21,7 @@ import environ
 env = environ.Env(DEBUG=(bool,True))
 environ.Env.read_env(env_file=os.path.join(BASE_DIR, '.env'))
 API_KEY=env('API_KEY') #.env 파일에 작성된 API_KEY 값을 API_KEY 변수에 대입
-
+EXCHANGE_API_KEY=env('EXCHANGE_API_KEY') #.env 파일에 작성된 API_KEY 값을 API_KEY 변수에 대입
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/

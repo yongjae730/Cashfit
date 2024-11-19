@@ -34,3 +34,4 @@ def register_user(request):
     if not serializer.is_valid():
         print(serializer.errors)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
