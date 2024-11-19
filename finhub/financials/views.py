@@ -1,3 +1,4 @@
+from re import A
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import get_user_model
@@ -5,7 +6,7 @@ from financials.models import FinancialComment,FinancialOptions,FinancialProduct
 from .serializers import FinancialProductsSerializer, FinancialOptionsSerializer, FinancialCommentSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view,permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated,AllowAny
 from rest_framework import status
 from finhub import settings
 import requests
@@ -262,8 +263,8 @@ def saving_top_rate(request):
 
 
 ### 상품에 대한 댓글 생성 및 조회
-@api_view(["GET","POST"])
-@permission_classes([IsAuthenticated])
+@api_view(["GET"])
+@permission_classes([AllowAny])
 def financial_comment(request,fin_product_pk):
     product = get_object_or_404(FinancialProducts,pk=fin_product_pk)
     if request.method == "GET":
@@ -272,11 +273,17 @@ def financial_comment(request,fin_product_pk):
         serializer = FinancialCommentSerializer(comments, many=True)
         return Response(serializer.data)
     
-    elif request.method == "POST":
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def financial_comment_create(request,fin_product_pk):
+    product = get_object_or_404(FinancialProducts,pk=fin_product_pk)
+    if request.method == "POST":
         serializer = FinancialCommentSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save(users=request.user, financial_products=product)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+
         
 # 댓글 수정 및 삭제
 @api_view(["PUT", "DELETE"])

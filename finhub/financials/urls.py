@@ -14,8 +14,9 @@ urlpatterns = [
     # 해당 상품의 옵션 리스트 출력
     path('financial-products/deposit_top_rate/', views.deposit_top_rate),
     path('financial-products/saving_top_rate/', views.saving_top_rate),
-    # 댓글 생성 및 조회 url
+    # 댓글 조회 url
     path('financial-comment/<int:fin_product_pk>/', views.financial_comment),
+    path('financial_comment_create/<int:fin_product_pk>/', views.financial_comment_create),
     # 댓글 수정 및 삭제 url
     path('financial-comment/update-delete/<int:comment_id>/', views.update_delete_comment),    
     # 좋아요 기능
