@@ -1,3 +1,4 @@
+from os import read
 from rest_framework import serializers
 from .models import Article, ArticleComment
 class ArticleListSerializer(serializers.ModelSerializer):
@@ -18,6 +19,7 @@ class ArticleCommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = ArticleComment
         fields = ('id', 'content', 'users', 'create_at', 'is_deleted')
+        read_only_fields = ('users',"articles","create_at","is_deleted")
 
 class ArticleDetailSerializer(serializers.ModelSerializer):
     comments = ArticleCommentSerializer(source='articlecomments', many=True)

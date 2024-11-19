@@ -1,5 +1,8 @@
 from rest_framework import serializers
-from .models import FinancialProducts,FinancialOptions,FinancialComment
+from .models import FinancialProducts,FinancialOptions,FinancialComment,ExchangeRate
+
+
+
 class FinancialProductsSerializer(serializers.ModelSerializer):
     
     class Meta:
@@ -25,3 +28,8 @@ class FinancialCommentSerializer(serializers.ModelSerializer):
         fields = "__all__"
         read_only_fields = ('users',)
         # read_only_fields = ('users', 'financial_products')
+
+class ExchangeRateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ExchangeRate
+        fields = "__all__"
