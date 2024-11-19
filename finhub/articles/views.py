@@ -11,6 +11,7 @@ from rest_framework import status
 # permission Decorators
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated,IsAdminUser
+from .serializers import ArticleCommentSerializer
 
 from django.shortcuts import get_object_or_404, get_list_or_404
 
@@ -43,10 +44,18 @@ def article_detail(request, article_pk):
         print(serializer.data)
         return Response(serializer.data)
 
-def article_commnet(request,article_pk):
-    article = get_list_or_404(Comment, pk=article_pk)
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def create_comment(request, article_pk):
+    article = get_object_or_404(Article, pk=article_pk)
+    serializer = ArticleCommentSerializer(data=request.data)
+    if serializer.is_valid(raise_exception=True):
+        serializer.save(users=request.user, articles=article)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-    if request.method == 'GET':
-        serializer = CommentSerialzers(article)
-        print(serializer.data)
-        return Response(serializer.data)
+@api_view(['GET'])
+def list_comments(request, article_pk):
+    article = get_object_or_404(Article, pk=article_pk)
+    comments = article.articlecomments.filter(is_deleted=False)
+    serializer = ArticleCommentSerializer(comments, many=True)
+    return Response(serializer.data)
