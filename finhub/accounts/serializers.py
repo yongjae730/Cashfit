@@ -1,21 +1,38 @@
+from dj_rest_auth.registration.serializers import RegisterSerializer
 from rest_framework import serializers
-from .models import User
+from django.contrib.auth import get_user_model
 
-class UserSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True)
+# 회원가입용 커스텀 RegisterSerializer
+class CustomRegisterSerializer(RegisterSerializer):
+    age = serializers.IntegerField(required=False)
+    capital = serializers.IntegerField(required=False)
+    sido = serializers.CharField(max_length=10, required=False)
+    sigungus = serializers.CharField(max_length=10, required=False)
 
-    class Meta:
-        model = User
-        fields = ['username','password', 'age', 'capital','sido','sigungus']
+    def get_cleaned_data(self):
+        data = super().get_cleaned_data()
+        data.update({
+            'nickname': self.validated_data.get('nickname', ""),
+            'age': self.validated_data.get('age', 0),
+            'capital': self.validated_data.get('capital', 0),
+            'sido': self.validated_data.get('sido', ''),
+            'sigungus': self.validated_data.get('sigungus', ''),
+        })
+        return data
 
-    def create(self, validated_data):
-        user = User.objects.create(
-            username=validated_data['username'],
-            age=validated_data.get('age'),
-            capital=validated_data.get('capital'),
-            sido=validated_data.get('sido'),
-            sigungus=validated_data.get('sigungus'),
-        )
-        user.set_password(validated_data['password'])  # 비밀번호 암호화
+    def save(self, request):
+        user = super().save(request)
+        user.age = self.validated_data.get('age', None)
+        user.capital = self.validated_data.get('capital', None)
+        user.nickname = self.validated_data.get('nickname', "")
+        user.sido = self.validated_data.get('sido', '')
+        user.sigungus = self.validated_data.get('sigungus', '')
         user.save()
         return user
+
+
+# 사용자 정보 반환용 CustomUserDetailsSerializer
+class CustomUserDetailsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ['id', 'username', 'email', "nickname",'age', 'capital', 'sido', 'sigungus']
