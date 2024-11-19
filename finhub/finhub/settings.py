@@ -40,6 +40,8 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173'
     
 ]
+CORS_ALLOW_ALL_ORIGINS = True
+
 
 # 2.4 쿠키와 인증 관련 설정
 CORS_ALLOW_CREDENTIALS = True

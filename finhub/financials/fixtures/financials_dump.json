@@ -1,0 +1,5818 @@
+[
+  {
+    "model": "financials.financialproducts",
+    "pk": 1,
+    "fields": {
+      "fin_co_no": "0010001",
+      "fin_prdt_cd": "WR0001B",
+      "kor_co_nm": "우리은행",
+      "fin_prdt_nm": "WON플러스예금",
+      "etc_note": "- 가입기간: 1~36개월\n- 최소가입금액: 1만원 이상\n- 만기일을 일,월 단위로 자유롭게 선택 가능\n- 만기해지 시 신규일 당시 영업점과 인터넷 홈페이지에 고시된 계약기간별 금리 적용",
+      "join_deny": 1,
+      "join_member": "실명의 개인",
+      "join_way": "인터넷,스마트폰,전화(텔레뱅킹)",
+      "spcl_cnd": "해당사항 없음",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 2,
+    "fields": {
+      "fin_co_no": "0010002",
+      "fin_prdt_cd": "00320342",
+      "kor_co_nm": "한국스탠다드차타드은행",
+      "fin_prdt_nm": "e-그린세이브예금",
+      "etc_note": "디지털채널 전용상품 (인터넷, 모바일뱅킹)",
+      "join_deny": 1,
+      "join_member": "개인(개인사업자 포함)",
+      "join_way": "인터넷,스마트폰",
+      "spcl_cnd": "1.SC제일은행 최초 거래 신규고객에 대하여 우대 이율을 제공함 (보너스이율0.2%)                     2.SC제일마이백통장에서 출금하여 이 예금을 신규하는경우에 보너스이율을 제공함\n(가입기간:1년제/ 보너스이율:0.1% / 만기해약하는 경우에 한해 보너스이율을 적용함)",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 3,
+    "fields": {
+      "fin_co_no": "0010016",
+      "fin_prdt_cd": "10511008000996000",
+      "kor_co_nm": "아이엠뱅크",
+      "fin_prdt_nm": "iM주거래우대예금(첫만남고객형)",
+      "etc_note": "계좌당 가입 최저한도 : 100만원",
+      "join_deny": 1,
+      "join_member": "실명의 개인",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "* 최고우대금리 : 연0.65%p              \n - 목돈굴리기예금 최초 가입시 : 연0.20%p\n - 상품 가입 전 최근 1개월 이내 신용(체크)카드 신규 발급 : 연0.20%p\n - 상품 가입 전 최근 1개월 이내 인터넷.폰.모바일앱뱅킹 가입 : 연0.20%p\n * 해당 상품을 인터넷/모바일뱅킹을 통해 가입 : 연0.05%p",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 4,
+    "fields": {
+      "fin_co_no": "0010016",
+      "fin_prdt_cd": "10511008001004000",
+      "kor_co_nm": "아이엠뱅크",
+      "fin_prdt_nm": "iM행복파트너예금(일반형)",
+      "etc_note": "계좌당 가입 최저한도 : 100만원",
+      "join_deny": 3,
+      "join_member": "만50세 이상 실명의 개인",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "* 최고우대금리 : 연0.45%p\n- 지난달 당행 통장으로 연금 입금 실적 보유 : 연0.10%p\n- 상품 가입 전 당행 신용(체크)카드 보유 : 연0.10%p\n- 지난 3개월 예금 평잔 30만원 이상 : 연0.10%p\n- iM행복파트너적금 동시 가입 및 만기 보유 : 연0.10%p\n* 해당 상품을 인터넷/모바일뱅킹을 통해 가입 : 연0.05%p",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 5,
+    "fields": {
+      "fin_co_no": "0010016",
+      "fin_prdt_cd": "10511008001166004",
+      "kor_co_nm": "아이엠뱅크",
+      "fin_prdt_nm": "iM함께예금",
+      "etc_note": "계좌당 가입 최저한도 : 100만원",
+      "join_deny": 1,
+      "join_member": "실명의 개인 및 개인사업자",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "* 최고우대금리 : 연0.45%p\n- 전월 총 수신 평잔실적 또는 상품 가입 전 첫만남플러스 통장 보유시\n- 당행 주택청약상품보유\n- 신규일 iM함께적금 동시 가입 및 만기 보유\n-당행 오픈뱅킹서비스에 다른 은행 계좌 등록시\n각 연0.10%p\n* 해당 상품 인터넷/모바일뱅킹 통해 가입 시 : 연0.05%p",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 6,
+    "fields": {
+      "fin_co_no": "0010016",
+      "fin_prdt_cd": "10511008001278000",
+      "kor_co_nm": "아이엠뱅크",
+      "fin_prdt_nm": "iM스마트예금",
+      "etc_note": "계좌당 가입 최저한도 : 100만원",
+      "join_deny": 1,
+      "join_member": "실명의 개인",
+      "join_way": "인터넷,스마트폰",
+      "spcl_cnd": "* 최고우대금리 : 연0.25%p\n- 가입일(재예치일)로부터 3개월 이내 아래 1가지 이상 요건 충족시\n① 당행 주택청약종합저축 보유\n② 당행 신용(체크)카드 결제실적 보유(결제금액 출금기준)\n* 해당 상품을 인터넷/모바일뱅킹을 통해 가입 : 연0.05%p",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 7,
+    "fields": {
+      "fin_co_no": "0010017",
+      "fin_prdt_cd": "01030500510002",
+      "kor_co_nm": "부산은행",
+      "fin_prdt_nm": "LIVE정기예금",
+      "etc_note": "1. 가입금액 :\n   1천만원 이상\n2. 가입기간 : \n1개월 이상 60개월 이하(일단위)\n3. 월이자지급식/만기일시지급식",
+      "join_deny": 1,
+      "join_member": "제한없음",
+      "join_way": "영업점,인터넷",
+      "spcl_cnd": "*우대이율\n가. 3~5개월 특판우대이율 : 0.75%\n나. 6~11개월 특판 우대이율: 0.65%\n다. 12개월 특판 우대이율 : 0.45%",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 8,
+    "fields": {
+      "fin_co_no": "0010017",
+      "fin_prdt_cd": "01030500560002",
+      "kor_co_nm": "부산은행",
+      "fin_prdt_nm": "더(The) 특판 정기예금",
+      "etc_note": "1. 가입금액 : 1백만원 이상 제한없음 (원단위)\n2. 가입기간 : 1개월, 3개월, 6개월, 1년, 2년, 3년\n3. 이자지급방식 : 만기일시지급식",
+      "join_deny": 1,
+      "join_member": "실명의 개인",
+      "join_way": "인터넷,스마트폰",
+      "spcl_cnd": "* 우대이율 (최대 0.45%p)\n가. 모바일뱅킹 금융정보 및 혜택알림 동의 우대이율 : 0.10%p\n나. 이벤트 우대이율 : 최대 0.35%p \n1) 더(The) 특판 정기예금 신규고객 우대이율 : 0.20%p\n2) 특판 우대이율 : 0.15%p",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 9,
+    "fields": {
+      "fin_co_no": "0010017",
+      "fin_prdt_cd": "01030500600002",
+      "kor_co_nm": "부산은행",
+      "fin_prdt_nm": "더(The) 레벨업 정기예금",
+      "etc_note": "1. 가입금액 : 1백만원 이상 제한없음 (원단위)\n2. 가입기간 : 6개월, 1년\n3. 이자지급방식 : 만기일시지급식",
+      "join_deny": 1,
+      "join_member": "실명의 개인",
+      "join_way": "스마트폰",
+      "spcl_cnd": "*우대이율(최대 0.20%p)\n가. 모바일뱅킹 금융정보 및 혜택알림 동의 우대이율 : 0.10%p\n나. 비대면 정기예금 재예치 우대이율  : 0.10%",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 10,
+    "fields": {
+      "fin_co_no": "0010019",
+      "fin_prdt_cd": "TD11300027000",
+      "kor_co_nm": "광주은행",
+      "fin_prdt_nm": "미즈월복리정기예금",
+      "etc_note": "1. 가입기간 : 1년이상 3년제\n2. 가입금액 : 5백만원이상 최고 50백만원",
+      "join_deny": 1,
+      "join_member": "만18세이상 여성으로 실명의 개인 및 개인사업자",
+      "join_way": "영업점,인터넷,스마트폰,기타",
+      "spcl_cnd": "▶ 최고우대금리 0.2% \n ① 요구불평잔 : 0.2% -300만원이상 0.1%, 500만원이상 0.2%\n ② 신용(체크)카드결제실적 : 0.1% -전월결제금 300만원이상 0.05%, 500만원이상 0.1%",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 11,
+    "fields": {
+      "fin_co_no": "0010019",
+      "fin_prdt_cd": "TD11300031000",
+      "kor_co_nm": "광주은행",
+      "fin_prdt_nm": "스마트모아Dream정기예금",
+      "etc_note": "1. 가입기간 : 1개월이상 3년제\n2. 최소가입금액 : 100만원이상",
+      "join_deny": 1,
+      "join_member": "개인 및 개인사업자",
+      "join_way": "인터넷,스마트폰",
+      "spcl_cnd": "▶ 1천만원 이상 가입시 최대 0.2%우대",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 12,
+    "fields": {
+      "fin_co_no": "0010019",
+      "fin_prdt_cd": "TD11300035000",
+      "kor_co_nm": "광주은행",
+      "fin_prdt_nm": "굿스타트예금",
+      "etc_note": "1. 가입기간 : 1년제\n2. 가입금액 : 1백만원이상 최고 1억원(1인1계좌)",
+      "join_deny": 1,
+      "join_member": "개인 및 개인사업자",
+      "join_way": "스마트폰",
+      "spcl_cnd": "▶ 최고우대금리 0.5% \n ① 첫예금거래 : 0.4% -최근1년동안 정기예금 계좌 신규 또는 해지이력이 없는경우\n ② 개인(신용)정보 수집이용동의 : 0.1% -만기일전일까지 유지시",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 13,
+    "fields": {
+      "fin_co_no": "0010019",
+      "fin_prdt_cd": "TD11300036000",
+      "kor_co_nm": "광주은행",
+      "fin_prdt_nm": "The플러스예금",
+      "etc_note": "1. 가입기간 : 3개월,6개월,1년제\n2. 가입금액 : 10백만원이상 고객당 10억원한도",
+      "join_deny": 1,
+      "join_member": "개인 및 법인(단,국가 지자체 및 금융기관 제외)",
+      "join_way": "영업점,스마트폰",
+      "spcl_cnd": "▶ 해당사항없음",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 14,
+    "fields": {
+      "fin_co_no": "0010020",
+      "fin_prdt_cd": "101272000006",
+      "kor_co_nm": "제주은행",
+      "fin_prdt_nm": "제주Dream\n정기예금\n(개인/만기\n지급식)",
+      "etc_note": "가입금액 : 1백만원 이상",
+      "join_deny": 1,
+      "join_member": "제한없음",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "최고 연 0.1%p(항목별 0.1%p)\n①급여이체\n②적립식예금 잔액 10만원 이상 보유\n③탑스, 주거래 고객\n④결제계좌(가맹점) 전월 입금액 10만원 이상 \n⑤비과세종합저축 대상 고객\n⑥다자녀(3인이상 자녀)가정\n⑦탐나는 J연금통장 가입고객\n⑧국민연금안심통장 가입고객\n⑨공무원연금안심통장 가입고객",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 15,
+    "fields": {
+      "fin_co_no": "0010020",
+      "fin_prdt_cd": "101272000057",
+      "kor_co_nm": "제주은행",
+      "fin_prdt_nm": "J정기예금\n(만기지급식)",
+      "etc_note": "가입금액 : 30만원 이상",
+      "join_deny": 1,
+      "join_member": "실명의 \n개인 및 \n개인사업자",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "- 아래의 우대요건 충족시 최고 0.5%p 추가 우대 \n①비대면 채널 가입시 0.3%제공(신규시제공)  \n(단, 이벤트시 디지털 채널에 고시한 우대금리를 추가 적용할 수 있음)\n②신규일로부터 만기달 제외한 계약기간의 1/2이상 매월 Jbank로그인 시 0.2%제공(만기시제공)",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 16,
+    "fields": {
+      "fin_co_no": "0010020",
+      "fin_prdt_cd": "101272000058",
+      "kor_co_nm": "제주은행",
+      "fin_prdt_nm": "스마일드림 \n정기예금\n(개인/선이자\n지급식)",
+      "etc_note": "가입금액 : 1백만원 이상",
+      "join_deny": 1,
+      "join_member": "실명의\n개인 및 \n개인사업자",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "-아래의 우대요건 충족시 최고0.3% 추가우대(신규시제공)\n①김만덕나눔적금 보유 또는 김만적 나눔적금 만기 해지고객 0.2%우대(가입시제공)\n②예금가입시 탐나는전 체크카드 보유고객 0.1%우대(가입시제공)\n(단, 이벤트시 영업점,디지털채널에 고시한 우대금리를 추가 적용할 수 있음)",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 17,
+    "fields": {
+      "fin_co_no": "0010022",
+      "fin_prdt_cd": "10-01-20-024-0046-0000",
+      "kor_co_nm": "전북은행",
+      "fin_prdt_nm": "JB 다이렉트예금통장\n(만기일시지급식)",
+      "etc_note": "가입금액 1계좌당 1백만원이상 10억원이하,\n1인당  총 10억원 이하,\n인터넷/스마트폰뱅킹 가입상품",
+      "join_deny": 1,
+      "join_member": "실명의 개인(임의단체 제외",
+      "join_way": "인터넷,스마트폰",
+      "spcl_cnd": "우대조건\n없음",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 18,
+    "fields": {
+      "fin_co_no": "0010022",
+      "fin_prdt_cd": "10-01-20-024-0059-0000",
+      "kor_co_nm": "전북은행",
+      "fin_prdt_nm": "JB 123 정기예금\n (만기일시지급식)",
+      "etc_note": "예금의 신규 : 인터넷뱅킹, 모바일뱅킹, 모바일웹, BDT\n예금의 해지 : 인터넷뱅킹, 모바일뱅킹, 영업점\n가입금액 최저 1백만원이상 고객별 5억원 이상 (다만 자동재예치시 이자 원가로 인한 5억원 초과는 가능), 계좌수 관계없이 가입가능",
+      "join_deny": 1,
+      "join_member": "실명의 개인 또는 개인사업자 (1인 다계좌 가입 가능함)",
+      "join_way": "인터넷,스마트폰",
+      "spcl_cnd": "자동재예치 우대이율\n1회차 0.1%,\n2회차 0.2%,\n3회차 0.3%\n12개월:첫거래고객\n0.3%, 마케팅동의고객 0.05%(~10/31일까지)단,가입후\n최초 1년동안에 한하여 제공",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 19,
+    "fields": {
+      "fin_co_no": "0010024",
+      "fin_prdt_cd": "21001115",
+      "kor_co_nm": "경남은행",
+      "fin_prdt_nm": "BNK더조은정기예금",
+      "etc_note": "1. 이 예금의 계약기간은 3개월 이상 2년 이내 월단위로 한다.\n2. 가입금액은 1인당 최소 100만원 이상 5억원 이하이다.",
+      "join_deny": 1,
+      "join_member": "거래대상자는 제한을 두지 아니한다. 다만, 국가 및 지방자치단체는 이 예금을 거래할 수 없다.",
+      "join_way": "인터넷,스마트폰",
+      "spcl_cnd": "①가입금액 20백만원 이상인 경우 0.20%\n②이 예금 신규시 금리우대쿠폰 등록할 경우 0.20% \n③ 경남은행 오픈뱅킹 서비스에 가입되어 있는 경우\n(만기시까지 해당서비스 유지하는 경우) 0.10%\n④ 자동재예치 신청 0.05%\n(단 금리우대쿠폰과 중복적용 불가)",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 20,
+    "fields": {
+      "fin_co_no": "0010024",
+      "fin_prdt_cd": "21001203",
+      "kor_co_nm": "경남은행",
+      "fin_prdt_nm": "BNK주거래우대정기예금",
+      "etc_note": "1. 이 예금의 계약기간은 6개월, 1년, 2년으로 한다.\n2. 가입좌수 제한없으며 가입금액은 최소 1백만원 이상 최고 5억원 이하이다.",
+      "join_deny": 1,
+      "join_member": "개인 및 개인사업자",
+      "join_way": "인터넷,스마트폰",
+      "spcl_cnd": "①급여,연금,가맹점대금 중 한 종류 입금할 경우 0.10%\n②당행 신용/체크카드 결제실적 보유할 경우 0.10%\n③가입일 기준 6개월이내 당행 정기예금 미보유 신규 고객인 경우 0.10%",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 21,
+    "fields": {
+      "fin_co_no": "0010024",
+      "fin_prdt_cd": "21001266",
+      "kor_co_nm": "경남은행",
+      "fin_prdt_nm": "The든든예금",
+      "etc_note": "1. 이 예금의 계약기간은 12개월로 한다.\n2. 가입금액은 1인당 최소 100만원 이상 10억원 이하이다.",
+      "join_deny": 1,
+      "join_member": "거래대상자는 제한을 두지 아니한다. 다만, 국가 및 지방자치단체는 이 예금을 거래할 수 없다.",
+      "join_way": "인터넷,스마트폰",
+      "spcl_cnd": "①가입고객 누구나 0.80%\n②신규고객 우대(최근 12개월 신규이력·해지이력 미보유) 0.15%\n③이벤트금리(비대면금리) 0.20%\n※ ②항목은 가입기간 12개월만 적용",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 22,
+    "fields": {
+      "fin_co_no": "0010026",
+      "fin_prdt_cd": "01211310121",
+      "kor_co_nm": "중소기업은행",
+      "fin_prdt_nm": "IBK평생한가족통장(실세금리정기예금)",
+      "etc_note": "계좌 수 제한 없으며, 최소 1백만원 이상 통합한도 1억원 이내 가입 가능",
+      "join_deny": 1,
+      "join_member": "실명의 개인\n(개인사업자 제외)",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "최고 연 0.20%p\n\n-고객별 우대 : 최고 연 0.05%p\n 1. 최초신규고객 : 연 0.05%p\n 2. 재예치고객 : 연 0.05%p\n 3. 장기거래고객 : 연 0.05%p\n\n-주거래우대 : 연 0.15%p",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 23,
+    "fields": {
+      "fin_co_no": "0010026",
+      "fin_prdt_cd": "01211310130",
+      "kor_co_nm": "중소기업은행",
+      "fin_prdt_nm": "1석7조통장(실세금리정기예금)",
+      "etc_note": "계좌 수 제한 없으며, 최소 1백만원 이상 납입한도 제한 없음",
+      "join_deny": 1,
+      "join_member": "실명의 개인\n(개인사업자 제외)",
+      "join_way": "인터넷,스마트폰",
+      "spcl_cnd": "없음",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 24,
+    "fields": {
+      "fin_co_no": "0010030",
+      "fin_prdt_cd": "06492",
+      "kor_co_nm": "한국산업은행",
+      "fin_prdt_nm": "KDB 정기예금",
+      "etc_note": "해당없음",
+      "join_deny": 1,
+      "join_member": "제한없음",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "해당없음",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 25,
+    "fields": {
+      "fin_co_no": "0010927",
+      "fin_prdt_cd": "010300100335",
+      "kor_co_nm": "국민은행",
+      "fin_prdt_nm": "KB Star 정기예금",
+      "etc_note": "- 가입금액 : 1백만원 이상",
+      "join_deny": 1,
+      "join_member": "실명의 개인 또는 개인사업자",
+      "join_way": "인터넷,스마트폰",
+      "spcl_cnd": "해당무",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 26,
+    "fields": {
+      "fin_co_no": "0011625",
+      "fin_prdt_cd": "200-0134-16",
+      "kor_co_nm": "신한은행",
+      "fin_prdt_nm": "신한My플러스 정기예금",
+      "etc_note": "1. 가입한도 :\n 50만원 이상 1억원 이내",
+      "join_deny": 1,
+      "join_member": "개인고객",
+      "join_way": "영업점,스마트폰",
+      "spcl_cnd": "※가산금리 최고 연 0.2%\n- 정기예금 미보유 : 연 0.1%\n- 소득이체 : 연 0.1%",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 27,
+    "fields": {
+      "fin_co_no": "0011625",
+      "fin_prdt_cd": "200-0135-12",
+      "kor_co_nm": "신한은행",
+      "fin_prdt_nm": "쏠편한 정기예금",
+      "etc_note": "1. 가입한도 :\n 1만원 이상",
+      "join_deny": 1,
+      "join_member": "만14세이상 개인고객",
+      "join_way": "인터넷,스마트폰",
+      "spcl_cnd": "해당사항없음",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 28,
+    "fields": {
+      "fin_co_no": "0013175",
+      "fin_prdt_cd": "10-003-1225-0001",
+      "kor_co_nm": "농협은행주식회사",
+      "fin_prdt_nm": "NH왈츠회전예금 II",
+      "etc_note": "※ 기본금리 및 최고 우대금리 항목은 가입기간이 아닌 ‘회전주기’기간별 금리를 공시\n - 회전주기는 1개월 이상 12개월 이내 월단위로 선택 가능\n※ 전월취급평균금리는 본 홈페이지에 공시되지 않는 회전기간 6개월 미만의 계좌들도 포함하여 산출하기 때문에 회전기간별로 공시된 기본금리보다 낮게 보여질 수 있음",
+      "join_deny": 1,
+      "join_member": "개인",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "1. 급여이체실적(50만원 이상)이 있는 경우 : 0.1%p\n2. 트리플 회전 우대이율 :  4회전기간부터 0.1%p",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 29,
+    "fields": {
+      "fin_co_no": "0013175",
+      "fin_prdt_cd": "10-003-1381-0001",
+      "kor_co_nm": "농협은행주식회사",
+      "fin_prdt_nm": "NH내가Green초록세상예금",
+      "etc_note": "1. 300만원이상 가입\n2. 온실가스 줄이기 실천서약서 동의시 가입가능\n3. 신규가입 계좌당 2천원씩 녹색환경기금 적립\n※ 자세한 사항은 상품설명서 참조",
+      "join_deny": 1,
+      "join_member": "개인",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "※ 우대금리 최대한도 : 0.4%p(연%, 세전)\n1. 온실가스 줄이기 실천서약서 동의 : 0.1%p\n2. 통장미발급 : 0.1%p\n3. 손하나로인증 서비스 등록 : 0.1%p\n4. NH내가Green초록세상적금 동시 보유 : 0.1%p",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 30,
+    "fields": {
+      "fin_co_no": "0013175",
+      "fin_prdt_cd": "10-003-1384-0001",
+      "kor_co_nm": "농협은행주식회사",
+      "fin_prdt_nm": "NH올원e예금",
+      "etc_note": "1. 10만원 이상 10억원 이내 가입",
+      "join_deny": 1,
+      "join_member": "개인",
+      "join_way": "인터넷,스마트폰",
+      "spcl_cnd": "없음",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 31,
+    "fields": {
+      "fin_co_no": "0013175",
+      "fin_prdt_cd": "10-003-1387-0001",
+      "kor_co_nm": "농협은행주식회사",
+      "fin_prdt_nm": "NH고향사랑기부예금",
+      "etc_note": "1. 100만원 이상 가입\n2. 고향사랑기부금 우대금리는 농협은행/농축협 영업점 또는 고향사랑e음 홈페이지를 통한 고향사랑기부금 납부실적이 확인되는 경우 제공\n3. 연간 판매액의 0.1% 공익기금 적립\n\n※ 우대조건 관련 자세한 사항은 상품설명서 참조",
+      "join_deny": 1,
+      "join_member": "개인",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "1. 고향사랑기부금 납부고객 우대 : 0.5%p\n\n2-1. 만65세 이상 고령자 우대 : 0.1%p\n2-2. 만 19~34세 MZ고객 우대 : 0.1%p\n\n3. NH채움카드 또는 [zgm고향으로카드] 이용실적 우대 : 0.1%p\n \n4. 고향사랑 특별금리 : 0.1%p (금리시장상황에 따라 변동 가능)\n - 고향사랑 특별금리는 상품 가입고객 모두에게 적용",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 32,
+    "fields": {
+      "fin_co_no": "0013909",
+      "fin_prdt_cd": "4",
+      "kor_co_nm": "하나은행",
+      "fin_prdt_nm": "하나의정기예금",
+      "etc_note": "1. 가입금액: 1백만원이상\n2. 1인 최대가입한도 : 제한 없음",
+      "join_deny": 1,
+      "join_member": "실명의 개인 또는 개인사업자",
+      "join_way": "스마트폰",
+      "spcl_cnd": "해당사항없음",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 33,
+    "fields": {
+      "fin_co_no": "0014674",
+      "fin_prdt_cd": "01013000110000000001",
+      "kor_co_nm": "주식회사 케이뱅크",
+      "fin_prdt_nm": "코드K 정기예금",
+      "etc_note": "가입금액 : 1백만원 이상\n가입기간 : 1개월~36개월",
+      "join_deny": 1,
+      "join_member": "만 17세 이상 실명의 개인 및 개인사업자",
+      "join_way": "스마트폰",
+      "spcl_cnd": "우대조건 없음",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 34,
+    "fields": {
+      "fin_co_no": "0014807",
+      "fin_prdt_cd": "10120110400011",
+      "kor_co_nm": "수협은행",
+      "fin_prdt_nm": "Sh평생주거래우대예금\n(만기일시지급식)",
+      "etc_note": "- 1인 1계좌\n- 최저 100만원 이상",
+      "join_deny": 1,
+      "join_member": "실명의 개인",
+      "join_way": "영업점",
+      "spcl_cnd": "* 최대우대금리 : 0.4%\n1. 거래고객우대금리 : 최대0.1% (신규시) \n -최초예적금고객/재예치/장기거래 각 0.05% \n2. 거래실적우대금리 : 최대0.3% (만기시)\n -급여,연금이체등/수협카드결제/공과금이체등 각0.1%\n※단위:연%p",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 35,
+    "fields": {
+      "fin_co_no": "0014807",
+      "fin_prdt_cd": "10120114300011",
+      "kor_co_nm": "수협은행",
+      "fin_prdt_nm": "Sh해양플라스틱Zero!예금\n(만기일시지급식)",
+      "etc_note": "- 1인 다계좌 가능. \n  단,  합산금액 5억원 이내 \n- 최저 100만원 이상",
+      "join_deny": 1,
+      "join_member": "실명의 개인",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "* 최대우대금리:0.35%\n1. 해양플라스틱감축서약 : 0.1% (신규시) \n2. 봉사활동 또는 상품홍보 : 0.15% (만기시) \n3. 입출금통장 최초신규 : 0.1% (만기시)\n4. 자동이체 출금실적 : 0.1% (만기시)\n - 수협신용카드 / 당행 펀드 또는 적금 / 수협체크카드\n※단위:연%p",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 36,
+    "fields": {
+      "fin_co_no": "0014807",
+      "fin_prdt_cd": "10120114700011",
+      "kor_co_nm": "수협은행",
+      "fin_prdt_nm": "헤이(Hey)정기예금",
+      "etc_note": "-1인 다계좌 가능.\n 단, 합산금액 최대 10억원 이내\n-최저 10만원 이상",
+      "join_deny": 1,
+      "join_member": "실명의 개인",
+      "join_way": "인터넷,스마트폰",
+      "spcl_cnd": "없음",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 37,
+    "fields": {
+      "fin_co_no": "0014807",
+      "fin_prdt_cd": "10120116100011",
+      "kor_co_nm": "수협은행",
+      "fin_prdt_nm": "Sh첫만남우대예금",
+      "etc_note": "-1인 1계좌\n-최저 100만원 이상",
+      "join_deny": 1,
+      "join_member": "실명의 개인",
+      "join_way": "인터넷,스마트폰",
+      "spcl_cnd": "* 최대우대금리:1.05%\n1. 첫거래우대 : 1.0% (신규시) \n  - 최근 1년간 수협은행 예적금 활동계좌 미보유 고객포함\n2. 마케팅전체동의 : 0.05%(신규시) \n3. 스마트폰뱅킹의 상품알리기 : 0.80%(만기시)\n※단위:연%p",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 38,
+    "fields": {
+      "fin_co_no": "0015130",
+      "fin_prdt_cd": "10-01-20-388-0002",
+      "kor_co_nm": "주식회사 카카오뱅크",
+      "fin_prdt_nm": "카카오뱅크 정기예금",
+      "etc_note": "1. 가입방법 : 스마트폰\n2. 가입금액 : 100만원 이상(원단위)\n3. 가입기간 : 1개월 이상 ~ 36개월 이하(월, 일단위 지정 가능)",
+      "join_deny": 1,
+      "join_member": "만 17세 이상의 실명의 개인",
+      "join_way": "스마트폰",
+      "spcl_cnd": "※복잡한 우대조건 없이 가입가능한 정기예금",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 39,
+    "fields": {
+      "fin_co_no": "0017801",
+      "fin_prdt_cd": "1001202000002",
+      "kor_co_nm": "토스뱅크 주식회사",
+      "fin_prdt_nm": "토스뱅크 먼저 이자 받는 정기예금",
+      "etc_note": "· 계약기간 : 3개월, 6개월 \n· 가입금액 : 최소 1백만원 최대 10억원",
+      "join_deny": 1,
+      "join_member": "토스뱅크 통장 또는 토스뱅크 서브 통장을 보유한 만 17세 이상 실명의 개인",
+      "join_way": "스마트폰",
+      "spcl_cnd": "우대조건 없음",
+      "product_type": 0
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 40,
+    "fields": {
+      "fin_co_no": "0010001",
+      "fin_prdt_cd": "WR0001F",
+      "kor_co_nm": "우리은행",
+      "fin_prdt_nm": "우리SUPER주거래적금",
+      "etc_note": "1. 가입기간 : 1년/2년/3년\n2. 가입금액 : 월 50만원 이내",
+      "join_deny": 1,
+      "join_member": "실명의 개인",
+      "join_way": "영업점,인터넷,스마트폰,전화(텔레뱅킹)",
+      "spcl_cnd": "1. 거래실적 인정기간 동안 우리은행 입출식 계좌에서 아래 각 항목별 실적이 있는 월 수가 계약기간의 1/2이상인 경우\n가. 급여/연금 이체 : 연 0.7%p\n나. 공과금 자동이체 출금실적 : 0.3%p\n다. 우리카드사 신용/체크카드 결제금액 10만원 이상 출금 : 연 0.3%p\n2. 우리은행 상품서비스 마케팅 동의 항목 중 전화 및 SMS항목을 모두 동의한 후 만기해지시점까지 유지 : 연 0.1%p\n3. 이 상품 가입 시 금리우대쿠폰 적용한 경우",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 41,
+    "fields": {
+      "fin_co_no": "0010001",
+      "fin_prdt_cd": "WR0001L",
+      "kor_co_nm": "우리은행",
+      "fin_prdt_nm": "WON적금",
+      "etc_note": "1. 가입기간 : 1년\n2. 가입금액 : 월 50만원 이내",
+      "join_deny": 1,
+      "join_member": "실명의 개인",
+      "join_way": "스마트폰,전화(텔레뱅킹)",
+      "spcl_cnd": "1. 아래 각 항(가, 나)의 조건을 충족하는 경우 합산 최대 연 0.2%p 우대\n가. 이 적금을 우리꿈통장, WON통장에 연결하여 가입하는 경우 : 0.1%p\n나. 우리 오픈뱅킹 서비스에 타행계좌가 등록되어 있는 경우 : 연 0.1%p",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 42,
+    "fields": {
+      "fin_co_no": "0010002",
+      "fin_prdt_cd": "00266451",
+      "kor_co_nm": "한국스탠다드차타드은행",
+      "fin_prdt_nm": "퍼스트가계적금",
+      "etc_note": "해당없음",
+      "join_deny": 1,
+      "join_member": "개인(개인사업자 포함)",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "없음",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 43,
+    "fields": {
+      "fin_co_no": "0010016",
+      "fin_prdt_cd": "10521001000846001",
+      "kor_co_nm": "아이엠뱅크",
+      "fin_prdt_nm": "내손안에 적금",
+      "etc_note": "1계좌당 가입한도 : 월 100만원(최저 10만원 이상)",
+      "join_deny": 1,
+      "join_member": "실명의 개인",
+      "join_way": "스마트폰",
+      "spcl_cnd": "* 최고우대금리 : 연0.55%p\n - 당행 인터넷/모바일뱅킹을 통하여 최초로 적립식예금 가입 시 : 연0.20%p\n - 상품 가입 전 최근 3개월 이내 당행 인터넷/모바일뱅킹을 통한 이체거래 3회 이상 : 연0.10%p\n- 상품 가입 전 수수료우대 통장 보유 고객 : 연0.20%p\n* 해당 상품을 모바일뱅킹을 통해 가입 : 연0.05%p",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 44,
+    "fields": {
+      "fin_co_no": "0010016",
+      "fin_prdt_cd": "10527001000925000",
+      "kor_co_nm": "아이엠뱅크",
+      "fin_prdt_nm": "영플러스적금",
+      "etc_note": "1계좌당 가입한도 : 월 50만원(최저 1만원 이상)",
+      "join_deny": 3,
+      "join_member": "만 29세 이하 실명의 개인",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "* 최고우대금리 : 연0.55%p\n- 상품 가입 전 영플러스통장 보유 또는 재예치일 기준 영플러스통장 전월 평잔 10만원 이상 : 연0.10%p\n- 예금기간 중 입금횟수 10회 이상 : 연0.10%p\n- 입학 및 졸업 축하금리 : 연0.30%p\n* 해당 상품을 인터넷/모바일뱅킹을 통해 가입 : 연0.05%p",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 45,
+    "fields": {
+      "fin_co_no": "0010016",
+      "fin_prdt_cd": "10527001001272000",
+      "kor_co_nm": "아이엠뱅크",
+      "fin_prdt_nm": "내가만든 보너스적금",
+      "etc_note": "1계좌당 가입한도 : 월20만원\n(최저 1만원 이상)",
+      "join_deny": 1,
+      "join_member": "실명의 개인",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "* 최고우대금리 : 연0.80%p\n - 인터넷/모바일뱅킹으로 신규 : 연0.20%p\n - 상품 가입 전 마케팅활용[개인(신용)정보수집이용동의] 전체 동의 : 연0.20%p\n(계약기간 1년인 경우 만기일 기준)\n - 당행 계좌로 자동이체 8회 이상 입금 : 연0.20%p\n - 원금합계 100만원 이상 : 연0.10%p 또는 원금합계 200만원 이상 : 연0.20%p",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 46,
+    "fields": {
+      "fin_co_no": "0010016",
+      "fin_prdt_cd": "10527001001278000",
+      "kor_co_nm": "아이엠뱅크",
+      "fin_prdt_nm": "iM스마트적금",
+      "etc_note": "1계좌당 가입한도 : 월 100만원(최저 5만원 이상)",
+      "join_deny": 1,
+      "join_member": "실명의 개인",
+      "join_way": "인터넷,스마트폰",
+      "spcl_cnd": "* 최고우대금리 : 연0.45%p\n- 가입일로부터 3개월 이내 1가지 이상 요건 충족시 : 연0.20%p\n① 당행 주택청약종합저축 보유\n② 당행 신용(체크)카드 결제실적 보유(결제금액 출금기준)\n- 전체 계약월수 중 1/2이상 당행 계좌에서 자동이체 납입 시 : 연0.20%p\n* 해당 상품을 인터넷/모바일뱅킹을 통해 가입 : 연0.05%p",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 47,
+    "fields": {
+      "fin_co_no": "0010017",
+      "fin_prdt_cd": "01020400490001",
+      "kor_co_nm": "부산은행",
+      "fin_prdt_nm": "펫 적금",
+      "etc_note": "1. 가입한도: 월 1만원 이상 50만원 이하 원단위\n2. 자유적립식",
+      "join_deny": 1,
+      "join_member": "실명의 개인고객(1인 1계좌)",
+      "join_way": "영업점,스마트폰",
+      "spcl_cnd": "*우대이율 6개월제 최대 0.55%, 12개월제 최대 0.90%",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 48,
+    "fields": {
+      "fin_co_no": "0010017",
+      "fin_prdt_cd": "01020400490002",
+      "kor_co_nm": "부산은행",
+      "fin_prdt_nm": "펫 적금",
+      "etc_note": "1. 가입한도: 월 1만원 이상 50만원 이하 원단위\n2. 정기적립식",
+      "join_deny": 1,
+      "join_member": "실명의 개인고객(1인 1계좌)",
+      "join_way": "영업점,스마트폰",
+      "spcl_cnd": "*우대이율 6개월제 최대 0.55%, 12개월제 최대 0.90%",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 49,
+    "fields": {
+      "fin_co_no": "0010017",
+      "fin_prdt_cd": "01020400510001",
+      "kor_co_nm": "부산은행",
+      "fin_prdt_nm": "저탄소 실천\n적금",
+      "etc_note": "1. 가입한도: 월 1만원 이상 1천만원 이하 원단위 (월 1천만원 이하 불입 가능)\n2. 자유적립식",
+      "join_deny": 1,
+      "join_member": "제한없음",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "조건 달성여부에 따라 우대금리 적용\n*개인형 우대이율: 최대0.4%\n*기업형(개인사업자 및 법인)우대이율: 최대0.4%",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 50,
+    "fields": {
+      "fin_co_no": "0010017",
+      "fin_prdt_cd": "01020400530001",
+      "kor_co_nm": "부산은행",
+      "fin_prdt_nm": "BNK내맘대로 \n적금",
+      "etc_note": "1. 가입금액 :\n   1천원 이상\n2. 가입기간 : \n6개월 이상 60개월 이하(일단위)",
+      "join_deny": 1,
+      "join_member": "제한없음",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "*우대이율 최대 0.2%\n- 신규시 우대이율 0.05% 및 해지시 우대이율 최대 0.15%",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 51,
+    "fields": {
+      "fin_co_no": "0010017",
+      "fin_prdt_cd": "1020400640001",
+      "kor_co_nm": "부산은행",
+      "fin_prdt_nm": "BNK아기천사적금",
+      "etc_note": "1. 가입한도: 월 1만원 이상 30만원 이하 원단위\n2.자유적립식",
+      "join_deny": 1,
+      "join_member": "실명의 개인고객(1인 1계좌)",
+      "join_way": "스마트폰",
+      "spcl_cnd": "*우대이율 최대 6.00%",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 52,
+    "fields": {
+      "fin_co_no": "0010019",
+      "fin_prdt_cd": "TD11330029000",
+      "kor_co_nm": "광주은행",
+      "fin_prdt_nm": "해피라이프_여행스케치적금V",
+      "etc_note": "1. 가입기간 : 6개월이상 3년제\n2. 가입금액 : 월5만원 이상 5백만원 이하 (1인1계좌)",
+      "join_deny": 1,
+      "join_member": "제한없음(단,국가및지방자치단체제외)",
+      "join_way": "영업점,스마트폰",
+      "spcl_cnd": "▶ 최고우대금리 1.20%p  \n①해피라이프_여행스케치외화적금V 동일자가입 0.5%p \n②해지원금 기준 500만원이상 : 최고0.2%p\n③신용(체크)카드사용실적300만원이상:최고 0.3%p\n④개인(신용)정보 동의: 0.2%p",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 53,
+    "fields": {
+      "fin_co_no": "0010019",
+      "fin_prdt_cd": "TD11330030000",
+      "kor_co_nm": "광주은행",
+      "fin_prdt_nm": "여행스케치_남도투어적금",
+      "etc_note": "1. 가입기간 :12개월제,18개월제\n2. 가입금액 : 월 5만원 이상 1백만원 이하 (1인1계좌)\n※ 18개월 정액식 기본금리 3.3%, 최고금리 5.2%",
+      "join_deny": 1,
+      "join_member": "만14세이상 개인 및 개인사업자",
+      "join_way": "영업점,스마트폰",
+      "spcl_cnd": "▶ 최고우대금리 1.9%p \n①예금가입일~만기일전일까지 당행이선정한 전라남도 관광지 방문 인증시 : 최고 1.5%p\n②신용(체크)카드사용실적300만원이상:최고 0.3%p\n③개인(신용)정보 동의: 0.1%p",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 54,
+    "fields": {
+      "fin_co_no": "0010019",
+      "fin_prdt_cd": "TD11330031000",
+      "kor_co_nm": "광주은행",
+      "fin_prdt_nm": "VIP플러스적금",
+      "etc_note": "1. 가입기간 : 1년제\n2. 가입금액 : 월10만원 이상 5백만원 이하 (1인1계좌)",
+      "join_deny": 1,
+      "join_member": "실명의 개인",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "▶ 최고우대금리 0.50%p  \n①이 예금가입시 VIP고객이거나 가입일 이후부터 만기일전일까지 VIP고객에 선정된 경험이 있는 경우 : 0.3%p \n②이 예금 가입일에 정기예금 500만원이상(만기 1년이상) 가입하고 만기일 전일까지 유지한 경우 : 0.2%p",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 55,
+    "fields": {
+      "fin_co_no": "0010020",
+      "fin_prdt_cd": "220002101",
+      "kor_co_nm": "제주은행",
+      "fin_prdt_nm": "jbank 저금통적금",
+      "etc_note": "월 납입한도 50만원 이하",
+      "join_deny": 1,
+      "join_member": "개인 및 개인사업자",
+      "join_way": "인터넷,스마트폰",
+      "spcl_cnd": "* 거래조건에 따라 최고 2.1%p 우대금리 적용\n① 자투리 출금계좌 평잔 50만원 이상 유지 : 0.8%p\n② 첫거래고객 or JBANK저금통적금 1개월 내 재신규 : 0.5%p\n③ 신규가입 시점에서 적금 목표금액 최소 30만원 이상 설정하고, 적금 신규일로부터 3개월 내 잔액이 목표금액 이상인 경우 :0.5%p\n④ 추천인 우대금리 : 0.30%p",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 56,
+    "fields": {
+      "fin_co_no": "0010020",
+      "fin_prdt_cd": "220002501",
+      "kor_co_nm": "제주은행",
+      "fin_prdt_nm": "MZ 플랜적금",
+      "etc_note": "월 납입한도 30만원 이하",
+      "join_deny": 1,
+      "join_member": "개인 및 개인사업자",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "①매월 1회이상 지속적 납입시:1년제: 0.50%\n② 목표 금액 달성:0.50%\n③ 신용카드,체크카드 합산 사용액 월10만원 이상 사용: 0.50%\n* 청년이니까응원합니다 이벤트 : 0.50%",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 57,
+    "fields": {
+      "fin_co_no": "0010020",
+      "fin_prdt_cd": "220002701",
+      "kor_co_nm": "제주은행",
+      "fin_prdt_nm": "탐이나요적금",
+      "etc_note": "월 납입한도 100만원 이하",
+      "join_deny": 1,
+      "join_member": "개인 및 개인사업자",
+      "join_way": "인터넷,스마트폰",
+      "spcl_cnd": "우대요건 충족시 최고 2.7%p 추가 우대(만기시 제공)매월 JBANK로그인 시 0.2%,한 가지라도 수행시 2.5% 제공①추천인 코드로 3명 이상 가입시 ②탐나는전 체크카드 월30만원 이상 사용 유지 ③탐나는전 선불카드 충전계좌를 당행 입출금계좌로 등록 후 평잔 50만원 이상 유지 시",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 58,
+    "fields": {
+      "fin_co_no": "0010022",
+      "fin_prdt_cd": "10-01-30-031-0018-0000",
+      "kor_co_nm": "전북은행",
+      "fin_prdt_nm": "JB 다이렉트적금(자유적립식)",
+      "etc_note": "1. 초회불입금 1만원이상, 1인당 월별 최고 1천만원이내\n2. 만기직전 1개월간 적립합계는 이전기간 적립금액을 초과할 수 없음\n3. 인터넷뱅킹/스마트폰뱅킹 가입상품",
+      "join_deny": 1,
+      "join_member": "실명의 개인 및 개인사업자(임의단체 제외)",
+      "join_way": "인터넷,스마트폰",
+      "spcl_cnd": "추가우대금리 :\n당행 계좌간 자동이체를 통해 이 예금으로 자동이체 된 금액에 0.1% 금리 우대",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 59,
+    "fields": {
+      "fin_co_no": "0010022",
+      "fin_prdt_cd": "10-01-30-031-0036",
+      "kor_co_nm": "전북은행",
+      "fin_prdt_nm": "JB 다이렉트적금(정액적립식)",
+      "etc_note": "1. 초회불입금 1만원이상, 1인당 월별 최고 5백만원이내\n2. 인터넷뱅킹/스마트폰뱅킹 가입상품",
+      "join_deny": 1,
+      "join_member": "실명의 개인 및 개인사업자(임의단체 제외)",
+      "join_way": "인터넷,스마트폰",
+      "spcl_cnd": "추가우대금리 :\n당행 계좌간 자동이체를 통해 6회이상 입금한 경우 \n연 0.1% 금리우대",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 60,
+    "fields": {
+      "fin_co_no": "0010022",
+      "fin_prdt_cd": "10-01-30-031-0049-0000",
+      "kor_co_nm": "전북은행",
+      "fin_prdt_nm": "3초 플레이 적금",
+      "etc_note": "계약기간 6개월\n월별 적립한도 5만원 이상 최고 50만원 이하 (1인 1계좌)",
+      "join_deny": 1,
+      "join_member": "실명의 개인 및 개인사업자(1인 1계좌)",
+      "join_way": "스마트폰",
+      "spcl_cnd": "1. 만기 전전월까지 게임 50회 참여시 0.9%\n2. 3초 플레이 적금 게임에 참여하여 획득한 점수 총 합에 따라 추가 우대금리 (연0.5% ~ 연3.0%)\n3. 가입기간 내 오픈뱅킹을 통해 계좌 추가 등록/유지시 우대 0.1%\n\n※거래실적 인정기준 세부내용은 홈페이지 참조",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 61,
+    "fields": {
+      "fin_co_no": "0010024",
+      "fin_prdt_cd": "21000111",
+      "kor_co_nm": "경남은행",
+      "fin_prdt_nm": "행복 DREAM 적금",
+      "etc_note": "1. 계약기간은 1년 이상 3년 이하 월단위로 한다.\n2. 적립금액은 5만원 이상, 최고금액은 제한없음",
+      "join_deny": 1,
+      "join_member": "실명의 개인 및 개인사업자",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "①신규일로부터 6개월전까지 당행 적금 미보유 0.2%\n②월부금이 50만원 이상인 경우 0.20%\n③이 예금을 자동이체로 납입하는 경우 0.2%\n④신용(체크)카드 최초발급 후 10만원 이내 이용 0.2%\n⑤ 전자명함을 통한 신규 시 0.2%",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 62,
+    "fields": {
+      "fin_co_no": "0010024",
+      "fin_prdt_cd": "21001116",
+      "kor_co_nm": "경남은행",
+      "fin_prdt_nm": "BNK더조은자유적금",
+      "etc_note": "1. 계약기간은 6개월 이상 2년 이내 월단위로 한다.\n2. 초입금 1만원 이상 월별 500만원 이내에서 자유롭게 저축\n3. 최대 저축횟수는 999회 이내",
+      "join_deny": 1,
+      "join_member": "거래대상자는 제한을 두지 아니한다. 다만, 국가 및 지방자치단체는 이 예금을 거래할 수 없다.",
+      "join_way": "인터넷,스마트폰",
+      "spcl_cnd": "①오픈뱅킹서비스 가입 0.20%(만기까지 유지)\n②당행 입출금통장에서 자동이체시 입금건별 0.20%\n③이 상품 신규시 금리우대쿠폰을 등록할 경우 0.30%",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 63,
+    "fields": {
+      "fin_co_no": "0010024",
+      "fin_prdt_cd": "21001199",
+      "kor_co_nm": "경남은행",
+      "fin_prdt_nm": "BNK 위더스자유적금",
+      "etc_note": "1.계약기간은 1개월 이상 36개월 이하 월단위로 한다.\n2..1인 1계좌로 가입가능\n2.매월 최소 1만원 이상, 최고 월 100만원 이하 (천원 단위)",
+      "join_deny": 1,
+      "join_member": "실명의 개인 및 개인사업자",
+      "join_way": "영업점,인터넷,스마트폰,기타",
+      "spcl_cnd": "①ESG 실천 우대금리 0.50%\n②신규고객 우대금리 0.50%\n- 당행 1년 이내예적금(청약포함)신규해지 이력미보유\n③공동가입우대금리 1.50%",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 64,
+    "fields": {
+      "fin_co_no": "0010024",
+      "fin_prdt_cd": "21001236",
+      "kor_co_nm": "경남은행",
+      "fin_prdt_nm": "주거래 프리미엄 적금",
+      "etc_note": "1.계악기간은 1년제, 2년제, 3년제로 한다.\n2. 적립금액은 매월 1만원이상, 최고금액은 제한없음",
+      "join_deny": 1,
+      "join_member": "실명의 개인 및 개인사업자",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "①주거래우대 0.50%\n②공과금 자동이체 0.40~0.60%\n③신규고객 0.20%\n④주택청약종합저축 보유 0.10%\n⑤ 전자명함을 통한 신규 시 0.2%",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 65,
+    "fields": {
+      "fin_co_no": "0010024",
+      "fin_prdt_cd": "21001259",
+      "kor_co_nm": "경남은행",
+      "fin_prdt_nm": "오늘도세이브적금",
+      "etc_note": "1. 계약기간은 1개월 이상 6개월 이내 월단위로 한다.\n2. 초입금 일 1천원 이상 10만원 이하 자유롭게 저축\n3. 최대 저축횟수는 999회 이내",
+      "join_deny": 1,
+      "join_member": "실명의 개인 및 개인사업자",
+      "join_way": "인터넷,스마트폰,기타",
+      "spcl_cnd": "①마케팅동의 0.15%\n②목돈마련 축하이율 0.30~1.00%\n③친구 추천번호 0.30~0.60%",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 66,
+    "fields": {
+      "fin_co_no": "0010024",
+      "fin_prdt_cd": "21001268",
+      "kor_co_nm": "경남은행",
+      "fin_prdt_nm": "터치적금",
+      "etc_note": "1. 계약기간은 1개월로 한다.\n2. 초입금 일 1천원 이상 3만원 이하 자유롭게 저축\n3. 최대 저축횟수는 999회 이내",
+      "join_deny": 1,
+      "join_member": "실명의 개인 및 개인사업자",
+      "join_way": "스마트폰",
+      "spcl_cnd": "①첫거래고객(적금가입 전일기준 당행 활동계좌 미보유) 2.50%\n②기간내 적금 입금일마다 0.10%씩 우대(최대2.50%)\n③마케팅동의 및 모바일메세지 수신동의 만기유지 시 0.50%",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 67,
+    "fields": {
+      "fin_co_no": "0010026",
+      "fin_prdt_cd": "01211210113",
+      "kor_co_nm": "중소기업은행",
+      "fin_prdt_nm": "IBK D-day적금(자유적립식)",
+      "etc_note": "1인당 3계좌 가입 가능하며, 계좌당 20만원 이내 납입 가능",
+      "join_deny": 1,
+      "join_member": "실명의 개인\n(개인사업자 제외)",
+      "join_way": "스마트폰",
+      "spcl_cnd": "최고 연 1.5%p\n1. 목표달성 축하금리 : 연 1.0%p\n  - 당행 입출금식 계좌에서 이 적금으로 자동이체를 통해 3회 이상 납입하고 만기일 전일까지 목표금액(신규 시 직접 설정) 이상 납입하는 경우\n2. 최초거래고객 우대금리 : 연 0.5%p",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 68,
+    "fields": {
+      "fin_co_no": "0010026",
+      "fin_prdt_cd": "01211210121",
+      "kor_co_nm": "중소기업은행",
+      "fin_prdt_nm": "IBK탄소제로적금(자유적립식)",
+      "etc_note": "1인당 1계좌 가입 가능하며, 계좌당 최소 1만원 이상 1백만원까지 납입 가능",
+      "join_deny": 1,
+      "join_member": "실명의 개인\n(개인사업자 제외)",
+      "join_way": "스마트폰",
+      "spcl_cnd": "최고 연 4.00%p\n1. 에너지 절감 우대금리 : 최대 연 2.00%p\n2. 최초거래고객 우대금리 : 연 1.00%p\n3. 지로 또는 공과금 자동이체 우대금리 : 연 1.00%p",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 69,
+    "fields": {
+      "fin_co_no": "0010026",
+      "fin_prdt_cd": "01211210122",
+      "kor_co_nm": "중소기업은행",
+      "fin_prdt_nm": "IBK중기근로자우대적금\n(자유적립식)",
+      "etc_note": "1인당 1계좌 가입 가능하며, 계좌당 100만원까지 납입 가능",
+      "join_deny": 3,
+      "join_member": "중소기업에서 근무하는\n실명의 개인\n(개인사업자 제외)",
+      "join_way": "영업점,스마트폰",
+      "spcl_cnd": "최고 연 2.20%p\n1. 가입시점 중소기업 근로자로 확인된 경우 : 재직기간에 따라 최고 연 1.2%p\n2. 당행 급여이체 실적(월50만원 이상) 6개월 이상\n   인 경우 : 연 1.0%p",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 70,
+    "fields": {
+      "fin_co_no": "0010030",
+      "fin_prdt_cd": "03101",
+      "kor_co_nm": "한국산업은행",
+      "fin_prdt_nm": "KDB 기업정기적금",
+      "etc_note": "해당없음",
+      "join_deny": 1,
+      "join_member": "개인사업자, 조합(비영리법인 포함), 법인",
+      "join_way": "영업점,인터넷",
+      "spcl_cnd": "해당없음",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 71,
+    "fields": {
+      "fin_co_no": "0010030",
+      "fin_prdt_cd": "03700",
+      "kor_co_nm": "한국산업은행",
+      "fin_prdt_nm": "KDB 자유적금",
+      "etc_note": "해당없음",
+      "join_deny": 1,
+      "join_member": "개인, 개인사업자, 임의단체",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "해당없음",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 72,
+    "fields": {
+      "fin_co_no": "0010927",
+      "fin_prdt_cd": "010200100051",
+      "kor_co_nm": "국민은행",
+      "fin_prdt_nm": "KB국민프리미엄적금(정액)",
+      "etc_note": "1인 1계좌",
+      "join_deny": 1,
+      "join_member": "실명의 개인",
+      "join_way": "영업점,인터넷,스마트폰,전화(텔레뱅킹)",
+      "spcl_cnd": "① 단체가입/나라사랑/쿠폰 우대이율: \n    1년: 연 0.6%p, 2년: 연 0.7%p,\n    3년: 연 0.9%p, 5년: 연 1.0%p \n   (중복적용되지 않음, 계약기간별차등적용)\n② 교차거래 우대이율: 연 0.3%p",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 73,
+    "fields": {
+      "fin_co_no": "0010927",
+      "fin_prdt_cd": "010200100084",
+      "kor_co_nm": "국민은행",
+      "fin_prdt_nm": "KB맑은하늘적금",
+      "etc_note": "공동명의 불가\n(1인 최대 3계좌)",
+      "join_deny": 1,
+      "join_member": "실명의 개인",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "맑은하늘을 위한 미션별 제공조건을 달성하는 경우 각 미션별 우대이율 제공\n - 1년제 최고 연 0.8%p, 2년제 최고 연 0.9%p, 3년제 최고 연 1.0%p\n① 종이통장 줄이기 미션: 연 0.1%p\n② 종이서식 줄이기 미션: 연 0.2%p\n③ 대중교통 미션: 1년제 연 0.4%p, 2년제 연 0.5%p, 3년제 연 0.6%p\n④ 퀴즈미션: 연 0.1%p",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 74,
+    "fields": {
+      "fin_co_no": "0010927",
+      "fin_prdt_cd": "010200100092",
+      "kor_co_nm": "국민은행",
+      "fin_prdt_nm": "KB반려행복적금",
+      "etc_note": "공동명의 불가\n(1인 최대 3계좌)",
+      "join_deny": 1,
+      "join_member": "실명의 개인",
+      "join_way": "스마트폰",
+      "spcl_cnd": "항목별 적용 조건 충족시, 최고 연 1.5%p\n① 반려동물 등록: 연 0.2%p\n② 미지(유기)입양: 연 0.2%p\n③ 반려동물애정활동: 연 0.2%p\n④ 반려동물요금제: 연 0.2%p\n⑤ KB거래감사: 연 0.2%p\n⑥ KB첫거래: 연 0.5%p",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 75,
+    "fields": {
+      "fin_co_no": "0010927",
+      "fin_prdt_cd": "010200100104",
+      "kor_co_nm": "국민은행",
+      "fin_prdt_nm": "KB 특★한 적금",
+      "etc_note": "개인사업자, 임의단체 및\n공동명의 가입 불가\n(1인 최대 3계좌)",
+      "join_deny": 1,
+      "join_member": "실명의 개인",
+      "join_way": "스마트폰",
+      "spcl_cnd": "항목별 적용 조건 충족시, 최고 연 4.0%p\n① 목표달성 축하 우대이율: 최고 연 1.0%p\n    50만원 이하: 연 0.5%p, 50만원 초과: 연 1.0%p \n② 별 모으기 우대이율 : 최고 연 1.0%p\n    10개: 연 0.5%p, 20개: 연 1.0%p\n③ 함께해요 우대이율: 최고 연 2.0%p",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 76,
+    "fields": {
+      "fin_co_no": "0010927",
+      "fin_prdt_cd": "010200100109",
+      "kor_co_nm": "국민은행",
+      "fin_prdt_nm": "KB차차차 적금",
+      "etc_note": "- 개인사업자, 임의단체 및 공동명의 가입 불가\n(1인 1계좌) \n- KB스타뱅킹 전용상품",
+      "join_deny": 1,
+      "join_member": "만19세이상 실명의 개인",
+      "join_way": "스마트폰",
+      "spcl_cnd": "항목별 적용 조건 충족시, 최고 연 5.5%p\n① 혜택수신 우대이율: 연 1.0%p\n② KB패밀리 우대이율: 연 1.0%p\n③ KB국민인증 우대이율: 연0.5%p \n④ 내차든든 우대이율: 연 3.0%P",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 77,
+    "fields": {
+      "fin_co_no": "0011625",
+      "fin_prdt_cd": "230-0119-85",
+      "kor_co_nm": "신한은행",
+      "fin_prdt_nm": "신한 알.쏠 적금",
+      "etc_note": "1. 가입한도: \n월300만원 이하\n2. 1인 다계좌",
+      "join_deny": 1,
+      "join_member": "제한없음",
+      "join_way": "영업점,스마트폰",
+      "spcl_cnd": "※가산금리 최고 연 1.30%\n- 소득이체 : 연 0.6%\n- 카드이용 : 연 0.3%\n- 오픈뱅킹 : 연 0.6%\n- 청약보유 : 연 0.3%\n- 마케팅동의 : 연 0.1%\n※ 우대금리 항목별 자세한 적용 조건은 상품설명서 참조",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 78,
+    "fields": {
+      "fin_co_no": "0013175",
+      "fin_prdt_cd": "10-047-1360-0002",
+      "kor_co_nm": "농협은행주식회사",
+      "fin_prdt_nm": "NH올원e 미니적금",
+      "etc_note": "가입기간 1개월 이상 6개월 이하(일 단위)\n\n초입금 및 매일 1천원이상  5만원이내(천원 단위)",
+      "join_deny": 1,
+      "join_member": "개인",
+      "join_way": "스마트폰",
+      "spcl_cnd": "1. 자동이체 입금횟수 우대금리 : 최고 0.5%p\n - 5회이상 : 0.2%p, 10회이상 : 0.3%p, 15회이상 0.5%p\n2. 목표금액 달성 축하금리  : 0.5%p\n3. MZ세대(만 19~34세)) 우대금리 : 0.5%p\n4. 직전 1년간 당행 예적금(청약포함) 미보유 고객 : 0.2%p",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 79,
+    "fields": {
+      "fin_co_no": "0013175",
+      "fin_prdt_cd": "10-047-1365-0001",
+      "kor_co_nm": "농협은행주식회사",
+      "fin_prdt_nm": "NH1934월복리적금",
+      "etc_note": "초입금 및 매회 1만원 이상, 월 50만원 이내 자유적립\n\n급여이체 실적과 개인사업자 계좌 실적 우대금리는 중복 적용 불가\n\n * 급여입금실적 인정기준\n  - 가입기간 12개월 이하 : 3개월 이상 급여이체\n  - 가입기간 24개월 이하 : 12개월 이상 급여이체",
+      "join_deny": 3,
+      "join_member": "만19세~만34세 개인 및 개인사업자",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "1. 급여실적 : 1.0%p (①/② 중복 적용 불가)\n ① 급여이체 실적 : 1.0%p\n ② 개인사업자 계좌 실적 :1.0%p\n2. 비대면 채널 이체 실적 : 0.3%p\n3. 마케팅 동의 : 0.2%p\n4. 농업계고 및 청년농부사관학교 졸업자 : 2.0%p",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 80,
+    "fields": {
+      "fin_co_no": "0013175",
+      "fin_prdt_cd": "10-047-1381-0001",
+      "kor_co_nm": "농협은행주식회사",
+      "fin_prdt_nm": "NH내가Green초록세상적금",
+      "etc_note": "초입금5만원 이상 및 매회 1만원 이상, 매월50만원이내\n(단, 만기일 전 3개월 이내에는 이전 적립금 합계액을 초과하여 입금불가)\n\n※자세한 사항은 상품설명서 참조",
+      "join_deny": 1,
+      "join_member": "개인",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "※ 우대금리 최대한도 : 1.0%p(연%, 세전)\n1. 온실가스 줄이기 실천서약서 동의 : 0.1%p\n2. 통장미발급 : 0.3%p\n3. 손하나로인증 서비스 등록 : 0.2%p\n4. 대중교통이용 : 0.2%p\n5. NH내가Green초록세상예금 동시 보유 : 0.2%p",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 81,
+    "fields": {
+      "fin_co_no": "0013175",
+      "fin_prdt_cd": "10-047-1387-0001",
+      "kor_co_nm": "농협은행주식회사",
+      "fin_prdt_nm": "NH고향사랑기부적금",
+      "etc_note": "1.초입금1만원 이상 및 매회 1천원 이상, 매월50만원이내\n\n2. 고향사랑기부금 우대금리는 농협은행/농축협 영업점 또는 고향사랑e음 홈페이지를 통한 고향사랑기부금 납부실적이 확인되는 경우 제공\n\n3. 연간 판매액의 0.1% 공익기금 적립\n\n※자세한 사항은 상품설명서 참조",
+      "join_deny": 1,
+      "join_member": "개인",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "1. 고향사랑기부금 납부고객 우대 : 0.5%p\n\n2-1. 만 65세 이상 고령자 우대 : 0.1%p\n2-2. 만 19~34세 MZ고객 우대 : 0.3%p\n\n3. NH채움카드 또는 [zgm.고향으로 카드] 이용실적 우대 : 0.1%p\n\n4. 고향사랑특별금리 : 0.1%p(금리시장상황에 따라 변동 가능)\n - 고향사랑특별금리는 상품 가입고객 모두에게 적용",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 82,
+    "fields": {
+      "fin_co_no": "0013175",
+      "fin_prdt_cd": "10-059-1264-0001",
+      "kor_co_nm": "농협은행주식회사",
+      "fin_prdt_nm": "NH직장인월복리적금",
+      "etc_note": "초입금 및 매회 입금 1만원 이상 원 단위,  1인당 분기별 3백만원 이내 적립 가능\n(단,계약기간 3/4 경과 후 적립할 수 있는 금액은 이전 적립누계액의 1/2이내)",
+      "join_deny": 3,
+      "join_member": "만18세이상 개인",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "1. 급여입금실적 보유 고객 중\n - 가입기간 중 3개월 이상 급여이체시 : 0.3%p\n - 주택청약종합저축 또는 펀드가입 : 0.2%p\n - NH채움카드 결제실적 1백만원 이상 : 0.2%p\n2. 인터넷(스마트)뱅킹 또는 올원뱅크로 가입 : 0.1%p",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 83,
+    "fields": {
+      "fin_co_no": "0013909",
+      "fin_prdt_cd": "52",
+      "kor_co_nm": "하나은행",
+      "fin_prdt_nm": "주거래하나 월복리적금",
+      "etc_note": "1. 1인 1계좌만 가능\n(급여하나월복리적금,연금하나 월복리적금과 중복가입 불가)\n2. 가입금액 \n - 최저1만원~300만원이하\n3. 적립한도\n 분기당 1만원이상 300만원\n (자유적립식)",
+      "join_deny": 1,
+      "join_member": "실명의 개인\n또는 개인사업자",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "최고 연1.0%\n- 주거래하나우대(연 0.5%) : 적금만기 전전월말기준 본인명의 당행입출금통장을 통해 계약기간 1/2이상 이체된 주거래실적 1종  - 주거래플러스우대(연 0.9%) : 주거래 하나우대와 동일요건의 거래실적 2종이상 경우 \n- 온라인.재예치우대 연 최대 0.1%",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 84,
+    "fields": {
+      "fin_co_no": "0013909",
+      "fin_prdt_cd": "53",
+      "kor_co_nm": "하나은행",
+      "fin_prdt_nm": "내맘적금",
+      "etc_note": "1. 1인 다계좌 가능\n2. 가입금액\n   - 1천원 이상~1,000만원 이하(원단위)\n3. 적립한도\n    - 자유적립식 : 매월 1원 이상~1,000만원 이하(원단위)\n    - 정액적립식 : 매월 1천원 이상~1,000만원 이하(원단위)",
+      "join_deny": 1,
+      "join_member": "실명의 개인\n또는 개인사업자(1인 다계좌 가능)",
+      "join_way": "영업점,인터넷,스마트폰,전화(텔레뱅킹)",
+      "spcl_cnd": "하나은행 통장에서 계약기간의 1/2이상 월부금 자동이체실적 충족 시 연 0.50%",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 85,
+    "fields": {
+      "fin_co_no": "0014674",
+      "fin_prdt_cd": "01012000200000000003",
+      "kor_co_nm": "주식회사 케이뱅크",
+      "fin_prdt_nm": "코드K 자유적금",
+      "etc_note": "가입금액: 1만원 이상 30만원 이하\n가입기간: 6개월, 1년, 2년, 3년 \n(1인 최대 3계좌)",
+      "join_deny": 1,
+      "join_member": "만 17세 이상 실명의 개인 및 개인사업자",
+      "join_way": "스마트폰",
+      "spcl_cnd": "금리우대 코드를 입력하는 경우 우대금리 적용",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 86,
+    "fields": {
+      "fin_co_no": "0014674",
+      "fin_prdt_cd": "01012000200000000004",
+      "kor_co_nm": "주식회사 케이뱅크",
+      "fin_prdt_nm": "궁금한 적금",
+      "etc_note": "가입금액: 0원\n가입기간: 31일\n(1인 최대 1계좌)\n적립방법 : 연결계좌를 통한 직접 입금만 가능하며, 입금은 신규일부터 만기일 전일까지 1일 1회 가능\n납입금액 : 1일(1회) 최소 100원, 최대 5만원",
+      "join_deny": 1,
+      "join_member": "만 17세 이상 실명의 개인 및 개인사업자",
+      "join_way": "스마트폰",
+      "spcl_cnd": "입금할 때마다 우대금리를 랜덤으로 제공하며, 입금 시 제공되는 우대금리를 누적으로 합산하여 만기 해지 시 적용 (최고 연 6.0%)",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 87,
+    "fields": {
+      "fin_co_no": "0014674",
+      "fin_prdt_cd": "01012000210000000000",
+      "kor_co_nm": "주식회사 케이뱅크",
+      "fin_prdt_nm": "주거래우대 자유적금",
+      "etc_note": "가입금액: 1천원 이상 300만원 이하\n가입기간: 6개월 ~ 36개월\n(1인 최대 3계좌)",
+      "join_deny": 1,
+      "join_member": "만 17세 이상 실명의 개인 및 개인사업자",
+      "join_way": "스마트폰",
+      "spcl_cnd": "급여이체 또는 통신비 자동이체, 체크카드 고객에게 우대금리 제공 (최고 연 0.6%)",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 88,
+    "fields": {
+      "fin_co_no": "0014807",
+      "fin_prdt_cd": "10140114300011",
+      "kor_co_nm": "수협은행",
+      "fin_prdt_nm": "Sh해양플라스틱Zero!적금\n(정액적립식)",
+      "etc_note": "- 1인 1계좌 \n- 월 가입한도 : 100만원",
+      "join_deny": 1,
+      "join_member": "실명의 개인",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "* 최대우대금리:0.5%\n1. 해양플라스틱감축서약 : 0.1% (신규시) \n2. 봉사활동 또는 상품홍보 : 0.2% (만기시) \n3. 입출금통장 최초신규 : 0.2% (만기시)\n4. 자동이체 출금실적 : 0.2% (만기시)\n - 수협신용카드 / 당행 펀드 / 수협체크카드\n※단위:연%p",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 89,
+    "fields": {
+      "fin_co_no": "0014807",
+      "fin_prdt_cd": "10141109800021",
+      "kor_co_nm": "수협은행",
+      "fin_prdt_nm": "Sh월복리자유적금",
+      "etc_note": "- 1인 1계좌\n- 월 가입한도 : 100만원",
+      "join_deny": 1,
+      "join_member": "실명의 개인 및 개인사업자",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "*최대우대금리:0.7%\n-첫거래고객:0.3%\n-카드거래:최대0.3%\n-복수거래:0.1%\n-요구불거래:최대0.2%\n-인터넷뱅킹고객:0.1%\n-자동이체실적:0.1%\n※단위:연%p",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 90,
+    "fields": {
+      "fin_co_no": "0014807",
+      "fin_prdt_cd": "10141114300011",
+      "kor_co_nm": "수협은행",
+      "fin_prdt_nm": "Sh해양플라스틱Zero!적금\n(자유적립식)",
+      "etc_note": "- 1인 1계좌 \n- 월 가입한도 : 20만원",
+      "join_deny": 1,
+      "join_member": "실명의 개인",
+      "join_way": "영업점,인터넷,스마트폰",
+      "spcl_cnd": "* 최대우대금리:0.5%\n1. 해양플라스틱감축서약 : 0.1% (신규시) \n2. 봉사활동 또는 상품홍보 : 0.2% (만기시) \n3. 입출금통장 최초신규 : 0.2% (만기시)\n4. 자동이체 출금실적 : 0.2% (만기시)\n - 수협신용카드 / 당행 펀드 / 수협체크카드\n※단위:연%p",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 91,
+    "fields": {
+      "fin_co_no": "0015130",
+      "fin_prdt_cd": "10-01-30-355-0002",
+      "kor_co_nm": "주식회사 카카오뱅크",
+      "fin_prdt_nm": "카카오뱅크 자유적금",
+      "etc_note": "1. 가입방법 : 스마트폰\n2. 가입금액 : 1천원 이상(원단위)\n3. 가입기간 : 6개월 이상 ~ 36개월 이하(월, 일단위 지정 가능)\n4. 월 적립한도 : 1천원 이상 월 300만원 이하 원단위(단, 자동연장된 원리금은 월 적립한도에 포함되지 않음)",
+      "join_deny": 1,
+      "join_member": "만 17세 이상의 실명의 개인",
+      "join_way": "스마트폰",
+      "spcl_cnd": "자동이체시 우대금리 제공 : 연 0.20%p\n - 제공조건 : 전체 계약월수의 1/2이상을 자동이체로 납입하고 만기 해지하는 경우\n - 유의사항 : 만기 자동연장된 원리금은 우대금리를 제공하지 않음",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 92,
+    "fields": {
+      "fin_co_no": "0015130",
+      "fin_prdt_cd": "10-01-30-355-0005",
+      "kor_co_nm": "주식회사 카카오뱅크",
+      "fin_prdt_nm": "카카오뱅크 26주적금",
+      "etc_note": "1. 가입방법 : 스마트폰\n2. 가입금액 : 1천원, 2천원, 3천원, 5천원, 1만원\n3. 가입기간 : 6개월\n4. 26주적금서비스(자동이체)를 통해서 납입이 가능하며, 그 외의 입금은 모두 제한됨\n(단, 26주적금 서비스를 통한 납입 실패 시 빈자리 채우기로 납입 가능)",
+      "join_deny": 1,
+      "join_member": "만 17세 이상의 실명의 개인",
+      "join_way": "스마트폰",
+      "spcl_cnd": "자동이체 연속 성공 우대금리 제공 : 최고 연 3.00%p\n- 제공조건\n① 7주차까지 자동이체 납입을 연속 성공하고 만기해지 하는 경우 연 1.00%p 제공\n② 26주차까지 자동이체 납입을 연속 성공하고 만기해지 하는 경우 연 2.00%p 추가 제공\n- 유의사항 : 자동이체 실패한 주차를 빈자리채우기 하여도 성공으로 인정되지 않음",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 93,
+    "fields": {
+      "fin_co_no": "0015130",
+      "fin_prdt_cd": "10-01-30-355-0006",
+      "kor_co_nm": "주식회사 카카오뱅크",
+      "fin_prdt_nm": "카카오뱅크 한달적금",
+      "etc_note": "1. 가입방법 : 스마트폰\n2. 납입금액 : 1회 100원 이상 3만원 이하(원단위)\n3. 가입기간 : 31일\n4. 직접 납입을 통해서 1일 1회만 입금 가능하며, 그 외의 입금은 모두 제한됨",
+      "join_deny": 1,
+      "join_member": "만 17세 이상의 실명의 개인",
+      "join_way": "스마트폰",
+      "spcl_cnd": "매일/보너스 우대금리 제공 : 최고 연 5.50%p\n- 제공조건\n① 매일 우대금리 : 매 입금 시 마다 연 0.10%p 제공(최대 연 3.10%p)\n② 보너스 우대금리 : 누적하여 5/10/15/20/25/31회 입금 시 해당 우대금리 제공(최대 연 2.40%p)\n- 유의사항 : 만기 해지하는 경우에만 제공",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 94,
+    "fields": {
+      "fin_co_no": "0017801",
+      "fin_prdt_cd": "1001303001001",
+      "kor_co_nm": "토스뱅크 주식회사",
+      "fin_prdt_nm": "토스뱅크 키워봐요 적금",
+      "etc_note": "· 1인 1계좌 (단, 이벤트 등으로 토스뱅크가 복수의 계좌개설을 허용하는 경우 추가 개설 가능)\n· 가입금액 : 0원\n· 우대금리는 우대조건을 달성하고 만기 해지하는 경우에만 제공됨",
+      "join_deny": 1,
+      "join_member": "· 토스뱅크 통장 또는 토스뱅크 서브 통장을 보유한 실명의 개인",
+      "join_way": "스마트폰",
+      "spcl_cnd": "· 적금 가입 시 설정되는 주 단위 자동이체를 통하여 25회 이상 적립한 경우 : 연 2.00% 제공",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 95,
+    "fields": {
+      "fin_co_no": "0017801",
+      "fin_prdt_cd": "1001303001003",
+      "kor_co_nm": "토스뱅크 주식회사",
+      "fin_prdt_nm": "토스뱅크 굴비 적금",
+      "etc_note": "· 1인 1계좌 (단, 이벤트 등으로 토스뱅크가 복수의 계좌개설을 허용하는 경우 추가 개설 가능)\n· 가입금액 : 0원\n· 우대금리는 만기 해지하는 경우에만 제공됨",
+      "join_deny": 1,
+      "join_member": "· 토스뱅크 통장 또는 토스뱅크 서브 통장을 보유한 실명의 개인",
+      "join_way": "스마트폰",
+      "spcl_cnd": "· 만기 해지 시 : 연 2.50% 제공",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 96,
+    "fields": {
+      "fin_co_no": "0017801",
+      "fin_prdt_cd": "1001303001004",
+      "kor_co_nm": "토스뱅크 주식회사",
+      "fin_prdt_nm": "토스뱅크 자유 적금",
+      "etc_note": "· 1인 1계좌 (단, 이벤트 등으로 토스뱅크가 복수의 계좌개설을 허용하는 경우 추가 개설 가능)\n· 가입금액 : 0원 이상 300만원 이하\n· 우대금리는 만기 해지하는 경우에만 제공됨",
+      "join_deny": 1,
+      "join_member": "· 토스뱅크 통장 또는 토스뱅크 서브 통장을 보유한 실명의 개인",
+      "join_way": "스마트폰",
+      "spcl_cnd": "· 적금 가입 시 설정되는 월 단위 자동이체를 모두 성공하는 경우 : 연 0.50% 제공",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialproducts",
+    "pk": 97,
+    "fields": {
+      "fin_co_no": "0017801",
+      "fin_prdt_cd": "1001303001005",
+      "kor_co_nm": "토스뱅크 주식회사",
+      "fin_prdt_nm": "토스뱅크 아이 적금",
+      "etc_note": "· 1인 1계좌 \n· 가입금액 : 0원\n· 우대금리는 만기 해지하는 경우에만 제공됨",
+      "join_deny": 3,
+      "join_member": "· 토스뱅크 아이 통장을 보유한 15세 이하 실명의 개인",
+      "join_way": "스마트폰",
+      "spcl_cnd": "· 적금 가입 시 설정되는 월 단위 자동이체를 모두 성공하는 경우 : 연 2.50% 제공",
+      "product_type": 1
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 1,
+    "fields": {
+      "product": 1,
+      "fin_prdt_cd": "WR0001B",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.0,
+      "intr_rate2": 3.0,
+      "save_trm": 1
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 2,
+    "fields": {
+      "product": 1,
+      "fin_prdt_cd": "WR0001B",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.37,
+      "intr_rate2": 3.37,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 3,
+    "fields": {
+      "product": 1,
+      "fin_prdt_cd": "WR0001B",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.42,
+      "intr_rate2": 3.42,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 4,
+    "fields": {
+      "product": 1,
+      "fin_prdt_cd": "WR0001B",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.37,
+      "intr_rate2": 3.37,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 5,
+    "fields": {
+      "product": 1,
+      "fin_prdt_cd": "WR0001B",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.7,
+      "intr_rate2": 2.7,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 6,
+    "fields": {
+      "product": 1,
+      "fin_prdt_cd": "WR0001B",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.7,
+      "intr_rate2": 2.7,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 7,
+    "fields": {
+      "product": 2,
+      "fin_prdt_cd": "00320342",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.0,
+      "intr_rate2": 3.2,
+      "save_trm": 1
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 8,
+    "fields": {
+      "product": 2,
+      "fin_prdt_cd": "00320342",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.4,
+      "intr_rate2": 3.6,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 9,
+    "fields": {
+      "product": 2,
+      "fin_prdt_cd": "00320342",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.35,
+      "intr_rate2": 3.55,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 10,
+    "fields": {
+      "product": 2,
+      "fin_prdt_cd": "00320342",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.1,
+      "intr_rate2": 3.4,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 11,
+    "fields": {
+      "product": 3,
+      "fin_prdt_cd": "10511008000996000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.22,
+      "intr_rate2": 2.87,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 12,
+    "fields": {
+      "product": 3,
+      "fin_prdt_cd": "10511008000996000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.91,
+      "intr_rate2": 3.56,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 13,
+    "fields": {
+      "product": 3,
+      "fin_prdt_cd": "10511008000996000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.78,
+      "intr_rate2": 3.43,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 14,
+    "fields": {
+      "product": 3,
+      "fin_prdt_cd": "10511008000996000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.8,
+      "intr_rate2": 3.45,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 15,
+    "fields": {
+      "product": 4,
+      "fin_prdt_cd": "10511008001004000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 1.82,
+      "intr_rate2": 2.27,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 16,
+    "fields": {
+      "product": 4,
+      "fin_prdt_cd": "10511008001004000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.32,
+      "intr_rate2": 2.77,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 17,
+    "fields": {
+      "product": 4,
+      "fin_prdt_cd": "10511008001004000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.01,
+      "intr_rate2": 3.46,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 18,
+    "fields": {
+      "product": 4,
+      "fin_prdt_cd": "10511008001004000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.88,
+      "intr_rate2": 3.33,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 19,
+    "fields": {
+      "product": 4,
+      "fin_prdt_cd": "10511008001004000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.9,
+      "intr_rate2": 3.35,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 20,
+    "fields": {
+      "product": 5,
+      "fin_prdt_cd": "10511008001166004",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.05,
+      "intr_rate2": 3.5,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 21,
+    "fields": {
+      "product": 6,
+      "fin_prdt_cd": "10511008001278000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.1,
+      "intr_rate2": 2.15,
+      "save_trm": 1
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 22,
+    "fields": {
+      "product": 6,
+      "fin_prdt_cd": "10511008001278000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.3,
+      "intr_rate2": 3.35,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 23,
+    "fields": {
+      "product": 6,
+      "fin_prdt_cd": "10511008001278000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.15,
+      "intr_rate2": 3.4,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 24,
+    "fields": {
+      "product": 6,
+      "fin_prdt_cd": "10511008001278000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.1,
+      "intr_rate2": 3.35,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 25,
+    "fields": {
+      "product": 6,
+      "fin_prdt_cd": "10511008001278000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.88,
+      "intr_rate2": 3.13,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 26,
+    "fields": {
+      "product": 6,
+      "fin_prdt_cd": "10511008001278000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.9,
+      "intr_rate2": 3.15,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 27,
+    "fields": {
+      "product": 7,
+      "fin_prdt_cd": "01030500510002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.25,
+      "intr_rate2": 2.25,
+      "save_trm": 1
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 28,
+    "fields": {
+      "product": 7,
+      "fin_prdt_cd": "01030500510002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.45,
+      "intr_rate2": 3.05,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 29,
+    "fields": {
+      "product": 7,
+      "fin_prdt_cd": "01030500510002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.55,
+      "intr_rate2": 3.05,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 30,
+    "fields": {
+      "product": 7,
+      "fin_prdt_cd": "01030500510002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.75,
+      "intr_rate2": 3.2,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 31,
+    "fields": {
+      "product": 7,
+      "fin_prdt_cd": "01030500510002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.5,
+      "intr_rate2": 2.5,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 32,
+    "fields": {
+      "product": 7,
+      "fin_prdt_cd": "01030500510002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.5,
+      "intr_rate2": 2.5,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 33,
+    "fields": {
+      "product": 8,
+      "fin_prdt_cd": "01030500560002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.05,
+      "intr_rate2": 2.5,
+      "save_trm": 1
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 34,
+    "fields": {
+      "product": 8,
+      "fin_prdt_cd": "01030500560002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.6,
+      "intr_rate2": 3.05,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 35,
+    "fields": {
+      "product": 8,
+      "fin_prdt_cd": "01030500560002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.85,
+      "intr_rate2": 3.3,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 36,
+    "fields": {
+      "product": 8,
+      "fin_prdt_cd": "01030500560002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.0,
+      "intr_rate2": 3.45,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 37,
+    "fields": {
+      "product": 8,
+      "fin_prdt_cd": "01030500560002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.25,
+      "intr_rate2": 2.7,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 38,
+    "fields": {
+      "product": 8,
+      "fin_prdt_cd": "01030500560002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 1.95,
+      "intr_rate2": 2.4,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 39,
+    "fields": {
+      "product": 9,
+      "fin_prdt_cd": "01030500600002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.95,
+      "intr_rate2": 3.15,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 40,
+    "fields": {
+      "product": 9,
+      "fin_prdt_cd": "01030500600002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.15,
+      "intr_rate2": 3.35,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 41,
+    "fields": {
+      "product": 10,
+      "fin_prdt_cd": "TD11300027000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "복리",
+      "intr_rate": 3.02,
+      "intr_rate2": 3.22,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 42,
+    "fields": {
+      "product": 10,
+      "fin_prdt_cd": "TD11300027000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "복리",
+      "intr_rate": 2.99,
+      "intr_rate2": 3.19,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 43,
+    "fields": {
+      "product": 10,
+      "fin_prdt_cd": "TD11300027000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "복리",
+      "intr_rate": 2.84,
+      "intr_rate2": 3.04,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 44,
+    "fields": {
+      "product": 11,
+      "fin_prdt_cd": "TD11300031000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.81,
+      "intr_rate2": 2.91,
+      "save_trm": 1
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 45,
+    "fields": {
+      "product": 11,
+      "fin_prdt_cd": "TD11300031000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.96,
+      "intr_rate2": 3.06,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 46,
+    "fields": {
+      "product": 11,
+      "fin_prdt_cd": "TD11300031000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.01,
+      "intr_rate2": 3.11,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 47,
+    "fields": {
+      "product": 11,
+      "fin_prdt_cd": "TD11300031000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.92,
+      "intr_rate2": 3.12,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 48,
+    "fields": {
+      "product": 11,
+      "fin_prdt_cd": "TD11300031000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.89,
+      "intr_rate2": 3.09,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 49,
+    "fields": {
+      "product": 11,
+      "fin_prdt_cd": "TD11300031000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.74,
+      "intr_rate2": 2.94,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 50,
+    "fields": {
+      "product": 12,
+      "fin_prdt_cd": "TD11300035000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.82,
+      "intr_rate2": 3.32,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 51,
+    "fields": {
+      "product": 13,
+      "fin_prdt_cd": "TD11300036000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.3,
+      "intr_rate2": 3.3,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 52,
+    "fields": {
+      "product": 13,
+      "fin_prdt_cd": "TD11300036000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.35,
+      "intr_rate2": 3.35,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 53,
+    "fields": {
+      "product": 13,
+      "fin_prdt_cd": "TD11300036000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.3,
+      "intr_rate2": 3.3,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 54,
+    "fields": {
+      "product": 14,
+      "fin_prdt_cd": "101272000006",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.4,
+      "intr_rate2": 2.5,
+      "save_trm": 1
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 55,
+    "fields": {
+      "product": 14,
+      "fin_prdt_cd": "101272000006",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.5,
+      "intr_rate2": 2.6,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 56,
+    "fields": {
+      "product": 14,
+      "fin_prdt_cd": "101272000006",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.65,
+      "intr_rate2": 2.75,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 57,
+    "fields": {
+      "product": 14,
+      "fin_prdt_cd": "101272000006",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.85,
+      "intr_rate2": 2.95,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 58,
+    "fields": {
+      "product": 14,
+      "fin_prdt_cd": "101272000006",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.95,
+      "intr_rate2": 3.05,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 59,
+    "fields": {
+      "product": 14,
+      "fin_prdt_cd": "101272000006",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.05,
+      "intr_rate2": 3.15,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 60,
+    "fields": {
+      "product": 15,
+      "fin_prdt_cd": "101272000057",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 1.8,
+      "intr_rate2": 2.9,
+      "save_trm": 1
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 61,
+    "fields": {
+      "product": 15,
+      "fin_prdt_cd": "101272000057",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.1,
+      "intr_rate2": 3.0,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 62,
+    "fields": {
+      "product": 15,
+      "fin_prdt_cd": "101272000057",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.5,
+      "intr_rate2": 3.3,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 63,
+    "fields": {
+      "product": 15,
+      "fin_prdt_cd": "101272000057",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.6,
+      "intr_rate2": 3.45,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 64,
+    "fields": {
+      "product": 15,
+      "fin_prdt_cd": "101272000057",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.5,
+      "intr_rate2": 3.3,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 65,
+    "fields": {
+      "product": 15,
+      "fin_prdt_cd": "101272000057",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.5,
+      "intr_rate2": 3.3,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 66,
+    "fields": {
+      "product": 16,
+      "fin_prdt_cd": "101272000058",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.1,
+      "intr_rate2": 2.9,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 67,
+    "fields": {
+      "product": 16,
+      "fin_prdt_cd": "101272000058",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.25,
+      "intr_rate2": 3.1,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 68,
+    "fields": {
+      "product": 16,
+      "fin_prdt_cd": "101272000058",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.45,
+      "intr_rate2": 3.2,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 69,
+    "fields": {
+      "product": 17,
+      "fin_prdt_cd": "10-01-20-024-0046-0000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.4,
+      "intr_rate2": 3.4,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 70,
+    "fields": {
+      "product": 17,
+      "fin_prdt_cd": "10-01-20-024-0046-0000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.5,
+      "intr_rate2": 3.5,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 71,
+    "fields": {
+      "product": 17,
+      "fin_prdt_cd": "10-01-20-024-0046-0000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.35,
+      "intr_rate2": 3.35,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 72,
+    "fields": {
+      "product": 18,
+      "fin_prdt_cd": "10-01-20-024-0059-0000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.25,
+      "intr_rate2": 3.6,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 73,
+    "fields": {
+      "product": 18,
+      "fin_prdt_cd": "10-01-20-024-0059-0000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": -1.0,
+      "intr_rate2": 3.35,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 74,
+    "fields": {
+      "product": 18,
+      "fin_prdt_cd": "10-01-20-024-0059-0000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": -1.0,
+      "intr_rate2": 3.45,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 75,
+    "fields": {
+      "product": 19,
+      "fin_prdt_cd": "21001115",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.35,
+      "intr_rate2": 2.85,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 76,
+    "fields": {
+      "product": 19,
+      "fin_prdt_cd": "21001115",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.4,
+      "intr_rate2": 2.9,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 77,
+    "fields": {
+      "product": 19,
+      "fin_prdt_cd": "21001115",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.65,
+      "intr_rate2": 3.15,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 78,
+    "fields": {
+      "product": 19,
+      "fin_prdt_cd": "21001115",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.75,
+      "intr_rate2": 3.25,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 79,
+    "fields": {
+      "product": 20,
+      "fin_prdt_cd": "21001203",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.8,
+      "intr_rate2": 3.1,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 80,
+    "fields": {
+      "product": 20,
+      "fin_prdt_cd": "21001203",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.95,
+      "intr_rate2": 3.25,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 81,
+    "fields": {
+      "product": 20,
+      "fin_prdt_cd": "21001203",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.9,
+      "intr_rate2": 3.2,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 82,
+    "fields": {
+      "product": 21,
+      "fin_prdt_cd": "21001266",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.35,
+      "intr_rate2": 3.35,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 83,
+    "fields": {
+      "product": 21,
+      "fin_prdt_cd": "21001266",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.35,
+      "intr_rate2": 3.35,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 84,
+    "fields": {
+      "product": 21,
+      "fin_prdt_cd": "21001266",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.35,
+      "intr_rate2": 3.5,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 85,
+    "fields": {
+      "product": 22,
+      "fin_prdt_cd": "01211310121",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.95,
+      "intr_rate2": 3.15,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 86,
+    "fields": {
+      "product": 22,
+      "fin_prdt_cd": "01211310121",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.9,
+      "intr_rate2": 3.1,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 87,
+    "fields": {
+      "product": 22,
+      "fin_prdt_cd": "01211310121",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.85,
+      "intr_rate2": 3.05,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 88,
+    "fields": {
+      "product": 23,
+      "fin_prdt_cd": "01211310130",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.16,
+      "intr_rate2": 3.16,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 89,
+    "fields": {
+      "product": 23,
+      "fin_prdt_cd": "01211310130",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.01,
+      "intr_rate2": 3.01,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 90,
+    "fields": {
+      "product": 23,
+      "fin_prdt_cd": "01211310130",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.94,
+      "intr_rate2": 2.94,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 91,
+    "fields": {
+      "product": 23,
+      "fin_prdt_cd": "01211310130",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.86,
+      "intr_rate2": 2.86,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 92,
+    "fields": {
+      "product": 24,
+      "fin_prdt_cd": "06492",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.9,
+      "intr_rate2": 2.9,
+      "save_trm": 1
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 93,
+    "fields": {
+      "product": 24,
+      "fin_prdt_cd": "06492",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.0,
+      "intr_rate2": 3.0,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 94,
+    "fields": {
+      "product": 24,
+      "fin_prdt_cd": "06492",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.1,
+      "intr_rate2": 3.1,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 95,
+    "fields": {
+      "product": 24,
+      "fin_prdt_cd": "06492",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.2,
+      "intr_rate2": 3.2,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 96,
+    "fields": {
+      "product": 24,
+      "fin_prdt_cd": "06492",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.85,
+      "intr_rate2": 2.85,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 97,
+    "fields": {
+      "product": 24,
+      "fin_prdt_cd": "06492",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.85,
+      "intr_rate2": 2.85,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 98,
+    "fields": {
+      "product": 25,
+      "fin_prdt_cd": "010300100335",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 1.8,
+      "intr_rate2": 3.0,
+      "save_trm": 1
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 99,
+    "fields": {
+      "product": 25,
+      "fin_prdt_cd": "010300100335",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.2,
+      "intr_rate2": 3.35,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 100,
+    "fields": {
+      "product": 25,
+      "fin_prdt_cd": "010300100335",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.3,
+      "intr_rate2": 3.4,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 101,
+    "fields": {
+      "product": 25,
+      "fin_prdt_cd": "010300100335",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.5,
+      "intr_rate2": 3.35,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 102,
+    "fields": {
+      "product": 25,
+      "fin_prdt_cd": "010300100335",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.6,
+      "intr_rate2": 2.7,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 103,
+    "fields": {
+      "product": 25,
+      "fin_prdt_cd": "010300100335",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.6,
+      "intr_rate2": 2.7,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 104,
+    "fields": {
+      "product": 26,
+      "fin_prdt_cd": "200-0134-16",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.15,
+      "intr_rate2": 3.05,
+      "save_trm": 1
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 105,
+    "fields": {
+      "product": 26,
+      "fin_prdt_cd": "200-0134-16",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.45,
+      "intr_rate2": 3.4,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 106,
+    "fields": {
+      "product": 26,
+      "fin_prdt_cd": "200-0134-16",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.55,
+      "intr_rate2": 3.45,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 107,
+    "fields": {
+      "product": 26,
+      "fin_prdt_cd": "200-0134-16",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.6,
+      "intr_rate2": 3.45,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 108,
+    "fields": {
+      "product": 27,
+      "fin_prdt_cd": "200-0135-12",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.15,
+      "intr_rate2": 3.0,
+      "save_trm": 1
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 109,
+    "fields": {
+      "product": 27,
+      "fin_prdt_cd": "200-0135-12",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.45,
+      "intr_rate2": 3.35,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 110,
+    "fields": {
+      "product": 27,
+      "fin_prdt_cd": "200-0135-12",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.55,
+      "intr_rate2": 3.4,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 111,
+    "fields": {
+      "product": 27,
+      "fin_prdt_cd": "200-0135-12",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.6,
+      "intr_rate2": 3.35,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 112,
+    "fields": {
+      "product": 27,
+      "fin_prdt_cd": "200-0135-12",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.6,
+      "intr_rate2": 2.95,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 113,
+    "fields": {
+      "product": 27,
+      "fin_prdt_cd": "200-0135-12",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.6,
+      "intr_rate2": 2.95,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 114,
+    "fields": {
+      "product": 28,
+      "fin_prdt_cd": "10-003-1225-0001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.95,
+      "intr_rate2": 3.05,
+      "save_trm": 1
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 115,
+    "fields": {
+      "product": 28,
+      "fin_prdt_cd": "10-003-1225-0001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.25,
+      "intr_rate2": 3.35,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 116,
+    "fields": {
+      "product": 28,
+      "fin_prdt_cd": "10-003-1225-0001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.35,
+      "intr_rate2": 3.45,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 117,
+    "fields": {
+      "product": 28,
+      "fin_prdt_cd": "10-003-1225-0001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.32,
+      "intr_rate2": 3.42,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 118,
+    "fields": {
+      "product": 29,
+      "fin_prdt_cd": "10-003-1381-0001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.75,
+      "intr_rate2": 3.15,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 119,
+    "fields": {
+      "product": 29,
+      "fin_prdt_cd": "10-003-1381-0001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.65,
+      "intr_rate2": 3.05,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 120,
+    "fields": {
+      "product": 29,
+      "fin_prdt_cd": "10-003-1381-0001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.65,
+      "intr_rate2": 3.05,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 121,
+    "fields": {
+      "product": 30,
+      "fin_prdt_cd": "10-003-1384-0001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.0,
+      "intr_rate2": 3.0,
+      "save_trm": 1
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 122,
+    "fields": {
+      "product": 30,
+      "fin_prdt_cd": "10-003-1384-0001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.35,
+      "intr_rate2": 3.35,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 123,
+    "fields": {
+      "product": 30,
+      "fin_prdt_cd": "10-003-1384-0001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.45,
+      "intr_rate2": 3.45,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 124,
+    "fields": {
+      "product": 30,
+      "fin_prdt_cd": "10-003-1384-0001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.42,
+      "intr_rate2": 3.42,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 125,
+    "fields": {
+      "product": 30,
+      "fin_prdt_cd": "10-003-1384-0001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.05,
+      "intr_rate2": 3.05,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 126,
+    "fields": {
+      "product": 30,
+      "fin_prdt_cd": "10-003-1384-0001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.1,
+      "intr_rate2": 3.1,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 127,
+    "fields": {
+      "product": 31,
+      "fin_prdt_cd": "10-003-1387-0001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.75,
+      "intr_rate2": 3.55,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 128,
+    "fields": {
+      "product": 32,
+      "fin_prdt_cd": "4",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.0,
+      "intr_rate2": 3.0,
+      "save_trm": 1
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 129,
+    "fields": {
+      "product": 32,
+      "fin_prdt_cd": "4",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.2,
+      "intr_rate2": 3.35,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 130,
+    "fields": {
+      "product": 32,
+      "fin_prdt_cd": "4",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.3,
+      "intr_rate2": 3.4,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 131,
+    "fields": {
+      "product": 32,
+      "fin_prdt_cd": "4",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.6,
+      "intr_rate2": 3.35,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 132,
+    "fields": {
+      "product": 32,
+      "fin_prdt_cd": "4",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.6,
+      "intr_rate2": 2.9,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 133,
+    "fields": {
+      "product": 32,
+      "fin_prdt_cd": "4",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.7,
+      "intr_rate2": 2.9,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 134,
+    "fields": {
+      "product": 33,
+      "fin_prdt_cd": "01013000110000000001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.0,
+      "intr_rate2": 3.0,
+      "save_trm": 1
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 135,
+    "fields": {
+      "product": 33,
+      "fin_prdt_cd": "01013000110000000001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.3,
+      "intr_rate2": 3.3,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 136,
+    "fields": {
+      "product": 33,
+      "fin_prdt_cd": "01013000110000000001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.3,
+      "intr_rate2": 3.3,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 137,
+    "fields": {
+      "product": 33,
+      "fin_prdt_cd": "01013000110000000001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.2,
+      "intr_rate2": 3.2,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 138,
+    "fields": {
+      "product": 33,
+      "fin_prdt_cd": "01013000110000000001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.0,
+      "intr_rate2": 3.0,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 139,
+    "fields": {
+      "product": 33,
+      "fin_prdt_cd": "01013000110000000001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.0,
+      "intr_rate2": 3.0,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 140,
+    "fields": {
+      "product": 34,
+      "fin_prdt_cd": "10120110400011",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.4,
+      "intr_rate2": 2.8,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 141,
+    "fields": {
+      "product": 35,
+      "fin_prdt_cd": "10120114300011",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.05,
+      "intr_rate2": 3.4,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 142,
+    "fields": {
+      "product": 35,
+      "fin_prdt_cd": "10120114300011",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.1,
+      "intr_rate2": 3.45,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 143,
+    "fields": {
+      "product": 36,
+      "fin_prdt_cd": "10120114700011",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.4,
+      "intr_rate2": 3.4,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 144,
+    "fields": {
+      "product": 36,
+      "fin_prdt_cd": "10120114700011",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.42,
+      "intr_rate2": 3.42,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 145,
+    "fields": {
+      "product": 36,
+      "fin_prdt_cd": "10120114700011",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.42,
+      "intr_rate2": 3.42,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 146,
+    "fields": {
+      "product": 37,
+      "fin_prdt_cd": "10120116100011",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.55,
+      "intr_rate2": 3.6,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 147,
+    "fields": {
+      "product": 38,
+      "fin_prdt_cd": "10-01-20-388-0002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.6,
+      "intr_rate2": 2.6,
+      "save_trm": 1
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 148,
+    "fields": {
+      "product": 38,
+      "fin_prdt_cd": "10-01-20-388-0002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.1,
+      "intr_rate2": 3.1,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 149,
+    "fields": {
+      "product": 38,
+      "fin_prdt_cd": "10-01-20-388-0002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.2,
+      "intr_rate2": 3.2,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 150,
+    "fields": {
+      "product": 38,
+      "fin_prdt_cd": "10-01-20-388-0002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.1,
+      "intr_rate2": 3.1,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 151,
+    "fields": {
+      "product": 38,
+      "fin_prdt_cd": "10-01-20-388-0002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.8,
+      "intr_rate2": 2.8,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 152,
+    "fields": {
+      "product": 38,
+      "fin_prdt_cd": "10-01-20-388-0002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.8,
+      "intr_rate2": 2.8,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 153,
+    "fields": {
+      "product": 39,
+      "fin_prdt_cd": "1001202000002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.0,
+      "intr_rate2": 3.0,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 154,
+    "fields": {
+      "product": 39,
+      "fin_prdt_cd": "1001202000002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.0,
+      "intr_rate2": 3.0,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 155,
+    "fields": {
+      "product": 40,
+      "fin_prdt_cd": "WR0001F",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.8,
+      "intr_rate2": 4.2,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 156,
+    "fields": {
+      "product": 40,
+      "fin_prdt_cd": "WR0001F",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.8,
+      "intr_rate2": 4.2,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 157,
+    "fields": {
+      "product": 40,
+      "fin_prdt_cd": "WR0001F",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.8,
+      "intr_rate2": 4.2,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 158,
+    "fields": {
+      "product": 40,
+      "fin_prdt_cd": "WR0001F",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.6,
+      "intr_rate2": 4.0,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 159,
+    "fields": {
+      "product": 40,
+      "fin_prdt_cd": "WR0001F",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.6,
+      "intr_rate2": 4.0,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 160,
+    "fields": {
+      "product": 40,
+      "fin_prdt_cd": "WR0001F",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.6,
+      "intr_rate2": 4.0,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 161,
+    "fields": {
+      "product": 41,
+      "fin_prdt_cd": "WR0001L",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.7,
+      "intr_rate2": 3.9,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 162,
+    "fields": {
+      "product": 42,
+      "fin_prdt_cd": "00266451",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.25,
+      "intr_rate2": 3.25,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 163,
+    "fields": {
+      "product": 42,
+      "fin_prdt_cd": "00266451",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.2,
+      "intr_rate2": 3.2,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 164,
+    "fields": {
+      "product": 42,
+      "fin_prdt_cd": "00266451",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.15,
+      "intr_rate2": 3.15,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 165,
+    "fields": {
+      "product": 42,
+      "fin_prdt_cd": "00266451",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.9,
+      "intr_rate2": 2.9,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 166,
+    "fields": {
+      "product": 42,
+      "fin_prdt_cd": "00266451",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.4,
+      "intr_rate2": 3.4,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 167,
+    "fields": {
+      "product": 42,
+      "fin_prdt_cd": "00266451",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.35,
+      "intr_rate2": 3.35,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 168,
+    "fields": {
+      "product": 42,
+      "fin_prdt_cd": "00266451",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.3,
+      "intr_rate2": 3.3,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 169,
+    "fields": {
+      "product": 42,
+      "fin_prdt_cd": "00266451",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.0,
+      "intr_rate2": 3.0,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 170,
+    "fields": {
+      "product": 43,
+      "fin_prdt_cd": "10521001000846001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.31,
+      "intr_rate2": 3.86,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 171,
+    "fields": {
+      "product": 43,
+      "fin_prdt_cd": "10521001000846001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.18,
+      "intr_rate2": 3.73,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 172,
+    "fields": {
+      "product": 43,
+      "fin_prdt_cd": "10521001000846001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.2,
+      "intr_rate2": 3.75,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 173,
+    "fields": {
+      "product": 44,
+      "fin_prdt_cd": "10527001000925000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.51,
+      "intr_rate2": 4.06,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 174,
+    "fields": {
+      "product": 45,
+      "fin_prdt_cd": "10527001001272000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.65,
+      "intr_rate2": 4.45,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 175,
+    "fields": {
+      "product": 45,
+      "fin_prdt_cd": "10527001001272000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.95,
+      "intr_rate2": 3.75,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 176,
+    "fields": {
+      "product": 46,
+      "fin_prdt_cd": "10527001001278000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.65,
+      "intr_rate2": 3.1,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 177,
+    "fields": {
+      "product": 46,
+      "fin_prdt_cd": "10527001001278000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.3,
+      "intr_rate2": 3.75,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 178,
+    "fields": {
+      "product": 46,
+      "fin_prdt_cd": "10527001001278000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.2,
+      "intr_rate2": 3.65,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 179,
+    "fields": {
+      "product": 46,
+      "fin_prdt_cd": "10527001001278000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.25,
+      "intr_rate2": 3.7,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 180,
+    "fields": {
+      "product": 47,
+      "fin_prdt_cd": "01020400490001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.6,
+      "intr_rate2": 3.15,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 181,
+    "fields": {
+      "product": 47,
+      "fin_prdt_cd": "01020400490001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.7,
+      "intr_rate2": 3.6,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 182,
+    "fields": {
+      "product": 48,
+      "fin_prdt_cd": "01020400490002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.7,
+      "intr_rate2": 3.25,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 183,
+    "fields": {
+      "product": 48,
+      "fin_prdt_cd": "01020400490002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.8,
+      "intr_rate2": 3.7,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 184,
+    "fields": {
+      "product": 49,
+      "fin_prdt_cd": "01020400510001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.5,
+      "intr_rate2": 2.9,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 185,
+    "fields": {
+      "product": 49,
+      "fin_prdt_cd": "01020400510001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.5,
+      "intr_rate2": 2.9,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 186,
+    "fields": {
+      "product": 49,
+      "fin_prdt_cd": "01020400510001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.0,
+      "intr_rate2": 3.4,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 187,
+    "fields": {
+      "product": 49,
+      "fin_prdt_cd": "01020400510001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.9,
+      "intr_rate2": 3.3,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 188,
+    "fields": {
+      "product": 50,
+      "fin_prdt_cd": "01020400530001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.9,
+      "intr_rate2": 3.1,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 189,
+    "fields": {
+      "product": 50,
+      "fin_prdt_cd": "01020400530001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.0,
+      "intr_rate2": 3.2,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 190,
+    "fields": {
+      "product": 50,
+      "fin_prdt_cd": "01020400530001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.5,
+      "intr_rate2": 2.7,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 191,
+    "fields": {
+      "product": 50,
+      "fin_prdt_cd": "01020400530001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.5,
+      "intr_rate2": 2.7,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 192,
+    "fields": {
+      "product": 51,
+      "fin_prdt_cd": "1020400640001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.0,
+      "intr_rate2": 8.0,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 193,
+    "fields": {
+      "product": 51,
+      "fin_prdt_cd": "1020400640001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.0,
+      "intr_rate2": 8.0,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 194,
+    "fields": {
+      "product": 52,
+      "fin_prdt_cd": "TD11330029000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.0,
+      "intr_rate2": 4.2,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 195,
+    "fields": {
+      "product": 52,
+      "fin_prdt_cd": "TD11330029000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.9,
+      "intr_rate2": 4.1,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 196,
+    "fields": {
+      "product": 52,
+      "fin_prdt_cd": "TD11330029000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.8,
+      "intr_rate2": 4.0,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 197,
+    "fields": {
+      "product": 52,
+      "fin_prdt_cd": "TD11330029000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.7,
+      "intr_rate2": 3.9,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 198,
+    "fields": {
+      "product": 52,
+      "fin_prdt_cd": "TD11330029000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.2,
+      "intr_rate2": 4.4,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 199,
+    "fields": {
+      "product": 52,
+      "fin_prdt_cd": "TD11330029000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.1,
+      "intr_rate2": 4.3,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 200,
+    "fields": {
+      "product": 52,
+      "fin_prdt_cd": "TD11330029000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.0,
+      "intr_rate2": 4.2,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 201,
+    "fields": {
+      "product": 52,
+      "fin_prdt_cd": "TD11330029000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.9,
+      "intr_rate2": 4.1,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 202,
+    "fields": {
+      "product": 53,
+      "fin_prdt_cd": "TD11330030000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.8,
+      "intr_rate2": 4.7,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 203,
+    "fields": {
+      "product": 53,
+      "fin_prdt_cd": "TD11330030000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.6,
+      "intr_rate2": 4.5,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 204,
+    "fields": {
+      "product": 54,
+      "fin_prdt_cd": "TD11330031000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.3,
+      "intr_rate2": 3.8,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 205,
+    "fields": {
+      "product": 54,
+      "fin_prdt_cd": "TD11330031000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.0,
+      "intr_rate2": 3.5,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 206,
+    "fields": {
+      "product": 55,
+      "fin_prdt_cd": "220002101",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.95,
+      "intr_rate2": 5.05,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 207,
+    "fields": {
+      "product": 55,
+      "fin_prdt_cd": "220002101",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.25,
+      "intr_rate2": 5.35,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 208,
+    "fields": {
+      "product": 56,
+      "fin_prdt_cd": "220002501",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.8,
+      "intr_rate2": 5.8,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 209,
+    "fields": {
+      "product": 56,
+      "fin_prdt_cd": "220002501",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.6,
+      "intr_rate2": 5.6,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 210,
+    "fields": {
+      "product": 57,
+      "fin_prdt_cd": "220002701",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.1,
+      "intr_rate2": 4.8,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 211,
+    "fields": {
+      "product": 57,
+      "fin_prdt_cd": "220002701",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.3,
+      "intr_rate2": 5.0,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 212,
+    "fields": {
+      "product": 58,
+      "fin_prdt_cd": "10-01-30-031-0018-0000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.35,
+      "intr_rate2": 3.45,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 213,
+    "fields": {
+      "product": 58,
+      "fin_prdt_cd": "10-01-30-031-0018-0000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.45,
+      "intr_rate2": 3.55,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 214,
+    "fields": {
+      "product": 58,
+      "fin_prdt_cd": "10-01-30-031-0018-0000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.45,
+      "intr_rate2": 3.55,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 215,
+    "fields": {
+      "product": 59,
+      "fin_prdt_cd": "10-01-30-031-0036",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.45,
+      "intr_rate2": 3.55,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 216,
+    "fields": {
+      "product": 59,
+      "fin_prdt_cd": "10-01-30-031-0036",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.55,
+      "intr_rate2": 3.65,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 217,
+    "fields": {
+      "product": 59,
+      "fin_prdt_cd": "10-01-30-031-0036",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.55,
+      "intr_rate2": 3.65,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 218,
+    "fields": {
+      "product": 60,
+      "fin_prdt_cd": "10-01-30-031-0049-0000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.0,
+      "intr_rate2": 6.0,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 219,
+    "fields": {
+      "product": 61,
+      "fin_prdt_cd": "21000111",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.35,
+      "intr_rate2": 4.35,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 220,
+    "fields": {
+      "product": 61,
+      "fin_prdt_cd": "21000111",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.25,
+      "intr_rate2": 4.25,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 221,
+    "fields": {
+      "product": 61,
+      "fin_prdt_cd": "21000111",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.15,
+      "intr_rate2": 4.15,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 222,
+    "fields": {
+      "product": 62,
+      "fin_prdt_cd": "21001116",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.35,
+      "intr_rate2": 4.05,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 223,
+    "fields": {
+      "product": 62,
+      "fin_prdt_cd": "21001116",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.45,
+      "intr_rate2": 4.15,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 224,
+    "fields": {
+      "product": 62,
+      "fin_prdt_cd": "21001116",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.55,
+      "intr_rate2": 4.25,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 225,
+    "fields": {
+      "product": 63,
+      "fin_prdt_cd": "21001199",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.2,
+      "intr_rate2": 4.7,
+      "save_trm": 1
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 226,
+    "fields": {
+      "product": 63,
+      "fin_prdt_cd": "21001199",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.25,
+      "intr_rate2": 4.75,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 227,
+    "fields": {
+      "product": 63,
+      "fin_prdt_cd": "21001199",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.55,
+      "intr_rate2": 5.05,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 228,
+    "fields": {
+      "product": 63,
+      "fin_prdt_cd": "21001199",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.55,
+      "intr_rate2": 5.05,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 229,
+    "fields": {
+      "product": 63,
+      "fin_prdt_cd": "21001199",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.55,
+      "intr_rate2": 5.05,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 230,
+    "fields": {
+      "product": 64,
+      "fin_prdt_cd": "21001236",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.4,
+      "intr_rate2": 5.0,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 231,
+    "fields": {
+      "product": 64,
+      "fin_prdt_cd": "21001236",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.35,
+      "intr_rate2": 4.95,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 232,
+    "fields": {
+      "product": 64,
+      "fin_prdt_cd": "21001236",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.3,
+      "intr_rate2": 4.9,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 233,
+    "fields": {
+      "product": 65,
+      "fin_prdt_cd": "21001259",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.45,
+      "intr_rate2": 5.2,
+      "save_trm": 1
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 234,
+    "fields": {
+      "product": 65,
+      "fin_prdt_cd": "21001259",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.45,
+      "intr_rate2": 5.2,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 235,
+    "fields": {
+      "product": 65,
+      "fin_prdt_cd": "21001259",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.45,
+      "intr_rate2": 5.2,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 236,
+    "fields": {
+      "product": 66,
+      "fin_prdt_cd": "21001268",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.2,
+      "intr_rate2": 7.7,
+      "save_trm": 1
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 237,
+    "fields": {
+      "product": 67,
+      "fin_prdt_cd": "01211210113",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.9,
+      "intr_rate2": 4.4,
+      "save_trm": 1
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 238,
+    "fields": {
+      "product": 67,
+      "fin_prdt_cd": "01211210113",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.9,
+      "intr_rate2": 4.4,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 239,
+    "fields": {
+      "product": 67,
+      "fin_prdt_cd": "01211210113",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.1,
+      "intr_rate2": 4.6,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 240,
+    "fields": {
+      "product": 67,
+      "fin_prdt_cd": "01211210113",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.3,
+      "intr_rate2": 4.8,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 241,
+    "fields": {
+      "product": 68,
+      "fin_prdt_cd": "01211210121",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.0,
+      "intr_rate2": 7.0,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 242,
+    "fields": {
+      "product": 69,
+      "fin_prdt_cd": "01211210122",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.5,
+      "intr_rate2": 5.7,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 243,
+    "fields": {
+      "product": 70,
+      "fin_prdt_cd": "03101",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.54,
+      "intr_rate2": 2.54,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 244,
+    "fields": {
+      "product": 70,
+      "fin_prdt_cd": "03101",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.47,
+      "intr_rate2": 2.47,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 245,
+    "fields": {
+      "product": 70,
+      "fin_prdt_cd": "03101",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.31,
+      "intr_rate2": 2.31,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 246,
+    "fields": {
+      "product": 70,
+      "fin_prdt_cd": "03101",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.29,
+      "intr_rate2": 2.29,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 247,
+    "fields": {
+      "product": 71,
+      "fin_prdt_cd": "03700",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.74,
+      "intr_rate2": 2.74,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 248,
+    "fields": {
+      "product": 71,
+      "fin_prdt_cd": "03700",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.76,
+      "intr_rate2": 2.76,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 249,
+    "fields": {
+      "product": 71,
+      "fin_prdt_cd": "03700",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.07,
+      "intr_rate2": 3.07,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 250,
+    "fields": {
+      "product": 71,
+      "fin_prdt_cd": "03700",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.94,
+      "intr_rate2": 2.94,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 251,
+    "fields": {
+      "product": 71,
+      "fin_prdt_cd": "03700",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.68,
+      "intr_rate2": 2.68,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 252,
+    "fields": {
+      "product": 71,
+      "fin_prdt_cd": "03700",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.68,
+      "intr_rate2": 2.68,
+      "save_trm": 1
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 253,
+    "fields": {
+      "product": 72,
+      "fin_prdt_cd": "010200100051",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.5,
+      "intr_rate2": 3.4,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 254,
+    "fields": {
+      "product": 72,
+      "fin_prdt_cd": "010200100051",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.7,
+      "intr_rate2": 3.7,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 255,
+    "fields": {
+      "product": 72,
+      "fin_prdt_cd": "010200100051",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.8,
+      "intr_rate2": 4.0,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 256,
+    "fields": {
+      "product": 73,
+      "fin_prdt_cd": "010200100084",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.55,
+      "intr_rate2": 3.35,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 257,
+    "fields": {
+      "product": 73,
+      "fin_prdt_cd": "010200100084",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.75,
+      "intr_rate2": 3.65,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 258,
+    "fields": {
+      "product": 73,
+      "fin_prdt_cd": "010200100084",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.05,
+      "intr_rate2": 4.05,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 259,
+    "fields": {
+      "product": 74,
+      "fin_prdt_cd": "010200100092",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.0,
+      "intr_rate2": 4.5,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 260,
+    "fields": {
+      "product": 74,
+      "fin_prdt_cd": "010200100092",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.3,
+      "intr_rate2": 4.8,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 261,
+    "fields": {
+      "product": 74,
+      "fin_prdt_cd": "010200100092",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.5,
+      "intr_rate2": 5.0,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 262,
+    "fields": {
+      "product": 75,
+      "fin_prdt_cd": "010200100104",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.0,
+      "intr_rate2": 6.0,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 263,
+    "fields": {
+      "product": 75,
+      "fin_prdt_cd": "010200100104",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.0,
+      "intr_rate2": 6.0,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 264,
+    "fields": {
+      "product": 75,
+      "fin_prdt_cd": "010200100104",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.0,
+      "intr_rate2": 6.0,
+      "save_trm": 1
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 265,
+    "fields": {
+      "product": 76,
+      "fin_prdt_cd": "010200100109",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.5,
+      "intr_rate2": 8.0,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 266,
+    "fields": {
+      "product": 77,
+      "fin_prdt_cd": "230-0119-85",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.9,
+      "intr_rate2": 4.2,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 267,
+    "fields": {
+      "product": 77,
+      "fin_prdt_cd": "230-0119-85",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.95,
+      "intr_rate2": 4.25,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 268,
+    "fields": {
+      "product": 77,
+      "fin_prdt_cd": "230-0119-85",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.0,
+      "intr_rate2": 4.3,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 269,
+    "fields": {
+      "product": 78,
+      "fin_prdt_cd": "10-047-1360-0002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.45,
+      "intr_rate2": 4.15,
+      "save_trm": 1
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 270,
+    "fields": {
+      "product": 78,
+      "fin_prdt_cd": "10-047-1360-0002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.55,
+      "intr_rate2": 4.25,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 271,
+    "fields": {
+      "product": 78,
+      "fin_prdt_cd": "10-047-1360-0002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.75,
+      "intr_rate2": 4.45,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 272,
+    "fields": {
+      "product": 79,
+      "fin_prdt_cd": "10-047-1365-0001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "복리",
+      "intr_rate": 2.9,
+      "intr_rate2": 6.4,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 273,
+    "fields": {
+      "product": 79,
+      "fin_prdt_cd": "10-047-1365-0001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "복리",
+      "intr_rate": 2.85,
+      "intr_rate2": 6.35,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 274,
+    "fields": {
+      "product": 79,
+      "fin_prdt_cd": "10-047-1365-0001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "복리",
+      "intr_rate": 2.75,
+      "intr_rate2": 6.25,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 275,
+    "fields": {
+      "product": 80,
+      "fin_prdt_cd": "10-047-1381-0001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.85,
+      "intr_rate2": 3.85,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 276,
+    "fields": {
+      "product": 80,
+      "fin_prdt_cd": "10-047-1381-0001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.9,
+      "intr_rate2": 3.9,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 277,
+    "fields": {
+      "product": 80,
+      "fin_prdt_cd": "10-047-1381-0001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.0,
+      "intr_rate2": 4.0,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 278,
+    "fields": {
+      "product": 81,
+      "fin_prdt_cd": "10-047-1387-0001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.15,
+      "intr_rate2": 4.15,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 279,
+    "fields": {
+      "product": 81,
+      "fin_prdt_cd": "10-047-1387-0001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.2,
+      "intr_rate2": 4.2,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 280,
+    "fields": {
+      "product": 81,
+      "fin_prdt_cd": "10-047-1387-0001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.3,
+      "intr_rate2": 4.3,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 281,
+    "fields": {
+      "product": 82,
+      "fin_prdt_cd": "10-059-1264-0001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "복리",
+      "intr_rate": 3.2,
+      "intr_rate2": 4.0,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 282,
+    "fields": {
+      "product": 82,
+      "fin_prdt_cd": "10-059-1264-0001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "복리",
+      "intr_rate": 3.07,
+      "intr_rate2": 3.87,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 283,
+    "fields": {
+      "product": 82,
+      "fin_prdt_cd": "10-059-1264-0001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "복리",
+      "intr_rate": 3.12,
+      "intr_rate2": 3.92,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 284,
+    "fields": {
+      "product": 83,
+      "fin_prdt_cd": "52",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "복리",
+      "intr_rate": 3.5,
+      "intr_rate2": 4.5,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 285,
+    "fields": {
+      "product": 83,
+      "fin_prdt_cd": "52",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "복리",
+      "intr_rate": 3.4,
+      "intr_rate2": 4.4,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 286,
+    "fields": {
+      "product": 83,
+      "fin_prdt_cd": "52",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "복리",
+      "intr_rate": 3.3,
+      "intr_rate2": 4.3,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 287,
+    "fields": {
+      "product": 84,
+      "fin_prdt_cd": "53",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.5,
+      "intr_rate2": 3.0,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 288,
+    "fields": {
+      "product": 84,
+      "fin_prdt_cd": "53",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.6,
+      "intr_rate2": 3.1,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 289,
+    "fields": {
+      "product": 84,
+      "fin_prdt_cd": "53",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.7,
+      "intr_rate2": 3.2,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 290,
+    "fields": {
+      "product": 84,
+      "fin_prdt_cd": "53",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.8,
+      "intr_rate2": 3.3,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 291,
+    "fields": {
+      "product": 84,
+      "fin_prdt_cd": "53",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.2,
+      "intr_rate2": 2.7,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 292,
+    "fields": {
+      "product": 84,
+      "fin_prdt_cd": "53",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.3,
+      "intr_rate2": 2.8,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 293,
+    "fields": {
+      "product": 84,
+      "fin_prdt_cd": "53",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.4,
+      "intr_rate2": 2.9,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 294,
+    "fields": {
+      "product": 84,
+      "fin_prdt_cd": "53",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.5,
+      "intr_rate2": 3.0,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 295,
+    "fields": {
+      "product": 85,
+      "fin_prdt_cd": "01012000200000000003",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.9,
+      "intr_rate2": 3.9,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 296,
+    "fields": {
+      "product": 85,
+      "fin_prdt_cd": "01012000200000000003",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.85,
+      "intr_rate2": 3.85,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 297,
+    "fields": {
+      "product": 85,
+      "fin_prdt_cd": "01012000200000000003",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.8,
+      "intr_rate2": 3.8,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 298,
+    "fields": {
+      "product": 85,
+      "fin_prdt_cd": "01012000200000000003",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.5,
+      "intr_rate2": 3.5,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 299,
+    "fields": {
+      "product": 85,
+      "fin_prdt_cd": "01012000200000000003",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.4,
+      "intr_rate2": 3.4,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 300,
+    "fields": {
+      "product": 85,
+      "fin_prdt_cd": "01012000200000000003",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.2,
+      "intr_rate2": 3.2,
+      "save_trm": 1
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 301,
+    "fields": {
+      "product": 86,
+      "fin_prdt_cd": "01012000200000000004",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 1.5,
+      "intr_rate2": 7.5,
+      "save_trm": 1
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 302,
+    "fields": {
+      "product": 87,
+      "fin_prdt_cd": "01012000210000000000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.4,
+      "intr_rate2": 4.0,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 303,
+    "fields": {
+      "product": 87,
+      "fin_prdt_cd": "01012000210000000000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.7,
+      "intr_rate2": 4.3,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 304,
+    "fields": {
+      "product": 87,
+      "fin_prdt_cd": "01012000210000000000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.75,
+      "intr_rate2": 4.35,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 305,
+    "fields": {
+      "product": 87,
+      "fin_prdt_cd": "01012000210000000000",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.8,
+      "intr_rate2": 4.4,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 306,
+    "fields": {
+      "product": 88,
+      "fin_prdt_cd": "10140114300011",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.3,
+      "intr_rate2": 3.8,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 307,
+    "fields": {
+      "product": 88,
+      "fin_prdt_cd": "10140114300011",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.0,
+      "intr_rate2": 3.5,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 308,
+    "fields": {
+      "product": 88,
+      "fin_prdt_cd": "10140114300011",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.5,
+      "intr_rate2": 4.0,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 309,
+    "fields": {
+      "product": 89,
+      "fin_prdt_cd": "10141109800021",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "복리",
+      "intr_rate": 2.2,
+      "intr_rate2": 2.9,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 310,
+    "fields": {
+      "product": 89,
+      "fin_prdt_cd": "10141109800021",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "복리",
+      "intr_rate": 1.8,
+      "intr_rate2": 2.5,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 311,
+    "fields": {
+      "product": 89,
+      "fin_prdt_cd": "10141109800021",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "복리",
+      "intr_rate": 1.9,
+      "intr_rate2": 2.6,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 312,
+    "fields": {
+      "product": 90,
+      "fin_prdt_cd": "10141114300011",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.15,
+      "intr_rate2": 3.65,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 313,
+    "fields": {
+      "product": 90,
+      "fin_prdt_cd": "10141114300011",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.35,
+      "intr_rate2": 2.85,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 314,
+    "fields": {
+      "product": 90,
+      "fin_prdt_cd": "10141114300011",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.35,
+      "intr_rate2": 2.85,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 315,
+    "fields": {
+      "product": 91,
+      "fin_prdt_cd": "10-01-30-355-0002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.5,
+      "intr_rate2": 3.7,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 316,
+    "fields": {
+      "product": 91,
+      "fin_prdt_cd": "10-01-30-355-0002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.5,
+      "intr_rate2": 3.7,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 317,
+    "fields": {
+      "product": 91,
+      "fin_prdt_cd": "10-01-30-355-0002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.5,
+      "intr_rate2": 3.7,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 318,
+    "fields": {
+      "product": 91,
+      "fin_prdt_cd": "10-01-30-355-0002",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.3,
+      "intr_rate2": 3.5,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 319,
+    "fields": {
+      "product": 92,
+      "fin_prdt_cd": "10-01-30-355-0005",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.5,
+      "intr_rate2": 5.5,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 320,
+    "fields": {
+      "product": 93,
+      "fin_prdt_cd": "10-01-30-355-0006",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 1.5,
+      "intr_rate2": 7.0,
+      "save_trm": 1
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 321,
+    "fields": {
+      "product": 94,
+      "fin_prdt_cd": "1001303001001",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.0,
+      "intr_rate2": 4.0,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 322,
+    "fields": {
+      "product": 95,
+      "fin_prdt_cd": "1001303001003",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.0,
+      "intr_rate2": 4.5,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 323,
+    "fields": {
+      "product": 96,
+      "fin_prdt_cd": "1001303001004",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 1.5,
+      "intr_rate2": 2.0,
+      "save_trm": 3
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 324,
+    "fields": {
+      "product": 96,
+      "fin_prdt_cd": "1001303001004",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 2.0,
+      "intr_rate2": 2.5,
+      "save_trm": 6
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 325,
+    "fields": {
+      "product": 96,
+      "fin_prdt_cd": "1001303001004",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.0,
+      "intr_rate2": 3.5,
+      "save_trm": 12
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 326,
+    "fields": {
+      "product": 96,
+      "fin_prdt_cd": "1001303001004",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.0,
+      "intr_rate2": 3.5,
+      "save_trm": 24
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 327,
+    "fields": {
+      "product": 96,
+      "fin_prdt_cd": "1001303001004",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.0,
+      "intr_rate2": 3.5,
+      "save_trm": 36
+    }
+  },
+  {
+    "model": "financials.financialoptions",
+    "pk": 328,
+    "fields": {
+      "product": 97,
+      "fin_prdt_cd": "1001303001005",
+      "rsrv_type_nm": null,
+      "intr_rate_type_nm": "단리",
+      "intr_rate": 3.0,
+      "intr_rate2": 5.5,
+      "save_trm": 12
+    }
+  }
+]

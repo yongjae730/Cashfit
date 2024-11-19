@@ -4,6 +4,7 @@
     <RouterView />
     <LoginModal :is-open="showLoginModal" @update:is-open="updateLoginModal" />
     <Footer />
+    <ChatbotWidget />
   </v-app>
 </template>
 
@@ -15,6 +16,7 @@ import { computed, onMounted } from "vue";
 import axios from "axios";
 import { useAccount } from "./stores/accounts";
 import LoginModal from "./components/LoginModal.vue";
+import ChatbotWidget from "./components/ChatbotWidget.vue";
 
 const accountStore = useAccount();
 const showLoginModal = computed(() => accountStore.showLoginMoal);
