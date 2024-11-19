@@ -16,9 +16,12 @@ urlpatterns = [
     path('financial-products/saving_top_rate/', views.saving_top_rate),
     # 댓글 생성 및 조회 url
     path('financial-comment/<int:fin_product_pk>/', views.financial_comment),
+    # 댓글 수정 및 삭제 url
+    path('financial-comment/update-delete/<int:comment_id>/', views.update_delete_comment),    
     # 좋아요 기능
     path('products/<int:product_id>/like/', views.financial_product_like),
-    path('profile/liked-products/', views.user_liked_products, name='user_liked_products'),
+    # 좋아요를 누른 상품 목록
+    path('profile/liked-products/', views.user_liked_products),
 
     # 환율 정보 DB에 저장
     path('exchange-rate/', views.exchange_rate),

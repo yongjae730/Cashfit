@@ -32,5 +32,5 @@ class FinancialCommentSerializer(serializers.ModelSerializer):
 class FinancialProductLikeSerializer(serializers.ModelSerializer):
     class Meta:
         model = FinancialProductLike
-        fields = ['user', 'product', 'created_at']
-        read_only_fields = ['user', 'created_at']
+        fields = ('user', 'product', 'created_at',)
+        read_only_fields = ('user', 'created_at',)
