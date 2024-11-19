@@ -6,6 +6,7 @@ from django.contrib.auth import get_user_model
 class CustomRegisterSerializer(RegisterSerializer):
     age = serializers.IntegerField(required=False)
     capital = serializers.IntegerField(required=False)
+    nickname = serializers.CharField(max_length=10,required=False)
     sido = serializers.CharField(max_length=10, required=False)
     sigungus = serializers.CharField(max_length=10, required=False)
 
