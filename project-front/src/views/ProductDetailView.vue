@@ -34,26 +34,7 @@
 
     <!-- 지도 섹션 -->
     <v-card class="my-6" outlined>
-      <div class="map-container">
-        <h2 class="text-h6 font-weight-bold mb-4">지점 정보</h2>
-        <div class="filter-section">
-          <select v-model="selectedRegion" class="select-box">
-            <option value="">지역 선택</option>
-            <option v-for="region in regions" :key="region.code" :value="region.code">
-              {{ region.name }}
-            </option>
-          </select>
-
-          <select v-model="selectedBank" class="select-box">
-            <option value="">은행 선택</option>
-            <option v-for="bank in banks" :key="bank.code" :value="bank.code">
-              {{ bank.name }}
-            </option>
-          </select>
-          <button @click="searchBranches" class="search-button">검색</button>
-        </div>
-        <div ref="mapContainer" class="map-view"></div>
-      </div>
+      <BankMap :bank="product.kor_co_nm" />
     </v-card>
 
     <!-- 댓글 섹션 -->
@@ -85,6 +66,7 @@
 </template>
 
 <script setup>
+import BankMap from "@/components/BankMap.vue";
 import { useFinStore } from "@/stores/financial";
 import { productCommentStore as useProductCommentStore } from "@/stores/product_comment";
 import { onMounted, ref, watch } from "vue";
@@ -117,93 +99,17 @@ const productDetails = [
   { label: "특별 조건", value: product.spcl_cnd },
 ];
 
-// Kakao 지도 관련 변수
-const selectedRegion = ref("");
-const selectedBank = ref("");
-const regions = ref([
-  { code: "seoul", name: "서울" },
-  { code: "busan", name: "부산" },
-]);
-const banks = ref([
-  { code: "kb", name: "KB국민은행" },
-  { code: "shinhan", name: "신한은행" },
-]);
-
-const mapContainer = ref(null);
-const markers = ref([]);
-
-onMounted(async () => {
-  productCommentStore.getComments(product.id);
-  comments.value = productCommentStore.comment;
-  console.log(comments.value);
-  loadKaKaoMap(mapContainer.value);
-});
-
 watch(
-  () => productCommentStore.comments,
+  () => productCommentStore.comment,
   (newComments) => {
     comments.value = newComments;
   },
   { immediate: true }
 );
-
-// 지도 초기화
-const loadKaKaoMap = (container) => {
-  if (window.kakao && window.kakao.maps) {
-    initMap(container);
-    return;
-  }
-
-  const script = document.createElement("script");
-  script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${import.meta.env.VITE_KAKAO_API_KEY}&autoload=false`;
-  document.head.appendChild(script);
-
-  script.onload = () => {
-    window.kakao.maps.load(() => initMap(container));
-  };
-};
-
-const initMap = (container) => {
-  const options = { center: new window.kakao.maps.LatLng(37.5665, 126.978), level: 3 };
-  const mapInstance = new window.kakao.maps.Map(container, options);
-  addMarker(new window.kakao.maps.LatLng(37.5665, 126.978));
-};
-
-const addMarker = (position) => {
-  const marker = new window.kakao.maps.Marker({ position });
-  marker.setMap(mapContainer.value);
-  markers.value.push(marker);
-};
-
-// 검색 기능
-const searchBranches = () => {
-  const branches = [
-    { name: "지점 A", lat: 37.5665, lng: 126.978, region: "seoul", bank: "kb" },
-    { name: "지점 B", lat: 35.1796, lng: 129.0756, region: "busan", bank: "shinhan" },
-  ];
-
-  const filtered = branches.filter((branch) => (!selectedRegion.value || branch.region === selectedRegion.value) && (!selectedBank.value || branch.bank === selectedBank.value));
-
-  markers.value.forEach((marker) => marker.setMap(null));
-  markers.value = [];
-  filtered.forEach((branch) => {
-    addMarker(new window.kakao.maps.LatLng(branch.lat, branch.lng));
-  });
-};
 </script>
 
 <style scoped>
 .v-card {
   border-radius: 16px;
-}
-
-.map-container {
-  margin-top: 20px;
-}
-
-.map-view {
-  height: 400px;
-  border-radius: 12px;
-  border: 1px solid #ddd;
 }
 </style>

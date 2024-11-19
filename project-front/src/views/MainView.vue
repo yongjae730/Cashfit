@@ -11,7 +11,7 @@
 <script setup>
 import MainPageCarousel from "@/components/MainPageCarousel.vue";
 import MainPageFinProduct from "@/components/MainPageFinProduct.vue";
-import MapTest from "@/components/MapTest.vue";
+import MapTest from "@/components/BankMap.vue";
 import { ref, onMounted } from "vue";
 
 // 캐러셀 데이터
