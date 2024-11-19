@@ -17,4 +17,4 @@ class User(AbstractUser):
     
     # user 출력 시 유저 이름으로 나오게
     def __str__(self):
-        return self.username
+        return self.nickname
