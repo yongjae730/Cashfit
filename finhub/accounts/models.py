@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     # 닉네임
-    nickname = models.CharField(max_length=10)
+    nickname = models.CharField(max_length=50, blank=True, default="")  # 올바르게 설정
     # 나이
     age = models.PositiveIntegerField(null=True, blank=True, verbose_name="나이")
     # 자본금 (만원 단위)

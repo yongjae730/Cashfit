@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from accounts.views import register_user  # 커스텀 뷰 임포트
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,5 +24,6 @@ urlpatterns = [
     path('api/articles/',include('articles.urls')),
     # 나중에 추가 할지말지
     path('accounts/', include('dj_rest_auth.urls')),
-    path('accounts/signup/', include('dj_rest_auth.registration.urls')),
+    path('accounts/signup/', register_user, name='register_user'),
+    # path('accounts/signup/', include('dj_rest_auth.registration.urls')),
 ]
