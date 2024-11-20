@@ -8,22 +8,23 @@ export const useAccount = defineStore(
   () => {
     const API_URL = "http://127.0.0.1:8000";
     const token = ref(null);
-    const showLoginMoal = ref(false);
     const user = ref(null);
-    const isLogin = computed(() => token.value !== null);
     const redirectPath = ref(null);
+
+    const isLogin = computed(() => token.value !== null);
+
     const login = async (payload) => {
       try {
         const { username, password } = payload;
         const response = await axios.post(`${API_URL}/accounts/login/`, { username, password });
         token.value = response.data.key;
         user.value = response.data.user;
+
         const redirectTo = redirectPath.value || { name: "Main" };
         redirectPath.value = null;
-        console.log(response.data);
         router.push(redirectTo);
       } catch (err) {
-        console.error("Login failed:", err);
+        console.error("Login failed:", err.response?.data || err.message);
       }
     };
 
@@ -33,11 +34,26 @@ export const useAccount = defineStore(
         await axios.post(`${API_URL}/accounts/signup/`, { username, password1, password2, nickname, age, capital, sido, sigungus });
         await login({ username, password: password1 });
       } catch (err) {
-        console.error("Signup failed:", err.response?.data || err);
+        console.error("Signup failed:", err.response?.data || err.message);
       }
     };
 
-    return { API_URL, token, user, isLogin, login, signUp, showLoginMoal, redirectPath };
+    const getProfile = async () => {
+      if (!token.value) return;
+
+      try {
+        const response = await axios.get(`${API_URL}/accounts/profile/`, {
+          headers: { Authorization: `Token ${token.value}` },
+        });
+        user.value = response.data;
+        console.log(response.data);
+        console.log(user.value);
+      } catch (error) {
+        console.error("Failed to fetch profile:", error.response?.data || error.message);
+      }
+    };
+
+    return { API_URL, token, user, isLogin, login, signUp, getProfile, redirectPath };
   },
   { persist: true }
 );

@@ -27,15 +27,15 @@
               <template #activator="{ props }">
                 <v-btn text v-bind="props">{{ username }}</v-btn>
               </template>
-              <v-list-item>
-                <!-- <RouterLink :to="{ name: 'profile', params: { id: user } }">내 프로필</RouterLink> -->
-              </v-list-item>
               <v-list-item @click="logout">로그아웃</v-list-item>
+              <RouterLink :to="{ name: 'profile', params: { nickname: user_info.nickname } }"><v-list-item>마이 페이지</v-list-item></RouterLink>
             </v-menu>
           </template>
           <template v-else>
             <v-btn outlined class="mr-2" @click="showLoginModal = true">Sign in</v-btn>
-            <v-btn color="black" dark><router-link to="/sign_up">Register</router-link></v-btn>
+            <router-link to="/sign_up">
+              <v-btn color="black" dark>Register</v-btn>
+            </router-link>
           </template>
         </v-col>
       </v-row>
@@ -46,21 +46,27 @@
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
+import { computed, ref, watchEffect } from "vue";
 import LoginModal from "./LoginModal.vue";
 import { useAccount } from "@/stores/accounts";
 
 const showLoginModal = ref(false);
-const user = ref(null);
 const store = useAccount();
 const isLogin = computed(() => store.isLogin);
-const username = computed(() => store.username || "User");
-console.log(store.user);
-user.value = store.user;
+const user_info = computed(() => store.user?.user_info || {}); // store.user가 null이어도 안전하게 처리
+const username = computed(() => user_info.value.nickname || "User");
+
 const logout = () => {
   store.token = null;
-  store.username = null;
+  store.user = null;
 };
+
+// 로그인 시 getProfile 호출해서 프로필 정보를 업데이트
+watchEffect(() => {
+  if (isLogin.value) {
+    store.getProfile(); // 로그인 시 프로필 정보를 가져옵니다.
+  }
+});
 </script>
 
 <style scoped>
