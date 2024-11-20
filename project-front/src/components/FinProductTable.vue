@@ -9,13 +9,11 @@
     <!-- 예금 정보 -->
     <div v-else-if="topSaving.length > 0" class="p-4 mb-6">
       <h2>가장 핫 한 예금 정보</h2>
-      <v-carousel hide-delimiter-background height="400px">
+      <v-carousel hide-delimiters show-arrows="hover" cycle height="400px">
         <v-carousel-item v-for="(saving, index) in topSaving" :key="index">
           <v-card class="expanded-details-card">
             <v-card-title class="bg-blue-lighten-5 justify-space-between">
-              <RouterLink :to="{ name: 'fin' }" class="text-decoration-none font-weight-medium">
-                더 보기
-              </RouterLink>
+              <RouterLink :to="{ name: 'fin' }" class="text-decoration-none font-weight-medium">더 보기</RouterLink>
             </v-card-title>
 
             <v-card-text class="pa-6">
@@ -112,9 +110,7 @@ const isLoading = ref(true); // 로딩 상태
 // 비동기 데이터 로드 함수
 const fetchData = async () => {
   try {
-    const response = await axios.get(
-      "http://127.0.0.1:8000/api/financials/financial-products/deposit_top_rate/"
-    );
+    const response = await axios.get("http://127.0.0.1:8000/api/financials/financial-products/deposit_top_rate/");
 
     // 받은 데이터 정렬 (기간 기준 오름차순)
     const sortedData = response.data.sort((a, b) => a.option.save_trm - b.option.save_trm);

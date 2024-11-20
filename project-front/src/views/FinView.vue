@@ -21,14 +21,14 @@
             </template>
 
             <!-- 변화율 템플릿 -->
-            <template #item.change="{ item }">
+            <!-- <template #item.change="{ item }">
               <v-chip :color="item.change > 0 ? 'error' : 'info'" :class="{ 'font-weight-bold': true }" size="small" variant="tonal">
                 <v-icon size="small" :icon="item.change > 0 ? 'mdi-arrow-up' : 'mdi-arrow-down'" start />
                 {{ Math.abs(item.change).toFixed(2) }}%
               </v-chip>
-            </template>
+            </template> -->
 
-            <!-- 기간별 수익률 템플릿 -->
+            <!-- 기간별 수익률 템플릿
             <template #item.month1="{ item }">
               <span :class="getPerformanceColor(item.month1)">{{ item.month1.toFixed(2) }}%</span>
             </template>
@@ -40,14 +40,14 @@
             </template>
             <template #item.year1="{ item }">
               <span :class="getPerformanceColor(item.year1)">{{ item.year1.toFixed(2) }}%</span>
-            </template>
+            </template> -->
 
             <!-- 종목 코드 템플릿 -->
-            <template #item.code="{ item }">
+            <!-- <template #item.code="{ item }">
               <v-chip color="grey-darken-1" size="small" variant="flat" class="font-weight-medium">
                 {{ item.code }}
               </v-chip>
-            </template>
+            </template> -->
 
             <!-- Footer 템플릿을 빈 값으로 오버라이드 -->
             <template #footer></template>
@@ -73,6 +73,12 @@ const headers = [
     width: "150px",
   },
   {
+    title: "은행명",
+    align: "center",
+    key: "kor_co_nm",
+    width: "120px",
+  },
+  {
     title: "상품 코드",
     align: "center",
     key: "fin_prdt_cd",
@@ -91,12 +97,6 @@ const headers = [
     key: "join_way",
     width: "100px",
     sortable: true,
-  },
-  {
-    title: "은행명",
-    align: "center",
-    key: "kor_co_nm",
-    width: "120px",
   },
 ];
 
