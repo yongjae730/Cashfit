@@ -30,7 +30,7 @@
           <div v-else>
             <div class="d-flex align-center mb-2">
               <span class="font-weight-bold" style="color: #444; font-size: 14px">{{ item.nickname }}</span>
-              <div v-if="isOwner" class="ml-auto d-flex align-center">
+              <div v-if="isCommentOwner(item)" class="ml-auto d-flex align-center">
                 <v-btn icon small @click="toggleEditMode(index)">
                   <v-icon small color="primary">mdi-pencil</v-icon>
                 </v-btn>
@@ -39,11 +39,12 @@
                 </v-btn>
               </div>
             </div>
-            <div class="pl-5" style="color: #555; font-size: 14px; line-height: 1.6">{{ item.content }}</div>
-
-            <v-textarea v-if="editIndex === index" v-model="editedComment" outlined dense rows="2" label="수정할 내용을 입력하세요" class="mt-2" style="border-radius: 8px"></v-textarea>
-            <v-btn v-if="editIndex === index" color="primary" class="mt-2" small @click="saveEdit(route.params.id, item.id)">수정 완료</v-btn>
-            <v-btn v-if="editIndex === index" color="grey" class="mt-2 ml-2" small @click="cancelEdit">취소</v-btn>
+            <div v-if="editIndex === index" class="pl-5">
+              <v-textarea v-model="editedComment" outlined dense rows="2" label="수정할 내용을 입력하세요" class="mt-2" style="border-radius: 8px"></v-textarea>
+              <v-btn color="primary" class="mt-2" small @click="saveEdit(route.params.id, item.id)">수정 완료</v-btn>
+              <v-btn color="grey" class="mt-2 ml-2" small @click="cancelEdit">취소</v-btn>
+            </div>
+            <div v-else class="pl-5" style="color: #555; font-size: 14px; line-height: 1.6">{{ item.content }}</div>
           </div>
         </div>
       </v-card>
@@ -90,7 +91,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from "vue";
+import { ref, computed, onMounted, watchEffect } from "vue";
 import { useRoute } from "vue-router";
 import { useAccount } from "@/stores/accounts";
 import { commentStore } from "@/stores/comment";
@@ -106,10 +107,32 @@ const newComment = ref("");
 const editModal = ref(false);
 const editedTitle = ref("");
 const editedContent = ref("");
-
-// 사용자 확인
+const editIndex = ref(null);
+const editedComment = ref("");
+const isOwner = ref(false);
 const isLogin = accountStore.isLogin;
-const isOwner = computed(() => accountStore.user && accountStore.user === article.value?.user);
+
+// 댓글 작성자인지 확인
+const isCommentOwner = (item) => {
+  return accountStore.token && item.nickname === accountStore.user?.user_info?.nickname;
+};
+
+// 게시글 작성자인지 확인 및 설정
+watchEffect(() => {
+  if (article.value && accountStore.user?.user_info?.nickname) {
+    isOwner.value = article.value.nickname === accountStore.user.user_info.nickname;
+  }
+});
+
+onMounted(async () => {
+  try {
+    const response = await axios.get(`http://127.0.0.1:8000/api/articles/${route.params.id}/`);
+    article.value = response.data;
+    store.getComments(route.params.id);
+  } catch (error) {
+    console.error("게시글 로딩 실패:", error);
+  }
+});
 
 // 댓글 추가
 const onCommentClick = () => {
@@ -126,33 +149,114 @@ const addComment = async () => {
     return;
   }
   try {
-    await store.createComment(route.params.id, newComment.value.trim());
+    const response = await axios.post(
+      `${store.API_URL}/api/articles/${route.params.id}/comments/create/`,
+      {
+        article_id: route.params.id, // 서버에서 요구하는 필드에 맞게 수정
+        content: newComment.value.trim(),
+      },
+      {
+        headers: {
+          Authorization: `Token ${accountStore.token}`,
+        },
+      }
+    );
+    // 댓글 추가 성공 시 로컬 데이터 업데이트
+    comment.value.push(response.data);
     newComment.value = ""; // 입력창 초기화
   } catch (error) {
     console.error("댓글 추가 실패:", error);
+    if (error.response && error.response.status === 401) {
+      alert("인증 실패: 다시 로그인 해주세요.");
+    }
   }
 };
 
-// 데이터 로딩
-onMounted(async () => {
-  try {
-    const response = await axios.get(`http://127.0.0.1:8000/api/articles/${route.params.id}/`);
-    article.value = response.data;
-    store.getComments(route.params.id);
-  } catch (error) {
-    console.error("게시글 로딩 실패:", error);
+// 수정 모드 전환
+const toggleEditMode = (index) => {
+  if (editIndex.value === index) {
+    cancelEdit();
+  } else {
+    editIndex.value = index;
+    editedComment.value = comment.value[index].content;
   }
+};
+
+// 댓글 수정 취소
+const cancelEdit = () => {
+  editIndex.value = null;
+  editedComment.value = "";
+};
+
+// 댓글 수정 완료
+const saveEdit = async (articlePk, commentPk) => {
+  if (editedComment.value.trim() === "") {
+    alert("내용을 입력하세요.");
+    return;
+  }
+  try {
+    await store.updateComment(articlePk, commentPk, editedComment.value.trim());
+    comment.value[editIndex.value].content = editedComment.value.trim(); // 수정 내용 반영
+    editIndex.value = null;
+    editedComment.value = "";
+  } catch (error) {
+    console.error("댓글 수정 실패:", error);
+  }
+};
+
+// 댓글 삭제
+const deleteComment = async (articlePk, commentPk) => {
+  const confirmDelete = confirm("댓글을 삭제하시겠습니까?");
+  if (!confirmDelete) return;
+
+  try {
+    await store.deleteComment(articlePk, commentPk);
+    const index = comment.value.findIndex((item) => item.id === commentPk);
+    if (index !== -1) {
+      comment.value[index].is_deleted = true; // 삭제된 상태 표시
+    }
+  } catch (error) {
+    console.error("댓글 삭제 실패:", error);
+  }
+};
+
+const openEditModal = () => {
+  editedTitle.value = article.value.title;
+  editedContent.value = article.value.content;
+  editModal.value = true;
+};
+
+const closeEditModal = () => {
+  editModal.value = false;
+};
+
+const updateArticle = async () => {
+  if (!editedTitle.value.trim() || !editedContent.value.trim()) {
+    alert("제목과 내용을 입력하세요.");
+    return;
+  }
+  try {
+    const payload = {
+      title: editedTitle.value.trim(),
+      content: editedContent.value.trim(),
+    };
+    await axios.put(`http://127.0.0.1:8000/api/articles/${route.params.id}/update-delete/`, payload, {
+      headers: {
+        Authorization: `Token ${accountStore.token}`,
+      },
+    });
+    article.value.title = editedTitle.value;
+    article.value.content = editedContent.value;
+    closeEditModal();
+  } catch (error) {
+    console.error("게시글 수정 실패:", error);
+  }
+};
+
+// 댓글 데이터 로드 및 실시간 반영
+watchEffect(() => {
+  comment.value = store.comments;
 });
-
-watch(
-  () => store.comments,
-  (newComments) => {
-    comment.value = newComments;
-  },
-  { immediate: true }
-);
-
-// 댓글 수정/삭제 관련 로직 생략 (위 코드 참고)
 </script>
 
 <style scoped>

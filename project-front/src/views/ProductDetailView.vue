@@ -68,7 +68,7 @@
       </v-card-title>
 
       <v-card-text class="pa-6">
-        <v-list v-if="comments.length > 0">
+        <v-list v-if="comments">
           <v-list-item v-for="(comment, index) in comments" :key="index" class="mb-4 rounded-lg" elevation="1">
             <template v-slot:prepend>
               <v-avatar color="primary" class="mr-3">
