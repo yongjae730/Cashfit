@@ -64,7 +64,7 @@ def user_profile(request):
     comments_data = FinancialCommentSerializer(comments, many=True).data
 
     # 작성한 글
-    articles = Article.objects.filter(author=user)
+    articles = Article.objects.filter(users_id=user)
     articles_data = ArticleSerializer(articles, many=True).data
 
     # 최종 응답 데이터
