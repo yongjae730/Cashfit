@@ -177,6 +177,19 @@ const onCommentClick = () => {
   addComment();
 };
 
+onMounted(async () => {
+  try {
+    const token = accountStore.token;
+    const headers = {
+      Authorization: `Token ${token}`,
+    };
+    const response = await axios.get(`${store.API_URL}/api/financials/products/${product.id}/like/`, { headers });
+    isLiked.value = response.data.is_liked;
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 watch(
   () => productCommentStore.comment,
   (newComments) => {
