@@ -7,7 +7,6 @@
           <h1 class="text-h4 font-weight-bold">프로필 페이지</h1>
           <p class="text-subtitle-2 text-grey-darken-1">사용자 정보를 확인하고 관리하세요</p>
         </div>
-        <v-btn color="primary" rounded class="font-weight-bold px-4" @click="editProfile">회원 정보 수정</v-btn>
       </v-card-title>
     </v-card>
 
@@ -21,7 +20,7 @@
             <div class="info-text">회원 정보를 확인하거나 변경하세요.</div>
           </v-card-text>
           <v-card-actions>
-            <v-btn color="secondary" block rounded @click="editProfile">정보 수정</v-btn>
+            <v-btn color="secondary" block rounded @click="openEditModal">정보 수정</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -138,19 +137,51 @@
         <div v-else class="empty-state">작성한 댓글이 없습니다.</div>
       </v-card-text>
     </v-card>
+
+    <v-dialog v-model="showEditModal" persistent max-width="500px">
+      <v-card>
+        <v-card-title>
+          <span class="text-h5 font-weight-bold">회원 정보 수정</span>
+          <v-spacer></v-spacer>
+          <v-btn icon @click="showEditModal = false">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </v-card-title>
+        <v-divider></v-divider>
+        <v-card-text>
+          <!-- 닉네임 -->
+          <v-text-field v-model="editedNickname" label="닉네임" outlined dense class="mb-4" :rules="[(v) => !!v || '닉네임을 입력해주세요']" />
+          <!-- 나이 -->
+          <v-text-field v-model="editedAge" label="나이" outlined dense type="number" class="mb-4" :rules="[(v) => !!v || '나이를 입력해주세요']" />
+          <!-- 자본금 -->
+          <v-text-field v-model="editedCapital" label="자본금 (숫자만)" outlined dense type="number" suffix="만원" class="mb-4" :rules="[(v) => !!v || '자본금을 입력해주세요']" />
+          <!-- 시/도 -->
+          <v-select v-model="editedSido" :items="sidoList" label="시/도" outlined dense class="mb-4" :rules="[(v) => !!v || '시/도를 선택해주세요']" @change="onSidoChange" />
+          <!-- 시/군/구 -->
+          <v-select v-model="editedSigungu" :items="sigugunList" label="시/군/구" outlined dense class="mb-4" :disabled="!sigugunList.length" :rules="[(v) => !!v || '시/군/구를 선택해주세요']" />
+        </v-card-text>
+        <v-card-actions>
+          <v-btn color="primary" block @click="saveProfile">저장</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
 <script setup>
 import { useAccount } from "@/stores/accounts";
-import { computed, watchEffect } from "vue";
+import { computed, ref, watch, watchEffect } from "vue";
 import axios from "axios";
+import { useAddressStore } from "@/stores/address";
 
 const accountStore = useAccount();
 const isLogin = computed(() => accountStore.isLogin);
 const API_URL = "http://127.0.0.1:8000"; // API URL 설정
+const addressStore = useAddressStore();
 
-const { articles, comments, user_info } = accountStore.user;
+const showEditModal = ref(false);
+
+const { articles, comments } = accountStore.user;
 watchEffect(() => {
   if (isLogin.value) {
     accountStore.getProfile(); // 로그인 시 프로필 정보를 가져옵니다.
@@ -158,7 +189,67 @@ watchEffect(() => {
   }
 });
 
-console.log(articles, comments);
+const editedNickname = ref("");
+const editedAge = ref("");
+const editedCapital = ref("");
+const editedSido = ref("");
+const editedSigungu = ref("");
+
+const userInfo = computed(() => accountStore.user?.user_info || {});
+const sidoList = computed(() => addressStore.address_infos.map((info) => info.sido));
+const sigugunList = computed(() => {
+  const selectedSido = addressStore.address_infos.find((info) => info.sido === editedSido.value);
+  return selectedSido ? selectedSido.sigungus : [];
+});
+
+const openEditModal = () => {
+  showEditModal.value = true;
+  console.log(showEditModal.value);
+};
+
+// 시/도 변경 시 시/군/구 초기화
+const onSidoChange = () => {
+  editedSigungu.value = null;
+};
+
+// 프로필 수정 초기화
+watch(
+  () => userInfo.value,
+  (newUserInfo) => {
+    if (newUserInfo) {
+      editedNickname.value = newUserInfo.nickname || "";
+      editedAge.value = newUserInfo.age || "";
+      editedCapital.value = newUserInfo.capital || "";
+      editedSido.value = newUserInfo.sido || "";
+      editedSigungu.value = newUserInfo.sigungu || "";
+    }
+  },
+  { immediate: true }
+);
+
+// 프로필 저장
+const saveProfile = async () => {
+  try {
+    const payload = {
+      nickname: editedNickname.value,
+      age: editedAge.value,
+      capital: editedCapital.value,
+      sido: editedSido.value,
+      sigungu: editedSigungu.value,
+    };
+    const headers = {
+      Authorization: `Token ${accountStore.token}`,
+    };
+
+    await axios.put("http://127.0.0.1:8000/accounts/update/", payload, { headers });
+    await accountStore.getProfile();
+    showEditModal.value = false;
+    alert("프로필이 성공적으로 업데이트되었습니다.");
+  } catch (error) {
+    console.error("프로필 업데이트 실패:", error);
+    alert("프로필 업데이트 중 오류가 발생했습니다.");
+  }
+};
 
 // 좋아요한 상품 데이터
 const likedProducts = computed(() => accountStore.user?.liked_products || []);
