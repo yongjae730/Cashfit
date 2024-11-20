@@ -37,3 +37,9 @@ class CustomUserDetailsSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
         fields = ['id', 'username', 'email', "nickname",'age', 'capital', 'sido', 'sigungus']
+
+
+class UserUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ['nickname', 'age', 'capital', 'sido', 'sigungus']
