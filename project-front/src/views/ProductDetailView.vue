@@ -191,9 +191,12 @@ onMounted(async () => {
 });
 
 watch(
-  () => productCommentStore.comment,
-  (newComments) => {
-    comments.value = newComments;
+  () => product.id,
+  (newProductId) => {
+    if (newProductId) {
+      productCommentStore.getComments(newProductId);
+      comments.value = productCommentStore.comment[newProductId] || [];
+    }
   },
   { immediate: true }
 );
