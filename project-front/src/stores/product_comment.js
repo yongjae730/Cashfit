@@ -6,7 +6,7 @@ import { useAccount } from "./accounts";
 export const productCommentStore = defineStore(
   "comments",
   () => {
-    const comment = ref([]);
+    const comment = ref({});
     const accountStore = useAccount();
     const token = accountStore.token;
 
@@ -19,7 +19,8 @@ export const productCommentStore = defineStore(
         url: `${API_URL}/api/financials/financial-comment/${productId}`,
       })
         .then((res) => {
-          comment.value = res.data;
+          // 상품 ID를 키로 사용하여 댓글 저장
+          comment.value[productId] = res.data;
         })
         .catch((error) => console.log(error));
     };
