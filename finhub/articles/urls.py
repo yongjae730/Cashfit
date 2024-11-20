@@ -1,7 +1,7 @@
 from django.urls import path,include
 from . import views
 app_name = 'articles'
-app_name = 'articles'
+
 
 urlpatterns = [
     # 게시글 관련 URL

@@ -22,9 +22,10 @@ urlpatterns = [
     # path('api/accounts/',include('accounts.urls')),
     path('api/financials/',include('financials.urls')),
     path('api/articles/',include('articles.urls')),
+    path('chatbot/', include('chatbot.urls')),
     # 나중에 추가 할지말지
     path('accounts/', include('dj_rest_auth.urls')),
     path('accounts/signup/', register_user, name='register_user'),
-    path('accounts/profile/', user_profile, name='user_profile'),
+    path('accounts/user_profile/', user_profile, name='user_profile'),
     # path('accounts/signup/', include('dj_rest_auth.registration.urls')),
 ]
