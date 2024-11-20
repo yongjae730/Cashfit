@@ -1,10 +1,11 @@
 <template>
   <v-container>
+    <h2>환전 미리 해보기</h2>
     <!-- 로딩 상태 표시 -->
     <v-progress-linear v-if="loading" indeterminate color="primary" />
 
     <!-- 캐러셀 -->
-    <v-carousel v-else hide-delimiters height="360px" show-arrows>
+    <v-carousel v-else hide-delimiters height="360px" cycle="1s" show-arrows="hover">
       <v-carousel-item v-for="(group, index) in groupedExchangeInfos" :key="index">
         <v-row class="justify-center">
           <v-col cols="12" md="4" lg="3" v-for="exchange in group" :key="exchange.cur_unit">

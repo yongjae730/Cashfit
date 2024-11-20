@@ -28,13 +28,18 @@ const fetchCarouselSlides = async () => {
     },
     {
       image: "https://via.placeholder.com/1200x400",
-      title: "실시간 주식 정보",
-      subtitle: "빠르고 정확한 시장 동향",
+      title: "내 주변 은행 머임?",
+      subtitle: "찾기 귀찮쓰",
     },
     {
       image: "https://via.placeholder.com/1200x400",
-      title: "암호화폐 시세",
-      subtitle: "글로벌 암호화폐 동향",
+      title: "AI에게 물어본 내 투자 방향",
+      subtitle: "지려따...",
+    },
+    {
+      image: "https://via.placeholder.com/1200x400",
+      title: "예적금 토론 ㄱㄱ",
+      subtitle: "ㅇㅅㅇ",
     },
   ];
 };
