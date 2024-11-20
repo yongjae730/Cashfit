@@ -38,6 +38,14 @@ def chatbot_response(request):
 
             if not user_input:  # 수정사항: 입력 메시지가 비어 있는 경우에 대한 구체적인 오류 처리 추가
                 return JsonResponse({'error': '메시지가 비어있습니다.'}, status=400)
+             # 세션에서 이전 대화 내역 가져오기 - 수정사항 시작
+            if 'chat_history' not in request.session:
+                request.session['chat_history'] = []  # 수정사항: 세션에 'chat_history'가 없을 경우 빈 리스트로 초기화
+
+            # 현재 세션의 대화 내역을 가져와 GPT 모델 입력 메시지로 사용
+            previous_messages = request.session['chat_history']
+            previous_messages.append({"role": "user", "content": user_input})  # 수정사항: 사용자의 입력 메시지를 세션에 추가
+            # 수정사항 끝: 세션을 사용하여 대화 내역 관리
 
             # 사용자 입력으로부터 금액과 기간 정보 추출
             amount_match = re.search(r'(\d+)(만원|백만원|천만원|억)', user_input)
@@ -58,56 +66,63 @@ def chatbot_response(request):
             elif "예금" in user_input:
                 product_type = 0
 
-            response_text = initial_prompt + "\n\n"  # 초기 프롬프트 포함
-
+            # 금융 상품 조회 및 필터링
+            recommended_products = []
             if product_type is not None and term is not None:
                 products = FinancialProducts.objects.filter(product_type=product_type)
                 if products.exists():
-                    filtered_products = []
                     for product in products:
                         options = FinancialOptions.objects.filter(product=product, save_trm=term)
                         if options.exists():
-                            filtered_products.append({
-                                "product_name": product.fin_prdt_nm,
-                                "company": product.kor_co_nm,
-                                "interest_rate": options[0].intr_rate,
-                                "term": term
-                            })
-                    if filtered_products:
-                        product_text_list = [
-                            f"{p['company']}의 {p['product_name']} (이자율: {p['interest_rate']}%, 기간: {p['term']}개월)"
-                            for p in filtered_products
-                        ]
-                        response_text += "다음과 같은 적합한 금융 상품을 추천드립니다: " + ", ".join(product_text_list)
-                    else:
-                        response_text += "조건에 맞는 금융 상품이 없습니다. 다른 조건으로 다시 시도해주세요."
-                else:
-                    response_text += "조건에 맞는 금융 상품이 없습니다. 다른 조건으로 다시 시도해주세요."
+                            for option in options:  # 각 상품 옵션을 더 자세히 포함
+                                recommended_products.append({
+                                    "상품명": product.fin_prdt_nm,
+                                    "은행": product.kor_co_nm,
+                                    "저축 금리": option.intr_rate,
+                                    "최고 우대 금리": option.intr_rate2,
+                                    "기간": option.save_trm,
+                                    "가입 방법": product.join_way,
+                                    "가입 대상": product.join_member,
+                                    "우대 조건": product.spcl_cnd
+                                })
+            system_message = initial_prompt
+
+            if recommended_products:
+                product_text_list = [
+                    (
+                        f"{p['은행']}의 {p['상품명']} (기본 금리: {p['저축 금리']}%, "
+                        f"최고 우대 금리: {p['최고 우대 금리']}%, 기간: {p['기간']}개월)\n"
+                        f"가입 방법: {p['가입 방법']}, 가입 대상: {p['가입 대상']}, 우대 조건: {p['우대 조건']}"
+                    )
+                    for p in recommended_products
+                ]
+                system_message += "\n\n현재 추천 가능한 금융 상품 리스트는 다음과 같습니다:\n" + "\n\n".join(product_text_list)
             else:
-                response_text += "조금 더 구체적으로 입력해 주세요. 예를 들어, '300만원을 24개월 동안 적금하려고 하는데 추천 상품이 있을까요?'와 같이 말해 보세요."
+                system_message += "\n\n현재 사용자의 조건에 맞는 금융 상품을 찾지 못했습니다. 사용자에게 더 나은 추천을 제공하기 위해 추가 정보를 요청하세요."
 
             # OpenAI API에 응답 요청
             try:
-                    # prompt=response_text,
                 response = client.chat.completions.create(
                     model="gpt-4o-mini",
                     messages=[
-                        {"role": "system", "content": initial_prompt},
+                        {"role": "system", "content": system_message},
+                        *previous_messages,
                         {"role": "user", "content": user_input},
-                        {"role": "assistant", "content": response_text},
                     ],
-                    stream= True,
+                    stream=True,
                     temperature=0.7,
                 )
                 gpt_response = ""
-                # print(response)
                 for chunk in response:
                     content_part = chunk.choices[0].delta.content  # content_part 추출
                     if content_part is not None:  # content_part가 None이 아닌지 확인
                         gpt_response += content_part
 
-                print(gpt_response)
-                
+                # GPT 응답을 세션에 저장 - 수정사항 시작
+                previous_messages.append({"role": "assistant", "content": gpt_response})  # 수정사항: GPT의 응답을 세션에 추가
+                request.session['chat_history'] = previous_messages  # 수정사항: 세션에 업데이트된 대화 내역 저장
+                request.session.modified = True  # 수정사항: 세션 데이터 갱신을 명시적으로 표시
+
                 return JsonResponse({'response': gpt_response})
 
             except OpenAIError as e:  # 올바른 예외 클래스 사용

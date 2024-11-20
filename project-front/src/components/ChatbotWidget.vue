@@ -1,150 +1,201 @@
 <template>
-    <div>
-      <!-- 챗봇 팝업 창 -->
-      <div v-if="showChatbot" class="chatbot-window">
-        <div class="chatbot-header">
-          <h4>금융 챗봇</h4>
-          <button @click="toggleChatbot" class="close-btn">X</button>
-        </div>
-        <div class="chatbot-body">
-          <div v-for="(message, index) in messages" :key="index" class="message">
-            <p :class="message.sender">{{ message.text }}</p>
-          </div>
-          <div v-if="loading" class="loading-message">답변을 기다리는 중...</div>
-          <input v-model="userInput" @keyup.enter="sendMessage" placeholder="질문을 입력하세요..." class="input-box" />
-        </div>
+  <div class="chatbot-widget">
+    <!-- 챗봇 아이콘 -->
+    <div v-if="!isOpen" class="chat-icon" @click="toggleChat">💬</div>
+
+    <!-- 챗봇 창 -->
+    <div v-if="isOpen" class="chat-window">
+      <div class="chat-header">
+        <span>금융 상담 챗봇</span>
+        <button @click="toggleChat">X</button>
       </div>
-  
-      <!-- 우하단 챗봇 버튼 -->
-      <button @click="toggleChatbot" class="chatbot-button">💬</button>
+      <div class="chat-content">
+        <div v-for="(msg, index) in messages" :key="index" class="message">
+          <div :class="msg.type" v-html="msg.text"></div>
+        </div>
+        <div v-if="isWaiting" class="message bot">{{ waitingMessage }}</div>
+      </div>
+      <div class="chat-input">
+        <input v-model="userInput" @keyup.enter="sendMessage" placeholder="메시지를 입력하세요..." />
+        <button @click="sendMessage">전송</button>
+      </div>
     </div>
-  </template>
-  
-  <script setup>
-  import { ref } from 'vue'
-  import axios from 'axios'
-  
-  // 컴포넌트 상태 관리
-  const showChatbot = ref(false)
-  const messages = ref([])
-  const userInput = ref('')
-  const loading = ref(false)  // 로딩 상태 관리 변수
-  const userId = ref(1)  // 유저 ID를 저장 (로그인된 유저의 ID로 설정)
-  
-  // 챗봇 열기/닫기 토글
-  const toggleChatbot = () => {
-    showChatbot.value = !showChatbot.value
-  }
-  
-  // 메시지 전송 로직
-  const sendMessage = async () => {
-    if (userInput.value.trim() === '') return
-  
-    // 사용자 메시지 추가
-    messages.value.push({ sender: 'user', text: userInput.value })
-  
-    // 로딩 상태로 전환
-    loading.value = true
-  
+  </div>
+</template>
+
+<script setup>
+import { ref } from "vue";
+import axios from "axios";
+
+const isOpen = ref(false);
+const userInput = ref("");
+const messages = ref([{ type: "bot", text: "안녕하세요! 예금이나 적금 상품에 대해 궁금한 점을 말씀해주세요." }]);
+const isWaiting = ref(false);
+const waitingMessage = ref("답변 기다리는중 ...");
+
+// 채팅창 열기/닫기
+const toggleChat = () => {
+  isOpen.value = !isOpen.value;
+};
+
+// 대기 메시지 애니메이션 설정
+let waitingInterval;
+const startWaitingAnimation = () => {
+  let dots = 0;
+  waitingInterval = setInterval(() => {
+    dots = (dots + 1) % 4;
+    waitingMessage.value = "답변 기다리는중" + ".".repeat(dots);
+  }, 500);
+};
+
+const stopWaitingAnimation = () => {
+  clearInterval(waitingInterval);
+  waitingMessage.value = "답변 기다리는중 ...";
+};
+
+// 메시지 전송 함수
+const sendMessage = async () => {
+  if (userInput.value.trim() !== "") {
+    // 사용자가 입력한 메시지 추가
+    messages.value.push({ type: "user", text: userInput.value });
+
+    // 응답 대기 메시지 추가
+    isWaiting.value = true;
+    startWaitingAnimation();
+
+    // 서버에 메시지 전송
     try {
-      // Flask 서버에 사용자 입력 전송
-      const response = await axios.post('http://localhost:5000/chat', {
-        user_id: userId.value,
-        message: userInput.value
-      })
-  
-      // 챗봇 응답 추가
-      messages.value.push({ sender: 'bot', text: response.data.response })
+      const response = await axios.post(
+        "http://localhost:8000/chatbot/get-response/",
+        {
+          message: userInput.value,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      // 응답 대기 메시지 삭제
+      isWaiting.value = false;
+      stopWaitingAnimation();
+      messages.value = messages.value.filter((msg) => msg.text !== "답변 기다리는중 ...");
+
+      // 서버로부터 받은 응답 추가
+      messages.value.push({ type: "bot", text: response.data.response.replace(/\n/g, "<br>") });
     } catch (error) {
-      console.error('Error communicating with the chatbot:', error)
-      messages.value.push({ sender: 'bot', text: '답변을 가져오는 데 실패했습니다.' })
+      // 응답 대기 메시지 삭제
+      isWaiting.value = false;
+      stopWaitingAnimation();
+      messages.value = messages.value.filter((msg) => msg.text !== "답변 기다리는중 ...");
+
+      if (error.response) {
+        // 서버에서 오류 응답을 받은 경우
+        console.error("서버 오류:", error.response.data);
+        messages.value.push({ type: "bot", text: "서버 오류가 발생했습니다. 다시 시도해주세요." });
+      } else if (error.request) {
+        // 요청이 보내졌으나 응답이 없는 경우
+        console.error("서버로부터 응답이 없습니다.");
+        messages.value.push({ type: "bot", text: "서버로부터 응답이 없습니다. 인터넷 연결을 확인해주세요." });
+      } else {
+        // 기타 오류
+        console.error("오류:", error.message);
+        messages.value.push({ type: "bot", text: "알 수 없는 오류가 발생했습니다. 다시 시도해주세요." });
+      }
     } finally {
-      // 로딩 상태 해제
-      loading.value = false
+      userInput.value = "";
     }
-  
-    userInput.value = ''
   }
-  </script>
-  
-  <style scoped>
-  /* 우하단 챗봇 버튼 스타일 */
-  .chatbot-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    font-size: 24px;
-    cursor: pointer;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* 챗봇 창 스타일 */
-  .chatbot-window {
-    position: fixed;
-    bottom: 100px;
-    right: 20px;
-    width: 300px;
-    height: 400px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-  
-  /* 챗봇 헤더 */
-  .chatbot-header {
-    background-color: #007bff;
-    color: white;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  /* 챗봇 메시지 */
-  .chatbot-body {
-    flex: 1;
-    padding: 10px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .message {
-    margin: 5px 0;
-  }
-  
-  .user {
-    text-align: right;
-    color: blue;
-  }
-  
-  .bot {
-    text-align: left;
-    color: green;
-  }
-  
-  .loading-message {
-    text-align: center;
-    color: grey;
-    margin: 10px 0;
-  }
-  
-  .input-box {
-    padding: 10px;
-    border-top: 1px solid #ddd;
-    width: calc(100% - 20px);
-    margin: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  </style>
-  
+};
+</script>
+
+<style scoped>
+.chatbot-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.chat-icon {
+  width: 60px;
+  height: 60px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.chat-window {
+  width: 400px;
+  height: 600px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.chat-header {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.chat-content {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  background-color: #f9f9f9;
+}
+
+.message {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.user {
+  text-align: right;
+  color: blue;
+}
+
+.bot {
+  text-align: left;
+  color: green;
+}
+
+.chat-input {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
+
+input {
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+</style>
