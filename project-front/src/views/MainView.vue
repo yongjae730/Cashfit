@@ -3,7 +3,7 @@
     <v-container>
       <MainPageCarousel v-if="carouselSlides.length > 0" :slides="carouselSlides" />
       <MainPageFinProduct />
-      <MapTest />
+      <Exchange />
     </v-container>
   </v-main>
 </template>
@@ -13,6 +13,7 @@ import MainPageCarousel from "@/components/MainPageCarousel.vue";
 import MainPageFinProduct from "@/components/MainPageFinProduct.vue";
 import MapTest from "@/components/BankMap.vue";
 import { ref, onMounted } from "vue";
+import Exchange from "@/components/ExchangeList.vue";
 
 // 캐러셀 데이터
 const carouselSlides = ref([]);
