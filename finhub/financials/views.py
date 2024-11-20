@@ -1,3 +1,4 @@
+import stat
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import get_user_model
@@ -317,12 +318,15 @@ def exchange_rate(request):
     return JsonResponse({'exchange_rate':data}, status=200)
 
 # 좋아요 기능
-@api_view(['POST', 'DELETE'])
+@api_view(['GET', 'POST', 'DELETE'])
 @permission_classes([IsAuthenticated])
 def financial_product_like(request, product_id):
     product = get_object_or_404(FinancialProducts, id=product_id)
     user = request.user
 
+    if request.method == 'GET':
+        is_liked = FinancialProductLike.objects.filter(user=user, product=product).exists()
+        return Response({"is_liked" : is_liked}, status=status.HTTP_200_OK)
     if request.method == 'POST':
         # 좋아요 추가
         like, created = FinancialProductLike.objects.get_or_create(user=user, product=product)

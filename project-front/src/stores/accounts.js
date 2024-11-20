@@ -42,7 +42,7 @@ export const useAccount = defineStore(
       if (!token.value) return;
 
       try {
-        const response = await axios.get(`${API_URL}/accounts/profile/`, {
+        const response = await axios.get(`${API_URL}/accounts/user_profile/`, {
           headers: { Authorization: `Token ${token.value}` },
         });
         user.value = response.data;
