@@ -35,11 +35,11 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 # 모든 도메인 허용 (개발 중일 때)
-CORS_ALLOWED_ORIGINS = [
-    'http://127.0.0.1:5173',
-    'http://localhost:5173'
+# CORS_ALLOWED_ORIGINS = [
+#     'http://127.0.0.1:5173',
+#     'http://localhost:5173'
     
-]
+# ]
 CORS_ALLOW_ALL_ORIGINS = True
 
 

@@ -1,4 +1,3 @@
-from re import A
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import get_user_model
@@ -313,9 +312,9 @@ def exchange_rate(request):
         "data": "AP01"
     }
 
-    exchange_response = requests.get(BASE_URL,params=params).json()
-
-    return JsonResponse({'exchange_rate':exchange_response}, status=200)
+    exchange_response = requests.get(BASE_URL,params=params)
+    data = exchange_response.json()
+    return JsonResponse({'exchange_rate':data}, status=200)
 
 # 좋아요 기능
 @api_view(['POST', 'DELETE'])
@@ -349,77 +348,4 @@ def user_liked_products(request):
 
 
 ##############################################
-# python flask_chatbot/flask_app.py
-
-import requests
-from django.http import JsonResponse
-from django.contrib.auth.decorators import login_required
-from .models import FinancialProducts
-from accounts.models import User
-
-@login_required
-def get_user_info(request):
-    user = request.user
-    user_data = {
-        "id": user.id,
-        "nickname": user.nickname,
-        "age": user.age,
-        "capital": user.capital,
-        "sido": user.sido,
-        "sigungus": user.sigungus
-    }
-    return JsonResponse(user_data)
-
-def get_financial_products(request):
-    products = FinancialProducts.objects.all()
-    product_data = []
-
-    for product in products:
-        # 각 금융 상품에 대한 옵션 정보 가져오기
-        options = FinancialOptions.objects.filter(product=product)
-        option_data = [
-            {
-                "rate_type_name": option.intr_rate_type_nm,  # 저축 금리 유형명
-                "interest_rate": option.intr_rate,  # 저축 금리
-                "max_rate": option.intr_rate2,  # 최고 우대 금리
-                "saving_term": option.save_trm,  # 저축 기간(단위: 개월)
-            }
-            for option in options
-        ]
-
-        product_data.append({
-            "product_name": product.fin_prdt_nm,  # 금융 상품 명
-            "company_name": product.kor_co_nm,  # 금융 회사 명
-            "description": product.etc_note,  # 금융 상품 설명
-            "join_deny": product.join_deny,  # 가입 제한 정보
-            "join_member": product.join_member,  # 가입 대상 정보
-            "join_way": product.join_way,  # 가입 방법 정보
-            "spcl_cnd": product.spcl_cnd,  # 우대 조건
-            "product_type": product.product_type,  # 예금 적금 구분
-            "options": option_data  # 금융 상품의 옵션 정보 추가
-        })
-    
-    return JsonResponse({"products": product_data})
-
-def ask_chatbot(request):
-    if request.method == 'POST':
-        # 사용자가 보낸 질문
-        user_question = request.POST.get('question')
-        if not user_question:
-            return JsonResponse({'error': 'No question provided'}, status=400)
-
-        try:
-            # Flask 서버로 질문 전송
-            response = requests.post(
-                'http://localhost:5000/chat',  # Flask 서버 주소
-                json={"message": user_question}
-            )
-            if response.status_code == 200:
-                chatbot_answer = response.json().get('response')
-                return JsonResponse({'answer': chatbot_answer})
-            else:
-                return JsonResponse({'error': 'Failed to get a response from chatbot'}, status=500)
-        
-        except requests.exceptions.RequestException as e:
-            return JsonResponse({'error': str(e)}, status=500)
 
