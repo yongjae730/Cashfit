@@ -52,6 +52,7 @@ export const productCommentStore = defineStore(
           }
         })
         .catch((error) => {
+          console.log(token);
           console.error("댓글 생성 실패:", error);
 
           // comments가 정의되지 않은 경우 빈 배열로 초기화
