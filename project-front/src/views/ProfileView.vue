@@ -10,6 +10,8 @@
             <div class="info-text">닉네임 : {{ userInfo.nickname }}</div>
             <div class="info-text">나이 : {{ userInfo.age }}</div>
             <div class="info-text">자본금 : {{ userInfo.capital }} 만원</div>
+            <div class="info-text">시 / 도 : {{ userInfo.sido }}</div>
+            <div class="info-text">시 / 군 / 구 : {{ userInfo.sigungus }}</div>
           </v-card-text>
           <v-card-actions>
             <v-btn color="primary" block rounded @click="openEditModal">정보 수정</v-btn>
@@ -215,7 +217,7 @@ watch(
       editedAge.value = newUserInfo.age || "";
       editedCapital.value = newUserInfo.capital || "";
       editedSido.value = newUserInfo.sido || "";
-      editedSigungu.value = newUserInfo.sigungu || "";
+      editedSigungu.value = newUserInfo.sigungus || "";
     }
   },
   { immediate: true }
@@ -229,7 +231,7 @@ const saveProfile = async () => {
       age: editedAge.value,
       capital: editedCapital.value,
       sido: editedSido.value,
-      sigungu: editedSigungu.value,
+      sigungus: editedSigungu.value,
     };
     const headers = {
       Authorization: `Token ${accountStore.token}`,
