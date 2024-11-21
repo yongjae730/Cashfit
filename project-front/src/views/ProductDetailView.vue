@@ -61,18 +61,19 @@
     </v-card>
 
     <!-- 댓글 섹션 -->
-    <v-card class="rounded-xl" elevation="2">
+    <ProductComments :productId="product.id" />
+    <!-- <v-card class="rounded-xl" elevation="2">
       <v-card-title class="text-h5 font-weight-bold pa-6">
         <v-icon color="primary" class="mr-2">mdi-comment-multiple</v-icon>
         댓글
       </v-card-title>
 
       <v-card-text class="pa-6">
-        <v-list v-if="comments">
+        <v-list v-if="comments.length > 0">
           <v-list-item v-for="(comment, index) in comments" :key="index" class="mb-4 rounded-lg" elevation="1">
             <template v-slot:prepend>
               <v-avatar color="primary" class="mr-3">
-                <span class="text-white">{{ comment.content[0] || "?" }}</span>
+                <span class="text-white">{{ comment.content || "?" }}</span>
               </v-avatar>
             </template>
             <v-list-item-content>
@@ -94,7 +95,7 @@
           </v-btn>
         </div>
       </v-card-text>
-    </v-card>
+    </v-card> -->
   </v-container>
 </template>
 
@@ -102,22 +103,17 @@
 import BankMap from "@/components/BankMap.vue";
 import { useAccount } from "@/stores/accounts";
 import { useFinStore } from "@/stores/financial";
-import { productCommentStore as useProductCommentStore } from "@/stores/product_comment";
+import ProductComments from "@/components/ProductComments.vue";
 import axios from "axios";
 import { onMounted, ref, watch } from "vue";
-import { useRoute } from "vue-router";
 
 const store = useFinStore();
 const product = store.selectedProduct;
-const productCommentStore = useProductCommentStore();
-const route = useRoute();
 
 const accountStore = useAccount();
 const isLogin = accountStore.isLogin;
 
 const isLiked = ref(false);
-const comments = ref([]);
-const newComment = ref("");
 
 const getIcon = (label) => {
   const icons = {
@@ -160,23 +156,6 @@ const toggleLike = async () => {
   }
 };
 
-const addComment = async () => {
-  if (newComment.value.trim() === "") {
-    alert("댓글을 입력하세요");
-    return;
-  }
-  await productCommentStore.createComment(product.id, newComment.value.trim());
-  newComment.value = "";
-};
-
-const onCommentClick = () => {
-  if (!isLogin) {
-    accountStore.showLoginModal = true;
-    return;
-  }
-  addComment();
-};
-
 onMounted(async () => {
   try {
     const token = accountStore.token;
@@ -186,20 +165,35 @@ onMounted(async () => {
     const response = await axios.get(`${store.API_URL}/api/financials/products/${product.id}/like/`, { headers });
     isLiked.value = response.data.is_liked;
   } catch (error) {
-    console.log(error);
+    console.error("초기 데이터 로드 중 오류 발생:", error);
   }
 });
 
-watch(
-  () => product.id,
-  (newProductId) => {
-    if (newProductId) {
-      productCommentStore.getComments(newProductId);
-      comments.value = productCommentStore.comment[newProductId] || [];
-    }
-  },
-  { immediate: true }
-);
+// watch(
+//   () => product.id,
+//   async (newProductId, oldProductId) => {
+//     if (!newProductId || newProductId === oldProductId) return;
+
+//     // 기존 댓글 초기화
+//     comments.value = [];
+
+//     try {
+//       // 새로운 상품의 댓글 로드
+//       const fetchedComments = await productCommentStore.getComments(newProductId);
+//       if (Array.isArray(fetchedComments)) {
+//         comments.value = fetchedComments; // 댓글 데이터 갱신
+//         console.log("새로운 상품 댓글 데이터:", comments.value);
+//       } else {
+//         console.error("댓글 데이터가 배열이 아님:", fetchedComments);
+//       }
+//     } catch (error) {
+//       console.error("댓글 목록 갱신 중 오류 발생:", error);
+//     }
+//   },
+//   { immediate: true }
+// );
+
+// console.log(comments.value)
 </script>
 
 <style scoped>
