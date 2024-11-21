@@ -330,6 +330,7 @@ def financial_product_like(request, product_id):
     if request.method == 'GET':
         is_liked = FinancialProductLike.objects.filter(user=user, product=product).exists()
         return Response({"is_liked" : is_liked}, status=status.HTTP_200_OK)
+    
     if request.method == 'POST':
         # 좋아요 추가
         like, created = FinancialProductLike.objects.get_or_create(user=user, product=product)
