@@ -93,7 +93,12 @@ onMounted(async () => {
     await fetchComments();
   } catch (error) {
     console.error("게시글 또는 댓글 로딩 실패:", error);
-    alert("데이터를 로드하는 중 문제가 발생했습니다.");
+    swal({
+      title: "오류 발생",
+      text: "데이터를 로드하는 중 문제가 발생했어요..",
+      icon: "error",
+      button: "확인",
+    });
   }
 });
 
@@ -115,7 +120,12 @@ const addComment = async (content) => {
 
 const updateComment = async ({ id, content }) => {
   if (!content.trim()) {
-    alert("수정할 내용을 입력하세요.");
+    swal({
+      title: "경고",
+      text: "수정할 내용을 입력하세요.",
+      icon: "warning",
+      button: "확인",
+    });
     return;
   }
   try {
@@ -128,7 +138,12 @@ const updateComment = async ({ id, content }) => {
     }
   } catch (error) {
     console.error("댓글 수정 실패:", error);
-    alert("댓글을 수정하는 중 문제가 발생했습니다. 다시 시도해주세요.");
+    swal({
+      title: "실패",
+      text: "댓글을 수정하는 중 문제가 발생했습니다. 다시 시도해주세요.",
+      icon: "error",
+      button: "확인",
+    });
   }
 };
 
@@ -143,7 +158,12 @@ const deleteComment = async (commentId) => {
     }
   } catch (error) {
     console.error("댓글 삭제 실패:", error);
-    alert("댓글을 삭제하는 중 문제가 발생했습니다. 다시 시도해주세요.");
+    swal({
+      title: "실패",
+      text: "댓글을 삭제하는 중 문제가 발생했습니다. 다시 시도해주세요.",
+      icon: "error",
+      button: "확인",
+    });
   }
 };
 const openEditModal = () => {
@@ -158,7 +178,12 @@ const closeEditModal = () => {
 
 const updateArticle = async () => {
   if (!editedTitle.value.trim() || !editedContent.value.trim()) {
-    alert("제목과 내용을 입력하세요.");
+    swal({
+      title: "경고",
+      text: "제목과 내용을 입력하세요.",
+      icon: "warning",
+      button: "확인",
+    });
     return;
   }
   try {
@@ -171,10 +196,22 @@ const updateArticle = async () => {
     });
     article.value.title = editedTitle.value;
     article.value.content = editedContent.value;
+
+    await swal({
+      title: "수정 완료!",
+      text: "게시글 수정이 성공적으로 완료 되었어요!!",
+      icon: "success",
+      button: "확인",
+    });
     closeEditModal();
   } catch (error) {
     console.error("게시글 수정 실패:", error);
-    alert("게시글을 수정하는 중 문제가 발생했습니다. 다시 시도해주세요.");
+    swal({
+      title: "실패",
+      text: "게시글을 수정하는 중 문제가 발생했습니다. 다시 시도해주세요.",
+      icon: "error",
+      button: "확인",
+    });
   }
 };
 
