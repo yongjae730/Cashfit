@@ -79,8 +79,9 @@ const showDetailModal = (exchange) => {
 /* 캐러셀 스타일 */
 .v-carousel {
   background-color: #f9f9f9;
+  padding: 20px;
   border-radius: 12px;
-  padding: 16px;
+  margin-top: 20px;
 }
 
 .v-carousel-item {

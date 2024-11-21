@@ -1,9 +1,9 @@
 <template>
   <v-main>
+    <MainPageCarousel v-if="carouselSlides.length > 0" :slides="carouselSlides" />
     <v-container>
-      <MainPageCarousel v-if="carouselSlides.length > 0" :slides="carouselSlides" />
-      <MainPageFinProduct />
-      <Exchange />
+      <MainProductList />
+      <MainPageBank />
     </v-container>
   </v-main>
 </template>
@@ -12,6 +12,8 @@
 import MainPageCarousel from "@/components/MainPageCarousel.vue";
 import MainPageFinProduct from "@/components/MainPageFinProduct.vue";
 import MapTest from "@/components/BankMap.vue";
+import MainProductList from "@/components/MainProductList.vue";
+import MainPageBank from "@/components/MainPageBank.vue";
 import { ref, onMounted } from "vue";
 import Exchange from "@/components/ExchangeList.vue";
 

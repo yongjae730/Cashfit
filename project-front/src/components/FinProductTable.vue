@@ -8,18 +8,17 @@
 
     <!-- 예금 정보 -->
     <div v-else-if="topSaving.length > 0" class="p-4 mb-6">
-      <h2>가장 핫 한 예금 정보</h2>
       <v-carousel hide-delimiters show-arrows="hover" cycle height="400px">
         <v-carousel-item v-for="(saving, index) in topSaving" :key="index">
           <v-card class="expanded-details-card">
-            <v-card-title class="bg-blue-lighten-5 justify-space-between">
+            <!-- <v-card-title class="bg-blue-lighten-5 justify-space-between">
               <RouterLink :to="{ name: 'fin' }" class="text-decoration-none font-weight-medium">더 보기</RouterLink>
-            </v-card-title>
+            </v-card-title> -->
 
             <v-card-text class="pa-6">
               <v-row>
                 <v-col cols="12" md="6">
-                  <h3 class="text-h6 mb-4">상품 정보</h3>
+                  <h3 class="text-h6 mb-4">예금 정보</h3>
                   <v-list>
                     <v-list-item>
                       <template v-slot:prepend>

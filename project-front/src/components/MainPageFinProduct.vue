@@ -13,7 +13,7 @@ import SavingProductTable from "./SavingProductTable.vue";
 
 <style scoped>
 .product-section {
-  background-color: #ffffff;
+  background-color: #f9f9f9;
   padding: 20px;
   border-radius: 12px;
   margin-top: 20px;
@@ -26,17 +26,17 @@ import SavingProductTable from "./SavingProductTable.vue";
   white-space: nowrap;
 }
 
-.tab-item {
+/* .tab-item {
   padding: 0.75rem 1.5rem;
   cursor: pointer;
   font-weight: 500;
   color: #4a5568;
   border-bottom: 2px solid transparent;
   transition: all 0.2s;
-}
+} */
 
-.tab-item.active {
+/* .tab-item.active {
   color: #2b6cb0;
   border-bottom: 2px solid #2b6cb0;
-}
+} */
 </style>

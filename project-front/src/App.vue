@@ -28,4 +28,30 @@ const updateLoginModal = (isOpen) => {
 //   axios.get(`http://127.0.0.1:8000/api/financials/save-financial-products/`);
 // });
 </script>
-<style scoped></style>
+<style scoped>
+* {
+  background: #f9f9f9;
+}
+html,
+body {
+  font-family: "Noto Sans", sans-serif;
+}
+.display-large {
+  font-size: 3.5rem;
+  font-weight: bold;
+  line-height: 1.2;
+  color: var(--v-primary-base);
+}
+
+.headline-medium {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.subtitle-medium {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--v-secondary-base);
+}
+</style>

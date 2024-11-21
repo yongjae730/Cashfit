@@ -1,10 +1,10 @@
 <template>
-  <v-app-bar app flat color="#f8f9fa">
+  <v-app-bar app flat color="#ffffff">
     <v-container>
       <v-row justify="space-between" align="center">
         <!-- 로고 영역 -->
         <v-col class="d-flex align-center">
-          <router-link to="/"><v-icon>mdi-github</v-icon></router-link>
+          <router-link to="/"><v-img :src="`/bank_images/로고.png`" width="100px"></v-img></router-link>
         </v-col>
 
         <!-- 메뉴 -->
