@@ -63,6 +63,11 @@
     <!-- 댓글 섹션 -->
     <ProductComments :productId="product.id" />
   </v-main>
+
+  <!-- 상품 더 상세 정보 보기-->
+  <!-- <ProductWithOptions 
+    v-if="isClicked"
+   /> -->
 </template>
 
 <script setup>
@@ -72,15 +77,14 @@ import { useFinStore } from "@/stores/financial";
 import ProductComments from "@/components/ProductComments.vue";
 import axios from "axios";
 import { computed, onMounted, ref, watch } from "vue";
+import ProductWithOptions from "@/components/ProductWithOptions.vue";
 
 const store = useFinStore();
 const product = computed(() => store.selectedProduct);
 
-console.log(product.value);
-
 const accountStore = useAccount();
 const isLogin = computed(() => accountStore.isLogin);
-
+const isClicked = ref(false);
 const isLiked = ref(false);
 
 const getIcon = (label) => {
@@ -95,11 +99,11 @@ const getIcon = (label) => {
 };
 
 const productDetails = [
-  { label: "상품 코드", value: product.fin_prdt_cd },
-  { label: "금융사 코드", value: product.fin_co_no },
-  { label: "가입 대상", value: product.join_member },
-  { label: "가입 방법", value: product.join_way },
-  { label: "특별 조건", value: product.spcl_cnd },
+  { label: "상품 코드", value: product.value.fin_prdt_cd },
+  { label: "금융사 코드", value: product.value.fin_co_no },
+  { label: "가입 대상", value: product.value.join_member },
+  { label: "가입 방법", value: product.value.join_way },
+  { label: "특별 조건", value: product.value.spcl_cnd },
 ];
 
 const toggleLike = async () => {
