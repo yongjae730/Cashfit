@@ -71,13 +71,13 @@ import { useAccount } from "@/stores/accounts";
 import { useFinStore } from "@/stores/financial";
 import ProductComments from "@/components/ProductComments.vue";
 import axios from "axios";
-import { onMounted, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 
 const store = useFinStore();
 const product = store.selectedProduct;
 
 const accountStore = useAccount();
-const isLogin = accountStore.isLogin;
+const isLogin = computed(() => accountStore.isLogin);
 
 const isLiked = ref(false);
 
@@ -134,32 +134,6 @@ onMounted(async () => {
     console.error("초기 데이터 로드 중 오류 발생:", error);
   }
 });
-
-// watch(
-//   () => product.id,
-//   async (newProductId, oldProductId) => {
-//     if (!newProductId || newProductId === oldProductId) return;
-
-//     // 기존 댓글 초기화
-//     comments.value = [];
-
-//     try {
-//       // 새로운 상품의 댓글 로드
-//       const fetchedComments = await productCommentStore.getComments(newProductId);
-//       if (Array.isArray(fetchedComments)) {
-//         comments.value = fetchedComments; // 댓글 데이터 갱신
-//         console.log("새로운 상품 댓글 데이터:", comments.value);
-//       } else {
-//         console.error("댓글 데이터가 배열이 아님:", fetchedComments);
-//       }
-//     } catch (error) {
-//       console.error("댓글 목록 갱신 중 오류 발생:", error);
-//     }
-//   },
-//   { immediate: true }
-// );
-
-// console.log(comments.value)
 </script>
 
 <style scoped>

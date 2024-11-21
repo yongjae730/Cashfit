@@ -52,6 +52,7 @@
 import { computed, ref, watchEffect } from "vue";
 import LoginModal from "./LoginModal.vue";
 import { useAccount } from "@/stores/accounts";
+import router from "@/router";
 
 const showLoginModal = ref(false);
 const store = useAccount();
@@ -62,6 +63,7 @@ const username = computed(() => user_info.value.nickname || "User");
 const logout = () => {
   store.token = null;
   store.user = null;
+  router.push({ name: "Main" });
 };
 
 // 로그인 시 getProfile 호출해서 프로필 정보를 업데이트

@@ -71,7 +71,7 @@ const editedTitle = ref("");
 const editedContent = ref("");
 
 const isOwner = ref(false);
-const isLogin = accountStore.isLogin;
+const isLogin = computed(() => accountStore.isLogin);
 
 // 댓글 작성자인지 확인
 
@@ -86,32 +86,47 @@ onMounted(async () => {
   try {
     const response = await axios.get(`http://127.0.0.1:8000/api/articles/${route.params.id}/`);
     article.value = response.data;
-    store.getComments(route.params.id);
+
+    await store.getComments(route.params.id);
+    comment.value = store.comments || [];
   } catch (error) {
-    console.error("게시글 로딩 실패:", error);
+    console.error("게시글 또는 댓글 로딩 실패:", error);
+    alert("데이터를 로드하는 중 문제가 발생했습니다.");
   }
 });
 
 // 댓글 추가
 
 const addComment = async (content) => {
+  if (!content.trim()) {
+    alert("댓글 내용을 입력하세요.");
+    return;
+  }
   try {
     const response = await axios.post(`http://127.0.0.1:8000/api/articles/${route.params.id}/comments/create/`, { content }, { headers: { Authorization: `Token ${accountStore.token}` } });
-    comment.value.push(response.data);
+    comment.value = response.data ? [...comment.value, response.data] : comment.value;
   } catch (error) {
     console.error("댓글 추가 실패:", error);
+    alert("댓글을 추가하는 중 문제가 발생했습니다. 다시 시도해주세요.");
   }
 };
 
 const updateComment = async ({ id, content }) => {
+  if (!content.trim()) {
+    alert("수정할 내용을 입력하세요.");
+    return;
+  }
   try {
     await store.updateComment(route.params.id, id, content);
     const targetComment = comment.value.find((c) => c.id === id);
     if (targetComment) {
       targetComment.content = content;
+    } else {
+      console.error("수정할 댓글을 찾지 못했습니다.");
     }
   } catch (error) {
     console.error("댓글 수정 실패:", error);
+    alert("댓글을 수정하는 중 문제가 발생했습니다. 다시 시도해주세요.");
   }
 };
 
@@ -121,9 +136,12 @@ const deleteComment = async (commentId) => {
     const targetComment = comment.value.find((c) => c.id === commentId);
     if (targetComment) {
       targetComment.is_deleted = true;
+    } else {
+      console.error("삭제할 댓글을 찾지 못했습니다.");
     }
   } catch (error) {
     console.error("댓글 삭제 실패:", error);
+    alert("댓글을 삭제하는 중 문제가 발생했습니다. 다시 시도해주세요.");
   }
 };
 
@@ -148,15 +166,14 @@ const updateArticle = async () => {
       content: editedContent.value.trim(),
     };
     await axios.put(`http://127.0.0.1:8000/api/articles/${route.params.id}/update-delete/`, payload, {
-      headers: {
-        Authorization: `Token ${accountStore.token}`,
-      },
+      headers: { Authorization: `Token ${accountStore.token}` },
     });
     article.value.title = editedTitle.value;
     article.value.content = editedContent.value;
     closeEditModal();
   } catch (error) {
     console.error("게시글 수정 실패:", error);
+    alert("게시글을 수정하는 중 문제가 발생했습니다. 다시 시도해주세요.");
   }
 };
 
