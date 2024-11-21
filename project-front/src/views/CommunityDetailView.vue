@@ -19,15 +19,7 @@
         <p style="color: #444; font-size: 16px; line-height: 1.8">{{ article.content }}</p>
       </v-card>
 
-      <CommunityComment
-        :comments="comment"
-        :isLogin="isLogin"
-        :userNickname="accountStore.user?.user_info.nickname"
-        @add-comment="addComment"
-        @update-comment="updateComment"
-        @delete-comment="deleteComment"
-      />
-
+      <CommunityComment :comments="comments" :isLogin="isLogin" :userNickname="userNickname" @add-comment="addComment" @update-comment="updateComment" @delete-comment="deleteComment" />
       <v-dialog v-model="editModal" max-width="500">
         <v-card>
           <v-card-title>
@@ -65,7 +57,7 @@ const store = commentStore();
 const route = useRoute();
 
 const article = ref(null);
-const comment = ref([]);
+const comments = ref([]);
 const editModal = ref(false);
 const editedTitle = ref("");
 const editedContent = ref("");
@@ -82,13 +74,21 @@ watchEffect(() => {
   }
 });
 
+const fetchComments = async () => {
+  try {
+    const response = await axios.get(`http://127.0.0.1:8000/api/articles/${route.params.id}`);
+    comments.value = response.data.comments;
+  } catch (error) {
+    console.error("댓글 데이터를 가져오는 중 오류 발생:", error);
+  }
+};
+
 onMounted(async () => {
   try {
     const response = await axios.get(`http://127.0.0.1:8000/api/articles/${route.params.id}/`);
     article.value = response.data;
 
-    await store.getComments(route.params.id);
-    comment.value = store.comments || [];
+    fetchComments();
   } catch (error) {
     console.error("게시글 또는 댓글 로딩 실패:", error);
     alert("데이터를 로드하는 중 문제가 발생했습니다.");
@@ -104,7 +104,7 @@ const addComment = async (content) => {
   }
   try {
     const response = await axios.post(`http://127.0.0.1:8000/api/articles/${route.params.id}/comments/create/`, { content }, { headers: { Authorization: `Token ${accountStore.token}` } });
-    comment.value = response.data ? [...comment.value, response.data] : comment.value;
+    comments.value = response.data ? [...comment.value, response.data] : comments.value;
   } catch (error) {
     console.error("댓글 추가 실패:", error);
     alert("댓글을 추가하는 중 문제가 발생했습니다. 다시 시도해주세요.");
@@ -179,7 +179,7 @@ const updateArticle = async () => {
 
 // 댓글 데이터 로드 및 실시간 반영
 watchEffect(() => {
-  comment.value = store.comments;
+  comments.value = store.comments;
 });
 </script>
 

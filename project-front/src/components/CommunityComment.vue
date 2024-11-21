@@ -71,17 +71,15 @@ const newComment = ref("");
 const editIndex = ref(null);
 const editedComment = ref("");
 
-// 댓글 작성
 const addComment = () => {
   if (!newComment.value.trim()) {
     alert("댓글을 입력하세요.");
     return;
   }
   emit("add-comment", newComment.value.trim());
-  newComment.value = ""; // 입력창 초기화
+  newComment.value = "";
 };
 
-// 수정 모드 전환
 const toggleEditMode = (index) => {
   if (editIndex.value === index) {
     cancelEdit();
@@ -91,13 +89,11 @@ const toggleEditMode = (index) => {
   }
 };
 
-// 댓글 수정 취소
 const cancelEdit = () => {
   editIndex.value = null;
   editedComment.value = "";
 };
 
-// 댓글 수정 완료
 const saveEdit = (commentId) => {
   if (!editedComment.value.trim()) {
     alert("수정할 내용을 입력하세요.");
@@ -108,19 +104,7 @@ const saveEdit = (commentId) => {
   editedComment.value = "";
 };
 
-// 댓글 작성자인지 확인
 const isCommentOwner = (item) => {
   return props.userNickname && item.nickname === props.userNickname;
 };
 </script>
-
-<style scoped>
-.v-card {
-  border-radius: 12px;
-}
-
-.v-textarea {
-  font-size: 14px;
-  padding: 12px;
-}
-</style>
