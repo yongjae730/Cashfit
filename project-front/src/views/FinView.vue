@@ -1,5 +1,5 @@
 <template>
-  <v-main class="bg-grey-lighten-4">
+  <v-main>
     <v-container fluid>
       <v-card class="mx-auto mt-4 rounded-lg" elevation="2">
         <v-card-title class="d-flex align-center py-4 px-4">

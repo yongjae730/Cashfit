@@ -27,27 +27,15 @@ const updateLoginModal = (isOpen) => {
 // onMounted(() => {
 //   axios.get(`http://127.0.0.1:8000/api/financials/save-financial-products/`);
 // });
-const fontWeights = {
-  title: 600, // 제목
-  subtitle: 500, // 소제목
-  body: 400, // 본문
-  caption: 300, // 캡션
-};
 </script>
 <style scoped>
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
 * {
-  background: #f9f9f9;
-}
-
-/* global.css or App.vue <style> */
-body,
-html {
+  background-color: #eef7fb;
   font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   font-weight: 400; /* 기본 본문 폰트 웨이트 */
   letter-spacing: -0.4px;
   line-height: 1.6;
-  background-color: #f9f9f9; /* 배경색 글로벌 설정 */
 }
 
 /* 제목 스타일 */

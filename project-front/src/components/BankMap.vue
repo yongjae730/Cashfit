@@ -1,6 +1,5 @@
 <template>
   <div class="map-container">
-    <h1>가장 가까운 은행 찾기</h1>
     <div class="filter-section">
       <select v-model="sido" class="select-box" @change="onSidoChange">
         <option value="">시 / 도 선택</option>

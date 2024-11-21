@@ -4,8 +4,9 @@
       <v-col cols="12">
         <v-carousel hide-delimiters cycle show-arrows="hover" height="400px">
           <v-carousel-item v-for="(slide, i) in slides" :key="i">
-            <div class="d-flex flex-column align-center justify-center" style="height: 100%">
-              <h1 class="v-typography display-large primary--text">{{ slide.title }}</h1>
+            <v-img :src="slide.image" class="carousel-image" cover></v-img>
+            <div class="carousel-title d-flex flex-column align-center justify-center carousel-overlay" style="height: 100%">
+              <h1 class="carousel-subtitle v-typography display-large primary--text">{{ slide.title }}</h1>
               <h3>{{ slide.subtitle }}</h3>
             </div>
           </v-carousel-item>
@@ -27,7 +28,29 @@ const props = defineProps({
 <style scoped>
 .main-carousel-section {
   background-color: #f3f4f6;
-  padding-top: 20px;
-  padding-bottom: 20px;
+}
+/* 텍스트 오버레이 */
+.carousel-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  text-align: center;
+  color: white;
+  background: rgba(0, 0, 0, 0.4); /* 어두운 오버레이 */
+  padding: 20px;
+}
+
+.carousel-title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.carousel-subtitle {
+  font-size: 18px;
+  margin: 0;
 }
 </style>

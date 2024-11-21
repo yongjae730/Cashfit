@@ -2,7 +2,7 @@
   <v-main>
     <MainPageCarousel v-if="carouselSlides.length > 0" :slides="carouselSlides" />
     <MiddleNav />
-    <v-container>
+    <v-container class="main-content">
       <MainProductList />
       <MainPageBank />
     </v-container>
@@ -23,22 +23,22 @@ const fetchCarouselSlides = async () => {
   // 데이터를 가져오는 비동기 함수
   return [
     {
-      image: "https://via.placeholder.com/1200x400",
+      image: `bank_images/로고.png`,
       title: "금융 상품 추천",
       subtitle: "당신을 위한 맞춤 금융 상품",
     },
     {
-      image: "https://via.placeholder.com/1200x400",
+      image: `bank_images/로고.png`,
       title: "내 주변 은행 머임?",
       subtitle: "찾기 귀찮쓰",
     },
     {
-      image: "https://via.placeholder.com/1200x400",
+      image: `bank_images/로고.png`,
       title: "AI에게 물어본 내 투자 방향",
       subtitle: "지려따...",
     },
     {
-      image: "https://via.placeholder.com/1200x400",
+      image: `bank_images/로고.png`,
       title: "예적금 토론 ㄱㄱ",
       subtitle: "ㅇㅅㅇ",
     },
@@ -51,4 +51,8 @@ onMounted(async () => {
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.main-content {
+  justify-items: center;
+}
+</style>

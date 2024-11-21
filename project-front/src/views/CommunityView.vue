@@ -1,7 +1,7 @@
 <template>
-  <v-container style="margin-top: 64px">
+  <v-main style="margin-top: 64px">
     <div class="d-flex justify-space-between align-center mb-4">
-      <h1 class="page-title">게시판</h1>
+      <h1 class="page-title" style="padding: 15px">게시판</h1>
       <v-btn color="primary" class="font-weight-bold" style="border-radius: 8px; color: white; font-size: 16px" @click="goToCreateArticle">게시글 작성</v-btn>
     </div>
 
@@ -21,7 +21,7 @@
     </v-data-table>
 
     <v-pagination v-model="currentPage" :length="pageCount" class="mt-4" color="primary"></v-pagination>
-  </v-container>
+  </v-main>
 </template>
 
 <script setup>

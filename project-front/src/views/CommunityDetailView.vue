@@ -1,5 +1,5 @@
 <template>
-  <v-container style="margin-top: 64px">
+  <v-main style="margin-top: 64px">
     <!-- 본문 내용 -->
     <div v-if="article">
       <!-- 본문 내용 -->
@@ -41,7 +41,7 @@
         </v-card>
       </v-dialog>
     </div>
-  </v-container>
+  </v-main>
 </template>
 
 <script setup>
@@ -190,7 +190,11 @@ h2 {
   font-family: "Pretendard", sans-serif;
   color: #333;
 }
-
+/* .v-main {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+} */
 .v-card {
   border-radius: 12px;
 }

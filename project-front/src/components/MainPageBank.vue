@@ -1,6 +1,6 @@
 <template>
   <div class="map-container">
-    <h1>은행 어디로 가야하지??</h1>
+    <h2 class="section-title">은행 어디로 가야하지??</h2>
     <div class="filter-section">
       <!-- 시 / 도 선택 -->
       <v-select v-model="sido" :items="sidoList" label="시 / 도 선택" outlined dense class="select-box" @change="onSidoChange" :rules="[(v) => !!v || '시/도를 선택하세요']" />
@@ -189,10 +189,13 @@ const searchBranches = () => {
 
 <style scoped>
 .map-container {
+  background-color: #f9f9f9;
   width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+  padding: 30px;
+  margin: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .filter-section {
