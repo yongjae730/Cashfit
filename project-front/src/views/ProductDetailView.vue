@@ -1,5 +1,5 @@
 <template>
-  <v-container style="margin-top: 64px">
+  <v-main class="product-detail" style="margin-top: 64px">
     <!-- 상품 제목 섹션 (이전과 동일) -->
     <v-card class="mb-8 rounded-xl" elevation="3">
       <v-card-title class="d-flex align-center pa-6">
@@ -62,7 +62,7 @@
 
     <!-- 댓글 섹션 -->
     <ProductComments :productId="product.id" />
-  </v-container>
+  </v-main>
 </template>
 
 <script setup>
@@ -139,6 +139,9 @@ onMounted(async () => {
 </script>
 
 <style scoped>
+.product-detail > * {
+  margin: 10px;
+}
 .v-card {
   transition: transform 0.2s, box-shadow 0.2s;
 }
@@ -147,7 +150,6 @@ onMounted(async () => {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
 }
-
 
 .v-textarea :deep(.v-field__input) {
   padding: 16px;
