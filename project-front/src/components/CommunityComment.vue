@@ -1,7 +1,7 @@
 <template>
   <v-card flat class="pa-6 mb-6" style="background-color: #f8f9fa; border-radius: 12px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05)">
     <!-- 댓글 제목 -->
-    <h2 v-if="comments" class="text-h6 font-weight-bold mb-4" style="color: #222; border-bottom: 2px solid #e0e0e0; padding-bottom: 8px">댓글 {{ comments.length }}개</h2>
+    <h2 v-if="comments && comments.length > 0" class="text-h6 font-weight-bold mb-4" style="color: #222; border-bottom: 2px solid #e0e0e0; padding-bottom: 8px">댓글 {{ comments.length }}개</h2>
     <h2 v-else class="text-h6 font-weight-bold mb-4" style="color: #666">작성된 댓글이 없어요...</h2>
 
     <!-- 댓글 리스트 -->
@@ -11,9 +11,11 @@
         <div class="d-flex align-center mb-2">
           <span class="font-weight-bold" style="color: #444; font-size: 14px">{{ item.nickname }}</span>
           <div v-if="isCommentOwner(item)" class="ml-auto d-flex align-center">
+            <!-- 수정 버튼 -->
             <v-btn icon small @click="toggleEditMode(index)">
               <v-icon small color="primary">mdi-pencil</v-icon>
             </v-btn>
+            <!-- 삭제 버튼 -->
             <v-btn icon small @click="$emit('delete-comment', item.id)">
               <v-icon small color="red">mdi-delete</v-icon>
             </v-btn>
