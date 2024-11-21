@@ -17,10 +17,12 @@
         <v-card class="info-card">
           <v-card-title class="font-weight-bold text-h6">마이 페이지</v-card-title>
           <v-card-text>
-            <div class="info-text">회원 정보를 확인하거나 변경하세요.</div>
+            <div class="info-text">닉네임 : {{ userInfo.nickname }}</div>
+            <div class="info-text">나이 : {{ userInfo.age }}</div>
+            <div class="info-text">자본금 : {{ userInfo.capital }} 만원</div>
           </v-card-text>
           <v-card-actions>
-            <v-btn color="secondary" block rounded @click="openEditModal">정보 수정</v-btn>
+            <v-btn color="primary" block rounded @click="openEditModal">정보 수정</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>

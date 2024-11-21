@@ -62,40 +62,6 @@
 
     <!-- 댓글 섹션 -->
     <ProductComments :productId="product.id" />
-    <!-- <v-card class="rounded-xl" elevation="2">
-      <v-card-title class="text-h5 font-weight-bold pa-6">
-        <v-icon color="primary" class="mr-2">mdi-comment-multiple</v-icon>
-        댓글
-      </v-card-title>
-
-      <v-card-text class="pa-6">
-        <v-list v-if="comments.length > 0">
-          <v-list-item v-for="(comment, index) in comments" :key="index" class="mb-4 rounded-lg" elevation="1">
-            <template v-slot:prepend>
-              <v-avatar color="primary" class="mr-3">
-                <span class="text-white">{{ comment.content || "?" }}</span>
-              </v-avatar>
-            </template>
-            <v-list-item-content>
-              <v-list-item-subtitle class="text-body-1 py-2">
-                {{ comment.content }}
-              </v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-
-        <v-alert v-else type="info" variant="tonal" class="mb-4">아직 댓글이 없습니다. 첫 댓글을 작성해보세요!</v-alert>
-
-        <v-textarea v-model="newComment" label="댓글을 입력하세요" variant="outlined" rows="3" class="mt-6 rounded-lg" hide-details :disabled="!isLogin"></v-textarea>
-
-        <div class="d-flex justify-end mt-4">
-          <v-btn color="primary" size="large" :disabled="newComment.trim() === '' || !isLogin" @click="onCommentClick" class="px-6">
-            <v-icon left class="mr-2">mdi-send</v-icon>
-            등록
-          </v-btn>
-        </div>
-      </v-card-text>
-    </v-card> -->
   </v-container>
 </template>
 
