@@ -9,18 +9,18 @@
 
         <!-- 메뉴 -->
         <v-col class="d-flex align-center" cols="auto">
-          <!-- <router-link :to="{ name: 'fin' }">
+          <router-link :to="{ name: 'fin' }">
             <v-btn text>금융상품</v-btn>
           </router-link>
           <router-link :to="{ name: 'stock' }">
             <v-btn text>커뮤니티</v-btn>
           </router-link>
-           <router-link :to="{ name: 'crypto' }">
+          <!-- <router-link :to="{ name: 'crypto' }">
             <v-btn text>비트코인</v-btn>
-          </router-link> 
+          </router-link>  -->
           <router-link :to="{ name: 'exchange' }">
             <v-btn text>Exchange</v-btn>
-          </router-link> -->
+          </router-link>
         </v-col>
 
         <!-- 로그인/회원가입 버튼 -->
