@@ -2,7 +2,6 @@
   <v-dialog v-model="internalShow" persistent max-width="500px">
     <v-card>
       <v-card-title>
-        <v-img :src="`/flags/${exchange?.cur_unit || ''}.png`" alt="국기" width="48" height="32" />
         <span class="text-h5 font-weight-bold ml-4">{{ exchange?.cur_nm || "정보 없음" }} ({{ exchange?.cur_unit || "" }})</span>
         <v-spacer></v-spacer>
         <v-btn icon @click="close">
@@ -35,11 +34,9 @@
         <v-row>
           <v-col cols="6">
             <div>사실 때: {{ exchange?.tts || "N/A" }}</div>
-            <div>파실 때: {{ exchange?.ttb || "N/A" }}</div>
           </v-col>
           <v-col cols="6">
-            <div>보낼 때: {{ exchange?.ten_dd_efee_r || "N/A" }}</div>
-            <div>받을 때: {{ exchange?.kftc_deal_bas_r || "N/A" }}</div>
+            <div>파실 때: {{ exchange?.ttb || "N/A" }}</div>
           </v-col>
         </v-row>
       </v-card-text>

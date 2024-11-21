@@ -6,7 +6,7 @@
       </v-col>
     </v-row>
 
-    <v-carousel height="auto" v-else :items-per-view="1" cycle interval="10000" hide-delimiters>
+    <v-carousel height="400px" v-else :items-per-view="1" cycle interval="6000" hide-delimiters show-arrows="hover">
       <v-carousel-item v-for="(group, index) in groupedExchangeInfos" :key="index">
         <v-row>
           <ExchangeItem v-for="exchange in group" :key="exchange.cur_unit" :exchange="exchange" @show-details="showDetailModal" />
@@ -19,32 +19,23 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import ExchangeItem from "@/components/ExchangeItem.vue";
 import ExchangeDetail from "@/components/ExchangeDetail.vue";
 import { useExchangeStore } from "@/stores/exchange";
 
 const loading = ref(true);
 const store = useExchangeStore();
-const exchangeInfos = ref([]);
 const groupedExchangeInfos = ref([]);
 const selectedExchange = ref(null);
 const isDetailModalOpen = ref(false);
 
-onMounted(async () => {
-  try {
-    await store.getExchange();
-    if (store.exchange && store.exchange.exchange_rate) {
-      exchangeInfos.value = store.exchange.exchange_rate;
-      groupedExchangeInfos.value = chunkArray(exchangeInfos.value, 3);
-    } else {
-      console.error("환율 데이터가 비어 있습니다.");
-    }
-  } catch (error) {
-    console.error("환율 데이터를 가져오는 중 오류 발생:", error);
-  } finally {
-    loading.value = false;
-  }
+// props 정의
+const props = defineProps({
+  exchangeInfos: {
+    type: Array,
+    default: () => [],
+  },
 });
 
 const chunkArray = (array, size) => {
@@ -54,6 +45,20 @@ const chunkArray = (array, size) => {
   }
   return result;
 };
+// onMounted에서 데이터 사용
+watch(
+  () => props.exchangeInfos,
+  (newExchangeInfos) => {
+    if (newExchangeInfos && newExchangeInfos.length > 0) {
+      groupedExchangeInfos.value = chunkArray(newExchangeInfos, 3);
+      loading.value = false;
+    } else {
+      console.error("환율 데이터가 비어 있습니다.");
+      loading.value = false;
+    }
+  },
+  { immediate: true } // 컴포넌트가 마운트될 때 바로 실행되도록 설정
+);
 
 const showDetailModal = (exchange) => {
   selectedExchange.value = exchange;

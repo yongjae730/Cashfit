@@ -15,7 +15,7 @@
         <v-select v-model="conversionType" :items="conversionOptions" label="환율 종류" variant="outlined"></v-select>
         <v-row class="mt-4">
           <v-col cols="6">
-            <v-select v-model="selectedCurrency" :items="availableCurrencies" label="국가 선택" variant="outlined"></v-select>
+            <v-select v-model="selectedCurrency" :items="availableCurrencies" label="국가 선택" variant="outlined" :readonly="true"></v-select>
             <v-text-field v-model="amount" type="number" label="금액 입력" variant="outlined" class="mt-4"></v-text-field>
           </v-col>
           <v-col cols="6" class="d-flex align-center justify-center">
