@@ -1,11 +1,31 @@
 <template>
   <v-col cols="4">
     <v-card class="exchange-card" @click="handleClick">
-      <v-img :src="`/flag/${exchange.cur_unit}.png`" alt="국기" width="210" height="32" />
+      <v-img :src="`/flag/${exchange.cur_unit}.png`" alt="국기" width="150" max-height="100" />
       <div class="exchange-title">{{ exchange.cur_nm }} ({{ exchange.cur_unit }})</div>
-      <div class="exchange-rate">매매기준율: {{ exchange.deal_bas_r }}</div>
+
+      <v-card-text class="exchange-rates">
+        <v-row>
+          <v-col class="text-left">
+            <div>
+              내가 살때:
+              <strong>{{ exchange?.tts || "N/A" }}</strong>
+            </div>
+            <div>
+              내가 팔때:
+              <strong>{{ exchange?.ttb || "N/A" }}</strong>
+            </div>
+          </v-col>
+          <v-col class="text-right">
+            <div>
+              매매기준율:
+              <strong>{{ exchange?.deal_bas_r || "N/A" }}</strong>
+            </div>
+          </v-col>
+        </v-row>
+      </v-card-text>
       <div class="exchange-actions">
-        <v-btn color="primary" @click.stop="handleClick">자세히 보기</v-btn>
+        <v-btn color="primary" @click.stop="handleClick">바로 계산하기</v-btn>
       </div>
     </v-card>
   </v-col>
@@ -36,7 +56,7 @@ const handleClick = () => {
   justify-content: space-between;
   align-items: center;
   padding: 16px;
-  height: 240px; /* Fixed height */
+  min-height: 300px; /* Increase height to accommodate larger image */
   background-color: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 12px;

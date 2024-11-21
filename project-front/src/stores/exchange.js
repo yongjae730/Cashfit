@@ -6,21 +6,22 @@ export const useExchangeStore = defineStore(
   "exchange",
   () => {
     const exchange = ref([]);
+    const loading = ref(true); // 로딩 상태 추가
     const API_URL = "http://127.0.0.1:8000";
-    const getExchange = function () {
-      axios({
-        method: "get",
-        url: `${API_URL}/api/financials/exchange-rate/`,
-      })
-        .then((res) => {
-          console.log(res.data);
-          exchange.value = res.data;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+
+    const getExchange = async function () {
+      loading.value = true; // API 호출 시작 시 로딩 시작
+      try {
+        const res = await axios.get(`${API_URL}/api/financials/exchange-rate/`);
+        exchange.value = res.data;
+      } catch (error) {
+        console.log(error);
+      } finally {
+        loading.value = false; // API 호출 완료 시 로딩 종료
+      }
     };
-    return { exchange, getExchange };
+
+    return { exchange, getExchange, loading };
   },
   { persist: true }
 );
