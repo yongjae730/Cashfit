@@ -1,7 +1,7 @@
 <template>
   <v-card flat class="pa-6 mb-6" style="background-color: #f8f9fa; border-radius: 12px; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05)">
     <!-- 댓글 제목 -->
-    <h2 v-if="comments.length > 0" class="text-h6 font-weight-bold mb-4" style="color: #222; border-bottom: 2px solid #e0e0e0; padding-bottom: 8px">댓글 {{ comments.length }}개</h2>
+    <h2 v-if="comments" class="text-h6 font-weight-bold mb-4" style="color: #222; border-bottom: 2px solid #e0e0e0; padding-bottom: 8px">댓글 {{ comments.length }}개</h2>
     <h2 v-else class="text-h6 font-weight-bold mb-4" style="color: #666">작성된 댓글이 없어요...</h2>
 
     <!-- 댓글 리스트 -->
@@ -42,7 +42,7 @@
 
     <!-- 댓글 등록 버튼 -->
     <div class="d-flex justify-end">
-      <v-btn color="primary" class="font-weight-bold px-6 py-3" style="border-radius: 8px" :disabled="newComment.trim() === '' || !isLogin" @click="addComment">댓글 등록</v-btn>
+      <v-btn color="primary" class="font-weight-bold px-6 py-3" style="border-radius: 8px" :disabled="!isLogin || newComment.trim() === ''" @click="addComment(newComment)">댓글 등록</v-btn>
     </div>
   </v-card>
 </template>
