@@ -9,14 +9,12 @@
       <!-- 댓글 리스트 -->
       <v-list v-if="comments.length > 0">
         <v-list-item v-for="(comment, index) in comments" :key="index" class="mb-4 rounded-lg" elevation="1">
-          <template v-slot:prepend>
-            <v-avatar color="primary" class="mr-3">
-              <span class="text-white">{{ comment.content?.[0] || "?" }}</span>
-            </v-avatar>
-          </template>
           <v-list-item-content>
-            <v-list-item-subtitle class="text-body-1 py-2">
+            <v-list-item-title class="py-2">
               {{ comment.content }}
+            </v-list-item-title>
+            <v-list-item-subtitle class="py-2">
+              {{ comment.create_at }}
             </v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
