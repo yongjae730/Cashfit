@@ -1,415 +1,193 @@
 <template>
-  /**
-  <v-app>
-    <!-- 상단 네비게이션 바 -->
-    <v-app-bar app flat color="#f8f9fa">
-      <v-container>
-        <v-row justify="space-between" align="center">
-          <!-- 로고 영역 -->
-          <v-col class="d-flex align-center">
-            <v-icon>mdi-github</v-icon>
-          </v-col>
+  <v-main>
+    <v-container fluid>
+      <v-card class="mx-auto mt-4 rounded-lg" elevation="2">
+        <v-card-title class="d-flex align-center py-4 px-4">
+          <v-icon icon="mdi-bank" size="large" class="mr-2" color="primary" />
+          <span class="text-h5 font-weight-bold">금융 상품</span>
+          <v-spacer />
+          <v-text-field v-model="search" prepend-inner-icon="mdi-magnify" label="검색" single-line hide-details
+            density="compact" variant="outlined" class="max-width-200" />
+        </v-card-title>
 
-          <!-- 메뉴 -->
-          <v-col class="d-flex align-center" cols="auto">
-            <v-btn text>금융상품</v-btn>
-            <v-btn text>주식</v-btn>
-            <v-btn text>비트코인</v-btn>
-          </v-col>
+        <v-divider />
 
-          <!-- 로그인/회원가입 버튼 -->
-          <v-col class="d-flex align-center" cols="auto">
-            <v-btn outlined class="mr-2">Sign in</v-btn>
-            <v-btn color="black" dark>Register</v-btn>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-app-bar>
+        <div v-if="finList.length > 0" class="custom-table-container">
+          <v-data-table
+            :headers="headers"
+            :items="finList || []"
+            :search="search"
+            hover fixed-header
+            height="calc(100vh - 250px)"
+            class="financial-table elevation-1"
+            :items-per-page="-1">
+            <template #item.fin_prdt_nm="{ item }">
+              <router-link :to="`/product/${item.fin_prdt_cd}`" @click="setProduct(item)"
+                class="text-decoration-none font-weight-medium text-primary">
+                {{ item.fin_prdt_nm }}
+              </router-link>
+            </template>
 
-    <!-- 메인 캐러셀 섹션 -->
-    <v-container fluid class="main-carousel-section">
-      <v-row>
-        <v-col cols="12">
-          <v-carousel hide-delimiter-background height="400px">
-            <v-carousel-item v-for="(slide, i) in carouselSlides" :key="i">
-              <div class="d-flex flex-column align-center justify-center" style="height: 100%">
-                <h1 class="display-1 font-weight-bold mt-4">{{ slide.title }}</h1>
-                <h3>{{ slide.subtitle }}</h3>
-              </div>
-            </v-carousel-item>
-          </v-carousel>
-        </v-col>
-      </v-row>
-    </v-container>
-
-    <!-- 금융상품 섹션 -->
-    <v-container class="product-section">
-      <h1 class="section-title">Hot</h1>
-
-      <!-- 커스텀 탭 네비게이션 -->
-      <v-card flat>
-        <div class="custom-tabs">
-          <div v-for="(tab, index) in tabs" :key="index" :class="['tab-item', { active: currentTab === index }]" @click="currentTab = index">
-            {{ tab }}
-          </div>
+            <!-- 옵션 열 -->
+            <template #item.options="{ item }">
+              <ul>
+                <li v-for="(option, index) in item.options" :key="index">
+                  {{ option.intr_rate_type_nm }}: {{ option.intr_rate }}% ~ {{ option.intr_rate2 }}% ({{ option.save_trm
+                  }}개월)
+                </li>
+              </ul>
+            </template>
+          </v-data-table>
         </div>
-
-        <!-- 금융 상품 테이블 -->
-        <v-data-table :headers="getHeaders" :items="getItems" hide-default-footer class="financial-table">
-          <!-- 종목명/상품명 열 커스텀 템플릿 -->
-          <template v-slot:item.name="{ item }">
-            <div class="d-flex align-center">
-              <v-avatar size="24" class="mr-2">
-                <v-img :src="item.image || 'https://via.placeholder.com/24'" />
-              </v-avatar>
-              <div>
-                <div class="font-weight-medium">{{ item.name }}</div>
-                <div class="caption grey--text">{{ item.code }}</div>
-              </div>
-            </div>
-          </template>
-
-          <!-- 등락률/이자율 열 커스텀 템플릿 -->
-          <template v-slot:item.change="{ item }">
-            <span :class="getChangeClass(item.change)">{{ item.change >= 0 ? "+" : "" }}{{ item.change }}%</span>
-          </template>
-
-          <!-- 거래량 열 커스텀 템플릿 -->
-          <template v-slot:item.volume="{ item }">
-            {{ numberFormat(item.volume) }}
-          </template>
-
-          <!-- 금액 열 커스텀 템플릿 -->
-          <template v-slot:item.price="{ item }">
-            {{ numberFormat(item.price) }}
-          </template>
-        </v-data-table>
+        <v-alert v-else type="info" class="mt-4">데이터가 없습니다.</v-alert>
       </v-card>
     </v-container>
-
-    <!-- 하단 푸터 영역 -->
-    <v-footer color="white" padless>
-      <v-container>
-        <v-row>
-          <v-col class="text-center" cols="12" md="4">
-            <div><h2>깃허브</h2></div>
-            <p>
-              Wireframing
-              <br />
-              Diagramming
-            </p>
-          </v-col>
-          <v-col class="text-center" cols="12" md="4">
-            <div><h2>SSAFY</h2></div>
-            <p>
-              Design
-              <br />
-              Prototyping
-              <br />
-              Development features
-            </p>
-          </v-col>
-          <v-col class="text-center" cols="12" md="4">
-            <div><h2>주소</h2></div>
-            <p>
-              Blog
-              <br />
-              Best practices
-              <br />
-              Colors
-              <br />
-              Color wheel
-              <br />
-              Support
-            </p>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-footer>
-  </v-app>
+  </v-main>
 </template>
 
-<script>
-  import { ref, computed } from "vue";
+<script setup>
+import axios from "axios";
+import { useFinStore } from "@/stores/financial";
+import { onMounted, ref } from "vue";
 
-  export default {
-    name: "App",
+const store = useFinStore();
+const setProduct = (item) => {
+  store.setSelectedProduct(item);
+};
+const search = ref("");
 
-    setup() {
-      const currentTab = ref(0);
-      const tabs = ["예금", "적금", "주식", "코인"];
+const headers = [
+  {
+    title: "은행명",
+    align: "center",
+    value: "kor_co_nm",
+    width: "80px",
+  },
+  {
+    title: "상품명",
+    align: "center",
+    value: "fin_prdt_nm",
+    width: "150px",
+  },
+  {
+    title: "가입 대상",
+    align: "center",
+    value: "join_member",
+    width: "120px",
+  },
+  {
+    title: "특이사항",
+    align: "center",
+    value: "spcl_cnd",
+    width: "150px",
+  },
+  {
+    title: "옵션",
+    align: "center",
+    value: "options",
+    width: "120px", // 옵션 열을 넓게 설정
+  },
+  {
+    title: "종류", // 새로운 열 추가
+    align: "center",
+    value: "product_type_display",
+    width: "80px"
+  },
+  {
+    title: "기타",
+    align: "center",
+    value: "etc_note",
+    width: "150px",
+  },
+];
 
-      // 캐러셀 데이터
-      const carouselSlides = [
-        {
-          image: "https://via.placeholder.com/1200x400",
-          title: "금융 상품 추천",
-          subtitle: "당신을 위한 맞춤 금융 상품",
-        },
-        {
-          image: "https://via.placeholder.com/1200x400",
-          title: "실시간 주식 정보",
-          subtitle: "빠르고 정확한 시장 동향",
-        },
-        {
-          image: "https://via.placeholder.com/1200x400",
-          title: "암호화폐 시세",
-          subtitle: "글로벌 암호화폐 동향",
-        },
-      ];
+const finList = ref([]);  // 금융 상품 목록
 
-      // 각 탭별 테이블 헤더 정의
-      const headers = {
-        stock: [
-          { text: "종목명", value: "name", align: "start" },
-          { text: "현재가", value: "price", align: "end" },
-          { text: "전일비", value: "priceChange", align: "end" },
-          { text: "등락률", value: "change", align: "end" },
-          { text: "거래량", value: "volume", align: "end" },
-          { text: "거래대금", value: "tradingValue", align: "end" },
-          { text: "시가총액", value: "marketCap", align: "end" },
-        ],
-        deposit: [
-          { text: "상품명", value: "name", align: "start" },
-          { text: "은행", value: "bank", align: "start" },
-          { text: "금리", value: "change", align: "end" },
-          { text: "최소가입금액", value: "minAmount", align: "end" },
-          { text: "가입기간", value: "period", align: "end" },
-        ],
-        savings: [
-          { text: "상품명", value: "name", align: "start" },
-          { text: "은행", value: "bank", align: "start" },
-          { text: "금리", value: "change", align: "end" },
-          { text: "월 납입액", value: "monthlyPayment", align: "end" },
-          { text: "가입기간", value: "period", align: "end" },
-        ],
-        crypto: [
-          { text: "암호화폐", value: "name", align: "start" },
-          { text: "현재가", value: "price", align: "end" },
-          { text: "전일비", value: "priceChange", align: "end" },
-          { text: "등락률", value: "change", align: "end" },
-          { text: "거래량", value: "volume", align: "end" },
-          { text: "시가총액", value: "marketCap", align: "end" },
-        ],
-      };
-
-      // 샘플 데이터
-      const items = {
-        stock: [
-          {
-            name: "삼성전자",
-            code: "005930",
-            price: 57300,
-            priceChange: -300,
-            change: -0.52,
-            volume: 21933484,
-            tradingValue: 1253062,
-            marketCap: 3438595,
-          },
-          {
-            name: "SK하이닉스",
-            code: "000660",
-            price: 195800,
-            priceChange: 2600,
-            change: 1.35,
-            volume: 3418604,
-            tradingValue: 670697,
-            marketCap: 1406501,
-          },
-        ],
-        deposit: [
-          {
-            name: "프리미엄 정기예금",
-            bank: "신한은행",
-            code: "SH001",
-            change: 4.5,
-            minAmount: 10000000,
-            period: "12개월",
-          },
-          {
-            name: "디지털 정기예금",
-            bank: "국민은행",
-            code: "KB001",
-            change: 4.3,
-            minAmount: 5000000,
-            period: "24개월",
-          },
-        ],
-        savings: [
-          {
-            name: "청년우대적금",
-            bank: "우리은행",
-            code: "WR001",
-            change: 5.2,
-            monthlyPayment: 500000,
-            period: "36개월",
-          },
-          {
-            name: "직장인적금",
-            bank: "하나은행",
-            code: "HN001",
-            change: 4.8,
-            monthlyPayment: 1000000,
-            period: "24개월",
-          },
-        ],
-        crypto: [
-          {
-            name: "비트코인",
-            code: "BTC",
-            price: 68000000,
-            priceChange: 1500000,
-            change: 2.25,
-            volume: 5234567,
-            marketCap: 1234567890,
-          },
-          {
-            name: "이더리움",
-            code: "ETH",
-            price: 3500000,
-            priceChange: -50000,
-            change: -1.41,
-            volume: 3456789,
-            marketCap: 987654321,
-          },
-        ],
-      };
-
-      // 현재 탭에 따른 헤더 계산
-      const getHeaders = computed(() => {
-        switch (currentTab.value) {
-          case 0:
-            return headers.deposit;
-          case 1:
-            return headers.savings;
-          case 2:
-            return headers.stock;
-          case 3:
-            return headers.crypto;
-          default:
-            return headers.stock;
-        }
+onMounted(async () => {
+  try {
+    const response = await axios.get("http://127.0.0.1:8000/api/financials/financial-products-with-options/");
+    console.log("API 응답 데이터:", response.data); // 응답 확인
+    if (Array.isArray(response.data)) {
+      // 데이터 가공
+      finList.value = response.data.map(item => {
+        const productTypeDisplay = item.product_type === 0
+          ? "예금"
+          : item.options[0]?.rsrv_type_nm || "정보 없음"; // rsrv_type_nm 또는 기본값
+        return {
+          ...item,
+          product_type_display: productTypeDisplay // 새 필드 추가
+        };
       });
+    } else {
+      console.error("API 데이터 형식이 올바르지 않습니다:", response.data);
+    }
+  } catch (error) {
+    console.error("Failed to fetch data:", error);
+  }
+});
 
-      // 현재 탭에 따른 아이템 계산
-      const getItems = computed(() => {
-        switch (currentTab.value) {
-          case 0:
-            return items.deposit;
-          case 1:
-            return items.savings;
-          case 2:
-            return items.stock;
-          case 3:
-            return items.crypto;
-          default:
-            return items.stock;
-        }
-      });
 
-      // 숫자 포맷팅 함수
-      const numberFormat = (value) => {
-        return new Intl.NumberFormat("ko-KR").format(value);
-      };
-
-      // 등락률에 따른 클래스 반환
-      const getChangeClass = (change) => {
-        return change >= 0 ? "red--text" : "blue--text";
-      };
-
-      return {
-        currentTab,
-        tabs,
-        carouselSlides,
-        getHeaders,
-        getItems,
-        numberFormat,
-        getChangeClass,
-      };
-    },
-  };
 </script>
 
-<style scoped>
-  /* 메인 캐러셀 배경색 */
-  .main-carousel-section {
-    background-color: #f3f4f6;
-    padding-top: 20px;
-    padding-bottom: 20px;
+<style>
+/* 전역 스타일로 설정 */
+.v-data-table-footer {
+  display: none !important;
+}
+
+.custom-table-container {
+
+  /* 스크롤바 스타일링 */
+  & ::-webkit-scrollbar {
+    width: 8px !important;
+    height: 8px !important;
   }
 
-  /* 중간 섹션 배경색 */
-  .product-section {
-    background-color: #f9fafb;
-    padding: 20px;
-    border-radius: 12px;
-    margin-top: 20px;
+  & ::-webkit-scrollbar-track {
+    background: #f1f1f1 !important;
+    border-radius: 4px !important;
   }
 
-  /* 섹션 제목 스타일 */
-  .section-title {
-    font-size: 28px;
-    font-weight: bold;
-    color: #2d3748;
-    margin-bottom: 20px;
+  & ::-webkit-scrollbar-thumb {
+    background: #c1c1c1 !important;
+    border-radius: 4px !important;
   }
 
-  /* 커스텀 탭 스타일 */
-  .custom-tabs {
-    display: flex;
-    border-bottom: 1px solid #e2e8f0;
-    margin-bottom: 1rem;
-    overflow-x: auto;
-    white-space: nowrap;
+  & ::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8 !important;
   }
-
-  .tab-item {
-    padding: 0.75rem 1.5rem;
-    cursor: pointer;
-    font-weight: 500;
-    color: #4a5568;
-    border-bottom: 2px solid transparent;
-    transition: all 0.2s;
-  }
-
-  .tab-item.active {
-    color: #2b6cb0;
-    border-bottom: 2px solid #2b6cb0;
-  }
-
-  /* 테이블 스타일 */
-  .financial-table {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-
-  .financial-table >>> .v-data-table__wrapper {
-    margin: 0 -16px;
-  }
-
-  .financial-table >>> table {
-    border-spacing: 0;
-  }
-
-  .financial-table >>> th {
-    background: #f8f9fa !important;
-    color: #4a5568 !important;
-    font-weight: 600 !important;
-    white-space: nowrap;
-  }
-
-  .financial-table >>> td {
-    border-bottom: 1px solid #e2e8f0;
-    padding: 12px 16px !important;
-    font-size: 0.875rem;
-  }
-  .red--text {
-    color: #ff5252;
-  }
-  .blue--text {
-    color: #2196f3;
-  }
+}
 </style>
-// savings: [ // { // name: "청년우대적금", // bank: "우리은행", // code: "WR001", // change: 5.2, // monthlyPayment: 500000, // period: "36개월", // }, // { // name: "직장인적금", // bank:
-"하나은행", // code: "HN001", // change: 4.8, // monthlyPayment: 1000000, // period: "24개월", // }, // ],
+
+<style scoped>
+.financial-table {
+  font-family: "Roboto", sans-serif;
+}
+
+.max-width-200 {
+  max-width: 200px;
+}
+
+:deep(.v-data-table) {
+  background: transparent !important;
+}
+
+:deep(.v-data-table-header) {
+  background-color: #f5f5f5 !important;
+}
+
+:deep(.v-data-table-header th) {
+  padding: 14px !important;
+  font-weight: bold !important;
+  color: rgba(0, 0, 0, 0.87) !important;
+  font-size: 0.875rem !important;
+}
+
+:deep(.v-data-table-row:hover) {
+  background-color: #f5f5f5 !important;
+}
+
+li {
+  list-style-type: none;
+}
+</style>
