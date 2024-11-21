@@ -21,7 +21,7 @@
     </v-row>
 
     <!-- Buttons -->
-    <v-row justify="end">
+    <v-row justify="end" class="mx-2">
       <v-btn color="primary" @click="calculateBuy">내가 살때</v-btn>
       &nbsp;
       <v-btn color="primary" @click="calculateSell">내가 팔때</v-btn>
