@@ -58,11 +58,12 @@ const loading = ref(false); // 로딩 상태 추가
 const fetchComments = async () => {
   loading.value = true; // 로딩 시작
   try {
-    const fetchedComments = await productCommentStore.getComments(props.productId);
-    if (Array.isArray(fetchedComments)) {
-      comments.value = fetchedComments;
+    const _fetchedComments = await productCommentStore.getComments(props.productId);
+    console.log(_fetchedComments);
+    if (Array.isArray(_fetchedComments)) {
+      comments.value = _fetchedComments;
     } else {
-      console.error("댓글 데이터가 배열이 아님:", fetchedComments);
+      console.error("댓글 데이터가 배열이 아님:", _fetchedComments);
     }
   } catch (error) {
     console.error("댓글 데이터를 가져오는 중 오류 발생:", error);

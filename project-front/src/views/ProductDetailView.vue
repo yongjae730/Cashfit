@@ -74,7 +74,9 @@ import axios from "axios";
 import { computed, onMounted, ref, watch } from "vue";
 
 const store = useFinStore();
-const product = store.selectedProduct;
+const product = computed(() => store.selectedProduct);
+
+console.log(product.value);
 
 const accountStore = useAccount();
 const isLogin = computed(() => accountStore.isLogin);
@@ -111,10 +113,10 @@ const toggleLike = async () => {
       Authorization: `Token ${token}`,
     };
     if (isLiked.value) {
-      await axios.delete(`${store.API_URL}/api/financials/products/${product.id}/like/`, { headers });
+      await axios.delete(`${store.API_URL}/api/financials/products/${product.value.id}/like/`, { headers });
       isLiked.value = false;
     } else {
-      await axios.post(`${store.API_URL}/api/financials/products/${product.id}/like/`, {}, { headers });
+      await axios.post(`${store.API_URL}/api/financials/products/${product.value.id}/like/`, {}, { headers });
       isLiked.value = true;
     }
   } catch (error) {
@@ -128,7 +130,7 @@ onMounted(async () => {
     const headers = {
       Authorization: `Token ${token}`,
     };
-    const response = await axios.get(`${store.API_URL}/api/financials/products/${product.id}/like/`, { headers });
+    const response = await axios.get(`${store.API_URL}/api/financials/products/${product.value.id}/like/`, { headers });
     isLiked.value = response.data.is_liked;
   } catch (error) {
     console.error("초기 데이터 로드 중 오류 발생:", error);
@@ -146,13 +148,6 @@ onMounted(async () => {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
 }
 
-.v-list-item {
-  transition: background-color 0.2s;
-}
-
-.v-list-item:hover {
-  background-color: rgba(var(--v-theme-primary), 0.05);
-}
 
 .v-textarea :deep(.v-field__input) {
   padding: 16px;
