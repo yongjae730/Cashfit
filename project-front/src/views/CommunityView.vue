@@ -50,7 +50,7 @@ const headers = [
   { title: "수정시간", key: "update_at" },
 ];
 
-const itemsPerPage = 5;
+const itemsPerPage = 10;
 const currentPage = ref(1);
 
 const paginatedArticles = computed(() => {

@@ -4,7 +4,7 @@
       <v-card class="mx-auto mt-4 rounded-lg" elevation="2">
         <v-card-title class="d-flex align-center py-4 px-4">
           <v-icon icon="mdi-bank" size="large" class="mr-2" color="primary" />
-          <span class="text-h5 font-weight-bold">예금 상품</span>
+          <span class="text-h5 font-weight-bold">금융 상품</span>
           <v-spacer />
           <v-text-field v-model="search" prepend-inner-icon="mdi-magnify" label="검색" single-line hide-details density="compact" variant="outlined" class="max-width-200" />
         </v-card-title>
