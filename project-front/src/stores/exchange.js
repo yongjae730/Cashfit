@@ -2,7 +2,7 @@ import axios from "axios";
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
-export const exchangeStore = defineStore(
+export const useExchangeStore = defineStore(
   "exchange",
   () => {
     const exchange = ref([]);

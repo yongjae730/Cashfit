@@ -1,65 +1,52 @@
 <template>
-  <v-container>
-    <h2>환전 미리 해보기</h2>
-    <!-- 로딩 상태 표시 -->
-    <v-progress-linear v-if="loading" indeterminate color="primary" />
+  <v-container class="top">
+    <v-row v-if="loading">
+      <v-col class="text-center">
+        <v-progress-circular indeterminate color="primary" />
+      </v-col>
+    </v-row>
 
-    <!-- 캐러셀 -->
-    <v-carousel v-else hide-delimiters height="360px" cycle="1s" show-arrows="hover">
+    <v-carousel height="auto" v-else :items-per-view="1" cycle interval="10000" hide-delimiters>
       <v-carousel-item v-for="(group, index) in groupedExchangeInfos" :key="index">
-        <v-row class="justify-center">
-          <v-col cols="12" md="4" lg="3" v-for="exchange in group" :key="exchange.cur_unit">
-            <v-card class="exchange-card" outlined>
-              <v-card-title class="exchange-title">
-                <div>{{ exchange.cur_nm }} ({{ exchange.cur_unit }})</div>
-              </v-card-title>
-              <v-card-subtitle class="exchange-rate">매매기준율: {{ exchange.deal_bas_r }}</v-card-subtitle>
-              <v-card-actions class="exchange-actions">
-                <v-btn color="primary" text small @click="showDetailModal(exchange)">상세 보기</v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-col>
+        <v-row>
+          <ExchangeItem v-for="exchange in group" :key="exchange.cur_unit" :exchange="exchange" @show-details="showDetailModal" />
         </v-row>
       </v-carousel-item>
     </v-carousel>
 
-    <!-- 상세 정보 모달 -->
-    <ExchangeDetail v-if="isDetailModalOpen" :exchange="selectedExchange" v-model:show="isDetailModalOpen" />
+    <ExchangeDetail v-model:show="isDetailModalOpen" :exchange="selectedExchange" />
   </v-container>
 </template>
 
 <script setup>
-import { exchangeStore } from "@/stores/exchange";
 import { ref, onMounted } from "vue";
+import ExchangeItem from "@/components/ExchangeItem.vue";
 import ExchangeDetail from "@/components/ExchangeDetail.vue";
+import { useExchangeStore } from "@/stores/exchange";
 
-const exchangeInfos = ref([]); // 환율 정보 배열
-const groupedExchangeInfos = ref([]); // 4개씩 그룹화된 환율 정보
-const selectedExchange = ref(null); // 선택된 환율 정보
-const isDetailModalOpen = ref(false); // 모달 표시 여부
-const loading = ref(true); // 로딩 상태
-const store = exchangeStore(); // Store
+const loading = ref(true);
+const store = useExchangeStore();
+const exchangeInfos = ref([]);
+const groupedExchangeInfos = ref([]);
+const selectedExchange = ref(null);
+const isDetailModalOpen = ref(false);
 
-// 컴포넌트가 마운트될 때 데이터 가져오기
 onMounted(async () => {
   try {
     await store.getExchange();
     if (store.exchange && store.exchange.exchange_rate) {
       exchangeInfos.value = store.exchange.exchange_rate;
-
-      // 데이터를 4개씩 그룹화
-      groupedExchangeInfos.value = chunkArray(exchangeInfos.value, 4);
+      groupedExchangeInfos.value = chunkArray(exchangeInfos.value, 3);
     } else {
       console.error("환율 데이터가 비어 있습니다.");
     }
   } catch (error) {
     console.error("환율 데이터를 가져오는 중 오류 발생:", error);
   } finally {
-    loading.value = false; // 로딩 완료
+    loading.value = false;
   }
 });
 
-// 4개씩 데이터 그룹화
 const chunkArray = (array, size) => {
   const result = [];
   for (let i = 0; i < array.length; i += size) {
@@ -68,10 +55,9 @@ const chunkArray = (array, size) => {
   return result;
 };
 
-// 상세 모달 열기 함수
 const showDetailModal = (exchange) => {
-  selectedExchange.value = exchange; // 선택된 환율 정보를 설정
-  isDetailModalOpen.value = true; // 모달을 표시
+  selectedExchange.value = exchange;
+  isDetailModalOpen.value = true;
 };
 </script>
 
@@ -95,6 +81,10 @@ const showDetailModal = (exchange) => {
   justify-content: center;
 }
 
+.top {
+  margin-top: 64px;
+}
+
 /* 카드 스타일 */
 .exchange-card {
   display: flex;
@@ -102,7 +92,7 @@ const showDetailModal = (exchange) => {
   justify-content: space-between;
   align-items: center;
   padding: 16px;
-  height: 240px; /* 고정 높이 */
+  height: 240px; /*고정 높이*/
   background-color: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 12px;
