@@ -65,6 +65,8 @@ const editedContent = ref("");
 const isOwner = ref(false);
 const isLogin = computed(() => accountStore.isLogin);
 
+const userNickname = accountStore.user?.user_info.nickname;
+
 // 댓글 작성자인지 확인
 
 // 게시글 작성자인지 확인 및 설정
@@ -104,7 +106,7 @@ const addComment = async (content) => {
   }
   try {
     const response = await axios.post(`http://127.0.0.1:8000/api/articles/${route.params.id}/comments/create/`, { content }, { headers: { Authorization: `Token ${accountStore.token}` } });
-    comments.value = response.data ? [...comment.value, response.data] : comments.value;
+    comments.value = response.data ? [...comments.value, response.data] : comments.value;
   } catch (error) {
     console.error("댓글 추가 실패:", error);
     alert("댓글을 추가하는 중 문제가 발생했습니다. 다시 시도해주세요.");
@@ -118,7 +120,7 @@ const updateComment = async ({ id, content }) => {
   }
   try {
     await store.updateComment(route.params.id, id, content);
-    const targetComment = comment.value.find((c) => c.id === id);
+    const targetComment = comments.value.find((c) => c.id === id);
     if (targetComment) {
       targetComment.content = content;
     } else {
@@ -133,7 +135,7 @@ const updateComment = async ({ id, content }) => {
 const deleteComment = async (commentId) => {
   try {
     await store.deleteComment(route.params.id, commentId);
-    const targetComment = comment.value.find((c) => c.id === commentId);
+    const targetComment = comments.value.find((c) => c.id === commentId);
     if (targetComment) {
       targetComment.is_deleted = true;
     } else {
