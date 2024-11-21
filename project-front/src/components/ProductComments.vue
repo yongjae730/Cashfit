@@ -7,7 +7,9 @@
 
     <v-card-text class="pa-6">
       <!-- 댓글 리스트 -->
-      <v-list v-if="comments.length > 0">
+      <v-skeleton-loader v-if="loading" type="list-item" :loading="loading"></v-skeleton-loader>
+
+      <v-list v-else-if="comments">
         <v-list-item v-for="(comment, index) in comments" :key="index" class="mb-4 rounded-lg" elevation="1">
           <v-list-item-content>
             <v-list-item-title class="py-2">
@@ -48,20 +50,25 @@ const props = defineProps({
 });
 
 const productCommentStore = useProductCommentStore();
-const comments = ref([]);
+const comments = ref([]); // 초기값 빈 배열로 설정
 const newComment = ref("");
 const isLogin = useAccount().isLogin;
+const loading = ref(false); // 로딩 상태 추가
 
 const fetchComments = async () => {
+  loading.value = true; // 로딩 시작
   try {
-    const fetchedComments = await productCommentStore.getComments(props.productId);
-    if (Array.isArray(fetchedComments)) {
-      comments.value = fetchedComments;
+    const _fetchedComments = await productCommentStore.getComments(props.productId);
+    console.log(_fetchedComments);
+    if (Array.isArray(_fetchedComments)) {
+      comments.value = _fetchedComments;
     } else {
-      console.error("댓글 데이터가 배열이 아님:", fetchedComments);
+      console.error("댓글 데이터가 배열이 아님:", _fetchedComments);
     }
   } catch (error) {
     console.error("댓글 데이터를 가져오는 중 오류 발생:", error);
+  } finally {
+    loading.value = false; // 로딩 종료
   }
 };
 
@@ -75,8 +82,9 @@ const addComment = async () => {
     if (!createdComment || !createdComment.content) {
       throw new Error("댓글 생성 실패");
     }
+    // 새로운 댓글을 기존 댓글 리스트의 맨 앞에 추가
     comments.value = [createdComment, ...comments.value];
-    newComment.value = "";
+    newComment.value = ""; // 입력창 초기화
   } catch (error) {
     console.error("댓글 작성 중 오류 발생:", error);
   }
@@ -89,8 +97,7 @@ onMounted(() => {
 watch(
   () => props.productId,
   () => {
-    comments.value = []; // 기존 댓글 초기화
-    fetchComments(); // 새로운 댓글 데이터 로드
+    fetchComments(); // 데이터 초기화 없이 새로운 댓글 데이터 로드
   }
 );
 </script>

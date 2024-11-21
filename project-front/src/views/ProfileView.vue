@@ -1,17 +1,7 @@
 <template>
-  <v-container style="margin-top: 64px">
-    <!-- 상단 프로필 정보 -->
-    <v-card class="mb-6 profile-card">
-      <v-card-title class="d-flex justify-space-between align-center">
-        <div>
-          <h1 class="text-h4 font-weight-bold">프로필 페이지</h1>
-          <p class="text-subtitle-2 text-grey-darken-1">사용자 정보를 확인하고 관리하세요</p>
-        </div>
-      </v-card-title>
-    </v-card>
-
+  <v-main style="margin-top: 64px">
     <!-- 콘텐츠 섹션 -->
-    <v-row dense>
+    <v-row justify="space-between" class="mb-6" style="margin: 10px" dense>
       <!-- 마이 페이지 -->
       <v-col cols="12" md="4">
         <v-card class="info-card">
@@ -27,7 +17,7 @@
         </v-card>
       </v-col>
 
-      <v-col cols="12">
+      <v-col cols="12" md="4">
         <!-- 예금 캐러셀 -->
         <v-card class="info-card mb-6">
           <v-card-title class="font-weight-bold text-h6">내 예금</v-card-title>
@@ -63,8 +53,10 @@
             <div v-else class="empty-state">좋아요한 예금 상품이 없습니다.</div>
           </v-card-text>
         </v-card>
+      </v-col>
 
-        <!-- 적금 캐러셀 -->
+      <!-- 적금 캐러셀 -->
+      <v-col cols="12" md="4">
         <v-card class="info-card">
           <v-card-title class="font-weight-bold text-h6">내 적금</v-card-title>
           <v-card-text>
@@ -103,7 +95,7 @@
     </v-row>
 
     <!-- 내가 쓴 글 -->
-    <v-card class="my-6 info-card">
+    <v-card style="margin: 10px" class="my-6 info-card">
       <v-card-title class="font-weight-bold text-h6">내가 쓴 글</v-card-title>
       <v-card-text>
         <div v-if="articles.length">
@@ -123,7 +115,7 @@
     </v-card>
 
     <!-- 내가 쓴 댓글 -->
-    <v-card class="my-6 info-card">
+    <v-card style="margin: 10px" class="my-6 info-card">
       <v-card-title class="font-weight-bold text-h6">내가 쓴 댓글</v-card-title>
       <v-card-text>
         <div v-if="comments.length">
@@ -167,7 +159,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </v-container>
+  </v-main>
 </template>
 
 <script setup>

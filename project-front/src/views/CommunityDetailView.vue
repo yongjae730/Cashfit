@@ -1,5 +1,5 @@
 <template>
-  <v-container style="margin-top: 64px">
+  <v-main style="margin-top: 64px">
     <!-- 본문 내용 -->
     <div v-if="article">
       <!-- 본문 내용 -->
@@ -19,15 +19,7 @@
         <p style="color: #444; font-size: 16px; line-height: 1.8">{{ article.content }}</p>
       </v-card>
 
-      <CommunityComment
-        :comments="comment"
-        :isLogin="isLogin"
-        :userNickname="accountStore.user?.user_info.nickname"
-        @add-comment="addComment"
-        @update-comment="updateComment"
-        @delete-comment="deleteComment"
-      />
-
+      <CommunityComment :comments="comments" :isLogin="isLogin" :userNickname="userNickname" @add-comment="addComment" @update-comment="updateComment" @delete-comment="deleteComment" />
       <v-dialog v-model="editModal" max-width="500">
         <v-card>
           <v-card-title>
@@ -49,7 +41,7 @@
         </v-card>
       </v-dialog>
     </div>
-  </v-container>
+  </v-main>
 </template>
 
 <script setup>
@@ -65,13 +57,15 @@ const store = commentStore();
 const route = useRoute();
 
 const article = ref(null);
-const comment = ref([]);
+const comments = ref([]);
 const editModal = ref(false);
 const editedTitle = ref("");
 const editedContent = ref("");
 
 const isOwner = ref(false);
-const isLogin = accountStore.isLogin;
+const isLogin = computed(() => accountStore.isLogin);
+
+const userNickname = accountStore.user?.user_info.nickname;
 
 // 댓글 작성자인지 확인
 
@@ -82,51 +76,76 @@ watchEffect(() => {
   }
 });
 
+const fetchComments = async () => {
+  try {
+    const response = await axios.get(`http://127.0.0.1:8000/api/articles/${route.params.id}/`);
+    comments.value = response.data.comments;
+  } catch (error) {
+    console.error("댓글 데이터를 가져오는 중 오류 발생:", error);
+  }
+};
+
 onMounted(async () => {
   try {
     const response = await axios.get(`http://127.0.0.1:8000/api/articles/${route.params.id}/`);
     article.value = response.data;
-    store.getComments(route.params.id);
+
+    await fetchComments();
   } catch (error) {
-    console.error("게시글 로딩 실패:", error);
+    console.error("게시글 또는 댓글 로딩 실패:", error);
+    alert("데이터를 로드하는 중 문제가 발생했습니다.");
   }
 });
 
 // 댓글 추가
 
 const addComment = async (content) => {
+  if (!content.trim()) {
+    alert("댓글 내용을 입력하세요.");
+    return;
+  }
   try {
     const response = await axios.post(`http://127.0.0.1:8000/api/articles/${route.params.id}/comments/create/`, { content }, { headers: { Authorization: `Token ${accountStore.token}` } });
-    comment.value.push(response.data);
+    comments.value = response.data ? [...comments.value, response.data] : comments.value;
   } catch (error) {
     console.error("댓글 추가 실패:", error);
+    alert("댓글을 추가하는 중 문제가 발생했습니다. 다시 시도해주세요.");
   }
 };
 
 const updateComment = async ({ id, content }) => {
+  if (!content.trim()) {
+    alert("수정할 내용을 입력하세요.");
+    return;
+  }
   try {
     await store.updateComment(route.params.id, id, content);
-    const targetComment = comment.value.find((c) => c.id === id);
+    const targetComment = comments.value.find((c) => c.id === id);
     if (targetComment) {
       targetComment.content = content;
+    } else {
+      console.error("수정할 댓글을 찾지 못했습니다.");
     }
   } catch (error) {
     console.error("댓글 수정 실패:", error);
+    alert("댓글을 수정하는 중 문제가 발생했습니다. 다시 시도해주세요.");
   }
 };
 
 const deleteComment = async (commentId) => {
   try {
     await store.deleteComment(route.params.id, commentId);
-    const targetComment = comment.value.find((c) => c.id === commentId);
+    const targetComment = comments.value.find((c) => c.id === commentId);
     if (targetComment) {
       targetComment.is_deleted = true;
+    } else {
+      console.error("삭제할 댓글을 찾지 못했습니다.");
     }
   } catch (error) {
     console.error("댓글 삭제 실패:", error);
+    alert("댓글을 삭제하는 중 문제가 발생했습니다. 다시 시도해주세요.");
   }
 };
-
 const openEditModal = () => {
   editedTitle.value = article.value.title;
   editedContent.value = article.value.content;
@@ -148,21 +167,20 @@ const updateArticle = async () => {
       content: editedContent.value.trim(),
     };
     await axios.put(`http://127.0.0.1:8000/api/articles/${route.params.id}/update-delete/`, payload, {
-      headers: {
-        Authorization: `Token ${accountStore.token}`,
-      },
+      headers: { Authorization: `Token ${accountStore.token}` },
     });
     article.value.title = editedTitle.value;
     article.value.content = editedContent.value;
     closeEditModal();
   } catch (error) {
     console.error("게시글 수정 실패:", error);
+    alert("게시글을 수정하는 중 문제가 발생했습니다. 다시 시도해주세요.");
   }
 };
 
 // 댓글 데이터 로드 및 실시간 반영
 watchEffect(() => {
-  comment.value = store.comments;
+  comments.value = store.comments;
 });
 </script>
 
@@ -172,7 +190,11 @@ h2 {
   font-family: "Pretendard", sans-serif;
   color: #333;
 }
-
+/* .v-main {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+} */
 .v-card {
   border-radius: 12px;
 }

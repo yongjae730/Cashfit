@@ -1,5 +1,5 @@
 <template>
-  <v-container style="margin-top: 64px">
+  <v-main class="product-detail" style="margin-top: 64px">
     <!-- 상품 제목 섹션 (이전과 동일) -->
     <v-card class="mb-8 rounded-xl" elevation="3">
       <v-card-title class="d-flex align-center pa-6">
@@ -62,7 +62,7 @@
 
     <!-- 댓글 섹션 -->
     <ProductComments :productId="product.id" />
-  </v-container>
+  </v-main>
 </template>
 
 <script setup>
@@ -71,13 +71,15 @@ import { useAccount } from "@/stores/accounts";
 import { useFinStore } from "@/stores/financial";
 import ProductComments from "@/components/ProductComments.vue";
 import axios from "axios";
-import { onMounted, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 
 const store = useFinStore();
-const product = store.selectedProduct;
+const product = computed(() => store.selectedProduct);
+
+console.log(product.value);
 
 const accountStore = useAccount();
-const isLogin = accountStore.isLogin;
+const isLogin = computed(() => accountStore.isLogin);
 
 const isLiked = ref(false);
 
@@ -111,10 +113,10 @@ const toggleLike = async () => {
       Authorization: `Token ${token}`,
     };
     if (isLiked.value) {
-      await axios.delete(`${store.API_URL}/api/financials/products/${product.id}/like/`, { headers });
+      await axios.delete(`${store.API_URL}/api/financials/products/${product.value.id}/like/`, { headers });
       isLiked.value = false;
     } else {
-      await axios.post(`${store.API_URL}/api/financials/products/${product.id}/like/`, {}, { headers });
+      await axios.post(`${store.API_URL}/api/financials/products/${product.value.id}/like/`, {}, { headers });
       isLiked.value = true;
     }
   } catch (error) {
@@ -128,41 +130,18 @@ onMounted(async () => {
     const headers = {
       Authorization: `Token ${token}`,
     };
-    const response = await axios.get(`${store.API_URL}/api/financials/products/${product.id}/like/`, { headers });
+    const response = await axios.get(`${store.API_URL}/api/financials/products/${product.value.id}/like/`, { headers });
     isLiked.value = response.data.is_liked;
   } catch (error) {
     console.error("초기 데이터 로드 중 오류 발생:", error);
   }
 });
-
-// watch(
-//   () => product.id,
-//   async (newProductId, oldProductId) => {
-//     if (!newProductId || newProductId === oldProductId) return;
-
-//     // 기존 댓글 초기화
-//     comments.value = [];
-
-//     try {
-//       // 새로운 상품의 댓글 로드
-//       const fetchedComments = await productCommentStore.getComments(newProductId);
-//       if (Array.isArray(fetchedComments)) {
-//         comments.value = fetchedComments; // 댓글 데이터 갱신
-//         console.log("새로운 상품 댓글 데이터:", comments.value);
-//       } else {
-//         console.error("댓글 데이터가 배열이 아님:", fetchedComments);
-//       }
-//     } catch (error) {
-//       console.error("댓글 목록 갱신 중 오류 발생:", error);
-//     }
-//   },
-//   { immediate: true }
-// );
-
-// console.log(comments.value)
 </script>
 
 <style scoped>
+.product-detail > * {
+  margin: 10px;
+}
 .v-card {
   transition: transform 0.2s, box-shadow 0.2s;
 }
@@ -170,14 +149,6 @@ onMounted(async () => {
 .v-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-}
-
-.v-list-item {
-  transition: background-color 0.2s;
-}
-
-.v-list-item:hover {
-  background-color: rgba(var(--v-theme-primary), 0.05);
 }
 
 .v-textarea :deep(.v-field__input) {
