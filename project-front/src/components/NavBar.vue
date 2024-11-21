@@ -18,6 +18,9 @@
           <router-link :to="{ name: 'crypto' }">
             <v-btn text>비트코인</v-btn>
           </router-link>
+          <router-link :to="{ name: 'exchange' }">
+            <v-btn text>Exchange</v-btn>
+          </router-link>
         </v-col>
 
         <!-- 로그인/회원가입 버튼 -->

@@ -10,6 +10,7 @@ import { useAccount } from "@/stores/accounts";
 import CommunityDetailView from "@/views/CommunityDetailView.vue";
 import ProductDetailView from "@/views/ProductDetailView.vue";
 import ProfileView from "@/views/ProfileView.vue";
+import ExchangeView from "@/views/ExchangeView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -54,7 +55,11 @@ const router = createRouter({
       name: "Crypto",
       component: CryptoView,
     },
-
+    {
+      path: "/exchange",
+      name: "exchange",
+      component: ExchangeView,
+    },
     {
       path: "/community/create_article",
       name: "createArticle",
