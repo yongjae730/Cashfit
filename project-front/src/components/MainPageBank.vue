@@ -177,10 +177,20 @@ const searchBranches = () => {
       const firstPlace = data[0];
       mapInstance.value.setCenter(new window.kakao.maps.LatLng(firstPlace.y, firstPlace.x));
     } else if (status === window.kakao.maps.services.Status.ZERO_RESULT) {
-      alert("검색 결과가 없습니다");
+      swal({
+        title: "ㅠㅠ",
+        text: "검색 결과가 없어요..",
+        icon: "warning",
+        button: "확인",
+      });
       places.value = [];
     } else {
-      alert("검색 중 오류가 발생했습니다.");
+      swal({
+        title: "헉!",
+        text: "검색 중 오류가 발생했어요.",
+        icon: "warning",
+        button: "확인",
+      });
       places.value = [];
     }
   });
