@@ -8,6 +8,7 @@
           <div class="text-h4 font-weight-bold mb-2">{{ product.fin_prdt_nm }}</div>
           <div class="text-subtitle-1 text-grey-darken-1">{{ product.kor_co_nm }}</div>
         </div>
+        <v-btn @click="handleOpenDialog" icon="mdi-plus"></v-btn>
         <v-btn v-if="isLogin" class="ml-4" :color="isLiked ? 'red' : 'grey'" icon="mdi-heart" variant="flat" size="large" @click="toggleLike" :elevation="isLiked ? 2 : 0"></v-btn>
       </v-card-title>
     </v-card>
@@ -62,12 +63,9 @@
 
     <!-- 댓글 섹션 -->
     <ProductComments :productId="product.id" />
+    <!-- 상품 더 상세 정보 보기-->
+    <ProductWithOptions :is-clicked="isClicked" :productId="product.id" @update:is-clicked="handleDialogState" />
   </v-main>
-
-  <!-- 상품 더 상세 정보 보기-->
-  <!-- <ProductWithOptions 
-    v-if="isClicked"
-   /> -->
 </template>
 
 <script setup>
@@ -86,6 +84,15 @@ const accountStore = useAccount();
 const isLogin = computed(() => accountStore.isLogin);
 const isClicked = ref(false);
 const isLiked = ref(false);
+
+const handleOpenDialog = () => {
+  isClicked.value = true;
+};
+
+// 다이얼로그 상태 업데이트
+const handleDialogState = (newVal) => {
+  isClicked.value = newVal;
+};
 
 const getIcon = (label) => {
   const icons = {
