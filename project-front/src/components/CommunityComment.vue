@@ -55,7 +55,7 @@ import { ref } from "vue";
 const props = defineProps({
   comments: {
     type: Array,
-    required: true,
+    default: () => [], // 기본값으로 빈 배열 설정
   },
   isLogin: {
     type: Boolean,

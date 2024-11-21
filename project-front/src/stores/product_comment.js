@@ -3,7 +3,7 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import { useAccount } from "./accounts";
 
-export const useProductCommentStore = defineStore("comments", () => {
+export const useProductCommentStore = defineStore("products_comments", () => {
   const comment = ref({});
   const accountStore = useAccount();
   const token = accountStore.token;
@@ -13,7 +13,7 @@ export const useProductCommentStore = defineStore("comments", () => {
   // 댓글 가져오기
   const getComments = async (productId) => {
     try {
-      const response = await axios.get(`${API_URL}/api/financials/financial-comment/${productId}`);
+      const response = await axios.get(`${API_URL}/api/financials/financial-comment/${productId}/`);
       comment.value[productId] = response.data;
       return response.data; // 댓글 데이터를 반환
     } catch (error) {

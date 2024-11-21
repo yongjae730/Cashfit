@@ -78,7 +78,7 @@ watchEffect(() => {
 
 const fetchComments = async () => {
   try {
-    const response = await axios.get(`http://127.0.0.1:8000/api/articles/${route.params.id}`);
+    const response = await axios.get(`http://127.0.0.1:8000/api/articles/${route.params.id}/`);
     comments.value = response.data.comments;
   } catch (error) {
     console.error("댓글 데이터를 가져오는 중 오류 발생:", error);
@@ -90,7 +90,7 @@ onMounted(async () => {
     const response = await axios.get(`http://127.0.0.1:8000/api/articles/${route.params.id}/`);
     article.value = response.data;
 
-    fetchComments();
+    await fetchComments();
   } catch (error) {
     console.error("게시글 또는 댓글 로딩 실패:", error);
     alert("데이터를 로드하는 중 문제가 발생했습니다.");
@@ -146,7 +146,6 @@ const deleteComment = async (commentId) => {
     alert("댓글을 삭제하는 중 문제가 발생했습니다. 다시 시도해주세요.");
   }
 };
-
 const openEditModal = () => {
   editedTitle.value = article.value.title;
   editedContent.value = article.value.content;
