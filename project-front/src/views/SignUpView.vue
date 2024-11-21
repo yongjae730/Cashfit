@@ -152,7 +152,12 @@ const handleSignup = async () => {
       sido: sido.value,
       sigungus: sigugun.value,
     });
-    alert("회원가입 성공!");
+    await swal({
+      title: "회원 가입 성공!",
+      text: "CashFit 에서 더 나은 경험을 체험해보세요!",
+      icon: "success",
+      button: "확인",
+    });
   } catch (error) {
     console.error("회원가입 실패:", error);
   } finally {
