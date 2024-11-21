@@ -21,7 +21,7 @@
     </v-row>
 
     <!-- Buttons -->
-    <v-row justify="end" class="mx-2">
+    <v-row justify="end">
       <v-btn color="primary" @click="calculateBuy">내가 살때</v-btn>
       &nbsp;
       <v-btn color="primary" @click="calculateSell">내가 팔때</v-btn>
@@ -64,6 +64,12 @@ const selectedToCurrency = ref(null);
 const amount = ref(1);
 const convertedAmount = ref(0);
 
+// 숫자 포맷 함수
+const formatNumber = (value) => {
+  if (value === null || value === undefined) return "";
+  return new Intl.NumberFormat("en-US").format(value);
+};
+
 // Exchange Rates 계산 (KRW 포함)
 const exchangeRates = computed(() => {
   const rates = props.exchangeInfos.reduce((acc, info) => {
@@ -99,12 +105,12 @@ const calculateBuy = () => {
     return;
   }
 
-  const fromRate = exchangeRates.value[selectedFromCurrency.value]?.tts; // 판매율
-  const toRate = exchangeRates.value[selectedToCurrency.value]?.tts; // 판매율
+  const fromRate = exchangeRates.value[selectedFromCurrency.value]?.tts;
+  const toRate = exchangeRates.value[selectedToCurrency.value]?.tts;
 
   if (fromRate && toRate) {
-    const result = (amount.value * fromRate) / toRate; // 계산 결과 저장
-    convertedAmount.value = parseFloat(result.toFixed(2)); // 소수점 두 자리로 고정
+    const result = (amount.value * fromRate) / toRate;
+    convertedAmount.value = formatNumber(parseFloat(result.toFixed(2)));
   } else {
     console.error("환율 정보를 찾을 수 없습니다.", { fromRate, toRate });
   }
@@ -117,12 +123,12 @@ const calculateSell = () => {
     return;
   }
 
-  const fromRate = exchangeRates.value[selectedFromCurrency.value]?.ttb; // 매입율
-  const toRate = exchangeRates.value[selectedToCurrency.value]?.ttb; // 매입율
+  const fromRate = exchangeRates.value[selectedFromCurrency.value]?.ttb;
+  const toRate = exchangeRates.value[selectedToCurrency.value]?.ttb;
 
   if (fromRate && toRate) {
-    const result = (amount.value * fromRate) / toRate; // 계산 결과 저장
-    convertedAmount.value = parseFloat(result.toFixed(2)); // 소수점 두 자리로 고정
+    const result = (amount.value * fromRate) / toRate;
+    convertedAmount.value = formatNumber(parseFloat(result.toFixed(2)));
   } else {
     console.error("환율 정보를 찾을 수 없습니다.", { fromRate, toRate });
   }
@@ -143,9 +149,5 @@ const calculateSell = () => {
 .mx-2 {
   margin-left: 8px;
   margin-right: 8px;
-}
-
-.right-align {
-  justify-content: flex-end; /* 버튼을 오른쪽으로 정렬 */
 }
 </style>
