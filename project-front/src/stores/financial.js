@@ -9,7 +9,6 @@ export const useFinStore = defineStore(
     const fin = ref([]);
     const selectedProduct = ref(null);
     const API_URL = "http://127.0.0.1:8000";
-    const finOptions = ref([]);
 
     const getFins = function () {
       axios({

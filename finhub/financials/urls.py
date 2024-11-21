@@ -13,6 +13,9 @@ urlpatterns = [
     # 가입 기간에 상관 없이 최고 금리가 가장 높은 금융상품과
     # 해당 상품의 옵션 리스트 출력
     path('financial-products/deposit_top_rate/', views.deposit_top_rate),
+    # 전체 상품과 옵션을 추가하는 시리얼라이저들
+    path('financial-products-with-options/', views.financial_products_with_options, name='financial_products_with_options'),
+
     path('financial-products/saving_top_rate/', views.saving_top_rate),
     # 댓글 조회 url
     path('financial-comment/<int:fin_product_pk>/', views.financial_comment),

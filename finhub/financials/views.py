@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import get_user_model
 from financials.models import FinancialComment,FinancialOptions,FinancialProducts,FinancialProductLike
-from .serializers import FinancialProductsSerializer, FinancialOptionsSerializer, FinancialCommentSerializer
+from .serializers import FinancialProductWithOptionsSerializer, FinancialProductsSerializer, FinancialOptionsSerializer, FinancialCommentSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view,permission_classes
 from rest_framework.permissions import IsAuthenticated,AllowAny
@@ -155,8 +155,9 @@ def save_financial_products(request):
             serializer.save()
 
     for saving_option_li in saving_response.get('result').get('optionList'):
-
+        
         fin_prdt_cd = saving_option_li.get('fin_prdt_cd')
+        rsrv_type_nm = saving_option_li.get('rsrv_type_nm')
         intr_rate_type_nm = saving_option_li.get('intr_rate_type_nm')
         intr_rate = saving_option_li.get('intr_rate')
         intr_rate2 = saving_option_li.get('intr_rate2')
@@ -169,6 +170,7 @@ def save_financial_products(request):
 
         if FinancialOptions.objects.filter(
             fin_prdt_cd=fin_prdt_cd,
+            rsrv_type_nm=rsrv_type_nm,
             intr_rate_type_nm=intr_rate_type_nm,
             intr_rate=intr_rate,
             intr_rate2=intr_rate2,
@@ -177,6 +179,7 @@ def save_financial_products(request):
 
         save_option_data = {
             'fin_prdt_cd':fin_prdt_cd,
+            'rsrv_type_nm':rsrv_type_nm,
             'intr_rate_type_nm':intr_rate_type_nm,
             'intr_rate':intr_rate,
             'intr_rate2':intr_rate2,
@@ -352,4 +355,9 @@ def user_liked_products(request):
 
 
 ##############################################
-
+@api_view(['GET'])
+def financial_products_with_options(request):
+    if request.method == 'GET':
+        products = FinancialProducts.objects.all()  # 모든 금융 상품 가져오기
+        serializer = FinancialProductWithOptionsSerializer(products, many=True)  # 직렬화
+        return Response(serializer.data)
