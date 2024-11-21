@@ -1,6 +1,7 @@
 <template>
   <v-main>
     <MainPageCarousel v-if="carouselSlides.length > 0" :slides="carouselSlides" />
+    <MiddleNav />
     <v-container>
       <MainProductList />
       <MainPageBank />
@@ -10,12 +11,10 @@
 
 <script setup>
 import MainPageCarousel from "@/components/MainPageCarousel.vue";
-import MainPageFinProduct from "@/components/MainPageFinProduct.vue";
-import MapTest from "@/components/BankMap.vue";
 import MainProductList from "@/components/MainProductList.vue";
 import MainPageBank from "@/components/MainPageBank.vue";
 import { ref, onMounted } from "vue";
-import Exchange from "@/components/ExchangeList.vue";
+import MiddleNav from "@/components/MiddleNav.vue";
 
 // 캐러셀 데이터
 const carouselSlides = ref([]);
