@@ -35,6 +35,7 @@ export const useAccount = defineStore(
         await login({ username, password: password1 });
       } catch (err) {
         console.error("Signup failed:", err.response?.data || err.message);
+        throw err;
       }
     };
 
