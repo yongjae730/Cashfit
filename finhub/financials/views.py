@@ -2,8 +2,8 @@ import stat
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth import get_user_model
-from financials.models import FinancialComment,FinancialOptions,FinancialProducts,FinancialProductLike
-from .serializers import FinancialProductWithOptionsSerializer, FinancialProductsSerializer, FinancialOptionsSerializer, FinancialCommentSerializer
+from financials.models import FinancialComment,FinancialOptions,FinancialProducts,FinancialProductLike,ExchangeRate
+from .serializers import FinancialProductWithOptionsSerializer, FinancialProductsSerializer, FinancialOptionsSerializer, FinancialCommentSerializer,ExchangeRateSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view,permission_classes
 from rest_framework.permissions import IsAuthenticated,AllowAny
@@ -308,17 +308,56 @@ def update_delete_comment(request, comment_id):
         return Response({"message": "Comment deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
 
 # 환율 정보 불러오기
+@api_view(['GET'])
 def exchange_rate(request):
     BASE_URL = "https://www.koreaexim.go.kr/site/program/financial/exchangeJSON"
-    API =settings.EXCHANGE_API_KEY
+    API = settings.EXCHANGE_API_KEY
     params = {
         "authkey": API,
         "data": "AP01"
     }
 
-    exchange_response = requests.get(BASE_URL,params=params)
-    data = exchange_response.json()
-    return JsonResponse({'exchange_rate':data}, status=200)
+    try:
+        # API 호출
+        exchange_response = requests.get(BASE_URL, params=params, timeout=10)
+        data = exchange_response.json()
+    except requests.exceptions.RequestException as e:
+        print("API 호출 중 오류 발생:", e)
+        data = None  # API 호출 실패 시 데이터 없음 처리
+
+    # API 응답이 null 또는 비정상인 경우 DB 데이터를 반환
+    if not data or "result" not in data[0] or data[0]["result"] != 1:
+        db_data = ExchangeRate.objects.all()
+        if db_data.exists():
+            serializer = ExchangeRateSerializer(db_data, many=True)
+            return Response({'exchange_rate': serializer.data}, status=200)
+        else:
+            return Response({'exchange_rate': [], 'message': 'DB에 데이터가 없습니다.'}, status=200)
+
+    # API 응답 데이터로 DB 업데이트
+    for item in data:
+        try:
+            ExchangeRate.objects.update_or_create(
+                cur_unit=item["cur_unit"],
+                defaults={
+                    "cur_nm": item.get("cur_nm", ""),
+                    "ttb": item.get("ttb", None),
+                    "tts": item.get("tts", None),
+                    "deal_bas_r": item.get("deal_bas_r", None),
+                    "bkpr": item.get("bkpr", None),
+                    "yy_efee_r": item.get("yy_efee_r", None),
+                    "ten_dd_efee_r": item.get("ten_dd_efee_r", None),
+                    "kftc_bkpr": item.get("kftc_bkpr", None),
+                    "kftc_deal_bas_r": item.get("kftc_deal_bas_r", None),
+                }
+            )
+        except Exception as e:
+            print("DB 저장 중 오류 발생:", e)
+
+    # 업데이트된 DB 데이터 반환
+    db_data = ExchangeRate.objects.all()
+    serializer = ExchangeRateSerializer(db_data, many=True)
+    return Response({'exchange_rate': serializer.data}, status=200)
 
 # 좋아요 기능
 @api_view(['GET', 'POST', 'DELETE'])

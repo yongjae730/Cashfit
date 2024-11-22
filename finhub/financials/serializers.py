@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import FinancialProducts,FinancialOptions,FinancialComment,FinancialProductLike
+from .models import FinancialProducts,FinancialOptions,FinancialComment,FinancialProductLike,ExchangeRate
 
 
 
@@ -46,3 +46,9 @@ class FinancialProductWithOptionsSerializer(serializers.ModelSerializer): #기�
     def get_options(self, obj):
         options = FinancialOptions.objects.filter(product=obj)  # 해당 상품의 옵션 가져오기
         return FinancialOptionsSimpleSerializer(options, many=True).data
+
+
+class ExchangeRateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ExchangeRate
+        fields = "__all__"
