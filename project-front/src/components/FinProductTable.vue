@@ -24,7 +24,7 @@
                       <template v-slot:prepend>
                         <v-icon icon="mdi-bank" class="mr-2" />
                       </template>
-                      <v-list-item-title>은행명</v-list-item-title>
+                      <v-list-item-title></v-list-item-title>
                       <template v-slot:append>
                         <span class="font-weight-medium">{{ saving.product?.kor_co_nm || "정보 없음" }}</span>
                       </template>
@@ -34,7 +34,7 @@
                       <template v-slot:prepend>
                         <v-icon icon="mdi-file-document" class="mr-2" />
                       </template>
-                      <v-list-item-title>상품명</v-list-item-title>
+                      <v-list-item-title></v-list-item-title>
                       <template v-slot:append>
                         <span class="font-weight-medium">{{ saving.product?.fin_prdt_nm || "정보 없음" }}</span>
                       </template>
