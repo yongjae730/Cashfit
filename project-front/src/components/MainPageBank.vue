@@ -155,6 +155,17 @@ const addMarker = (position, place) => {
   markers.value.push(marker);
 };
 
+const adjustMapBounds = () => {
+  if (markers.value.length === 0) return;
+  const bounds = new window.kakao.maps.LatLngBounds();
+
+  markers.value.forEach((marker) => {
+    bounds.extend(marker.getPosition());
+  });
+
+  mapInstance.value.setBounds(bounds);
+};
+
 const searchBranches = () => {
   const ps = new window.kakao.maps.services.Places();
   const query = `${sido.value} ${sigugun.value} ${bank.value}`;
@@ -174,8 +185,10 @@ const searchBranches = () => {
       });
 
       // 첫 번째 검색 결과로 지도 중심 이동
-      const firstPlace = data[0];
-      mapInstance.value.setCenter(new window.kakao.maps.LatLng(firstPlace.y, firstPlace.x));
+      // const firstPlace = data[0];
+      // mapInstance.value.setCenter(new window.kakao.maps.LatLng(firstPlace.y, firstPlace.x));
+
+      adjustMapBounds();
     } else if (status === window.kakao.maps.services.Status.ZERO_RESULT) {
       swal({
         title: "ㅠㅠ",

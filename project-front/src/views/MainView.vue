@@ -54,5 +54,6 @@ onMounted(async () => {
 <style scoped>
 .main-content {
   justify-items: center;
+  background: #eef7fb;
 }
 </style>
