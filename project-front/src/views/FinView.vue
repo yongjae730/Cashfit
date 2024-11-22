@@ -4,30 +4,38 @@
       <v-card class="mx-auto mt-4 rounded-lg" elevation="2">
         <v-card-title class="d-flex align-center py-4 px-4">
           <v-icon icon="mdi-bank" size="large" class="mr-2" color="primary" />
-          <span class="text-h5 font-weight-bold">금융 상품</span>
-          <v-spacer />
-          <!-- 필터 버튼 (수정된 부분) -->
-          <v-btn-toggle v-model="selectedFilter" multiple class="filter-buttons">
-            <v-btn value="deposit">
-              <v-icon color="blue" size="28">mdi-bank</v-icon>
-              <span class="btn-text">예금</span>
-            </v-btn>
-            <v-btn value="freeSaving">
-              <v-icon color="green" size="28">mdi-piggy-bank</v-icon>
-              <span class="btn-text">자유적립식 적금</span>
-            </v-btn>
-            <v-btn value="regularSaving">
-              <v-icon color="orange" size="28">mdi-calendar-text</v-icon>
-              <span class="btn-text">정액적립식 적금</span>
-            </v-btn>
-          </v-btn-toggle>
-          <v-spacer />
-          <v-text-field v-model="search" prepend-inner-icon="mdi-magnify" label="검색" single-line hide-details density="compact" variant="outlined" class="max-width-200" />
+          <span class="text-h4 font-weight-bold">금융 상품</span>
         </v-card-title>
+
+        <!-- 탭 추가 -->
+        <v-tabs v-model="activeTab" background-color="primary" dark>
+          <v-tab value="deposit">예금</v-tab>
+          <v-tab value="saving">적금</v-tab>
+        </v-tabs>
+
+        <v-tabs-items v-model="activeTab">
+          <v-tab-item value="saving">
+            <v-card-title class="d-flex align-center py-4 px-4" style="height: 80px">
+              <!-- 자유적립/정액적립 필터 -->
+              <v-btn-toggle v-model="savingFilter" class="filter-buttons" v-if="activeTab === 'saving'">
+                <v-btn value="freeSaving" style="padding: 0">
+                  <v-icon color="green" size="24">mdi-piggy-bank</v-icon>
+                  <span class="btn-text">자유적립식</span>
+                </v-btn>
+                <v-btn value="regularSaving" style="padding: 0">
+                  <v-icon color="orange" size="24">mdi-calendar-text</v-icon>
+                  <span class="btn-text">정액적립식</span>
+                </v-btn>
+              </v-btn-toggle>
+              <v-spacer />
+              <v-text-field v-model="search" prepend-inner-icon="mdi-magnify" label="검색" single-line hide-details density="compact" variant="outlined" style="max-width: 300px" />
+            </v-card-title>
+          </v-tab-item>
+        </v-tabs-items>
 
         <v-divider />
 
-        <!-- 데이터 테이블 -->
+        <!-- 단일 데이터 테이블 -->
         <div v-if="filteredList.length > 0" class="custom-table-container">
           <v-data-table :headers="headers" :items="filteredList" :search="search" hover fixed-header height="calc(100vh - 250px)" class="financial-table elevation-1" :items-per-page="-1">
             <template #item.fin_prdt_nm="{ item }">
@@ -35,12 +43,17 @@
                 {{ item.fin_prdt_nm }}
               </router-link>
             </template>
-
-            <!-- 옵션 열 -->
-            <template #item.options="{ item }">
-              <ul>
-                <li v-for="(option, index) in item.options" :key="index">{{ option.intr_rate_type_nm }}: {{ option.intr_rate }}% ~ {{ option.intr_rate2 }}% ({{ option.save_trm }}개월)</li>
-              </ul>
+            <template v-for="header in headers.slice(2)" :key="header.value" #[`item.${header.value}`]="{ item }">
+              <div v-if="Array.isArray(item[header.value])">
+                <ul>
+                  <li v-for="(detail, index) in item[header.value]" :key="index">
+                    {{ detail }}
+                  </li>
+                </ul>
+              </div>
+              <div v-else>
+                {{ item[header.value] }}
+              </div>
             </template>
           </v-data-table>
         </div>
@@ -49,129 +62,120 @@
     </v-container>
   </v-main>
 </template>
-
 <script setup>
 import axios from "axios";
+import { ref, computed, onMounted } from "vue";
 import { useFinStore } from "@/stores/financial";
-import { onMounted, ref, computed } from "vue";
 
 const store = useFinStore();
 const setProduct = (item) => {
   store.setSelectedProduct(item);
 };
+
+// 상태 및 검색 필터
 const search = ref("");
-
-// 테이블 헤더 정의
-const headers = [
-  {
-    title: "은행명",
-    align: "center",
-    value: "kor_co_nm",
-    width: "80px",
-  },
-  {
-    title: "상품명",
-    align: "center",
-    value: "fin_prdt_nm",
-    width: "150px",
-  },
-  {
-    title: "가입 대상",
-    align: "center",
-    value: "join_member",
-    width: "120px",
-  },
-  {
-    title: "특이사항",
-    align: "center",
-    value: "spcl_cnd",
-    width: "150px",
-  },
-  {
-    title: "옵션",
-    align: "center",
-    value: "options",
-    width: "120px", // 옵션 열을 넓게 설정
-  },
-  {
-    title: "종류", // 새로운 열 추가
-    align: "center",
-    value: "product_type_display",
-    width: "80px",
-  },
-  {
-    title: "기타",
-    align: "center",
-    value: "etc_note",
-    width: "150px",
-  },
-];
-
-// 금융 상품 목록과 필터 정의
-const finList = ref([]); // 금융 상품 목록
-const selectedFilter = ref([]); // 선택된 필터 (수정된 부분)
-
-const filteredList = computed(() => {
-  if (selectedFilter.value.length === 0) {
-    // 모든 필터가 해제된 경우 모든 항목 반환
-    return finList.value;
-  }
-
-  // 필터 조건 적용
-  return finList.value.filter((item) => {
-    // 예금 필터
-    if (selectedFilter.value.includes("deposit") && item.product_type === 0) return true;
-    // 자유적립식 필터 (rsrv_type_nm에 "자유적립식" 포함 여부 확인)
-    if (selectedFilter.value.includes("freeSaving") && item.rsrv_type_nm.includes("자유적립식")) return true;
-    // 정액적립식 필터 (rsrv_type_nm에 "정액적립식" 포함 여부 확인)
-    if (selectedFilter.value.includes("regularSaving") && item.rsrv_type_nm.includes("정액적립식")) return true;
-    // 조건에 맞지 않으면 false 반환
-    return false;
-  });
-});
+const finList = ref([]); // API에서 받은 금융 상품 목록
+const selectedFilter = ref([]); // 기존 필터 상태 (사용하지 않더라도 유지)
+const activeTab = ref("deposit"); // 현재 선택된 탭 (예금/적금)
+const savingFilter = ref(""); // 자유적립식/정액적립식 선택 필터
+const headers = ref([
+  { title: "상품명", value: "fin_prdt_nm", align: "center", width: "150px" },
+  { title: "은행명", value: "kor_co_nm", align: "center", width: "80px" },
+]);
 
 // API 데이터 가져오기
 onMounted(async () => {
   try {
     const response = await axios.get("http://127.0.0.1:8000/api/financials/financial-products-with-options/");
-    console.log("API 응답 데이터:", response.data); // 디버깅용
-    if (Array.isArray(response.data)) {
-      finList.value = response.data.map((item) => {
-        // 상품 유형 처리
-        let rsrvTypes = [];
+    const products = response.data;
 
-        if (item.product_type === 0) {
-          rsrvTypes = ["예금"]; // 예금인 경우
-        } else if (item.options?.length) {
-          rsrvTypes = item.options.map((option) => option.rsrv_type_nm).filter(Boolean); // 옵션에서 rsrv_type_nm 추출
-        }
-
-        // 중복 제거 (Set 사용)
-        const uniqueRsrvTypes = [...new Set(rsrvTypes)];
-
-        // "자유적립식"이 앞에 오도록 정렬
-        uniqueRsrvTypes.sort((a, b) => {
-          if (a === "자유적립식") return -1; // 자유적립식이 우선
-          if (b === "자유적립식") return 1;
-          return 0; // 순서를 유지
+    // 모든 기간 추출 및 동적 헤더 생성
+    const allTerms = new Set();
+    products.forEach((product) => {
+      if (Array.isArray(product.options)) {
+        product.options.forEach((option) => {
+          if (option.save_trm) {
+            allTerms.add(`${option.save_trm}개월`);
+          }
         });
+      }
+    });
 
-        return {
-          ...item,
-          rsrv_type_nm: uniqueRsrvTypes.join(", "), // 유형들을 문자열로 결합 (예: "자유적립식, 정액적립식")
-          product_type_display: uniqueRsrvTypes.join(", "), // 동일한 필드로 표시
-        };
+    allTerms.forEach((term) => {
+      headers.value.push({
+        title: `${term} 일반/우대`,
+        value: term,
+        align: "center",
+        width: "120px",
       });
-    } else {
-      console.error("API 데이터 형식이 올바르지 않습니다:", response.data);
-    }
+    });
+
+    // 데이터 매핑
+    finList.value = products.map((item) => {
+      let rsrvTypes = [];
+      if (item.product_type === 0) {
+        rsrvTypes = ["예금"]; // 예금인 경우
+      } else if (item.options?.length) {
+        rsrvTypes = item.options.map((option) => option.rsrv_type_nm).filter(Boolean); // 옵션에서 rsrv_type_nm 추출
+      }
+
+      // 중복 제거 및 문자열 결합
+      const uniqueRsrvTypes = [...new Set(rsrvTypes)];
+      return {
+        ...item,
+        rsrv_type_nm: uniqueRsrvTypes.join(", "), // 유형들을 문자열로 결합
+      };
+    });
   } catch (error) {
     console.error("Failed to fetch data:", error);
   }
 });
+
+// 데이터 매핑 및 동적 헤더에 따른 데이터 정리
+const processedList = computed(() => {
+  return finList.value.map((item) => {
+    const row = { ...item };
+
+    // 각 기간에 맞는 데이터를 추가
+    if (Array.isArray(item.options)) {
+      item.options.forEach((option) => {
+        const term = `${option.save_trm}개월`;
+        const type = option.rsrv_type_nm || "예금";
+
+        // 기존 데이터에 유형별로 데이터를 병합
+        if (!row[term]) {
+          row[term] = [];
+        }
+        row[term].push(`${type} : ${option.intr_rate}% / ${option.intr_rate2}%`);
+      });
+    }
+
+    return row;
+  });
+});
+
+// 필터링된 목록
+const filteredList = computed(() => {
+  if (activeTab.value === "deposit") {
+    // 예금 탭: 예금만 필터링
+    return processedList.value.filter((item) => item.rsrv_type_nm.includes("예금"));
+  }
+
+  if (activeTab.value === "saving") {
+    // 적금 탭: 자유적립/정액적립 필터 적용
+    if (!savingFilter.value) {
+      return processedList.value.filter((item) => item.rsrv_type_nm.includes("적립식")); // 적금 전체
+    }
+
+    // 자유적립/정액적립 필터 적용
+    return processedList.value.filter((item) => item.rsrv_type_nm.includes(savingFilter.value === "freeSaving" ? "자유적립식" : "정액적립식"));
+  }
+
+  return processedList.value; // 기본 데이터 반환
+});
 </script>
 
-<style>
+<style lang="scss">
 /* 전역 스타일 */
 .v-data-table-footer {
   display: none !important;
@@ -197,6 +201,14 @@ onMounted(async () => {
   & ::-webkit-scrollbar-thumb:hover {
     background: #a8a8a8 !important;
   }
+}
+</style>
+
+<style>
+.v-table > .v-table__wrapper > table > tbody > tr > th,
+.v-table > .v-table__wrapper > table > thead > tr > th,
+.v-table > .v-table__wrapper > table > tfoot > tr > th {
+  font-weight: 900 !important;
 }
 </style>
 
@@ -249,6 +261,26 @@ onMounted(async () => {
   background-color: #f5f5f5 !important;
 }
 
+.filter-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 16px; /* 버튼 간 간격 추가 */
+}
+
+.filter-buttons .v-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  min-width: 120px;
+}
+
+.filter-buttons .btn-text {
+  margin-left: 8px;
+  font-size: 16px;
+  font-weight: bold;
+}
 li {
   list-style-type: none;
 }
