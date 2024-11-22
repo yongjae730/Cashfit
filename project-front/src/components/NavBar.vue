@@ -15,11 +15,11 @@
           <router-link :to="{ name: 'stock' }">
             <v-btn text>커뮤니티</v-btn>
           </router-link>
+          <router-link :to="{ name: 'exchange' }">
+            <v-btn text>환율조회</v-btn>
+          </router-link>
           <router-link :to="{ name: 'crypto' }">
             <v-btn text>암호화폐</v-btn>
-          </router-link>
-          <router-link :to="{ name: 'exchange' }">
-            <v-btn text>Exchange</v-btn>
           </router-link>
         </v-col>
 

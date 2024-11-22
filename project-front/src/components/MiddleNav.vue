@@ -32,14 +32,14 @@ const menuItems = ref([
     icon: "mdi-forum-outline",
   },
   {
+    label: "환율조회",
+    route: { name: "exchange" },
+    icon: "mdi-chart-line",
+  },
+  {
     label: "암호화폐",
     route: { name: "crypto" },
     icon: "mdi-currency-btc",
-  },
-  {
-    label: "Exchange",
-    route: { name: "exchange" },
-    icon: "mdi-chart-line",
   },
 ]);
 </script>
