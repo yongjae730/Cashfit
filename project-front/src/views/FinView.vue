@@ -46,14 +46,10 @@
             <template v-for="header in headers.slice(2)" :key="header.value" #[`item.${header.value}`]="{ item }">
               <div v-if="Array.isArray(item[header.value])">
                 <ul>
-                  <li v-for="(detail, index) in item[header.value]" :key="index">
-                    {{ detail }}
-                  </li>
+                  <li v-for="(detail, index) in item[header.value]" :key="index" v-html="detail"></li>
                 </ul>
               </div>
-              <div v-else>
-                {{ item[header.value] }}
-              </div>
+              <div v-else v-html="item[header.value]"></div>
             </template>
           </v-data-table>
         </div>
@@ -62,6 +58,7 @@
     </v-container>
   </v-main>
 </template>
+
 <script setup>
 import axios from "axios";
 import { ref, computed, onMounted } from "vue";
@@ -121,6 +118,7 @@ onMounted(async () => {
 
       // 중복 제거 및 문자열 결합
       const uniqueRsrvTypes = [...new Set(rsrvTypes)];
+
       return {
         ...item,
         rsrv_type_nm: uniqueRsrvTypes.join(", "), // 유형들을 문자열로 결합
@@ -138,6 +136,17 @@ const processedList = computed(() => {
 
     // 각 기간에 맞는 데이터를 추가
     if (Array.isArray(item.options)) {
+      item.options.sort((a, b) => {
+        // 자유적립식이 정액적립식보다 먼저 오도록 정렬
+        if (a.rsrv_type_nm === "자유적립식" && b.rsrv_type_nm !== "자유적립식") {
+          return -1;
+        }
+        if (a.rsrv_type_nm !== "자유적립식" && b.rsrv_type_nm === "자유적립식") {
+          return 1;
+        }
+        return 0; // 동일한 경우 순서 유지
+      });
+
       item.options.forEach((option) => {
         const term = `${option.save_trm}개월`;
         const type = option.rsrv_type_nm || "예금";
@@ -146,7 +155,12 @@ const processedList = computed(() => {
         if (!row[term]) {
           row[term] = [];
         }
-        row[term].push(`${type} : ${option.intr_rate}% / ${option.intr_rate2}%`);
+        row[term].push(
+          `<span style="color: black">${type} :</span> 
+           <span style="font-weight: bold; color: #1a73e8">${option.intr_rate}%</span> 
+           <span style="color: black">/</span> 
+           <span style="font-weight: bold; color: #ff5722">${option.intr_rate2}%</span>`
+        );
       });
     }
 
