@@ -7,6 +7,8 @@
         <div class="flex-grow-1">
           <div class="text-h4 font-weight-bold mb-2">{{ product.fin_prdt_nm }}</div>
           <div class="text-subtitle-1 text-grey-darken-1">{{ product.kor_co_nm }}</div>
+          <v-btn icon="mdi-chevron-down" v-if="!isExpanded" @click="toggleDetails"></v-btn>
+          <v-btn icon="mdi-chevron-up" v-if="isExpanded" @click="toggleDetails"></v-btn>
         </div>
         <v-btn @click="handleOpenDialog" icon="mdi-plus"></v-btn>
         <v-btn v-if="isLogin" class="ml-4" :color="isLiked ? 'red' : 'grey'" icon="mdi-heart" variant="flat" size="large" @click="toggleLike" :elevation="isLiked ? 2 : 0"></v-btn>
@@ -64,7 +66,11 @@
     <!-- 댓글 섹션 -->
     <ProductComments :productId="product.id" />
     <!-- 상품 더 상세 정보 보기-->
-    <ProductWithOptions :is-clicked="isClicked" :productId="product.id" @update:is-clicked="handleDialogState" />
+    <v-expand-transition>
+      <div v-show="isExpanded">
+        <ProductWithOptions :productId="product.id" />
+      </div>
+    </v-expand-transition>
   </v-main>
 </template>
 
@@ -84,7 +90,7 @@ const accountStore = useAccount();
 const isLogin = computed(() => accountStore.isLogin);
 const isClicked = ref(false);
 const isLiked = ref(false);
-
+const isExpanded = ref(false);
 const handleOpenDialog = () => {
   isClicked.value = true;
 };
@@ -92,6 +98,15 @@ const handleOpenDialog = () => {
 // 다이얼로그 상태 업데이트
 const handleDialogState = (newVal) => {
   isClicked.value = newVal;
+};
+const toggleDetails = () => {
+  isExpanded.value = !isExpanded.value;
+};
+
+const chartData = {
+  labels: ["1개월", "3개월", "6개월", "12개월", "24개월", "36개월"],
+  baseRates: [2.5, 2.8, 3.0, 3.2, 3.1, 3.0],
+  maxRates: [3.0, 3.3, 3.5, 3.6, 3.4, 3.3],
 };
 
 const getIcon = (label) => {
