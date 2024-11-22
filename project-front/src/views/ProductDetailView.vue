@@ -7,14 +7,17 @@
         <div class="flex-grow-1">
           <div class="text-h4 font-weight-bold mb-2">{{ product.fin_prdt_nm }}</div>
           <div class="text-subtitle-1 text-grey-darken-1">{{ product.kor_co_nm }}</div>
-          <v-btn icon="mdi-chevron-down" v-if="!isExpanded" @click="toggleDetails"></v-btn>
-          <v-btn icon="mdi-chevron-up" v-if="isExpanded" @click="toggleDetails"></v-btn>
+          <v-btn icon="mdi-chart-bar" v-if="!isExpanded" @click="toggleDetails"></v-btn>
+          <v-btn icon="mdi-chart-bar" v-if="isExpanded" @click="toggleDetails"></v-btn>
         </div>
-        <v-btn @click="handleOpenDialog" icon="mdi-plus"></v-btn>
         <v-btn v-if="isLogin" class="ml-4" :color="isLiked ? 'red' : 'grey'" icon="mdi-heart" variant="flat" size="large" @click="toggleLike" :elevation="isLiked ? 2 : 0"></v-btn>
       </v-card-title>
     </v-card>
-
+    <v-expand-transition>
+      <div v-show="isExpanded">
+        <ProductWithOptions :productId="product.id" />
+      </div>
+    </v-expand-transition>
     <!-- 상품 정보 섹션 (수정된 부분) -->
     <v-row class="mb-8">
       <v-col cols="12">
@@ -66,11 +69,6 @@
     <!-- 댓글 섹션 -->
     <ProductComments :productId="product.id" />
     <!-- 상품 더 상세 정보 보기-->
-    <v-expand-transition>
-      <div v-show="isExpanded">
-        <ProductWithOptions :productId="product.id" />
-      </div>
-    </v-expand-transition>
   </v-main>
 </template>
 
@@ -111,8 +109,8 @@ const chartData = {
 
 const getIcon = (label) => {
   const icons = {
-    "상품 코드": "barcode",
-    "금융사 코드": "bank",
+    // "상품 코드": "barcode",
+    // "금융사 코드": "bank",
     "가입 대상": "account-group",
     "가입 방법": "card-account-details",
     "특별 조건": "star-circle",
@@ -121,8 +119,8 @@ const getIcon = (label) => {
 };
 
 const productDetails = [
-  { label: "상품 코드", value: product.value.fin_prdt_cd },
-  { label: "금융사 코드", value: product.value.fin_co_no },
+  // { label: "상품 코드", value: product.value.fin_prdt_cd },
+  // { label: "금융사 코드", value: product.value.fin_co_no },
   { label: "가입 대상", value: product.value.join_member },
   { label: "가입 방법", value: product.value.join_way },
   { label: "특별 조건", value: product.value.spcl_cnd },
