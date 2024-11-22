@@ -62,29 +62,29 @@ class FinancialProductLike(models.Model):
         unique_together = ('user', 'product')  
 
 
-# class ExchangeRate(models.Model):
-#     # 통화 코드
-#     cur_unit = models.TextField()
-#     # 국가/통화명
-#     cur_nm = models.TextField()
-#     # 전신환(송금) 받으실 때 (고객의 입장에서 외환을 받을 때)
-#     ttb = models.TextField( null=True, blank=True)
-#     # 전신환(송금) 보내실 때 (고객의 입장에서 외환을 보낼 때)
-#     tts = models.TextField( null=True, blank=True)
-#     # 매매 기준율 (최근 거래일에 외국환중개회사를 통하여 거래가 이루어진 
-#     # 미달러화의 현물환율을 거래량으로 가중 평균하여 산출되는 시장평균환율)
-#     deal_bas_r = models.TextField( null=True, blank=True)
-#     # 장부 가격 (외국환은행이 대고객 외국환거래에 따르
-#     # 는 수수료를 원화로 징수할 때 적용하는 환율)
-#     bkpr = models.TextField( null=True, blank=True)
-#     # 년 환가료율 (외국환을 사고 팔때 외국환은행이 자금부담에 따른 이자 성격으로 고객에게 징수하는 일종의 수수료)
-#     yy_efee_r = models.TextField( null=True, blank=True)
-#     # 10일환가료율
-#     ten_dd_efee_r = models.TextField( null=True, blank=True)
-#     # 서울외국환중개 장부 가격
-#     # 기업이 보유한 외화 자산이나 부채를 회계 장부에 기록할 때 적용하는 환율
-#     kftc_bkpr = models.TextField( null=True, blank=True)
-#     # 서울외국환중개 매매 기준율
-#     # (외국환중개 회사를 통해 거래된 미 달러화와 위환화 각각 현물환 거래량을
-#     # 가중평균하여 산출되는 시장평균환율)
-#     kftc_deal_bas_r = models.TextField( null=True, blank=True)
+class ExchangeRate(models.Model):
+    # 통화 코드
+    cur_unit = models.TextField()
+    # 국가/통화명
+    cur_nm = models.TextField()
+    # 전신환(송금) 받으실 때 (고객의 입장에서 외환을 받을 때)
+    ttb = models.TextField( null=True, blank=True)
+    # 전신환(송금) 보내실 때 (고객의 입장에서 외환을 보낼 때)
+    tts = models.TextField( null=True, blank=True)
+    # 매매 기준율 (최근 거래일에 외국환중개회사를 통하여 거래가 이루어진 
+    # 미달러화의 현물환율을 거래량으로 가중 평균하여 산출되는 시장평균환율)
+    deal_bas_r = models.TextField( null=True, blank=True)
+    # 장부 가격 (외국환은행이 대고객 외국환거래에 따르
+    # 는 수수료를 원화로 징수할 때 적용하는 환율)
+    bkpr = models.TextField( null=True, blank=True)
+    # 년 환가료율 (외국환을 사고 팔때 외국환은행이 자금부담에 따른 이자 성격으로 고객에게 징수하는 일종의 수수료)
+    yy_efee_r = models.TextField( null=True, blank=True)
+    # 10일환가료율
+    ten_dd_efee_r = models.TextField( null=True, blank=True)
+    # 서울외국환중개 장부 가격
+    # 기업이 보유한 외화 자산이나 부채를 회계 장부에 기록할 때 적용하는 환율
+    kftc_bkpr = models.TextField( null=True, blank=True)
+    # 서울외국환중개 매매 기준율
+    # (외국환중개 회사를 통해 거래된 미 달러화와 위환화 각각 현물환 거래량을
+    # 가중평균하여 산출되는 시장평균환율)
+    kftc_deal_bas_r = models.TextField( null=True, blank=True)
