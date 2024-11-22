@@ -1,9 +1,9 @@
 <template>
-  <v-container class="product-section">
+  <v-main class="product-section">
     <!-- 금융 상품 테이블 -->
     <FinProductTable />
     <SavingProductTable />
-  </v-container>
+  </v-main>
 </template>
 
 <script setup>
@@ -12,19 +12,11 @@ import SavingProductTable from "./SavingProductTable.vue";
 </script>
 
 <style scoped>
-.product-section {
-  background-color: #f9f9f9;
+/* .product-section {
+  /* background-color: #f9f9f9;
   padding: 20px;
   border-radius: 12px;
-  margin-top: 20px;
-}
-.custom-tabs {
-  display: flex;
-  border-bottom: 1px solid #e2e8f0;
-  margin-bottom: 1rem;
-  overflow-x: auto;
-  white-space: nowrap;
-}
+  margin-top: 20px; */
 
 /* .tab-item {
   padding: 0.75rem 1.5rem;
