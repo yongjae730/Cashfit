@@ -4,7 +4,25 @@
       <v-card class="mx-auto mt-4 rounded-lg" elevation="2">
         <v-card-title class="d-flex align-center py-4 px-4">
           <v-icon icon="mdi-bank" size="large" class="mr-2" color="primary" />
-          <span class="text-h5 font-weight-bold">금융 상품</span>
+          <span class="text-h4 font-weight-bold">금융 상품</span>
+        </v-card-title>
+        <v-card-title class="d-flex align-center py-4 px-4">
+          <v-spacer />
+          <!-- 필터 버튼 (수정된 부분) -->
+          <v-btn-toggle v-model="selectedFilter" multiple class="filter-buttons">
+            <v-btn value="deposit">
+              <v-icon color="blue" size="28">mdi-cash</v-icon>
+              <span class="btn-text">예금</span>
+            </v-btn>
+            <v-btn value="freeSaving">
+              <v-icon color="green" size="28">mdi-piggy-bank</v-icon>
+              <span class="btn-text">자유적립식</span>
+            </v-btn>
+            <v-btn value="regularSaving">
+              <v-icon color="orange" size="28">mdi-calendar-text</v-icon>
+              <span class="btn-text">정액적립식</span>
+            </v-btn>
+          </v-btn-toggle>
           <v-spacer />
           <v-text-field v-model="search" prepend-inner-icon="mdi-magnify" label="검색" single-line hide-details
             density="compact" variant="outlined" class="max-width-200" />
@@ -12,8 +30,9 @@
 
         <v-divider />
 
-        <div v-if="finList.length > 0" class="custom-table-container">
-          <v-data-table :headers="headers" :items="finList || []" :search="search" hover fixed-header
+        <!-- 데이터 테이블 -->
+        <div v-if="filteredList.length > 0" class="custom-table-container">
+          <v-data-table :headers="headers" :items="filteredList" :search="search" hover fixed-header
             height="calc(100vh - 250px)" class="financial-table elevation-1" :items-per-page="-1">
             <template #item.fin_prdt_nm="{ item }">
               <router-link :to="`/product/${item.fin_prdt_cd}`" @click="setProduct(item)"
@@ -26,8 +45,8 @@
             <template #item.options="{ item }">
               <ul>
                 <li v-for="(option, index) in item.options" :key="index">
-                  {{ option.intr_rate_type_nm }}: {{ option.intr_rate }}% ~ {{ option.intr_rate2 }}% ({{ option.save_trm
-                  }}개월)
+                  {{ option.intr_rate_type_nm }}: {{ option.intr_rate }}% ~
+                  {{ option.intr_rate2 }}% ({{ option.save_trm }}개월)
                 </li>
               </ul>
             </template>
@@ -42,7 +61,7 @@
 <script setup>
 import axios from "axios";
 import { useFinStore } from "@/stores/financial";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, computed } from "vue";
 
 const store = useFinStore();
 const setProduct = (item) => {
@@ -50,6 +69,7 @@ const setProduct = (item) => {
 };
 const search = ref("");
 
+// 테이블 헤더 정의
 const headers = [
   {
     title: "은행명",
@@ -85,7 +105,7 @@ const headers = [
     title: "종류", // 새로운 열 추가
     align: "center",
     value: "product_type_display",
-    width: "80px"
+    width: "80px",
   },
   {
     title: "기타",
@@ -95,21 +115,42 @@ const headers = [
   },
 ];
 
-const finList = ref([]);  // 금융 상품 목록
+// 금융 상품 목록과 필터 정의
+const finList = ref([]); // 금융 상품 목록
+const selectedFilter = ref([]); // 선택된 필터 (수정된 부분)
 
+// 필터링된 데이터 계산 속성
+const filteredList = computed(() => {
+  if (selectedFilter.value.length === 0) {
+    // 모든 필터가 해제된 경우 모든 항목 반환 (수정된 부분)
+    return finList.value;
+  }
+
+  // 필터 조건 적용 (수정된 부분)
+  return finList.value.filter((item) => {
+    // 예금 필터
+    if (selectedFilter.value.includes("deposit") && item.product_type === 0) return true;
+    // 자유적립식 필터
+    if (selectedFilter.value.includes("freeSaving") && item.rsrv_type_nm === "자유적립식") return true;
+    // 정액적립식 필터
+    if (selectedFilter.value.includes("regularSaving") && item.rsrv_type_nm === "정액적립식") return true;
+    // 조건에 맞지 않으면 false 반환
+    return false;
+  });
+});
+
+// API 데이터 가져오기
 onMounted(async () => {
   try {
     const response = await axios.get("http://127.0.0.1:8000/api/financials/financial-products-with-options/");
-    console.log("API 응답 데이터:", response.data); // 응답 확인
+    console.log("API 응답 데이터:", response.data); // 디버깅용
     if (Array.isArray(response.data)) {
-      // 데이터 가공
-      finList.value = response.data.map(item => {
-        const productTypeDisplay = item.product_type === 0
-          ? "예금"
-          : item.options[0]?.rsrv_type_nm || "정보 없음"; // rsrv_type_nm 또는 기본값
+      finList.value = response.data.map((item) => {
+        const rsrvType = item.product_type === 0 ? "예금" : item.options[0]?.rsrv_type_nm || "정보 없음";
         return {
           ...item,
-          product_type_display: productTypeDisplay // 새 필드 추가
+          rsrv_type_nm: rsrvType, // 새 필드 추가
+          product_type_display: rsrvType,
         };
       });
     } else {
@@ -119,12 +160,10 @@ onMounted(async () => {
     console.error("Failed to fetch data:", error);
   }
 });
-
-
 </script>
 
 <style>
-/* 전역 스타일로 설정 */
+/* 전역 스타일 */
 .v-data-table-footer {
   display: none !important;
 }
@@ -154,6 +193,31 @@ onMounted(async () => {
 </style>
 
 <style scoped>
+.filter-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 16px;
+  /* 버튼 간 간격 추가 (수정된 부분) */
+}
+
+.filter-buttons .v-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  /* 버튼 내부 간격 조정 */
+  min-width: 120px;
+  /* 버튼 크기 균일화 */
+}
+
+.filter-buttons .btn-text {
+  margin-left: 8px;
+  /* 아이콘과 텍스트 사이 간격 추가 (수정된 부분) */
+  font-size: 16px;
+  font-weight: bold;
+}
+
 .financial-table {
   font-family: "Roboto", sans-serif;
 }
