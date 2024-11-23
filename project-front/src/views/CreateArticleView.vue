@@ -38,6 +38,7 @@ import { ref } from "vue";
 import axios from "axios";
 import { useRouter } from "vue-router";
 import { useAccount } from "@/stores/accounts";
+import swal from "sweetalert";
 
 const API_URL = "http://127.0.0.1:8000"; // API URL
 
@@ -71,11 +72,21 @@ const handleSubmit = async () => {
     );
 
     console.log("게시글 생성 완료:", response.data);
-    alert("게시글 생성 완료!");
+    await swal({
+      title: "성공!",
+      text: "게시글이 성공적으로 등록되었습니다.",
+      icon: "success",
+      button: "확인",
+    });
     router.push({ name: "community" }); // 게시판 페이지로 이동
   } catch (error) {
     console.error("게시글 등록 실패:", error);
-    alert("게시글 등록에 실패했습니다. 다시 시도해주세요.");
+    swal({
+      title: "실패 ㅠㅠ",
+      text: "게시글 등록에 실패했습니다. 잠시 후 다시 시도해주세요..",
+      icon: "error",
+      button: "확인",
+    });
   } finally {
     isSubmitting.value = false;
   }

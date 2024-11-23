@@ -31,15 +31,15 @@ const menuItems = ref([
     route: { name: "stock" },
     icon: "mdi-forum-outline",
   },
-  //   {
-  //     label: "비트코인",
-  //     route: { name: "crypto" },
-  //     icon: "mdi-currency-btc",
-  //   },
   {
-    label: "Exchange",
+    label: "환율조회",
     route: { name: "exchange" },
     icon: "mdi-chart-line",
+  },
+  {
+    label: "암호화폐",
+    route: { name: "crypto" },
+    icon: "mdi-currency-btc",
   },
 ]);
 </script>

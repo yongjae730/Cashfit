@@ -7,11 +7,17 @@
         <div class="flex-grow-1">
           <div class="text-h4 font-weight-bold mb-2">{{ product.fin_prdt_nm }}</div>
           <div class="text-subtitle-1 text-grey-darken-1">{{ product.kor_co_nm }}</div>
+          <v-btn icon="mdi-chart-bar" v-if="!isExpanded" @click="toggleDetails"></v-btn>
+          <v-btn icon="mdi-chart-bar" v-if="isExpanded" @click="toggleDetails"></v-btn>
         </div>
         <v-btn v-if="isLogin" class="ml-4" :color="isLiked ? 'red' : 'grey'" icon="mdi-heart" variant="flat" size="large" @click="toggleLike" :elevation="isLiked ? 2 : 0"></v-btn>
       </v-card-title>
     </v-card>
-
+    <v-expand-transition>
+      <div v-show="isExpanded">
+        <ProductWithOptions :productId="product.id" />
+      </div>
+    </v-expand-transition>
     <!-- 상품 정보 섹션 (수정된 부분) -->
     <v-row class="mb-8">
       <v-col cols="12">
@@ -62,6 +68,7 @@
 
     <!-- 댓글 섹션 -->
     <ProductComments :productId="product.id" />
+    <!-- 상품 더 상세 정보 보기-->
   </v-main>
 </template>
 
@@ -72,21 +79,38 @@ import { useFinStore } from "@/stores/financial";
 import ProductComments from "@/components/ProductComments.vue";
 import axios from "axios";
 import { computed, onMounted, ref, watch } from "vue";
+import ProductWithOptions from "@/components/ProductWithOptions.vue";
 
 const store = useFinStore();
 const product = computed(() => store.selectedProduct);
 
-console.log(product.value);
-
 const accountStore = useAccount();
 const isLogin = computed(() => accountStore.isLogin);
-
+const isClicked = ref(false);
 const isLiked = ref(false);
+const isExpanded = ref(false);
+const handleOpenDialog = () => {
+  isClicked.value = true;
+};
+
+// 다이얼로그 상태 업데이트
+const handleDialogState = (newVal) => {
+  isClicked.value = newVal;
+};
+const toggleDetails = () => {
+  isExpanded.value = !isExpanded.value;
+};
+
+const chartData = {
+  labels: ["1개월", "3개월", "6개월", "12개월", "24개월", "36개월"],
+  baseRates: [2.5, 2.8, 3.0, 3.2, 3.1, 3.0],
+  maxRates: [3.0, 3.3, 3.5, 3.6, 3.4, 3.3],
+};
 
 const getIcon = (label) => {
   const icons = {
-    "상품 코드": "barcode",
-    "금융사 코드": "bank",
+    // "상품 코드": "barcode",
+    // "금융사 코드": "bank",
     "가입 대상": "account-group",
     "가입 방법": "card-account-details",
     "특별 조건": "star-circle",
@@ -95,11 +119,11 @@ const getIcon = (label) => {
 };
 
 const productDetails = [
-  { label: "상품 코드", value: product.fin_prdt_cd },
-  { label: "금융사 코드", value: product.fin_co_no },
-  { label: "가입 대상", value: product.join_member },
-  { label: "가입 방법", value: product.join_way },
-  { label: "특별 조건", value: product.spcl_cnd },
+  // { label: "상품 코드", value: product.value.fin_prdt_cd },
+  // { label: "금융사 코드", value: product.value.fin_co_no },
+  { label: "가입 대상", value: product.value.join_member },
+  { label: "가입 방법", value: product.value.join_way },
+  { label: "특별 조건", value: product.value.spcl_cnd },
 ];
 
 const toggleLike = async () => {

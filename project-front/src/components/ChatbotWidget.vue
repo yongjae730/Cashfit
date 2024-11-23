@@ -4,12 +4,14 @@
     <div v-if="!isOpen" class="chat-icon" @click="toggleChat">💬</div>
 
     <!-- 챗봇 창 -->
-    <div v-if="isOpen" class="chat-window">
+    <div v-if="isOpen" class="chat-window" ref="chatWindow">
+      <!-- 좌상단 커스텀 크기 조절 핸들 -->
+      <div class="resize-handle" @mousedown="startResizing"></div>
       <div class="chat-header">
-        <span>금융 상담 챗봇</span>
+        <span>캐시피터</span>
         <button @click="toggleChat">X</button>
       </div>
-      <div class="chat-content">
+      <div ref="chatContent" class="chat-content">
         <div v-for="(msg, index) in messages" :key="index" class="message">
           <div :class="msg.type" v-html="msg.text"></div>
         </div>
@@ -24,7 +26,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watchEffect, onMounted, onUnmounted } from "vue";
 import axios from "axios";
 
 const isOpen = ref(false);
@@ -32,10 +34,34 @@ const userInput = ref("");
 const messages = ref([{ type: "bot", text: "안녕하세요! 예금이나 적금 상품에 대해 궁금한 점을 말씀해주세요." }]);
 const isWaiting = ref(false);
 const waitingMessage = ref("답변 기다리는중 ...");
+const chatContent = ref(null);
+const chatWindow = ref(null);
+
+let isResizing = false;
+let startX = 0;
+let startY = 0;
+let startWidth = 0;
+let startHeight = 0;
+
+// 메시지가 추가될 때마다 스크롤을 맨 아래로 이동
+watchEffect(() => {
+  if (messages.value.length && chatContent.value) {
+    setTimeout(() => {
+      chatContent.value.scrollTop = chatContent.value.scrollHeight;
+    }, 100);
+  }
+});
 
 // 채팅창 열기/닫기
 const toggleChat = () => {
   isOpen.value = !isOpen.value;
+  if (isOpen.value) {
+    setTimeout(() => {
+      if (chatContent.value) {
+        chatContent.value.scrollTop = chatContent.value.scrollHeight;
+      }
+    }, 100);
+  }
 };
 
 // 대기 메시지 애니메이션 설정
@@ -56,49 +82,28 @@ const stopWaitingAnimation = () => {
 // 메시지 전송 함수
 const sendMessage = async () => {
   if (userInput.value.trim() !== "") {
-    // 사용자가 입력한 메시지 추가
     messages.value.push({ type: "user", text: userInput.value });
-
-    // 응답 대기 메시지 추가
     isWaiting.value = true;
     startWaitingAnimation();
 
-    // 서버에 메시지 전송
     try {
-      const response = await axios.post(
-        "http://localhost:8000/chatbot/get-response/",
-        {
-          message: userInput.value,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      // 응답 대기 메시지 삭제
+      const response = await axios.post("http://localhost:8000/chatbot/get-response/", { message: userInput.value }, { headers: { "Content-Type": "application/json" } });
       isWaiting.value = false;
       stopWaitingAnimation();
       messages.value = messages.value.filter((msg) => msg.text !== "답변 기다리는중 ...");
-
-      // 서버로부터 받은 응답 추가
       messages.value.push({ type: "bot", text: response.data.response.replace(/\n/g, "<br>") });
     } catch (error) {
-      // 응답 대기 메시지 삭제
       isWaiting.value = false;
       stopWaitingAnimation();
       messages.value = messages.value.filter((msg) => msg.text !== "답변 기다리는중 ...");
 
       if (error.response) {
-        // 서버에서 오류 응답을 받은 경우
         console.error("서버 오류:", error.response.data);
         messages.value.push({ type: "bot", text: "서버 오류가 발생했습니다. 다시 시도해주세요." });
       } else if (error.request) {
-        // 요청이 보내졌으나 응답이 없는 경우
         console.error("서버로부터 응답이 없습니다.");
         messages.value.push({ type: "bot", text: "서버로부터 응답이 없습니다. 인터넷 연결을 확인해주세요." });
       } else {
-        // 기타 오류
         console.error("오류:", error.message);
         messages.value.push({ type: "bot", text: "알 수 없는 오류가 발생했습니다. 다시 시도해주세요." });
       }
@@ -107,6 +112,43 @@ const sendMessage = async () => {
     }
   }
 };
+
+// 크기 조절 시작
+const startResizing = (e) => {
+  isResizing = true;
+  startX = e.clientX;
+  startY = e.clientY;
+  startWidth = chatWindow.value.offsetWidth;
+  startHeight = chatWindow.value.offsetHeight;
+
+  document.addEventListener("mousemove", resize);
+  document.addEventListener("mouseup", stopResizing);
+};
+
+// 크기 조절 중
+const resize = (e) => {
+  if (isResizing) {
+    const newWidth = Math.max(300, Math.min(1200, startWidth - (e.clientX - startX)));
+    const newHeight = Math.max(400, Math.min(1800, startHeight - (e.clientY - startY)));
+    chatWindow.value.style.width = `${newWidth}px`;
+    chatWindow.value.style.height = `${newHeight}px`;
+  }
+};
+
+// 크기 조절 종료
+const stopResizing = () => {
+  isResizing = false;
+  document.removeEventListener("mousemove", resize);
+  document.removeEventListener("mouseup", stopResizing);
+};
+
+onMounted(() => {
+  document.addEventListener("mouseup", stopResizing);
+});
+
+onUnmounted(() => {
+  document.removeEventListener("mouseup", stopResizing);
+});
 </script>
 
 <style scoped>
@@ -115,87 +157,185 @@ const sendMessage = async () => {
   bottom: 20px;
   right: 20px;
   z-index: 1000;
+  font-family: "Noto Sans KR", sans-serif;
 }
 
 .chat-icon {
   width: 60px;
   height: 60px;
-  background-color: #007bff;
-  color: white;
+  background-color: #2563eb;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  font-size: 24px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.chat-icon:hover {
+  transform: scale(1.1);
 }
 
 .chat-window {
-  width: 400px;
-  height: 600px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 10px;
+  width: 395px;
+  height: 500px;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: auto;
+  min-width: 300px;
+  min-height: 400px;
+  max-width: 1200px;
+  max-height: 1800px;
+}
+
+/* 좌상단 크기 조절 핸들 */
+.resize-handle {
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  width: 12px;
+  height: 12px;
+  background-color: #2563eb;
+  border-radius: 50%;
+  cursor: nwse-resize; /* 대각선 크기 조절 커서 */
+  z-index: 1001;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .chat-header {
-  padding: 10px;
-  background-color: #007bff;
+  background-color: #2563eb;
   color: white;
+  padding: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  font-weight: 600;
+}
+
+.chat-header button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
 }
 
 .chat-content {
   flex: 1;
-  padding: 10px;
-  overflow-y: auto;
-  background-color: #f9f9f9;
+  padding: 16px;
+  overflow-y: auto; /* 내부 콘텐츠 스크롤 가능 */
+  background-color: #f8fafc;
+  scroll-behavior: smooth;
 }
 
 .message {
-  margin-bottom: 10px;
+  margin: 8px 0;
+  display: flex;
+  flex-direction: column;
   font-size: 14px;
 }
 
+.bot,
 .user {
-  text-align: right;
-  color: blue;
+  max-width: 80%;
+  padding: 12px;
+  border-radius: 12px;
+  margin: 4px 0;
+  position: relative;
+  word-wrap: break-word;
 }
 
 .bot {
-  text-align: left;
-  color: green;
+  background-color: #e2e8f0;
+  color: #1e293b;
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+
+.bot::before {
+  content: "";
+  position: absolute;
+  left: -6px;
+  bottom: 0;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(135deg, #e2e8f0 50%, transparent 50%);
+}
+
+.user {
+  background-color: #2563eb;
+  color: white;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+.user::before {
+  content: "";
+  position: absolute;
+  right: -6px;
+  bottom: 0;
+  width: 12px;
+  height: 12px;
+  background: linear-gradient(-45deg, #2563eb 50%, transparent 50%);
 }
 
 .chat-input {
+  padding: 16px;
+  background-color: white;
+  border-top: 1px solid #e2e8f0;
   display: flex;
-  padding: 10px;
-  border-top: 1px solid #ccc;
-  background-color: #f9f9f9;
+  gap: 8px;
 }
 
-input {
+.chat-input input {
   flex: 1;
-  padding: 10px;
-  margin-right: 10px;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  outline: none;
+  font-size: 14px;
 }
 
-button {
-  padding: 10px;
-  background-color: #007bff;
+.chat-input input:focus {
+  border-color: #2563eb;
+}
+
+.chat-input button {
+  padding: 12px 20px;
+  background-color: #2563eb;
   color: white;
   border: none;
+  border-radius: 8px;
   cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
 }
 
-button:hover {
-  background-color: #0056b3;
+.chat-input button:hover {
+  background-color: #1d4ed8;
+}
+
+/* 스크롤바 스타일링 */
+.chat-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.chat-content::-webkit-scrollbar-thumb {
+  background: #becde3;
+  border-radius: 3px;
+}
+
+.chat-content::-webkit-scrollbar-thumb:hover {
+  background: #8ba2c5;
 }
 </style>

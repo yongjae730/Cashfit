@@ -75,7 +75,12 @@ const editedComment = ref("");
 
 const addComment = () => {
   if (!newComment.value.trim()) {
-    alert("댓글을 입력하세요.");
+    swal({
+      title: "앗!",
+      text: "댓글을 입력해주세요!",
+      icon: "warning",
+      button: "확인",
+    });
     return;
   }
   emit("add-comment", newComment.value.trim());
@@ -98,7 +103,12 @@ const cancelEdit = () => {
 
 const saveEdit = (commentId) => {
   if (!editedComment.value.trim()) {
-    alert("수정할 내용을 입력하세요.");
+    swal({
+      title: "앗!",
+      text: "수정할 내용을 입력해주세요!",
+      icon: "warning",
+      button: "확인",
+    });
     return;
   }
   emit("update-comment", { id: commentId, content: editedComment.value.trim() });

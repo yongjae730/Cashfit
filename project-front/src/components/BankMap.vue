@@ -105,7 +105,7 @@ const loadKaKaoMap = (container) => {
 const initMap = (container) => {
   const options = {
     center: new window.kakao.maps.LatLng(33.450701, 126.570667),
-    level: 3,
+    level: 1,
   };
 
   mapInstance.value = new window.kakao.maps.Map(container, options);
@@ -163,6 +163,17 @@ const addMarker = (position, place) => {
   markers.value.push(marker);
 };
 
+const adjustMapBounds = () => {
+  if (markers.value.length === 0) return;
+  const bounds = new window.kakao.maps.LatLngBounds();
+
+  markers.value.forEach((marker) => {
+    bounds.extend(marker.getPosition());
+  });
+
+  mapInstance.value.setBounds(bounds);
+};
+
 const searchBranches = () => {
   const ps = new window.kakao.maps.services.Places();
   const query = `${sido.value} ${sigugun.value} ${props.bank}`;
@@ -182,13 +193,24 @@ const searchBranches = () => {
       });
 
       // 첫 번째 검색 결과로 지도 중심 이동
-      const firstPlace = data[0];
-      mapInstance.value.setCenter(new window.kakao.maps.LatLng(firstPlace.y, firstPlace.x));
+      // const firstPlace = data[0];
+      // mapInstance.value.setCenter(new window.kakao.maps.LatLng(firstPlace.y, firstPlace.x));
+      adjustMapBounds();
     } else if (status === window.kakao.maps.services.Status.ZERO_RESULT) {
-      alert("검색 결과가 없습니다");
+      swal({
+        title: "ㅠㅠ",
+        text: "검색 결과가 없어요..",
+        icon: "warning",
+        button: "확인",
+      });
       places.value = [];
     } else {
-      alert("검색 중 오류가 발생했습니다.");
+      swal({
+        title: "헉!",
+        text: "검색 중 오류가 발생했어요.",
+        icon: "warning",
+        button: "확인",
+      });
       places.value = [];
     }
   });

@@ -25,7 +25,7 @@
           <v-card-title class="font-weight-bold text-h6">내 예금</v-card-title>
           <v-card-text>
             <div v-if="deposits.length">
-              <v-carousel class="carousel-container" hide-delimiters show-arrows height="300px">
+              <v-carousel class="carousel-container" hide-delimiters show-arrows="hover" height="300px">
                 <v-carousel-item v-for="(deposit, index) in deposits" :key="index">
                   <v-card outlined class="carousel-card">
                     <!-- 좋아요 취소 버튼 -->
@@ -63,7 +63,7 @@
           <v-card-title class="font-weight-bold text-h6">내 적금</v-card-title>
           <v-card-text>
             <div v-if="savings.length">
-              <v-carousel class="carousel-container" hide-delimiters show-arrows height="300px">
+              <v-carousel class="carousel-container" hide-delimiters show-arrows="hover" height="300px">
                 <v-carousel-item v-for="(saving, index) in savings" :key="index">
                   <v-card outlined class="carousel-card">
                     <!-- 좋아요 취소 버튼 -->
@@ -240,7 +240,12 @@ const saveProfile = async () => {
     await axios.put("http://127.0.0.1:8000/accounts/update/", payload, { headers });
     await accountStore.getProfile();
     showEditModal.value = false;
-    alert("프로필이 성공적으로 업데이트되었습니다.");
+    swal({
+      title: "완료!",
+      text: "프로필이 성공적으로 업데이트 되었어요!",
+      icon: "success",
+      button: "확인",
+    });
   } catch (error) {
     console.error("프로필 업데이트 실패:", error);
     alert("프로필 업데이트 중 오류가 발생했습니다.");

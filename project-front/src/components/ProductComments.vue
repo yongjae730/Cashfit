@@ -74,7 +74,12 @@ const fetchComments = async () => {
 
 const addComment = async () => {
   if (!newComment.value.trim()) {
-    alert("댓글을 입력하세요!");
+    swal({
+      title: "앗!",
+      text: "댓글을 입력해주세요!",
+      icon: "warning",
+      button: "확인",
+    });
     return;
   }
   try {
