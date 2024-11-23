@@ -10,6 +10,7 @@ from rest_framework.permissions import IsAuthenticated,AllowAny
 from rest_framework import status
 from finhub import settings
 import requests
+from django.db.models import Q
 
 # Create your views here.
 
@@ -314,7 +315,8 @@ def exchange_rate(request):
     API = settings.EXCHANGE_API_KEY
     params = {
         "authkey": API,
-        "data": "AP01"
+        "searchdate	" : "20241120",
+        "data": "AP01",
     }
 
     try:
@@ -401,3 +403,70 @@ def financial_products_with_options(request):
         products = FinancialProducts.objects.all()  # 모든 금융 상품 가져오기
         serializer = FinancialProductWithOptionsSerializer(products, many=True)  # 직렬화
         return Response(serializer.data)
+
+
+
+###### 상품 추천 알고리즘
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def age_based_recommendation(request):
+    """
+    사용자의 연령대에 따른 맞춤형 금융상품 추천
+    
+    연령대별 추천 기준:
+    - 25세 미만: 단기 상품, 높은 금리 우선
+    - 25-34세: 중기 적금, 우대조건 중시
+    - 35-49세: 장기 상품, 높은 금리
+    - 50세 이상: 안정적인 단기 상품
+    """
+    user = request.user
+    age = user.age
+
+    if not age:
+
+        return Response(
+            {"error": "사용자의 나이 정보가 필요합니다."}, 
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+    # 연령대별 추천 로직
+    if age < 25:  # 청년층
+        recommended_products = FinancialProducts.objects.filter(
+            Q(option__save_trm__lte=12) &  # 12개월 이하
+            Q(join_deny=1)  # 가입제한 없음
+        ).distinct().order_by('-option__intr_rate2')[:5]
+        recommendation_message = "청년층을 위한 단기 고금리 상품 추천"
+        
+    elif 25 <= age < 35:  # 사회초년생
+        recommended_products = FinancialProducts.objects.filter(
+            Q(option__save_trm__range=(12, 24)) &  # 12~24개월
+            Q(product_type=1) &  # 적금 상품
+            Q(join_deny=1)  # 가입제한 없음
+        ).distinct().order_by('-option__intr_rate2')[:5]
+        recommendation_message = "사회초년생을 위한 중기 적금 상품 추천"
+        
+    elif 35 <= age < 50:  # 자산형성기
+        recommended_products = FinancialProducts.objects.filter(
+            Q(option__save_trm__gte=24) &  # 24개월 이상
+            Q(join_deny=1)
+        ).distinct().order_by('-option__intr_rate2')[:5]
+        recommendation_message = "자산형성기를 위한 장기 상품 추천"
+        
+    else:  # 장년층
+        recommended_products = FinancialProducts.objects.filter(
+            Q(option__save_trm__lte=12) &  # 12개월 이하
+            Q(option__intr_rate_type_nm='단리')  # 단리 상품
+        ).distinct().order_by('-option__intr_rate2')[:5]
+        recommendation_message = "장년층을 위한 안정적인 단기 상품 추천"
+
+    # 추천 상품 직렬화
+    serializer = FinancialProductWithOptionsSerializer(recommended_products, many=True)
+    
+    response_data = {
+        "message": recommendation_message,
+        "user_age": age,
+        "recommendations": serializer.data
+    }
+    
+    return Response(response_data, status=status.HTTP_200_OK)

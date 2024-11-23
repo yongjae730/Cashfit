@@ -15,8 +15,13 @@ urlpatterns = [
     path('financial-products/deposit_top_rate/', views.deposit_top_rate),
     # 전체 상품과 옵션을 추가하는 시리얼라이저들
     path('financial-products-with-options/', views.financial_products_with_options, name='financial_products_with_options'),
-
+    # 가입 기간에 상관 없이 최고 금리가 가장 높은 금융상품과
     path('financial-products/saving_top_rate/', views.saving_top_rate),
+
+    # 나이별 추천 상품
+    path('recommendations/age/', views.age_based_recommendation, name='age-based-recommendation'),
+
+
     # 댓글 조회 url
     path('financial-comment/<int:fin_product_pk>/', views.financial_comment),
     path('financial-comment_create/<int:fin_product_pk>/', views.financial_comment_create),

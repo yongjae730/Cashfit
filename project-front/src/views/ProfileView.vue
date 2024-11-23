@@ -35,7 +35,8 @@
                     <!-- 은행 로고 -->
                     <v-card-title class="bank-info d-flex align-center">
                       <v-avatar size="36" class="mr-3">
-                        <v-img :src="`/bank_images/${deposit.kor_co_nm}.jpg`" max-width="120px" class="mr-6 rounded-lg" cover alt="상품 이미지"></v-img>
+                        <v-img :src="`/bank_images/${deposit.kor_co_nm}.jpg`" max-width="120px" class="mr-6 rounded-lg"
+                          cover alt="상품 이미지"></v-img>
                       </v-avatar>
                       <span class="bank-name">{{ deposit.kor_co_nm }}</span>
                     </v-card-title>
@@ -73,7 +74,8 @@
                     <!-- 은행 로고 -->
                     <v-card-title class="bank-info d-flex align-center">
                       <v-avatar size="36" class="mr-3">
-                        <v-img :src="`/bank_images/${saving.kor_co_nm}.jpg`" max-width="120px" class="mr-6 rounded-lg" cover alt="상품 이미지"></v-img>
+                        <v-img :src="`/bank_images/${saving.kor_co_nm}.jpg`" max-width="120px" class="mr-6 rounded-lg"
+                          cover alt="상품 이미지"></v-img>
                       </v-avatar>
                       <span class="bank-name">{{ saving.kor_co_nm }}</span>
                     </v-card-title>
@@ -95,8 +97,9 @@
         </v-card>
       </v-col>
     </v-row>
-
     <!-- 내가 쓴 글 -->
+
+    <Recommend />
     <v-card style="margin: 10px" class="my-6 info-card">
       <v-card-title class="font-weight-bold text-h6">내가 쓴 글</v-card-title>
       <v-card-text>
@@ -146,15 +149,20 @@
         <v-divider></v-divider>
         <v-card-text>
           <!-- 닉네임 -->
-          <v-text-field v-model="editedNickname" label="닉네임" outlined dense class="mb-4" :rules="[(v) => !!v || '닉네임을 입력해주세요']" />
+          <v-text-field v-model="editedNickname" label="닉네임" outlined dense class="mb-4"
+            :rules="[(v) => !!v || '닉네임을 입력해주세요']" />
           <!-- 나이 -->
-          <v-text-field v-model="editedAge" label="나이" outlined dense type="number" class="mb-4" :rules="[(v) => !!v || '나이를 입력해주세요']" />
+          <v-text-field v-model="editedAge" label="나이" outlined dense type="number" class="mb-4"
+            :rules="[(v) => !!v || '나이를 입력해주세요']" />
           <!-- 자본금 -->
-          <v-text-field v-model="editedCapital" label="자본금 (숫자만)" outlined dense type="number" suffix="만원" class="mb-4" :rules="[(v) => !!v || '자본금을 입력해주세요']" />
+          <v-text-field v-model="editedCapital" label="자본금 (숫자만)" outlined dense type="number" suffix="만원" class="mb-4"
+            :rules="[(v) => !!v || '자본금을 입력해주세요']" />
           <!-- 시/도 -->
-          <v-select v-model="editedSido" :items="sidoList" label="시/도" outlined dense class="mb-4" :rules="[(v) => !!v || '시/도를 선택해주세요']" @change="onSidoChange" />
+          <v-select v-model="editedSido" :items="sidoList" label="시/도" outlined dense class="mb-4"
+            :rules="[(v) => !!v || '시/도를 선택해주세요']" @change="onSidoChange" />
           <!-- 시/군/구 -->
-          <v-select v-model="editedSigungu" :items="sigugunList" label="시/군/구" outlined dense class="mb-4" :disabled="!sigugunList.length" :rules="[(v) => !!v || '시/군/구를 선택해주세요']" />
+          <v-select v-model="editedSigungu" :items="sigugunList" label="시/군/구" outlined dense class="mb-4"
+            :disabled="!sigugunList.length" :rules="[(v) => !!v || '시/군/구를 선택해주세요']" />
         </v-card-text>
         <v-card-actions>
           <v-btn color="primary" block @click="saveProfile">저장</v-btn>
@@ -169,6 +177,7 @@ import { useAccount } from "@/stores/accounts";
 import { computed, ref, watch, watchEffect } from "vue";
 import axios from "axios";
 import { useAddressStore } from "@/stores/address";
+import Recommend from "@/components/Recommend.vue";
 
 const accountStore = useAccount();
 const isLogin = computed(() => accountStore.isLogin);
@@ -295,8 +304,10 @@ const unlikeProduct = async (productId, productType) => {
 
 /* 캐러셀 컨테이너 */
 .carousel-container {
-  max-width: 600px; /* 캐러셀 크기를 카드 크기에 맞춤 */
-  margin: 0 auto; /* 가운데 정렬 */
+  max-width: 600px;
+  /* 캐러셀 크기를 카드 크기에 맞춤 */
+  margin: 0 auto;
+  /* 가운데 정렬 */
 }
 
 /* 캐러셀 카드 */
@@ -355,6 +366,7 @@ const unlikeProduct = async (productId, productType) => {
   font-style: italic;
   margin: 16px 0;
 }
+
 /* 리스트 아이템 스타일 */
 .product-item,
 .post-item {
