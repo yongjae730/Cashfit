@@ -1,7 +1,7 @@
 <template>
     <v-card style="margin: 10px" class="my-6 info-card">
         <v-card-title class="d-flex align-center font-weight-bold text-h6">
-            연령대별 맞춤 상품
+            맞춤 적금 상품
             <v-spacer></v-spacer>
             <v-chip color="primary" class="ml-2">
                 {{ userInfo.age }}세 맞춤

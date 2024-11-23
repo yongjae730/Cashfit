@@ -315,7 +315,7 @@ def exchange_rate(request):
     API = settings.EXCHANGE_API_KEY
     params = {
         "authkey": API,
-        "searchdate	" : "20241120",
+        "searchdate" : "20241120",
         "data": "AP01",
     }
 
