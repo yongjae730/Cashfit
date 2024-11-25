@@ -35,12 +35,21 @@ onMounted(async () => {
     if (store.exchange.length > 0) {
       // store.exchange는 배열임
       exchangeInfos.value = store.exchange; // 데이터를 직접 할당
-      // console.log("환율 데이터:", exchangeInfos.value);
     } else {
-      console.error("환율 데이터가 비어 있습니다.");
+      swal({
+        title: "실패",
+        text: "데이터 로드 중 문제가 발생했습니다. 다시 시도해주세요.",
+        icon: "error",
+        button: "확인",
+      });
     }
   } catch (error) {
-    console.error("환율 데이터를 가져오는 중 오류 발생:", error);
+    swal({
+      title: "실패",
+      text: "데이터 로드 중 문제가 발생했습니다. 다시 시도해주세요.",
+      icon: "error",
+      button: "확인",
+    });
   } finally {
     isLoading.value = false; // 로딩 상태 종료
   }

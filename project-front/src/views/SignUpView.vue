@@ -242,7 +242,6 @@ const handleSignup = async () => {
 
   isSubmitting.value = true;
   try {
-    console.log("Starting signup process...");
     await signUp({
       username: username.value,
       password1: password1.value,
@@ -253,10 +252,7 @@ const handleSignup = async () => {
       sido: sido.value,
       sigungus: sigugun.value,
     });
-    console.log("Signup successful!");
   } catch (error) {
-    console.error("Error in handleSignup:", error.response?.data || error.message);
-    console.log(error.response.data);
     if (error.response?.data) {
       // 서버에서 받은 에러 메시지 처리
       Object.entries(error.response.data).forEach(([key, value]) => {
@@ -264,10 +260,6 @@ const handleSignup = async () => {
           errors.value[key] = translateErrorMessage(Array.isArray(value) ? value[0] : value);
         }
       });
-    } else if (error.request) {
-      console.error("No response received from server:", error.request);
-    } else {
-      console.error("Unexpected error:", error.message);
     }
   } finally {
     isSubmitting.value = false;

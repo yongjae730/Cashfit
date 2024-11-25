@@ -233,7 +233,12 @@ const fetchMarketNames = async () => {
         price: 0,
       }));
   } catch (error) {
-    console.error("Error fetching market names:", error);
+    swal({
+      title: "실패",
+      text: "데이터를 찾지 못했어요...",
+      icon: "error",
+      button: "확인",
+    });
     return [];
   }
 };
@@ -278,7 +283,12 @@ const fetchCandleData = async () => {
       }
     }
   } catch (error) {
-    console.error("캔들 데이터 조회 실패:", error);
+    swal({
+      title: "실패",
+      text: "데이터를 찾지 못했어요...",
+      icon: "error",
+      button: "확인",
+    });
   }
 };
 
@@ -286,7 +296,6 @@ const connectWebSocket = () => {
   socket = new WebSocket("wss://api.upbit.com/websocket/v1");
 
   socket.onopen = () => {
-    console.log("WebSocket connected!");
     const codes = coins.value.map((coin) => coin.code);
     socket.send(JSON.stringify([{ ticket: "UNIQUE_TICKET_ID" }, { type: "ticker", codes }]));
   };
@@ -300,17 +309,25 @@ const connectWebSocket = () => {
         coins.value[coinIndex].price = data.trade_price;
       }
     } catch (error) {
-      console.error("JSON 파싱 에러:", error);
+      swal({
+        title: "실패",
+        text: "데이터를 찾지 못했어요...",
+        icon: "error",
+        button: "확인",
+      });
     }
   };
 
   socket.onerror = (error) => {
-    console.error("WebSocket error:", error);
+    swal({
+      title: "실패",
+      text: "데이터를 찾지 못했어요...",
+      icon: "error",
+      button: "확인",
+    });
   };
 
-  socket.onclose = () => {
-    console.log("WebSocket closed!");
-  };
+  socket.onclose = () => {};
 };
 
 const connectChartWebSocket = () => {
@@ -322,7 +339,6 @@ const connectChartWebSocket = () => {
   chartSocket.binaryType = "blob";
 
   chartSocket.onopen = () => {
-    console.log("Chart WebSocket connected!");
     const codes = [selectedCoin.value.code];
     chartSocket.send(JSON.stringify([{ ticket: "CHART_SOCKET" }, { type: "trade", codes }]));
   };
@@ -333,17 +349,25 @@ const connectChartWebSocket = () => {
       const data = JSON.parse(text);
       updateRealtimeCandle(data);
     } catch (error) {
-      console.error("Chart WebSocket 파싱 에러:", error);
+      swal({
+        title: "실패",
+        text: "데이터를 찾지 못했어요...",
+        icon: "error",
+        button: "확인",
+      });
     }
   };
 
   chartSocket.onerror = (error) => {
-    console.error("Chart WebSocket error:", error);
+    swal({
+      title: "실패",
+      text: "데이터를 찾지 못했어요...",
+      icon: "error",
+      button: "확인",
+    });
   };
 
-  chartSocket.onclose = () => {
-    console.log("Chart WebSocket closed!");
-  };
+  chartSocket.onclose = () => {};
 };
 
 // 이벤트 핸들러

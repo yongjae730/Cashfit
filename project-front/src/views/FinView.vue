@@ -125,7 +125,12 @@ onMounted(async () => {
       };
     });
   } catch (error) {
-    console.error("Failed to fetch data:", error);
+    swal({
+      title: "실패",
+      text: "데이터 로드 중 문제가 발생했습니다. 다시 시도해주세요.",
+      icon: "error",
+      button: "확인",
+    });
   }
 });
 
