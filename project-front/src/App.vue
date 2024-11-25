@@ -24,9 +24,9 @@ const showLoginModal = computed(() => accountStore.showLoginMoal);
 const updateLoginModal = (isOpen) => {
   accountStore.showLoginMoal = isOpen;
 };
-// onMounted(() => {
-//   axios.get(`http://127.0.0.1:8000/api/financials/save-financial-products/`);
-// });
+onMounted(() => {
+  axios.get(`http://127.0.0.1:8000/api/financials/save-financial-products/`);
+});
 </script>
 <style scoped>
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
