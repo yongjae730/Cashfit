@@ -17,9 +17,11 @@ class FinancialOptionsSerializer(serializers.ModelSerializer):
 
 class FinancialCommentSerializer(serializers.ModelSerializer):
 
+    nickname = serializers.CharField(source='users.nickname', read_only=True)
+
     class Meta:
         model = FinancialComment
-        fields = "__all__"
+        fields = ('id', 'content', 'users', 'nickname', 'financial_products', 'create_at', 'is_deleted')
         read_only_fields = ('users', 'financial_products')
 
 class FinancialProductLikeSerializer(serializers.ModelSerializer):

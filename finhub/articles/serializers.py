@@ -30,3 +30,4 @@ class ArticleDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
         fields = ('id', 'title', 'content', 'users', 'create_at', 'update_at', 'nickname', 'comments', 'comments_count')
+
