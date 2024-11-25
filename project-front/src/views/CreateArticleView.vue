@@ -1,38 +1,58 @@
 <template>
-  <v-container class="fill-height" style="background-color: #f9fafb">
+  <v-container class="fill-height custom-bg">
     <v-row align="center" justify="center">
       <v-col cols="12" sm="8" md="6" lg="6">
-        <v-card class="pa-6" style="border-radius: 16px; box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1); background-color: white">
-          <h2 class="text-center font-weight-bold mb-4" style="font-size: 24px; color: #333">게시글 작성</h2>
-          <p class="text-center mb-6" style="color: #777">새로운 게시글을 작성해 주세요!</p>
+        <!-- 메인 카드 -->
+        <v-card class="article-card">
+          <!-- 헤더 섹션 -->
+          <div class="card-header pa-8 text-center">
+            <v-avatar class="mb-4" color="primary" size="56">
+              <v-icon icon="mdi-pencil" size="24" color="white" />
+            </v-avatar>
+            <h2 class="text-h4 font-weight-bold mb-2 gradient-text">게시글 작성</h2>
+            <p class="text-subtitle-1 text-medium-emphasis">새로운 게시글을 작성해 주세요!</p>
+          </div>
 
-          <!-- Form -->
-          <v-form @submit.prevent="handleSubmit" v-model="isValid">
-            <!-- 제목 -->
-            <v-text-field v-model="title" label="제목" outlined dense class="mb-4" :rules="[(v) => !!v || '제목을 입력해주세요.']" style="border-radius: 8px" />
+          <v-divider></v-divider>
 
-            <!-- 내용 -->
-            <v-textarea v-model="content" label="내용" outlined dense rows="6" class="mb-4" :rules="[(v) => !!v || '내용을 입력해주세요.']" style="border-radius: 8px" />
+          <!-- 폼 섹션 -->
+          <div class="pa-8">
+            <v-form @submit.prevent="handleSubmit" v-model="isValid">
+              <!-- 제목 입력 -->
+              <v-text-field
+                v-model="title"
+                label="제목을 입력해주세요"
+                variant="outlined"
+                :rules="[(v) => !!v || '제목을 입력해주세요.']"
+                class="mb-4 custom-field"
+                placeholder="제목"
+                prepend-inner-icon="mdi-format-title"
+              />
 
-            <!-- 등록 버튼 -->
-            <v-btn
-              :disabled="!isValid"
-              color="primary"
-              block
-              type="submit"
-              :loading="isSubmitting"
-              class="py-3 font-weight-bold"
-              style="border-radius: 8px; background-color: #1e88e5; color: white; font-size: 16px"
-            >
-              등록하기
-            </v-btn>
-          </v-form>
+              <!-- 내용 입력 -->
+              <v-textarea
+                v-model="content"
+                label="내용을 입력해주세요"
+                variant="outlined"
+                :rules="[(v) => !!v || '내용을 입력해주세요.']"
+                class="mb-6 custom-field"
+                placeholder="여기에 내용을 작성해주세요"
+                rows="8"
+                prepend-inner-icon="mdi-text"
+              />
+
+              <!-- 버튼 그룹 -->
+              <div class="d-flex button-group">
+                <v-btn :disabled="!isValid" color="primary" type="submit" :loading="isSubmitting" class="action-btn flex-grow-1" elevation="0">등록하기</v-btn>
+                <v-btn color="grey-lighten-3" @click="router.push({ name: 'community' })" class="cancel-btn ms-3" elevation="0">취소</v-btn>
+              </div>
+            </v-form>
+          </div>
         </v-card>
       </v-col>
     </v-row>
   </v-container>
 </template>
-
 <script setup>
 import { ref } from "vue";
 import axios from "axios";
@@ -92,12 +112,140 @@ const handleSubmit = async () => {
 </script>
 
 <style scoped>
-h2 {
-  font-size: 24px;
-  color: #333;
+.custom-bg {
+  background: linear-gradient(135deg, #f6f7f9 0%, #edf2f7 100%);
+  min-height: 100vh;
 }
 
-.v-card {
-  max-width: 600px;
+.article-card {
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08) !important;
+  overflow: hidden;
+  background: white;
+  transition: transform 0.3s ease;
+}
+
+.article-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-header {
+  background: linear-gradient(to right, #ffffff, #f8f9fa);
+}
+
+.gradient-text {
+  background: linear-gradient(45deg, #1a237e, #0d47a1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+.custom-field {
+  :deep(.v-field) {
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+
+  :deep(.v-field:hover) {
+    border-color: #1a237e;
+  }
+
+  :deep(.v-field--focused) {
+    border-color: #1a237e;
+    box-shadow: 0 0 0 4px rgba(26, 35, 126, 0.1);
+  }
+
+  :deep(.v-field__input) {
+    padding: 16px;
+    font-size: 1rem;
+  }
+
+  :deep(.v-label) {
+    font-size: 0.95rem;
+    color: #64748b;
+  }
+}
+.action-btn {
+  height: 48px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: none;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.action-btn:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* 입력 필드 아이콘 스타일 */
+:deep(.v-input__prepend) {
+  margin-right: 8px;
+  color: #64748b;
+}
+
+/* 취소 버튼 hover 효과 */
+.action-btn.v-btn--variant-flat {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.action-btn.v-btn--variant-flat:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
+/* 등록 버튼 스타일 */
+.action-btn.v-btn--color-primary {
+  background: linear-gradient(45deg, #1a237e, #0d47a1);
+  color: white;
+}
+
+.action-btn.v-btn--disabled {
+  opacity: 0.7;
+  background: #e2e8f0 !important;
+}
+.button-group {
+  align-items: center;
+}
+
+.action-btn {
+  height: 48px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: none;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  background: linear-gradient(45deg, #1a237e, #0d47a1);
+  color: white;
+}
+
+.action-btn:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.cancel-btn {
+  height: 48px;
+  min-width: 100px; /* 취소 버튼의 최소 너비 설정 */
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: none;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.cancel-btn:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
+.action-btn.v-btn--disabled {
+  opacity: 0.7;
+  background: #e2e8f0 !important;
 }
 </style>

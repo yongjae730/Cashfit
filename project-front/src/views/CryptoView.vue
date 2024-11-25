@@ -1,43 +1,45 @@
 <template>
-  <v-main class="bg-grey-lighten-4 pa-6" style="margin-top: 30px">
+  <v-main class="bg-grey-lighten-5 pa-6" style="margin-top: 30px">
     <v-container>
       <!-- 상단 타이틀 카드 -->
-      <v-card class="mb-6 rounded-lg" elevation="1">
-        <div class="d-flex align-center pa-4 gradient-background">
-          <v-icon icon="mdi-bitcoin" size="x-large" color="amber-darken-2" class="mr-4" />
+      <v-card class="mb-6 rounded-xl" elevation="2">
+        <div class="d-flex align-center pa-6 premium-gradient">
+          <v-avatar color="white" size="56" class="mr-6" elevation="2">
+            <v-icon icon="mdi-bitcoin" size="32" color="amber-darken-2" />
+          </v-avatar>
           <div>
             <h1 class="text-h4 font-weight-bold text-white mb-1">코인 거래소</h1>
-            <p class="text-grey-lighten-3 mb-0">실시간 암호화폐 시세 및 차트</p>
+            <p class="text-grey-lighten-4 mb-0 text-body-1">실시간 암호화폐 시세 및 차트</p>
           </div>
         </div>
       </v-card>
 
       <!-- 메인 데이터 테이블 카드 -->
-      <v-card elevation="1" class="rounded-lg">
+      <v-card elevation="2" class="rounded-xl">
         <v-card-text class="pa-0">
-          <v-table fixed-header height="600px">
+          <v-table fixed-header height="600px" class="crypto-table">
             <thead>
               <tr>
-                <th class="text-left py-4 pl-6 text-h6 font-weight-bold">코인명</th>
-                <th class="text-right py-4 pr-6 text-h6 font-weight-bold">현재가</th>
+                <th class="text-left py-5 pl-8 text-h6">코인명</th>
+                <th class="text-right py-5 pr-8 text-h6">현재가</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="coin in coins" :key="coin.code" class="hover-row" @click="openChart(coin)">
-                <td class="pl-6">
-                  <div class="d-flex align-center">
-                    <v-chip :color="getRandomColor(coin.code)" label size="small" class="mr-3 font-weight-bold" variant="outlined">
+                <td class="pl-8">
+                  <div class="d-flex align-center py-3">
+                    <v-chip :color="getRandomColor(coin.code)" label size="small" class="mr-4 font-weight-bold px-4" variant="flat">
                       {{ coin.code.replace("KRW-", "") }}
                     </v-chip>
-                    <span class="font-weight-medium">{{ coin.name }}</span>
+                    <span class="font-weight-medium text-body-1">{{ coin.name }}</span>
                   </div>
                 </td>
-                <td class="text-right pr-6">
+                <td class="text-right pr-8">
                   <div>
                     <span class="text-h6 font-weight-bold">
                       {{ Number(coin.price).toLocaleString() }}
                     </span>
-                    <span class="text-grey-darken-1 ml-1 text-body-2">KRW</span>
+                    <span class="text-grey-darken-1 ml-2">KRW</span>
                   </div>
                 </td>
               </tr>
@@ -48,33 +50,40 @@
     </v-container>
 
     <!-- 차트 다이얼로그 -->
-    <v-dialog v-model="showChart" width="1000" height="700" @update:model-value="handleDialogClose" transition="dialog-bottom-transition">
-      <v-card class="rounded-lg">
-        <v-toolbar :color="getRandomColor(selectedCoin?.code)" prominent class="px-4">
+    <v-dialog v-model="showChart" width="1000" @update:model-value="handleDialogClose" transition="dialog-bottom-transition" class="rounded-xl">
+      <v-card class="rounded-xl">
+        <v-toolbar :color="getRandomColor(selectedCoin?.code)" prominent class="px-6 chart-toolbar">
           <template v-if="selectedCoin">
-            <v-chip label size="large" variant="outlined" class="mr-3 font-weight-bold text-white" border>
+            <v-chip label size="large" variant="outlined" class="mr-4 font-weight-bold text-white pa-4" border>
               {{ selectedCoin.code.replace("KRW-", "") }}
             </v-chip>
             <div>
               <div class="text-h5 font-weight-bold text-white mb-1">
                 {{ selectedCoin.name }}
               </div>
-              <div class="text-grey-lighten-3">{{ Number(selectedCoin.price).toLocaleString() }} KRW</div>
+              <div class="text-grey-lighten-4 text-body-1">{{ Number(selectedCoin.price).toLocaleString() }} KRW</div>
             </div>
           </template>
           <template v-slot:append>
-            <v-btn icon="mdi-close" variant="text" color="white" @click="showChart = false"></v-btn>
+            <v-btn icon="mdi-close" variant="text" color="white" size="large"></v-btn>
           </template>
         </v-toolbar>
 
-        <v-card-text class="pa-6">
-          <v-btn-group variant="outlined" class="mb-6 rounded-lg" divided>
-            <v-btn v-for="interval in intervals" :key="interval.value" :color="selectedInterval === interval.value ? 'primary' : undefined" @click="changeInterval(interval.value)" class="px-6">
+        <v-card-text class="pa-8">
+          <v-btn-group variant="outlined" class="mb-8 rounded-lg custom-btn-group" divided>
+            <v-btn
+              v-for="interval in intervals"
+              :key="interval.value"
+              :color="selectedInterval === interval.value ? 'primary' : undefined"
+              @click="changeInterval(interval.value)"
+              class="px-6 py-2"
+              elevation="0"
+            >
               {{ interval.label }}
             </v-btn>
           </v-btn-group>
 
-          <div ref="chartContainer" class="rounded-lg overflow-hidden" style="height: 500px"></div>
+          <div ref="chartContainer" class="rounded-xl chart-container"></div>
         </v-card-text>
       </v-card>
     </v-dialog>
@@ -429,37 +438,38 @@ watch(showChart, (newValue) => {
 </script>
 
 <style scoped>
-.gradient-background {
-  background: linear-gradient(135deg, #1867c0 0%, #5cbbf6 100%);
+.premium-gradient {
+  background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
 }
 
 .hover-row {
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .hover-row:hover {
-  background-color: rgb(var(--v-theme-primary), 0.05) !important;
+  background-color: rgba(var(--v-theme-primary), 0.04);
+  transform: translateY(-1px);
 }
 
-/* 차트 컨테이너 스타일 */
-:deep(.tv-lightweight-charts) {
-  border-radius: 8px;
-  overflow: hidden;
+.chart-container {
+  height: 500px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-/* 버튼 그룹 호버 효과 */
-.v-btn-group .v-btn:hover {
-  background-color: rgb(var(--v-theme-primary), 0.1);
+.crypto-table {
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
-/* 테이블 스타일링 */
 :deep(.v-table) {
   background: transparent !important;
 }
 
 :deep(.v-table__wrapper) {
-  border-radius: 8px;
+  border-radius: 16px;
+  box-shadow: none;
 }
 
 :deep(.v-table > .v-table__wrapper > table) {
@@ -469,20 +479,60 @@ watch(showChart, (newValue) => {
 :deep(.v-table > .v-table__wrapper > table > thead > tr > th) {
   background: white !important;
   color: #1a237e !important;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 :deep(.v-table > .v-table__wrapper > table > tbody > tr:not(:last-child) > td) {
-  border-bottom: thin solid rgba(var(--v-border-color), 0.2) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
 }
 
-/* 다이얼로그 트랜지션 */
+.chart-toolbar {
+  border-top-left-radius: 16px !important;
+  border-top-right-radius: 16px !important;
+}
+
+.custom-btn-group {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 2px;
+  background-color: #f8f9fa;
+}
+
+.custom-btn-group .v-btn {
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  border: none !important;
+  background-color: transparent;
+}
+
+.custom-btn-group .v-btn:hover {
+  background-color: rgba(var(--v-theme-primary), 0.05);
+}
+
+.custom-btn-group .v-btn.v-btn--active {
+  background-color: white !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* 다이얼로그 트랜지션 개선 */
 .dialog-bottom-transition-enter-active,
 .dialog-bottom-transition-leave-active {
-  transition: transform 0.3s ease-in-out;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dialog-bottom-transition-enter-from,
 .dialog-bottom-transition-leave-to {
-  transform: translateY(100%);
+  transform: translateY(30px);
+  opacity: 0;
+}
+
+:deep(.v-chip) {
+  font-size: 0.875rem;
+  height: 32px;
+}
+
+:deep(.v-dialog > .v-card) {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
 }
 </style>

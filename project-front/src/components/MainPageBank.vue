@@ -107,7 +107,6 @@ onMounted(async () => {
   if (accountStore.user?.user_info) {
     sido.value = accountStore.user.user_info.sido;
     sigugun.value = accountStore.user.user_info.sigungus;
-    // console.log("Setting initial location:", sido.value, sigugun.value);
   }
 
   loadKaKaoMap(mapContainer.value);
@@ -140,9 +139,7 @@ const initMap = (container) => {
 
   mapInstance.value = new window.kakao.maps.Map(container, options);
 
-  window.kakao.maps.event.addListener(mapInstance.value, "click", (mouseEvent) => {
-    console.log(mouseEvent.latLng);
-  });
+  window.kakao.maps.event.addListener(mapInstance.value, "click", (mouseEvent) => {});
 };
 
 // 마커 포커스 함수
