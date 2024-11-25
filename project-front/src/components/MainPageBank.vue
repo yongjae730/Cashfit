@@ -2,6 +2,11 @@
   <div class="map-container">
     <h2 class="section-title">은행 어디로 가야하지??</h2>
     <div class="filter-section">
+      <!-- 현재 위치 표시 및 초기화 버튼 -->
+      <div class="current-location" v-if="accountStore.user?.user_info">
+        <button @click="resetToUserLocation" class="reset-button" v-if="isLocationChanged">내 지역으로 돌아가기</button>
+      </div>
+
       <!-- 시 / 도 선택 -->
       <v-select v-model="sido" :items="sidoList" label="시 / 도 선택" outlined dense class="select-box" @change="onSidoChange" :rules="[(v) => !!v || '시/도를 선택하세요']" />
 
@@ -33,16 +38,19 @@
 
 <script setup>
 import { useAddressStore } from "@/stores/address";
-import { computed, onMounted, ref } from "vue";
+import { useAccount } from "@/stores/accounts";
+import { computed, onMounted, ref, watch } from "vue";
 
 const KAKAO_API_KEY = import.meta.env.VITE_KAKAO_API_KEY;
 const addressStore = useAddressStore();
+const accountStore = useAccount();
 
-const sido = ref("서울특별시");
-const sigugun = ref("종로구");
-const places = ref([]); // 검색 결과 저장
-const bank = ref("국민은행");
+const sido = ref("");
+const sigugun = ref("");
+const places = ref([]);
+const bank = ref(""); // 은행은 빈 값으로 초기화
 const activeMarkerIndex = ref(null);
+const isLocationChanged = ref(false);
 
 const sidoList = computed(() => ["시 / 도 선택", ...addressStore.address_infos.map((info) => info.sido)]);
 const sigugunList = computed(() => {
@@ -50,8 +58,25 @@ const sigugunList = computed(() => {
   return ["구 / 군 선택", ...(selectedSido ? selectedSido.sigungus : [])];
 });
 
+// 위치 변경 확인
+const checkLocationChanged = () => {
+  if (!accountStore.user?.user_info) return false;
+  isLocationChanged.value = sido.value !== accountStore.user.user_info.sido || sigugun.value !== accountStore.user.user_info.sigungus;
+};
+
+// 사용자 위치로 초기화
+const resetToUserLocation = () => {
+  if (!accountStore.user?.user_info) return;
+
+  sido.value = accountStore.user.user_info.sido;
+  sigugun.value = accountStore.user.user_info.sigungus;
+  isLocationChanged.value = false;
+  if (bank.value) searchBranches();
+};
+
 const onSidoChange = () => {
   sigugun.value = null;
+  checkLocationChanged();
 };
 
 // 거리 포맷팅 함수
@@ -67,11 +92,24 @@ const mapContainer = ref(null);
 const mapInstance = ref(null);
 const markers = ref([]);
 
-onMounted(() => {
+onMounted(async () => {
   if (!KAKAO_API_KEY) {
     alert("Kakao API 키가 설정되지 않았습니다. .env 파일을 확인하세요.");
     return;
   }
+
+  // 사용자 정보가 없으면 가져오기
+  if (accountStore.isLogin && !accountStore.user) {
+    await accountStore.getProfile();
+  }
+
+  // 사용자 정보가 있으면 초기 위치 설정
+  if (accountStore.user?.user_info) {
+    sido.value = accountStore.user.user_info.sido;
+    sigugun.value = accountStore.user.user_info.sigungus;
+    console.log("Setting initial location:", sido.value, sigugun.value);
+  }
+
   loadKaKaoMap(mapContainer.value);
 });
 
@@ -170,6 +208,8 @@ const searchBranches = () => {
   const ps = new window.kakao.maps.services.Places();
   const query = `${sido.value} ${sigugun.value} ${bank.value}`;
 
+  checkLocationChanged();
+
   ps.keywordSearch(query, (data, status, pagination) => {
     if (status === window.kakao.maps.services.Status.OK) {
       // 기존 마커 제거
@@ -183,10 +223,6 @@ const searchBranches = () => {
         const position = new window.kakao.maps.LatLng(place.y, place.x);
         addMarker(position, place);
       });
-
-      // 첫 번째 검색 결과로 지도 중심 이동
-      // const firstPlace = data[0];
-      // mapInstance.value.setCenter(new window.kakao.maps.LatLng(firstPlace.y, firstPlace.x));
 
       adjustMapBounds();
     } else if (status === window.kakao.maps.services.Status.ZERO_RESULT) {
@@ -208,6 +244,23 @@ const searchBranches = () => {
     }
   });
 };
+
+// user 정보 변경 감지
+watch(
+  () => accountStore.user?.user_info,
+  (newUserInfo) => {
+    if (newUserInfo && (!sido.value || !sigugun.value)) {
+      sido.value = newUserInfo.sido;
+      sigugun.value = newUserInfo.sigungus;
+    }
+  },
+  { immediate: true }
+);
+
+// 위치 변경 감지
+watch([sido, sigugun], () => {
+  checkLocationChanged();
+});
 </script>
 
 <style scoped>
@@ -228,6 +281,28 @@ const searchBranches = () => {
   align-items: center;
 }
 
+.current-location {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.reset-button {
+  padding: 6px 12px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  height: 40px;
+  transition: background-color 0.2s;
+}
+
+.reset-button:hover {
+  background-color: #45a049;
+}
+
 .select-box {
   flex: 1;
 }
@@ -242,6 +317,7 @@ const searchBranches = () => {
   font-size: 14px;
   font-weight: bold;
 }
+
 .search-button:hover {
   background-color: #1557b0;
 }

@@ -63,7 +63,7 @@
         <v-icon color="primary" class="mr-2">mdi-map-marker</v-icon>
         지점 위치
       </v-card-title>
-      <BankMap :bank="product.kor_co_nm" />
+      <BankMap :bank="product.kor_co_nm" @error="handleError" />
     </v-card>
 
     <!-- 댓글 섹션 -->
