@@ -15,6 +15,6 @@ class User(AbstractUser):
     sigungus = models.CharField(max_length=10)
 
     
-    # user 출력 시 유저 이름으로 나오게
+    # user 출력 시 닉네임으로 나오게
     def __str__(self):
         return self.nickname
