@@ -1,6 +1,17 @@
 <template>
-  <div class="map-container">
+  <div v-if="!accountStore.isLogin" class="error-container">
+    <p>로그인이 필요한 서비스입니다.</p>
+  </div>
+
+  <div v-else class="map-container">
     <div class="filter-section">
+      <!-- 현재 위치 표시 및 초기화 버튼 -->
+      <div class="current-location">
+        <span>현재 설정된 지역: {{ accountStore.user?.user_info?.sido }} {{ accountStore.user?.user_info?.sigungus }}</span>
+
+        <button @click="resetToUserLocation" class="reset-button" v-if="isLocationChanged">내 지역으로 돌아가기</button>
+      </div>
+
       <select v-model="sido" class="select-box" @change="onSidoChange">
         <option value="">시 / 도 선택</option>
         <option v-for="sido in sidoList">
@@ -35,25 +46,36 @@
 
 <script setup>
 import { useAddressStore } from "@/stores/address";
-import { computed, onMounted, ref } from "vue";
+import { useAccount } from "@/stores/accounts";
+import { computed, onMounted, ref, watch } from "vue";
 
 const KAKAO_API_KEY = import.meta.env.VITE_KAKAO_API_KEY;
 const addressStore = useAddressStore();
+const accountStore = useAccount();
 
+const props = defineProps({
+  bank: {
+    type: String,
+    required: true,
+  },
+});
+
+// Refs
 const sido = ref("");
 const sigugun = ref("");
-const places = ref([]); // 검색 결과 저장
+const places = ref([]);
 const activeMarkerIndex = ref(null);
+const isLocationChanged = ref(false);
+const mapContainer = ref(null);
+const mapInstance = ref(null);
+const markers = ref([]);
 
+// Computed
 const sidoList = computed(() => addressStore.address_infos.map((info) => info.sido));
 const sigugunList = computed(() => {
   const selectedSido = addressStore.address_infos.find((info) => info.sido === sido.value);
   return selectedSido ? selectedSido.sigungus : [];
 });
-
-const onSidoChange = () => {
-  sigugun.value = null;
-};
 
 // 거리 포맷팅 함수
 const formatDistance = (distance) => {
@@ -63,26 +85,31 @@ const formatDistance = (distance) => {
   return `${(distance / 1000).toFixed(1)}km`;
 };
 
-const props = defineProps({
-  bank: {
-    type: String,
-    required: true,
-  },
-});
+// 시도 변경 시 처리
+const onSidoChange = () => {
+  sigugun.value = "";
+  checkLocationChanged();
+};
 
-// Kakao 지도 관련
-const mapContainer = ref(null);
-const mapInstance = ref(null);
-const markers = ref([]);
+// 위치 변경 확인
+const checkLocationChanged = () => {
+  isLocationChanged.value = sido.value !== accountStore.user?.user_info?.sido || sigugun.value !== accountStore.user?.user_info?.sigungus;
+};
 
-onMounted(() => {
-  if (!KAKAO_API_KEY) {
-    alert("Kakao API 키가 설정되지 않았습니다. .env 파일을 확인하세요.");
+// 사용자 위치로 초기화
+const resetToUserLocation = () => {
+  if (!accountStore.user?.user_info) {
+    console.warn("사용자 정보를 찾을 수 없습니다.");
     return;
   }
-  loadKaKaoMap(mapContainer.value);
-});
 
+  sido.value = accountStore.user.user_info.sido;
+  sigugun.value = accountStore.user.user_info.sigungus;
+  isLocationChanged.value = false;
+  searchBranches();
+};
+
+// 카카오맵 초기화
 const loadKaKaoMap = (container) => {
   if (window.kakao && window.kakao.maps) {
     initMap(container);
@@ -105,7 +132,7 @@ const loadKaKaoMap = (container) => {
 const initMap = (container) => {
   const options = {
     center: new window.kakao.maps.LatLng(33.450701, 126.570667),
-    level: 1,
+    level: 3,
   };
 
   mapInstance.value = new window.kakao.maps.Map(container, options);
@@ -115,20 +142,19 @@ const initMap = (container) => {
   });
 };
 
-// 마커 포커스 함수
+// 마커 관련 함수들
 const focusPlace = (index) => {
   const place = places.value[index];
   const moveLatLng = new window.kakao.maps.LatLng(place.y, place.x);
   mapInstance.value.setCenter(moveLatLng);
+  mapInstance.value.setLevel(3);
 
-  // 해당 마커의 인포윈도우 열기
   if (markers.value[index]) {
     const marker = markers.value[index];
     marker.infoWindow.open(mapInstance.value, marker);
   }
 };
 
-// 마커 하이라이트 함수들
 const highlightMarker = (index) => {
   activeMarkerIndex.value = index;
   if (markers.value[index]) {
@@ -153,7 +179,6 @@ const addMarker = (position, place) => {
     content: `<div style="padding:5px">${place.place_name}</div>`,
   });
 
-  // 마커 객체에 인포윈도우 저장
   marker.infoWindow = infoWindow;
 
   window.kakao.maps.event.addListener(marker, "click", () => {
@@ -174,17 +199,27 @@ const adjustMapBounds = () => {
   mapInstance.value.setBounds(bounds);
 };
 
+// 검색 함수
 const searchBranches = () => {
+  if (!mapInstance.value) {
+    console.error("지도가 초기화되지 않았습니다.");
+    return;
+  }
+
+  if (!sido.value || !sigugun.value) {
+    console.warn("지역이 선택되지 않았습니다.");
+    return;
+  }
   const ps = new window.kakao.maps.services.Places();
   const query = `${sido.value} ${sigugun.value} ${props.bank}`;
 
+  checkLocationChanged();
+
   ps.keywordSearch(query, (data, status, pagination) => {
     if (status === window.kakao.maps.services.Status.OK) {
-      // 기존 마커 제거
       markers.value.forEach((marker) => marker.setMap(null));
       markers.value = [];
 
-      // 검색 결과 저장
       places.value = data;
 
       data.forEach((place) => {
@@ -192,9 +227,6 @@ const searchBranches = () => {
         addMarker(position, place);
       });
 
-      // 첫 번째 검색 결과로 지도 중심 이동
-      // const firstPlace = data[0];
-      // mapInstance.value.setCenter(new window.kakao.maps.LatLng(firstPlace.y, firstPlace.x));
       adjustMapBounds();
     } else if (status === window.kakao.maps.services.Status.ZERO_RESULT) {
       swal({
@@ -215,9 +247,72 @@ const searchBranches = () => {
     }
   });
 };
+
+// 컴포넌트 마운트 시 초기화
+onMounted(async () => {
+  try {
+    // 사용자 정보가 없으면 가져오기
+    if (accountStore.isLogin && !accountStore.user) {
+      await accountStore.getProfile();
+    }
+
+    if (!KAKAO_API_KEY) {
+      alert("Kakao API 키가 설정되지 않았습니다. .env 파일을 확인하세요.");
+      return;
+    }
+
+    // user_info에서 위치 정보 가져오기
+    if (accountStore.user?.user_info) {
+      sido.value = accountStore.user.user_info.sido;
+      sigugun.value = accountStore.user.user_info.sigungus;
+      console.log("Setting initial location:", sido.value, sigugun.value);
+    }
+
+    loadKaKaoMap(mapContainer.value);
+
+    // 초기값이 설정된 후 검색 실행
+    setTimeout(() => {
+      if (sido.value && sigugun.value) {
+        searchBranches();
+      }
+    }, 1000);
+  } catch (error) {
+    console.error("초기화 중 오류 발생:", error);
+  }
+});
+
+// 추가로 watch를 설정하여 user 정보가 나중에 로드되었을 때도 대응
+watch(
+  () => accountStore.user?.user_info,
+  (newUserInfo) => {
+    if (newUserInfo && (!sido.value || !sigugun.value)) {
+      sido.value = newUserInfo.sido;
+      sigugun.value = newUserInfo.sigungus;
+      if (mapInstance.value) {
+        searchBranches();
+      }
+    }
+  },
+  { immediate: true }
+);
+// 위치 변경 감지
+watch([sido, sigugun], () => {
+  checkLocationChanged();
+});
 </script>
 
 <style scoped>
+/* 스타일은 기존과 동일 */
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 16px;
+  color: #dc3545;
+}
+
+/* 나머지 스타일은 기존 코드와 동일 */
 .map-container {
   width: 100%;
   max-width: 1200px;
@@ -229,6 +324,30 @@ const searchBranches = () => {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
+}
+
+.current-location {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+.reset-button {
+  padding: 6px 12px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.2s;
+}
+
+.reset-button:hover {
+  background-color: #45a049;
 }
 
 .select-box {
