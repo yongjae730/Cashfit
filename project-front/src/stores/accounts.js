@@ -25,6 +25,7 @@ export const useAccount = defineStore(
         router.push(redirectTo);
       } catch (err) {
         console.error("Login failed:", err.response?.data || err.message);
+        throw err;
       }
     };
 
@@ -47,8 +48,6 @@ export const useAccount = defineStore(
           headers: { Authorization: `Token ${token.value}` },
         });
         user.value = response.data;
-        console.log(response.data);
-        console.log(user.value);
       } catch (error) {
         console.error("Failed to fetch profile:", error.response?.data || error.message);
       }
