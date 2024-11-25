@@ -107,7 +107,7 @@ onMounted(async () => {
   if (accountStore.user?.user_info) {
     sido.value = accountStore.user.user_info.sido;
     sigugun.value = accountStore.user.user_info.sigungus;
-    console.log("Setting initial location:", sido.value, sigugun.value);
+    // console.log("Setting initial location:", sido.value, sigugun.value);
   }
 
   loadKaKaoMap(mapContainer.value);

@@ -2,7 +2,7 @@
   <div class="main-carousel-section">
     <v-row>
       <v-col cols="12">
-        <v-carousel hide-delimiters cycle show-arrows="hover" height="400px">
+        <v-carousel hide-delimiters cycle show-arrows="hover" height="500px">
           <v-carousel-item v-for="(slide, i) in slides" :key="i">
             <v-img :src="slide.image" class="carousel-image" cover></v-img>
             <div class="carousel-title d-flex flex-column align-center justify-center carousel-overlay" style="height: 100%">
