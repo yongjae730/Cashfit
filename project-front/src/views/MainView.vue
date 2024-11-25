@@ -213,8 +213,8 @@ const fetchCarouselSlides = async () => {
     },
     {
       image: `carousel/carousel2.png`,
-      title: "내 주변 은행 머임?",
-      subtitle: "찾기 귀찮쓰",
+      title: "복잡한 환율 계산?",
+      subtitle: "CashFit이 할게요",
     },
   ];
 };
