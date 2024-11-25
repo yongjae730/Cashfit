@@ -16,7 +16,6 @@ export const useFinStore = defineStore(
         url: `${API_URL}/api/financials/financial-products/`,
       })
         .then((res) => {
-          console.log(res.data);
           fin.value = res.data;
         })
         .catch((err) => {
