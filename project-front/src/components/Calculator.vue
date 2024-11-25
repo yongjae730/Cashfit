@@ -4,7 +4,8 @@
     <v-row align="center" justify="center">
       <!-- From Currency -->
       <v-col cols="12" md="5">
-        <v-select label="살 것" v-model="selectedFromCurrency" :items="exchangeOptions" item-title="label" item-value="value" outlined dense />
+        <v-select label="살 것" v-model="selectedFromCurrency" :items="exchangeOptions" item-title="label"
+          item-value="value" outlined dense />
       </v-col>
 
       <!-- 양방향 화살표 버튼 -->
@@ -16,7 +17,8 @@
 
       <!-- To Currency -->
       <v-col cols="12" md="5">
-        <v-select label="줄 것" v-model="selectedToCurrency" :items="exchangeOptions" item-title="label" item-value="value" outlined dense />
+        <v-select label="줄 것" v-model="selectedToCurrency" :items="exchangeOptions" item-title="label"
+          item-value="value" outlined dense />
       </v-col>
     </v-row>
 
@@ -30,10 +32,10 @@
     <!-- Amount Input -->
     <v-row>
       <v-col cols="12">
-        <v-text-field label="Amount:" v-model.number="amount" outlined />
+        <v-text-field label="바꾸고 싶은 양" v-model.number="amount" :suffix="selectedFromCurrency" outlined />
       </v-col>
       <v-col cols="12">
-        <v-text-field :value="convertedAmount" outlined readonly />
+        <v-text-field :model-value="convertedAmount" :suffix="selectedToCurrency" outlined readonly />
       </v-col>
     </v-row>
   </v-container>
@@ -67,7 +69,7 @@ const convertedAmount = ref(0);
 // 숫자 포맷 함수
 const formatNumber = (value) => {
   if (value === null || value === undefined) return "";
-  return new Intl.NumberFormat("en-US").format(value);
+  return `${new Intl.NumberFormat("en-US").format(value)} ${selectedToCurrency.value}`;
 };
 
 // Exchange Rates 계산 (KRW 포함)
@@ -137,8 +139,10 @@ const calculateSell = () => {
 
 <style scoped>
 .exchange-calculator {
-  max-width: 1200px; /* 캐러셀과 동일한 너비로 확장 */
-  margin: 0 auto; /* 중앙 정렬 */
+  max-width: 1200px;
+  /* 캐러셀과 동일한 너비로 확장 */
+  margin: 0 auto;
+  /* 중앙 정렬 */
   padding: 20px;
   background-color: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.1);
