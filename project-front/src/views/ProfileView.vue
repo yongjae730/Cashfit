@@ -35,8 +35,7 @@
                     <!-- 은행 로고 -->
                     <v-card-title class="bank-info d-flex align-center">
                       <v-avatar size="36" class="mr-3">
-                        <v-img :src="`/bank_images/${deposit.kor_co_nm}.jpg`" max-width="120px" class="mr-6 rounded-lg"
-                          cover alt="상품 이미지"></v-img>
+                        <v-img :src="`/bank_images/${deposit.kor_co_nm}.jpg`" max-width="120px" class="mr-6 rounded-lg" cover alt="상품 이미지"></v-img>
                       </v-avatar>
                       <span class="bank-name">{{ deposit.kor_co_nm }}</span>
                     </v-card-title>
@@ -74,8 +73,7 @@
                     <!-- 은행 로고 -->
                     <v-card-title class="bank-info d-flex align-center">
                       <v-avatar size="36" class="mr-3">
-                        <v-img :src="`/bank_images/${saving.kor_co_nm}.jpg`" max-width="120px" class="mr-6 rounded-lg"
-                          cover alt="상품 이미지"></v-img>
+                        <v-img :src="`/bank_images/${saving.kor_co_nm}.jpg`" max-width="120px" class="mr-6 rounded-lg" cover alt="상품 이미지"></v-img>
                       </v-avatar>
                       <span class="bank-name">{{ saving.kor_co_nm }}</span>
                     </v-card-title>
@@ -149,20 +147,15 @@
         <v-divider></v-divider>
         <v-card-text>
           <!-- 닉네임 -->
-          <v-text-field v-model="editedNickname" label="닉네임" outlined dense class="mb-4"
-            :rules="[(v) => !!v || '닉네임을 입력해주세요']" />
+          <v-text-field v-model="editedNickname" label="닉네임" outlined dense class="mb-4" :rules="[(v) => !!v || '닉네임을 입력해주세요']" />
           <!-- 나이 -->
-          <v-text-field v-model="editedAge" label="나이" outlined dense type="number" class="mb-4"
-            :rules="[(v) => !!v || '나이를 입력해주세요']" />
+          <v-text-field v-model="editedAge" label="나이" outlined dense type="number" class="mb-4" :rules="[(v) => !!v || '나이를 입력해주세요']" />
           <!-- 자본금 -->
-          <v-text-field v-model="editedCapital" label="자본금 (숫자만)" outlined dense type="number" suffix="만원" class="mb-4"
-            :rules="[(v) => !!v || '자본금을 입력해주세요']" />
+          <v-text-field v-model="editedCapital" label="자본금 (숫자만)" outlined dense type="number" suffix="만원" class="mb-4" :rules="[(v) => !!v || '자본금을 입력해주세요']" />
           <!-- 시/도 -->
-          <v-select v-model="editedSido" :items="sidoList" label="시/도" outlined dense class="mb-4"
-            :rules="[(v) => !!v || '시/도를 선택해주세요']" @change="onSidoChange" />
+          <v-select v-model="editedSido" :items="sidoList" label="시/도" outlined dense class="mb-4" :rules="[(v) => !!v || '시/도를 선택해주세요']" @change="onSidoChange" />
           <!-- 시/군/구 -->
-          <v-select v-model="editedSigungu" :items="sigugunList" label="시/군/구" outlined dense class="mb-4"
-            :disabled="!sigugunList.length" :rules="[(v) => !!v || '시/군/구를 선택해주세요']" />
+          <v-select v-model="editedSigungu" :items="sigugunList" label="시/군/구" outlined dense class="mb-4" :disabled="!sigugunList.length" :rules="[(v) => !!v || '시/군/구를 선택해주세요']" />
         </v-card-text>
         <v-card-actions>
           <v-btn color="primary" block @click="saveProfile">저장</v-btn>
@@ -209,7 +202,6 @@ const sigugunList = computed(() => {
 
 const openEditModal = () => {
   showEditModal.value = true;
-  console.log(showEditModal.value);
 };
 
 // 시/도 변경 시 시/군/구 초기화
@@ -256,8 +248,12 @@ const saveProfile = async () => {
       button: "확인",
     });
   } catch (error) {
-    console.error("프로필 업데이트 실패:", error);
-    alert("프로필 업데이트 중 오류가 발생했습니다.");
+    swal({
+      title: "실패",
+      text: "프로필 업데이트에 실패했습니다.",
+      icon: "error",
+      button: "확인",
+    });
   }
 };
 
@@ -286,7 +282,12 @@ const unlikeProduct = async (productId, productType) => {
       accountStore.user.liked_products = likedProducts.value.filter((product) => product.id !== productId);
     }
   } catch (error) {
-    console.error("좋아요 취소 실패:", error);
+    swal({
+      title: "실패",
+      text: "좋아요 취소 실패",
+      icon: "error",
+      button: "확인",
+    });
   }
 };
 </script>
