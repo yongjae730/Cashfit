@@ -452,10 +452,74 @@ watch(showChart, (newValue) => {
   transform: translateY(-1px);
 }
 
+/* 차트 관련 스타일 수정 */
 .chart-container {
-  height: 500px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  height: 600px; /* 차트 높이 증가 */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  padding: 16px;
+  background: linear-gradient(to bottom, #ffffff, #f8fafc);
+}
+
+.custom-btn-group {
+  border: none;
+  background-color: #f1f5f9;
+  border-radius: 12px;
+  padding: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.custom-btn-group .v-btn {
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  border: none !important;
+  background-color: transparent;
+  min-width: 80px;
+  border-radius: 8px !important;
+  height: 40px;
+  font-size: 0.9rem;
+}
+
+.custom-btn-group .v-btn:hover {
+  background-color: rgba(var(--v-theme-primary), 0.05);
+  transform: translateY(-1px);
+  transition: all 0.2s ease;
+}
+
+.custom-btn-group .v-btn.v-btn--active {
+  background-color: white !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  color: #1a237e;
+}
+
+/* 차트 다이얼로그 스타일 개선 */
+:deep(.v-dialog > .v-card) {
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2) !important;
+}
+
+.chart-toolbar {
+  background: linear-gradient(to right, rgba(26, 35, 126, 0.95), rgba(13, 71, 161, 0.95)) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  height: 90px !important;
+}
+
+:deep(.v-toolbar-title) {
+  font-size: 1.5rem !important;
+  font-weight: 700;
+}
+
+/* 차트 관련 칩 스타일 */
+:deep(.v-chip) {
+  font-size: 1rem;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(5px);
 }
 
 .crypto-table {
@@ -487,52 +551,32 @@ watch(showChart, (newValue) => {
   border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
 }
 
-.chart-toolbar {
-  border-top-left-radius: 16px !important;
-  border-top-right-radius: 16px !important;
-}
-
-.custom-btn-group {
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  padding: 2px;
-  background-color: #f8f9fa;
-}
-
-.custom-btn-group .v-btn {
-  font-weight: 500;
-  letter-spacing: 0;
-  text-transform: none;
-  border: none !important;
-  background-color: transparent;
-}
-
-.custom-btn-group .v-btn:hover {
-  background-color: rgba(var(--v-theme-primary), 0.05);
-}
-
-.custom-btn-group .v-btn.v-btn--active {
-  background-color: white !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
 /* 다이얼로그 트랜지션 개선 */
 .dialog-bottom-transition-enter-active,
 .dialog-bottom-transition-leave-active {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dialog-bottom-transition-enter-from,
 .dialog-bottom-transition-leave-to {
-  transform: translateY(30px);
+  transform: translateY(50px);
   opacity: 0;
 }
 
-:deep(.v-chip) {
-  font-size: 0.875rem;
-  height: 32px;
+/* 닫기 버튼 스타일 */
+:deep(.v-toolbar .v-btn--icon) {
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
 }
 
-:deep(.v-dialog > .v-card) {
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+:deep(.v-toolbar .v-btn--icon:hover) {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+/* 차트 컨테이너 내부 스타일 */
+:deep(.tv-lightweight-charts) {
+  border-radius: 12px;
+  overflow: hidden;
 }
 </style>
