@@ -59,7 +59,6 @@ const fetchComments = async () => {
   loading.value = true; // 로딩 시작
   try {
     const _fetchedComments = await productCommentStore.getComments(props.productId);
-    console.log(_fetchedComments);
     if (Array.isArray(_fetchedComments)) {
       comments.value = _fetchedComments;
     } else {
