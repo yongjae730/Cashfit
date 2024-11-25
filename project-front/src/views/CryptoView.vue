@@ -65,7 +65,7 @@
             </div>
           </template>
           <template v-slot:append>
-            <v-btn icon="mdi-close" variant="text" color="white" size="large"></v-btn>
+            <v-btn icon="mdi-close" variant="text" color="white" size="large" @click="showChart = false"></v-btn>
           </template>
         </v-toolbar>
 
@@ -129,8 +129,9 @@ const intervals = [
 ];
 
 // 유틸리티 함수
+// 유틸리티 함수
 const getRandomColor = (code) => {
-  const colors = ["primary", "secondary", "success", "info", "warning"];
+  const colors = ["primary", "secondary", "success", "info", "warning", "error", "indigo", "deep-purple", "blue", "teal", "green", "orange"];
   const hash = code.split("").reduce((acc, char) => char.charCodeAt(0) + acc, 0);
   return colors[hash % colors.length];
 };
@@ -515,13 +516,19 @@ watch(showChart, (newValue) => {
 
 /* 차트 관련 칩 스타일 */
 :deep(.v-chip) {
-  font-size: 1rem;
-  height: 36px;
-  background: rgba(255, 255, 255, 0.15) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  backdrop-filter: blur(5px);
+  background-color: inherit !important; /* CSS 우선 순위 문제 방지 */
+  color: inherit !important; /* 텍스트 색상 충돌 방지 */
+}
+:deep(.v-chip--flat) {
+  opacity: 0.9;
 }
 
+/* 호버 효과 추가 */
+:deep(.v-chip:hover) {
+  opacity: 1;
+  transform: translateY(-1px);
+  transition: all 0.2s ease;
+}
 .crypto-table {
   border-collapse: separate;
   border-spacing: 0;

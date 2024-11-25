@@ -74,13 +74,21 @@ const headers = [
 const itemsPerPage = 10;
 const currentPage = ref(1);
 
+// 정렬된 전체 게시글을 반환하는 computed 속성
+const sortedArticles = computed(() => {
+  return [...articles.value].sort((a, b) => {
+    return new Date(b.create_at) - new Date(a.create_at);
+  });
+});
+
+// paginatedArticles computed 속성
 const paginatedArticles = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage;
   const end = start + itemsPerPage;
-  return articles.value.slice(start, end);
+  return sortedArticles.value.slice(start, end);
 });
 
-const pageCount = computed(() => Math.ceil(articles.value.length / itemsPerPage));
+const pageCount = computed(() => Math.ceil(sortedArticles.value.length / itemsPerPage));
 
 onMounted(() => {
   ArticleStore.getArticles();

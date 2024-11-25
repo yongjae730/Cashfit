@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="link-card" @click="$emit('click')">
     <div class="card-content">
       <div class="icon-section">
@@ -47,4 +47,4 @@
   padding-top: 16px;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
-</style>
+</style> -->
