@@ -35,7 +35,7 @@ onMounted(async () => {
     if (store.exchange.length > 0) {
       // store.exchange는 배열임
       exchangeInfos.value = store.exchange; // 데이터를 직접 할당
-      console.log("환율 데이터:", exchangeInfos.value);
+      // console.log("환율 데이터:", exchangeInfos.value);
     } else {
       console.error("환율 데이터가 비어 있습니다.");
     }
