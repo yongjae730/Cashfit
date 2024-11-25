@@ -28,6 +28,7 @@
 10. 은행 검색 기능
 11. 금융 상품 추천 알고리즘
 12. AI 추천 / 검색 서비스 기능
+13. 암호화폐 페이지
 
 ## 사용 기술
 
@@ -44,6 +45,162 @@
 <code><img height="60" src=https://github.com/github/explore/blob/main/topics/javascript/javascript.png></code>
 <code><img height="60" src=https://upload.wikimedia.org/wikipedia/commons/f/f1/Vue.png></code>
 <code><img height="60" src=https://github.com/github/explore/blob/main/topics/html/html.png></code>
+
+### 서비스 설계
+- FlowChart, UseCaseDiagram
+  - (./images/flowChart.png)
+  - (./images/useCase.png)
+- ERD
+  - ..
+- URL 명세서
+  - <details><summary>## API 명세서</summary>
+
+### Sign Up
+
+POST /accounts/signup/
+
+| Field | Type | Required | Description |
+
+|-------|------|----------|-------------|
+
+| username | string | Yes | 사용자 아이디 |
+
+| email | string | Yes | 이메일 주소 |
+
+| password1 | string | Yes | 비밀번호 |
+
+| password2 | string | Yes | 비밀번호 확인 |
+
+| age | integer | No | 나이 |
+
+| capital | integer | No | 자본금 |
+
+| nickname | string | No | 닉네임 (최대 10자) |
+
+| sido | string | No | 시/도 (최대 10자) |
+
+| sigungus | string | No | 시/군/구 (최대 10자) |
+
+## Articles
+
+### List Articles
+
+GET /articles/
+
+Response:
+
+| Field | Type | Description |
+
+|-------|------|-------------|
+
+| id | integer | 게시글 ID |
+
+| title | string | 제목 |
+
+| content | string | 내용 |
+
+| create_at | datetime | 작성일 |
+
+| update_at | datetime | 수정일 |
+
+| users | string | 작성자 |
+
+### Create Article
+
+POST /articles/create/
+
+Request Body:
+
+| Field | Type | Required | Description |
+
+|-------|------|----------|-------------|
+
+| title | string | Yes | 제목 |
+
+| content | string | Yes | 내용 |
+
+### Article Detail
+
+GET /articles/<article_pk>/
+
+Response:
+
+| Field | Type | Description |
+
+|-------|------|-------------|
+
+| id | integer | 게시글 ID |
+
+| title | string | 제목 |
+
+| content | string | 내용 |
+
+| users | integer | 작성자 ID |
+
+| create_at | datetime | 작성일 |
+
+| update_at | datetime | 수정일 |
+
+| nickname | string | 작성자 닉네임 |
+
+| comments | array | 댓글 목록 |
+
+| comments_count | integer | 댓글 수 |
+
+## Financial Products
+
+### List Products with Options
+
+GET /financials/financial-products-with-options/
+
+Response:
+
+| Field | Type | Description |
+
+|-------|------|-------------|
+
+| id | integer | 상품 ID |
+
+| options | array | 금융 상품 옵션 목록 |
+
+| fin_product_cd | string | 상품 코드 |
+
+| kor_co_nm | string | 금융사 이름 |
+
+| fin_product_nm | string | 상품명 |
+
+### Financial Comment
+
+POST /financials/financial-comment_create/<fin_product_pk>/
+
+Request Body:
+
+| Field | Type | Required | Description |
+
+|-------|------|----------|-------------|
+
+| content | string | Yes | 댓글 내용 |
+
+### Exchange Rate
+
+GET /financials/exchange-rate/
+
+Response:
+
+| Field | Type | Description |
+
+|-------|------|-------------|
+
+| id | integer | 환율 정보 ID |
+
+| cur_unit | string | 통화 단위 |
+
+| cur_nm | string | 통화명 |
+
+| deal_bas_r | string | 매매기준율 |
+
+| bkpr | string | 장부가격 |
+</details>
 
 
 ### 개발기간
