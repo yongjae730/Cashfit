@@ -425,12 +425,11 @@ def age_based_recommendation(request):
         )
 
     def check_age_eligibility(join_member, user_age):
-        if not join_member:  # join_member가 None인 경우 처리
+        if not join_member:
             return True
             
         join_member = join_member.lower().replace(" ", "")
 
-        # 연령 제한 키워드와 해당 나이 조건을 매핑
         age_restrictions = {
             "만50세이상": lambda age: age >= 50,
             "만34세": lambda age: age <= 34,
@@ -443,11 +442,9 @@ def age_based_recommendation(request):
             "15세이하": lambda age: age <= 15
         }
 
-        # 제한없음 케이스 처리
         if "제한없음" in join_member:
             return True
 
-        # 각 나이 제한 조건 확인
         for keyword, check_func in age_restrictions.items():
             if keyword.replace(" ", "") in join_member:
                 if not check_func(user_age):
@@ -455,59 +452,53 @@ def age_based_recommendation(request):
 
         return True
 
-    # 기본 필터 설정
     base_query = FinancialProducts.objects.all()
     
-    # 연령대별 추천 로직
-    if age < 25:  # 청년층
-        recommended_products = base_query.filter(
-            Q(option__save_trm__lte=12) &  # 12개월 이하
-            Q(join_deny=1)  # 가입제한 없음
-        ).distinct()
+    if age < 25:
+        base_filter = Q(option__save_trm__lte=12) & Q(join_deny=1)
         recommendation_message = "청년층을 위한 단기 고금리 상품 추천"
         
-    elif 25 <= age < 35:  # 사회초년생
-        recommended_products = base_query.filter(
-            Q(option__save_trm__range=(12, 24)) &  # 12~24개월
-            Q(product_type=1) &  # 적금 상품
-            Q(join_deny=1)  # 가입제한 없음
-        ).distinct()
+    elif 25 <= age < 35:
+        base_filter = Q(option__save_trm__range=(12, 24)) & Q(join_deny=1)
         recommendation_message = "사회초년생을 위한 중기 적금 상품 추천"
         
-    elif 35 <= age < 50:  # 자산형성기
-        recommended_products = base_query.filter(
-            Q(option__save_trm__gte=24) &  # 24개월 이상
-            Q(join_deny=1)
-        ).distinct()
+    elif 35 <= age < 50:
+        base_filter = Q(option__save_trm__gte=24) & Q(join_deny=1)
         recommendation_message = "자산형성기를 위한 장기 상품 추천"
         
-    else:  # 장년층
-        recommended_products = base_query.filter(
-            Q(option__save_trm__lte=12) &  # 12개월 이하
-            Q(option__intr_rate_type_nm='단리')  # 단리 상품
-        ).distinct()
+    else:
+        base_filter = Q(option__save_trm__lte=12) & Q(option__intr_rate_type_nm='단리')
         recommendation_message = "장년층을 위한 안정적인 단기 상품 추천"
 
-    # 나이 제한 필터링
-    eligible_products = [
-        product for product in recommended_products
-        if check_age_eligibility(product.join_member, age)
-    ]
+    # 예금과 적금 분리
+    deposit_products = base_query.filter(base_filter & Q(product_type=0)).distinct()
+    savings_products = base_query.filter(base_filter & Q(product_type=1)).distinct()
 
-    # 금리 순으로 정렬하고 상위 5개 선택
-    eligible_products.sort(
-        key=lambda x: max([opt.intr_rate2 for opt in x.option.all()]), 
-        reverse=True
-    )
-    eligible_products = eligible_products[:5]
+    def filter_and_sort(products):
+        eligible_products = [
+            product for product in products
+            if check_age_eligibility(product.join_member, age)
+        ]
+        eligible_products.sort(
+            key=lambda x: max([opt.intr_rate2 for opt in x.option.all()]), 
+            reverse=True
+        )
+        return eligible_products[:5]
 
-    # 추천 상품 직렬화
-    serializer = FinancialProductWithOptionsSerializer(eligible_products, many=True)
-    
+    top_deposit_products = filter_and_sort(deposit_products)
+    top_savings_products = filter_and_sort(savings_products)
+
+    # 두 리스트 직렬화
+    deposit_serializer = FinancialProductWithOptionsSerializer(top_deposit_products, many=True)
+    savings_serializer = FinancialProductWithOptionsSerializer(top_savings_products, many=True)
+
     response_data = {
         "message": recommendation_message,
         "user_age": age,
-        "recommendations": serializer.data
+        "recommendations": {
+            "deposits": deposit_serializer.data,
+            "savings": savings_serializer.data
+        }
     }
     
     return Response(response_data, status=status.HTTP_200_OK)
