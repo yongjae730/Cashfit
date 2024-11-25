@@ -1,26 +1,47 @@
 <template>
-  <v-main style="margin-top: 64px">
-    <div class="d-flex justify-space-between align-center mb-4">
-      <h1 class="page-title" style="padding: 15px">게시판</h1>
-      <v-btn color="primary" class="font-weight-bold" style="border-radius: 8px; color: white; font-size: 16px" @click="goToCreateArticle">게시글 작성</v-btn>
-    </div>
+  <v-main class="pa-6" style="margin-top: 40px; background-color: #f8f9fa">
+    <v-container>
+      <!-- 헤더 섹션 -->
+      <v-card class="mb-6 rounded-xl" elevation="2">
+        <div class="d-flex justify-space-between align-center pa-6 header-gradient">
+          <div class="d-flex align-center">
+            <v-avatar color="white" size="48" class="mr-4" elevation="1">
+              <v-icon icon="mdi-forum" size="24" color="primary" />
+            </v-avatar>
+            <h1 class="text-h4 font-weight-bold text-white">게시판</h1>
+          </div>
+          <v-btn color="white" class="create-btn font-weight-bold px-6" elevation="2" prepend-icon="mdi-plus" @click="goToCreateArticle">게시글 작성</v-btn>
+        </div>
+      </v-card>
 
-    <v-data-table :headers="headers" :items="paginatedArticles" class="elevation-1" dense>
-      <template v-slot:item.id="{ item }">
-        {{ item.id }}
-      </template>
-      <template v-slot:item.title="{ item }">
-        <RouterLink :to="{ name: 'articleDetail', params: { id: item.id } }" style="color: #1976d2">{{ item.title }}</RouterLink>
-      </template>
-      <template v-slot:item.create_at="{ item }">
-        {{ formatDate(item.create_at) }}
-      </template>
-      <template v-slot:item.update_at="{ item }">
-        {{ formatDate(item.update_at) }}
-      </template>
-    </v-data-table>
+      <!-- 테이블 카드 -->
+      <v-card class="rounded-xl" elevation="2">
+        <v-data-table :headers="headers" :items="paginatedArticles" class="custom-table" dense>
+          <template v-slot:item.id="{ item }">
+            <div class="font-weight-medium">{{ item.id }}</div>
+          </template>
 
-    <v-pagination v-model="currentPage" :length="pageCount" class="mt-4" color="primary"></v-pagination>
+          <template v-slot:item.title="{ item }">
+            <RouterLink :to="{ name: 'articleDetail', params: { id: item.id } }" class="title-link d-inline-block">
+              {{ item.title }}
+            </RouterLink>
+          </template>
+
+          <template v-slot:item.create_at="{ item }">
+            <div class="text-grey-darken-1">{{ formatDate(item.create_at) }}</div>
+          </template>
+
+          <template v-slot:item.update_at="{ item }">
+            <div class="text-grey-darken-1">{{ formatDate(item.update_at) }}</div>
+          </template>
+        </v-data-table>
+
+        <!-- 페이지네이션 -->
+        <div class="pa-4 d-flex justify-center">
+          <v-pagination v-model="currentPage" :length="pageCount" color="primary" rounded="circle" elevation="2"></v-pagination>
+        </div>
+      </v-card>
+    </v-container>
   </v-main>
 </template>
 
@@ -74,21 +95,78 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.page-title {
-  font-size: 24px;
-  color: #333;
-  margin-bottom: 24px;
-  line-height: 1.5;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.header-gradient {
+  background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
 }
 
-a {
+.create-btn {
+  transition: all 0.3s ease;
+  border-radius: 12px;
+}
+
+.create-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+.title-link {
+  color: #1a237e;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
 }
 
-a:hover {
-  text-decoration: underline;
+.title-link:hover {
+  background-color: rgba(26, 35, 126, 0.05);
+  text-decoration: none;
+  color: #0d47a1;
+}
+
+:deep(.v-data-table) {
+  background: transparent !important;
+}
+
+:deep(.v-data-table-header) {
+  background-color: #f8f9fa !important;
+}
+
+:deep(.v-data-table-header th) {
+  color: #1a237e !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 12px 16px !important;
+}
+
+:deep(.v-data-table-rows tr) {
+  transition: background-color 0.2s ease;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+:deep(.v-data-table-rows tr:hover) {
+  background-color: rgba(26, 35, 126, 0.02) !important;
+}
+
+:deep(.v-data-table-rows td) {
+  padding: 12px 16px !important;
+  font-size: 0.9rem !important;
+}
+
+:deep(.v-pagination__item) {
+  box-shadow: none !important;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+:deep(.v-pagination__item--is-active) {
+  transform: scale(1.1);
+}
+
+.custom-table {
+  border-radius: 12px;
+  overflow: hidden;
 }
 </style>

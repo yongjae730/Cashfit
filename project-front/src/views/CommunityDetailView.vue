@@ -1,49 +1,64 @@
 <template>
-  <v-main style="margin-top: 64px">
-    <!-- 본문 내용 -->
-    <div v-if="article">
-      <!-- 본문 내용 -->
-      <v-card flat class="pa-6 mb-6" style="background-color: #ffffff; border-radius: 12px; box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1)">
-        <div class="d-flex align-center mb-4">
-          <h1 class="text-h5 font-weight-bold mb-2" style="color: #222">{{ article.title }}</h1>
-          <v-btn v-if="isOwner" color="primary" class="ml-auto px-4 py-2" small @click="openEditModal">
-            <v-icon small left>mdi-pencil</v-icon>
-            수정
-          </v-btn>
-          <v-btn v-else disabled class="ml-auto px-4 py-2" small>
-            <v-icon small left>mdi-pencil</v-icon>
-            수정 불가
-          </v-btn>
-        </div>
-        <h2 class="text-subtitle-1 font-weight-medium mb-3" style="color: #555">{{ article.nickname }}</h2>
-        <p style="color: #444; font-size: 16px; line-height: 1.8">{{ article.content }}</p>
-      </v-card>
+  <v-main class="bg-grey-lighten-4" style="margin-top: 64px">
+    <v-container class="py-8">
+      <div v-if="article">
+        <!-- 본문 카드 -->
+        <v-card class="article-card mb-8">
+          <!-- 헤더 섹션 -->
+          <div class="article-header pa-8">
+            <div class="d-flex align-center mb-6">
+              <div>
+                <h1 class="text-h4 font-weight-bold mb-2">{{ article.title }}</h1>
+                <div class="d-flex align-center">
+                  <v-avatar size="32" color="primary" class="mr-3">
+                    <span class="text-white">{{ article.nickname[0] }}</span>
+                  </v-avatar>
+                  <span class="text-subtitle-1 font-weight-medium text-grey-darken-1">
+                    {{ article.nickname }}
+                  </span>
+                </div>
+              </div>
+              <v-btn v-if="isOwner" color="primary" class="ml-auto edit-btn" prepend-icon="mdi-pencil" variant="flat" @click="openEditModal">수정</v-btn>
+              <v-btn v-else disabled class="ml-auto" prepend-icon="mdi-pencil" variant="flat">수정 불가</v-btn>
+            </div>
+          </div>
 
-      <CommunityComment :comments="comments" :isLogin="isLogin" :userNickname="userNickname" @add-comment="addComment" @update-comment="updateComment" @delete-comment="deleteComment" />
-      <v-dialog v-model="editModal" max-width="500">
-        <v-card>
-          <v-card-title>
-            <span class="text-h6">게시글 수정</span>
-            <v-spacer></v-spacer>
-            <v-btn icon @click="closeEditModal">
-              <v-icon>mdi-close</v-icon>
-            </v-btn>
-          </v-card-title>
-          <v-card-text>
-            <v-text-field v-model="editedTitle" label="제목" outlined dense></v-text-field>
-            <v-textarea v-model="editedContent" label="내용" outlined dense rows="5"></v-textarea>
-          </v-card-text>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn color="primary" @click="updateArticle">수정</v-btn>
-            <v-btn color="grey" @click="closeEditModal">취소</v-btn>
-          </v-card-actions>
+          <v-divider></v-divider>
+
+          <!-- 본문 내용 -->
+          <div class="article-content pa-8">
+            <p class="text-body-1">{{ article.content }}</p>
+          </div>
         </v-card>
-      </v-dialog>
-    </div>
+
+        <!-- 댓글 섹션 -->
+        <CommunityComment :comments="comments" :isLogin="isLogin" :userNickname="userNickname" @add-comment="addComment" @update-comment="updateComment" @delete-comment="deleteComment" />
+
+        <!-- 수정 모달 -->
+        <v-dialog v-model="editModal" max-width="600">
+          <v-card class="edit-modal">
+            <v-card-title class="pa-6 bg-primary">
+              <span class="text-h6 text-white">게시글 수정</span>
+              <v-btn icon="mdi-close" variant="text" color="white" @click="closeEditModal"></v-btn>
+            </v-card-title>
+
+            <v-card-text class="pa-6">
+              <v-text-field v-model="editedTitle" label="제목" variant="outlined" class="mb-4" density="comfortable"></v-text-field>
+
+              <v-textarea v-model="editedContent" label="내용" variant="outlined" rows="6" density="comfortable"></v-textarea>
+            </v-card-text>
+
+            <v-card-actions class="pa-6">
+              <v-spacer></v-spacer>
+              <v-btn color="grey" variant="text" @click="closeEditModal" class="mr-2">취소</v-btn>
+              <v-btn color="primary" @click="updateArticle" elevation="0">수정하기</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </div>
+    </v-container>
   </v-main>
 </template>
-
 <script setup>
 import { ref, computed, onMounted, watchEffect } from "vue";
 import { useRoute } from "vue-router";
@@ -237,27 +252,82 @@ watchEffect(() => {
 </script>
 
 <style scoped>
-h1,
-h2 {
-  font-family: "Pretendard", sans-serif;
-  color: #333;
-}
-/* .v-main {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-} */
-.v-card {
-  border-radius: 12px;
+.article-card {
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+  overflow: hidden;
 }
 
-.v-btn {
-  font-size: 14px;
+.article-header {
+  background: linear-gradient(to right, #ffffff, #f8f9fa);
+}
+
+.edit-btn {
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.edit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.article-content {
+  line-height: 1.8;
+  color: #2c3e50;
+  font-size: 1.1rem;
+}
+
+.edit-modal {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+:deep(.v-field) {
+  border-radius: 8px;
+}
+
+:deep(.v-field:hover) {
+  border-color: var(--v-primary-base);
+}
+
+:deep(.v-card-title) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+:deep(.v-btn) {
   text-transform: none;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
-.v-textarea {
-  font-size: 14px;
-  padding: 12px;
+:deep(.v-textarea textarea) {
+  line-height: 1.6;
+}
+
+/* 댓글 영역 스타일링 */
+:deep(.v-card) {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+:deep(.v-avatar) {
+  border: 2px solid white;
+}
+
+/* 애니메이션 효과 */
+.v-dialog-transition-enter-active,
+.v-dialog-transition-leave-active {
+  transition: all 0.3s ease;
+}
+
+.v-dialog-transition-enter-from,
+.v-dialog-transition-leave-to {
+  opacity: 0;
+  transform: scale(0.9);
 }
 </style>
