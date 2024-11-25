@@ -37,15 +37,15 @@
 
 ### BackEnd
 
-<code><img height="60" src=https://github.com/github/explore/blob/main/topics/django/django.png></code>
-<code><img height="60" src=https://github.com/github/explore/blob/main/topics/python/python.png></code>
-<code><img height="60" src=https://github.com/github/explore/blob/main/topics/sqlite/sqlite.png></code>
+- Django
+- Python
+- SQLite
 
 ### FrontEnd
 
-<code><img height="60" src=https://github.com/github/explore/blob/main/topics/javascript/javascript.png></code>
-<code><img height="60" src=https://upload.wikimedia.org/wikipedia/commons/f/f1/Vue.png></code>
-<code><img height="60" src=https://github.com/github/explore/blob/main/topics/html/html.png></code>
+- JavaScript
+- Vue.js
+- HTML/CSS
 
 ### 서비스 설계
 
@@ -55,7 +55,6 @@
 - ERD
   - ..
 - URL 명세서
-  - # API Documentation
 
 <details>
 <summary>## API 명세서</summary>
@@ -153,72 +152,64 @@
 | bkpr | string | 장부가격 |
 
 </details>
-- 컴포넌트 구조도
-  - ```
-vue-enterprise-boilerplate/
-├── docs/
-├── generators/
-├── jest.config.js
-├── package.json
-├── package.json.md
-├── public/
-├── src/
-│   ├── App.vue
-│   ├── app.config.json
-│   ├── app.vue
-│   ├── assets/
-│   ├── components/
-│   │   ├── BankMap.vue
-│   │   ├── Calculator.vue
-│   │   ├── ChatbotWidget.vue
-│   │   ├── CommunityComment.vue
-│   │   ├── CryptoCard.vue
+
+<details>
+<summary>컴포넌트 구조도</summary>
+
+```
+src/
+├── components/
+│   ├── Layout/
+│   │   ├── NavBar.vue
+│   │   ├── Footer.vue
+│   │   └── MiddleNav.vue
+│   │
+│   ├── Financial/
+│   │   ├── MainProductList.vue
+│   │   ├── FinProductTable.vue
+│   │   ├── MainPageBank.vue
+│   │   ├── MainPageTable.vue
+│   │   ├── ProductComment.vue
+│   │   └── BankMap.vue
+│   │
+│   ├── Exchange/
 │   │   ├── ExchangeCalculator.vue
 │   │   ├── ExchangeDetail.vue
 │   │   ├── ExchangeItem.vue
-│   │   ├── ExchangeList.vue
-│   │   ├── FinProductTable.vue
-│   │   ├── Footer.vue
-│   │   ├── LoginModal.vue
-│   │   ├── MainPageBank.vue
-│   │   ├── MainPageCarousel.vue
-│   │   ├── MainPageTable.vue
-│   │   ├── MainProductList.vue
-│   │   ├── MiddleNav.vue
-│   │   ├── NavBar.vue
-│   │   ├── ProductComment.vue
-│   │   ├── ProductRecommendOption.vue
-│   │   ├── RecommendDep.vue
+│   │   └── ExchangeList.vue
+│   │
+│   ├── Recommend/
 │   │   ├── RecommendDetail.vue
-│   │   └── RecommendSaving.vue
-│   ├── plugins/
-│   │   └── vuetify.js
-│   ├── router/
-│   │   ├── index.js
-│   │   └── routes.js
-│   ├── stores/
-│   │   ├── accounts.js
-│   │   ├── address.js
-│   │   ├── articles.js
-│   │   ├── comment.js
-│   │   ├── exchange.js
-│   │   ├── financial.js
-│   │   └── product_comment.js
-│   ├── utils/
-│   │   └── formatters.js
-│   └── views/
-│       ├── CommunityDetailView.vue
-│       ├── CreateArticleView.vue
-│       ├── CryptoView.vue
-│       ├── ExchangeView.vue
-│       ├── FinView.vue
-│       ├── MainView.vue
-│       ├── ProductDetailView.vue
-│       ├── ProfileView.vue
-│       └── SignUpView.vue
-├── tests/
-└── vue.config.js
+│   │   ├── RecommendDep.vue
+│   │   ├── RecommendSaving.vue
+│   │   └── ProductRecommendOption.vue
+│   │
+│   ├── Community/
+│   │   └── CommunityComment.vue
+│   │
+│   ├── Auth/
+│   │   └── LoginModal.vue
+│   │
+│   ├── Crypto/
+│   │   └── CryptoCard.vue
+│   │
+│   └── Util/
+│       ├── Calculator.vue
+│       └── ChatbotWidget.vue
+│
+└── views/
+    ├── MainView.vue
+    ├── FinView.vue
+    ├── ProductDetailView.vue
+    ├── ExchangeView.vue
+    ├── CryptoView.vue
+    ├── CommunityDetailView.vue
+    ├── CreateArticleView.vue
+    ├── ProfileView.vue
+    └── SignUpView.vue
 ```
+
+</details>
 
 ### 개발기간
 
@@ -257,7 +248,9 @@ vue-enterprise-boilerplate/
 - https://www.erdcloud.com/d/GdKjjLXs9QvhQZvWz
 
 ### 후기
-김병년 : 프로젝트 시작 전에 페어를 용재형이랑 하기로 하면서 먼저, 방향성을 완전하게 백, 프론트로 구분하기로 해서 진행했었고, 실제로 코드 작성 시에도 겹치는 부분이 없어서, 단 한번의 충돌 없이 수월하게 프로젝트를 진행했던 것 같습니다. 이번 프로젝트를 하면서, 지금까지 진행했던 프로젝트와는 달리 뭔가 제대로된 기능, 역할의 분리가 된 것 같아서 재밌게 진행했던 것 같고, 프론트엔드 개발자를 희망하는 저로서는 프론트엔드 전반적인 부분을 담당한 것이 제 스스로 성장할 수 있는 계기도 같이 제공 되기도 했고, 실제로 로직을 구성하면서, async, await 와 같은 순서가 보장된 비동기 처리와 같은 기술, 암호화폐 페이지 개발 시에 사용한 WebSocket 기술 등, 여러 가지 기술을 녹여낼 수 있을 만큼 녹여냈다고 생각했고, 더 배울 부분이 많이 남아있다고 느껴졌습니다. 
+
+김병년 : 프로젝트 시작 전에 페어를 용재형이랑 하기로 하면서 먼저, 방향성을 완전하게 백, 프론트로 구분하기로 해서 진행했었고, 실제로 코드 작성 시에도 겹치는 부분이 없어서, 단 한번의 충돌 없이 수월하게 프로젝트를 진행했던 것 같습니다. 이번 프로젝트를 하면서, 지금까지 진행했던 프로젝트와는 달리 뭔가 제대로된 기능, 역할의 분리가 된 것 같아서 재밌게 진행했던 것 같고, 프론트엔드 개발자를 희망하는 저로서는 프론트엔드 전반적인 부분을 담당한 것이 제 스스로 성장할 수 있는 계기도 같이 제공 되기도 했고, 실제로 로직을 구성하면서, async, await 와 같은 순서가 보장된 비동기 처리와 같은 기술, 암호화폐 페이지 개발 시에 사용한 WebSocket 기술 등, 여러 가지 기술을 녹여낼 수 있을 만큼 녹여냈다고 생각했고, 더 배울 부분이 많이 남아있다고 느껴졌습니다.
 
 아쉬웠던 점은, 로직은 금방금방 구성해서 실제 기능에 대한 코딩 시간은 크게 할애하지 않았지만, 자잘한 버그를 잡는 것이 어려웠고, 제가 작성한 코드가 불완전한 코드였다는 것을 다시 알게 되었습니다. 또한, UI/UX 구성 하는 것이 좀 어려웠습니다..
+
 이용재 :
