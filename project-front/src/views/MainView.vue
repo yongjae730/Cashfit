@@ -143,7 +143,6 @@ import MainProductList from "@/components/MainProductList.vue";
 import MainPageBank from "@/components/MainPageBank.vue";
 import { ref, onMounted, computed } from "vue";
 import MiddleNav from "@/components/MiddleNav.vue";
-import ExchnageRateCard from "@/components/ExchnageRateCard.vue";
 import router from "@/router";
 
 // 캐러셀 데이터
@@ -213,8 +212,13 @@ const fetchCarouselSlides = async () => {
     },
     {
       image: `carousel/carousel2.png`,
-      title: "복잡한 환율 계산?",
-      subtitle: "CashFit이 할게요",
+      title: "해외 여행을 준비중이라면",
+      subtitle: "실시간 환율 조회",
+    },
+    {
+      image: `carousel/carousel3.png`,
+      title: "도파민이 필요하다면",
+      subtitle: "암호 화폐",
     },
   ];
 };

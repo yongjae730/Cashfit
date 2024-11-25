@@ -2,7 +2,7 @@
   <v-card class="rounded-xl" elevation="2">
     <v-card-title class="text-h5 font-weight-bold pa-6">
       <v-icon color="primary" class="mr-2">mdi-comment-multiple</v-icon>
-      댓글
+      댓글 {{ comments.length }}개
     </v-card-title>
 
     <v-card-text class="pa-6">
@@ -12,6 +12,10 @@
       <v-list v-else-if="comments">
         <v-list-item v-for="(comment, index) in comments" :key="index" class="mb-4 rounded-lg" elevation="1">
           <v-list-item-content>
+            <v-list-item-title class="py-2">
+              {{ comment.nickname }}
+            </v-list-item-title>
+            <v-divider></v-divider>
             <v-list-item-title class="py-2">
               {{ comment.content }}
             </v-list-item-title>
