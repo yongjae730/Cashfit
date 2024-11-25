@@ -53,7 +53,7 @@ watch(
       groupedExchangeInfos.value = chunkArray(newExchangeInfos, 3);
       loading.value = false;
     } else {
-      console.error("환율 데이터가 비어 있습니다.");
+      // console.error("환율 데이터가 비어 있습니다.");
       loading.value = false;
     }
   },

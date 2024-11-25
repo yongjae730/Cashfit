@@ -37,9 +37,9 @@
             </v-menu>
           </template>
           <template v-else>
-            <v-btn outlined class="mr-2" @click="showLoginModal = true">Sign in</v-btn>
+            <v-btn outlined class="mr-2" @click="showLoginModal = true">로그인</v-btn>
             <router-link to="/sign_up">
-              <v-btn color="black" dark>Register</v-btn>
+              <v-btn color="black" dark>회원가입</v-btn>
             </router-link>
           </template>
         </v-col>

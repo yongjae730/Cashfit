@@ -1,12 +1,13 @@
 <template>
   <v-dialog v-model="internalShow" persistent max-width="500px">
     <v-card>
+      <v-btn icon @click="close">
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
       <v-card-title>
-        <span class="text-h5 font-weight-bold ml-4">{{ exchange?.cur_nm || "정보 없음" }} ({{ exchange?.cur_unit || "" }})</span>
         <v-spacer></v-spacer>
-        <v-btn icon @click="close">
-          <v-icon>mdi-close</v-icon>
-        </v-btn>
+        <v-img :src="`/flag/${exchange.cur_unit}.png`" alt="국기" width="150" max-height="100" />
+        <span class="text-h5 font-weight-bold ml-4">{{ exchange?.cur_nm || "정보 없음" }} ({{ exchange?.cur_unit || "" }})</span>
       </v-card-title>
 
       <v-divider></v-divider>
@@ -17,14 +18,6 @@
             <div>
               매매기준율:
               <strong>{{ exchange?.deal_bas_r || "N/A" }}</strong>
-            </div>
-          </v-col>
-          <v-col cols="6">
-            <div>
-              전일대비:
-              <strong :class="exchange?.result > 0 ? 'text-success' : 'text-danger'">
-                {{ exchange?.result || "N/A" }}
-              </strong>
             </div>
           </v-col>
         </v-row>
@@ -93,5 +86,10 @@ const openCalculator = () => {
 }
 .text-danger {
   color: red;
+}
+.v-card-title {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 </style>
