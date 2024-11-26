@@ -162,12 +162,13 @@ onMounted(async () => {
     const response = await axios.get(`${store.API_URL}/api/financials/products/${product.value.id}/like/`, { headers });
     isLiked.value = response.data.is_liked;
   } catch (error) {
-    swal({
-      title: "실패",
-      text: "데이터 로드 중 문제가 발생했습니다. 다시 시도해주세요.",
-      icon: "error",
-      button: "확인",
-    });
+    console.error(error);
+    // swal({
+    //   title: "실패",
+    //   text: "데이터 로드 중 문제가 발생했습니다. 다시 시도해주세요.",
+    //   icon: "error",
+    //   button: "확인",
+    // });
   }
 });
 </script>

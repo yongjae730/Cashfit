@@ -7,7 +7,7 @@
           <!-- 헤더 섹션 -->
           <div class="article-header pa-8">
             <div class="d-flex align-center mb-6">
-              <div>
+              <div class="flex-grow-1">
                 <h1 class="text-h4 font-weight-bold mb-2">{{ article.title }}</h1>
                 <div class="d-flex align-center">
                   <v-avatar size="32" color="primary" class="mr-3">
@@ -18,8 +18,14 @@
                   </span>
                 </div>
               </div>
-              <v-btn v-if="isOwner" color="primary" class="ml-auto edit-btn" prepend-icon="mdi-pencil" variant="flat" @click="openEditModal">수정</v-btn>
-              <v-btn v-else disabled class="ml-auto" prepend-icon="mdi-pencil" variant="flat">수정 불가</v-btn>
+              <v-spacer></v-spacer>
+              <div v-if="isOwner" class="d-flex">
+                <v-btn color="primary" class="mr-2" prepend-icon="mdi-pencil" variant="tonal" elevation="0" @click="openEditModal">수정</v-btn>
+                <v-btn color="error" prepend-icon="mdi-delete" variant="tonal" elevation="0" @click="deleteArticle">삭제</v-btn>
+              </div>
+              <div v-else>
+                <v-btn disabled color="grey" variant="tonal" prepend-icon="mdi-pencil">수정 불가</v-btn>
+              </div>
             </div>
           </div>
 
@@ -61,7 +67,7 @@
 </template>
 <script setup>
 import { ref, computed, onMounted, watchEffect } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useAccount } from "@/stores/accounts";
 import { commentStore } from "@/stores/comment";
 import CommunityComment from "@/components/CommunityComment.vue";
@@ -70,6 +76,7 @@ import axios from "axios";
 const accountStore = useAccount();
 const store = commentStore();
 const route = useRoute();
+const router = useRouter();
 
 const article = ref(null);
 const comments = ref([]);
@@ -242,6 +249,37 @@ const updateArticle = async () => {
       icon: "error",
       button: "확인",
     });
+  }
+};
+const deleteArticle = async () => {
+  const willDelete = await swal({
+    title: "게시글 삭제",
+    text: "정말로 이 게시글을 삭제할건가요?",
+    icon: "warning",
+    buttons: ["취소", "삭제"],
+    dangerMode: true,
+  });
+  if (willDelete) {
+    try {
+      await axios.delete(`http://127.0.0.1:8000/api/articles/${route.params.id}/update-delete/`, {
+        headers: { Authorization: `Token ${accountStore.token}` },
+      });
+
+      await swal({
+        title: "삭제 완료!",
+        text: "게시글이 성공적으로 삭제되었습니다",
+        icon: "success",
+        button: "확인",
+      });
+      router.push("/community");
+    } catch (error) {
+      swal({
+        title: "실패",
+        text: "게시글을 삭제하는 중 문제가 발생했습니다. 다시 시도해주세요.",
+        icon: "error",
+        button: "확인",
+      });
+    }
   }
 };
 
