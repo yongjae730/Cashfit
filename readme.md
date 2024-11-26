@@ -202,8 +202,6 @@ src/
 │   ├── Carousel/
 │   │   └── MainPageCarousel.vue    # 메인 페이지 캐러셀 컴포넌트
 │   │
-│   ├── Crypto/
-│   │   └── CryptoCard.vue          # 암호화폐 카드 컴포넌트
 │   │
 │   └── Util/
 │       ├── Calculator.vue          # 계산기 유틸리티 컴포넌트
