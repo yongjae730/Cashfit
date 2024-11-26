@@ -4,7 +4,7 @@
       <v-row justify="space-between" align="center">
         <!-- 로고 영역 -->
         <v-col class="d-flex align-center">
-          <router-link to="/"><v-img :src="`/bank_images/로고.png`" width="100px"></v-img></router-link>
+          <router-link to="/"><v-img :src="`/bank_images/logo_no_bg.png`" width="100px"></v-img></router-link>
         </v-col>
 
         <!-- 메뉴 -->
@@ -95,42 +95,87 @@ watchEffect(() => {
 <style scoped>
 a {
   text-decoration: none;
-  color: black;
-}
-.v-app-bar {
-  background-color: transparent;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  color: inherit;
 }
 
-/* 스크롤 상태: 흰색 */
+/* v-app-bar 전역 스타일 재정의 */
+:deep(.v-app-bar) {
+  background-color: #7686b3 !important; /* 캐러셀 배경색과 동일한 색상 */
+  transition: all 0.3s ease-in-out;
+}
+
+:deep(.v-toolbar) {
+  background-color: #7686b3 !important;
+}
+
+/* 스크롤되지 않은 상태 - 캐러셀 배경색 */
+.v-app-bar:not(.scrolled) {
+  background-color: #7686b3 !important;
+  box-shadow: none !important;
+}
+
+.v-app-bar:not(.scrolled) :deep(.v-toolbar__content) {
+  background-color: #7686b3 !important;
+}
+
+/* 스크롤되지 않은 상태의 텍스트/버튼 색상 */
+.v-app-bar:not(.scrolled) .v-btn {
+  color: white !important; /* 텍스트 색상을 흰색으로 변경 */
+}
+
+.v-app-bar:not(.scrolled) a {
+  color: white !important;
+}
+
+/* 스크롤된 상태 - 흰색 배경 */
 .v-app-bar.scrolled {
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
 }
 
-/* 드롭다운 스타일 (기존 유지) */
+.v-app-bar.scrolled :deep(.v-toolbar__content) {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* 스크롤된 상태의 텍스트/버튼 색상 */
+.v-app-bar.scrolled .v-btn {
+  color: black !important;
+}
+
+.v-app-bar.scrolled a {
+  color: black !important;
+}
+
+/* 나머지 스타일 */
 .dropdown-btn {
-  background-color: #f5f5f5;
-  color: #222;
-  font-weight: bold;
-  border: 1px solid #ddd;
+  background-color: transparent;
+  font-weight: 500;
+  border: none;
   border-radius: 8px;
   padding: 6px 12px;
   text-transform: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-}
-
-.dropdown-btn:hover {
-  background-color: #e0e0e0;
-  color: #000;
 }
 
 .dropdown-menu {
   background-color: #ffffff;
   border-radius: 12px;
-  border: 1px solid #ddd;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   min-width: 150px;
+  overflow: hidden;
+}
+
+.v-btn {
+  text-transform: none !important;
+  letter-spacing: 0;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.v-btn:hover {
+  opacity: 0.8;
+  background-color: rgba(255, 255, 255, 0.1); /* hover 색상 변경 */
 }
 </style>
