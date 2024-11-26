@@ -22,8 +22,8 @@
             <div class="icon-wrapper">
               <v-icon icon="mdi-chart-box" size="48" color="primary"></v-icon>
             </div>
-            <h3>맞춤형 상품 추천</h3>
-            <p>AI가 분석하는 최적의 금융상품</p>
+            <h3>금리가 높은 상품</h3>
+            <p>현재 기간별 가장 금리가 높은 상품</p>
             <v-btn color="primary" class="mt-4" @click="showFeature('products')" :class="{ 'active-feature': activeFeature === 'products' }">살펴보기</v-btn>
           </div>
           <div class="feature-card">
