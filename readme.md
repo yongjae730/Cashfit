@@ -50,14 +50,14 @@
 ### 서비스 설계
 
 - FlowChart, UseCaseDiagram
-  - (./images/flowChart.png)
-  - (./images/useCase.png)
+  ![FlowChart](./images/flowChart.png)
+  ![UseCase](./images/useCase.png)
 - ERD
   - ..
 - URL 명세서
 
 <details>
-<summary>## API 명세서</summary>
+<summary>API 명세서</summary>
 
 ### Sign Up
 
@@ -228,6 +228,27 @@ src/
 
 - **김병년** : 조장, FullStack, Front-end 전체 담당 깃 주소 : https://github.com/KimByeongNyeon/
 - **이용재** : FullStack, Back-end 전체 담당 깃 주소 : https://github.com/yongjae730/
+
+
+### 업무 분담
+| 주요기능 | 담당자 |
+|-------|----------|
+| 로그인, 로그아웃 기능 | 김병년, 이용재|
+| 회원가입 기능 | 김병년, 이용재 |
+| 예적금 데이터 | 이용재 |
+| 예적금 상품 조회 | 김병년, 이용재 |
+| 예적금 상세 목록 조회 | 김병년, 이용재 |
+| 커뮤니티 게시글 기능 | 김병년, 이용재 |
+| 커뮤니티 댓글 기능 | 김병년, 이용재 |
+| 좋아요 기능 | 김병년, 이용재 |
+| 환율 계산 기능 | 김병년, 이용재 |
+| 프로필 기능 | 김병년, 이용재 |
+| 은행 검색 기능 | 김병년 |
+| 금융 상품 추천 알고리즘 | 이용재 |
+| AI 추천 / 검색 서비스 기능 | 이용재 |
+| 암호화폐 페이지 | 김병년 |
+
+
 
 ### 참고 사항
 
