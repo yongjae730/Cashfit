@@ -49,12 +49,20 @@
 
 ### 서비스 설계
 
-- FlowChart, UseCaseDiagram
-  ![FlowChart](./images/flowChart.png)
-  ![UseCase](./images/useCase.png)
-- ERD
-  ![ERD](./images/ERD.png)
-- API 명세서
+<details>
+<summary>FlowChart, UseCaseDiagram</summary>
+
+![FlowChart](./images/flowChart.png)
+![UseCase](./images/useCase.png)
+
+</details>
+
+<details>
+<summary>ERD</summary>
+
+![ERD](./images/ERD.png)
+
+</details>
 
 <details>
 <summary>API 명세서</summary>
