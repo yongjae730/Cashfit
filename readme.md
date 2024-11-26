@@ -53,8 +53,8 @@
   ![FlowChart](./images/flowChart.png)
   ![UseCase](./images/useCase.png)
 - ERD
-  - ..
-- URL 명세서
+  ![ERD](./images/ERD.png)
+- API 명세서
 
 <details>
 <summary>API 명세서</summary>
@@ -211,6 +211,13 @@ src/
 
 </details>
 
+<details>
+<summary>피그마 링크</summary>
+
+- [CashFit 피그마 디자인](https://https://www.figma.com/design/X24paozkyo2SOSLZBrvUIY/SSAFY-Final-Prj?node-id=0-1&node-type=canvas&t=QPWFJynNVlfP8EYA-0)
+
+</details>
+
 ### 개발기간
 
 - 2024.11.04(월) ~ 2024.11.29(금)
@@ -229,26 +236,25 @@ src/
 - **김병년** : 조장, FullStack, Front-end 전체 담당 깃 주소 : https://github.com/KimByeongNyeon/
 - **이용재** : FullStack, Back-end 전체 담당 깃 주소 : https://github.com/yongjae730/
 
-
 ### 업무 분담
-| 주요기능 | 담당자 |
-|-------|----------|
-| 로그인, 로그아웃 기능 | 김병년, 이용재|
-| 회원가입 기능 | 김병년, 이용재 |
-| 예적금 데이터 | 이용재 |
-| 예적금 상품 조회 | 김병년, 이용재 |
-| 예적금 상세 목록 조회 | 김병년, 이용재 |
-| 커뮤니티 게시글 기능 | 김병년, 이용재 |
-| 커뮤니티 댓글 기능 | 김병년, 이용재 |
-| 좋아요 기능 | 김병년, 이용재 |
-| 환율 계산 기능 | 김병년, 이용재 |
-| 프로필 기능 | 김병년, 이용재 |
-| 은행 검색 기능 | 김병년 |
-| 금융 상품 추천 알고리즘 | 이용재 |
-| AI 추천 / 검색 서비스 기능 | 이용재 |
-| 암호화폐 페이지 | 김병년 |
 
-
+| 주요기능                   | 담당자                      |
+| -------------------------- | --------------------------- |
+| 로그인, 로그아웃 기능      | 김병년(front), 이용재(back) |
+| 회원가입 기능              | 김병년(front), 이용재(back) |
+| 예적금 데이터              | 이용재(back)                |
+| 예적금 상품 조회           | 김병년(front), 이용재(back) |
+| 예적금 상세 목록 조회      | 김병년(front), 이용재(back) |
+| 커뮤니티 게시글 기능       | 김병년(front), 이용재(back) |
+| 커뮤니티 댓글 기능         | 김병년(front), 이용재(back) |
+| 좋아요 기능                | 김병년(front), 이용재(back) |
+| 환율 계산 기능             | 김병년(front), 이용재(back) |
+| 프로필 기능                | 김병년(front), 이용재(back) |
+| 은행 검색 기능             | 김병년(back, front)         |
+| 금융 상품 추천 알고리즘    | 이용재(back, front)         |
+| AI 추천 / 검색 서비스 기능 | 이용재(back, front)         |
+| 암호화폐 페이지            | 김병년(back, front)         |
+| UI / UX                    | 김병년(front)               |
 
 ### 참고 사항
 
