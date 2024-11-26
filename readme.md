@@ -222,7 +222,7 @@ src/
 <details>
 <summary>피그마 링크</summary>
 
-- [CashFit 피그마 디자인](https://https://www.figma.com/design/X24paozkyo2SOSLZBrvUIY/SSAFY-Final-Prj?node-id=0-1&node-type=canvas&t=QPWFJynNVlfP8EYA-0)
+- [CashFit 피그마 디자인](https://www.figma.com/design/X24paozkyo2SOSLZBrvUIY/SSAFY-Final-Prj?node-id=0-1&node-type=canvas&t=QPWFJynNVlfP8EYA-0)
 
 </details>
 
