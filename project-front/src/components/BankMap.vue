@@ -11,7 +11,7 @@
 
         <button @click="resetToUserLocation" class="reset-button" v-if="isLocationChanged">내 지역으로 돌아가기</button>
       </div>
-
+      <v-spacer></v-spacer>
       <select v-model="sido" class="select-box" @change="onSidoChange">
         <option value="">시 / 도 선택</option>
         <option v-for="sido in sidoList">
@@ -31,7 +31,8 @@
       <div ref="mapContainer" class="map-view"></div>
       <div class="place-list" v-if="places.length > 0">
         <h2>검색 결과 ({{ places.length }})</h2>
-        <div v-for="(place, index) in places" :key="place.id" class="place-item" @click="focusPlace(index)" @mouseover="highlightMarker(index)" @mouseleave="unhighlightMarker(index)">
+        <div v-for="(place, index) in places" :key="place.id" class="place-item" @click="focusPlace(index)"
+          @mouseover="highlightMarker(index)" @mouseleave="unhighlightMarker(index)">
           <h3>{{ place.place_name }}</h3>
           <p class="address">{{ place.address_name }}</p>
           <p class="phone">{{ place.phone || "전화번호 없음" }}</p>

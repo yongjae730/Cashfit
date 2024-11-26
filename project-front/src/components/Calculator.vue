@@ -69,7 +69,8 @@ const convertedAmount = ref(0);
 // 숫자 포맷 함수
 const formatNumber = (value) => {
   if (value === null || value === undefined) return "";
-  return `${new Intl.NumberFormat("en-US").format(value)} ${selectedToCurrency.value}`;
+  // 통화 단위를 제거하고 숫자만 포맷팅
+  return new Intl.NumberFormat("en-US").format(value);
 };
 
 // Exchange Rates 계산 (KRW 포함)

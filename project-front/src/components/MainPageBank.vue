@@ -2,19 +2,22 @@
   <div class="map-container">
     <h2 class="section-title">은행 어디로 가야하지??</h2>
     <div class="filter-section">
-      <!-- 현재 위치 표시 및 초기화 버튼 -->
       <div class="current-location" v-if="accountStore.user?.user_info">
         <button @click="resetToUserLocation" class="reset-button" v-if="isLocationChanged">내 지역으로 돌아가기</button>
       </div>
+      <!-- 현재 위치 표시 및 초기화 버튼 -->
 
       <!-- 시 / 도 선택 -->
-      <v-select v-model="sido" :items="sidoList" label="시 / 도 선택" outlined dense class="select-box" @change="onSidoChange" :rules="[(v) => !!v || '시/도를 선택하세요']" />
+      <v-select v-model="sido" :items="sidoList" label="시 / 도 선택" outlined dense class="select-box"
+        @change="onSidoChange" :rules="[(v) => !!v || '시/도를 선택하세요']" />
 
       <!-- 구 / 군 선택 -->
-      <v-select v-model="sigugun" :items="sigugunList" label="구 / 군 선택" outlined dense class="select-box" :rules="[(v) => !!v || '구/군을 선택하세요']" />
+      <v-select v-model="sigugun" :items="sigugunList" label="구 / 군 선택" outlined dense class="select-box"
+        :rules="[(v) => !!v || '구/군을 선택하세요']" />
 
       <!-- 은행 이름 입력 -->
-      <v-text-field v-model="bank" label="은행 입력" outlined dense class="bank-input" :rules="[(v) => !!v || '은행 정보를 입력해주세요']" style="border-radius: 8px" />
+      <v-text-field v-model="bank" label="은행 입력" outlined dense class="bank-input"
+        :rules="[(v) => !!v || '은행 정보를 입력해주세요']" style="border-radius: 8px" />
 
       <!-- 검색 버튼 -->
       <v-btn @click="searchBranches" color="primary" class="search-button">검색</v-btn>
@@ -23,7 +26,8 @@
       <div ref="mapContainer" class="map-view"></div>
       <div class="place-list" v-if="places.length > 0">
         <h2>검색 결과 ({{ places.length }})</h2>
-        <div v-for="(place, index) in places" :key="place.id" class="place-item" @click="focusPlace(index)" @mouseover="highlightMarker(index)" @mouseleave="unhighlightMarker(index)">
+        <div v-for="(place, index) in places" :key="place.id" class="place-item" @click="focusPlace(index)"
+          @mouseover="highlightMarker(index)" @mouseleave="unhighlightMarker(index)">
           <h3>{{ place.place_name }}</h3>
           <p class="address">{{ place.address_name }}</p>
           <p class="phone">{{ place.phone || "전화번호 없음" }}</p>
