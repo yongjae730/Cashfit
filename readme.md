@@ -168,54 +168,77 @@
 src/
 ├── components/
 │   ├── Layout/
-│   │   ├── NavBar.vue
-│   │   ├── Footer.vue
-│   │   └── MiddleNav.vue
+│   │   ├── NavBar.vue              # 상단 네비게이션 바 컴포넌트
+│   │   ├── Footer.vue              # 하단 푸터 컴포넌트
+│   │   └── MiddleNav.vue           # 중앙 네비게이션 메뉴 컴포넌트
 │   │
 │   ├── Financial/
-│   │   ├── MainProductList.vue
-│   │   ├── FinProductTable.vue
-│   │   ├── MainPageBank.vue
-│   │   ├── MainPageTable.vue
-│   │   ├── ProductComment.vue
-│   │   └── BankMap.vue
+│   │   ├── MainProductList.vue     # 메인 페이지 상품 목록 컴포넌트
+│   │   ├── FinProductTable.vue     # 금융 상품 테이블 컴포넌트
+│   │   ├── SavingProductTable.vue  # 적금 상품 테이블 컴포넌트
+│   │   ├── MainPageBank.vue        # 메인 페이지 은행 정보 컴포넌트
+│   │   ├── ProductComments.vue     # 상품 댓글 컴포넌트
+│   │   ├── ProductWithOptions.vue  # 상품 옵션 표시 컴포넌트
+│   │   └── BankMap.vue            # 은행 지도 표시 컴포넌트
 │   │
 │   ├── Exchange/
-│   │   ├── ExchangeCalculator.vue
-│   │   ├── ExchangeDetail.vue
-│   │   ├── ExchangeItem.vue
-│   │   └── ExchangeList.vue
+│   │   ├── ExchangeCalculator.vue  # 환율 계산기 컴포넌트
+│   │   ├── ExchangeDetail.vue      # 환율 상세 정보 컴포넌트
+│   │   ├── ExchangeItem.vue        # 환율 아이템 컴포넌트
+│   │   └── ExchangeList.vue        # 환율 목록 컴포넌트
 │   │
 │   ├── Recommend/
-│   │   ├── RecommendDetail.vue
-│   │   ├── RecommendDep.vue
-│   │   ├── RecommendSaving.vue
-│   │   └── ProductRecommendOption.vue
+│   │   ├── RecommendDetailProduct.vue   # 추천 상품 상세 컴포넌트
+│   │   ├── RecommendDeposit.vue         # 예금 상품 추천 컴포넌트
+│   │   └── RecommendSaving.vue          # 적금 상품 추천 컴포넌트
 │   │
 │   ├── Community/
-│   │   └── CommunityComment.vue
+│   │   └── CommunityComment.vue    # 커뮤니티 댓글 컴포넌트
 │   │
 │   ├── Auth/
-│   │   └── LoginModal.vue
+│   │   └── LoginModal.vue          # 로그인 모달 컴포넌트
+│   │
+│   ├── Carousel/
+│   │   └── MainPageCarousel.vue    # 메인 페이지 캐러셀 컴포넌트
 │   │
 │   ├── Crypto/
-│   │   └── CryptoCard.vue
+│   │   └── CryptoCard.vue          # 암호화폐 카드 컴포넌트
 │   │
 │   └── Util/
-│       ├── Calculator.vue
-│       └── ChatbotWidget.vue
+│       ├── Calculator.vue          # 계산기 유틸리티 컴포넌트
+│       └── ChatbotWidget.vue       # 챗봇 위젯 컴포넌트
 │
 └── views/
-    ├── MainView.vue
-    ├── FinView.vue
-    ├── ProductDetailView.vue
-    ├── ExchangeView.vue
-    ├── CryptoView.vue
-    ├── CommunityDetailView.vue
-    ├── CreateArticleView.vue
-    ├── ProfileView.vue
-    └── SignUpView.vue
+    ├── MainView.vue                # 메인 페이지 뷰
+    ├── FinView.vue                 # 금융 상품 페이지 뷰
+    ├── ProductDetailView.vue       # 상품 상세 페이지 뷰
+    ├── ExchangeView.vue            # 환율 페이지 뷰
+    ├── CryptoView.vue              # 암호화폐 페이지 뷰
+    ├── CommunityView.vue           # 커뮤니티 목록 페이지 뷰
+    ├── CommunityDetailView.vue     # 커뮤니티 상세 페이지 뷰
+    ├── CreateArticleView.vue       # 게시글 작성 페이지 뷰
+    ├── ProfileView.vue             # 프로필 페이지 뷰
+    └── SignUpView.vue              # 회원가입 페이지 뷰
 ```
+
+## 디렉토리 구조 설명
+
+### components/
+
+- **Layout/**: 페이지 레이아웃 관련 컴포넌트
+- **Financial/**: 금융 상품 관련 컴포넌트
+- **Exchange/**: 환율 관련 컴포넌트
+- **Recommend/**: 상품 추천 관련 컴포넌트
+- **Community/**: 커뮤니티 관련 컴포넌트
+- **Auth/**: 인증 관련 컴포넌트
+- **Carousel/**: 캐러셀 관련 컴포넌트
+- **Crypto/**: 암호화폐 관련 컴포넌트
+- **Util/**: 유틸리티 컴포넌트
+
+### views/
+
+- 각 페이지의 최상위 뷰 컴포넌트들
+- 라우팅의 진입점이 되는 페이지 컴포넌트들
 
 </details>
 
