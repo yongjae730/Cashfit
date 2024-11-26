@@ -298,10 +298,12 @@ src/
 - 금감원 API
   - 예금 : https://finlife.fss.or.kr/finlife/api/fncCoApi/list.do?menuNo=700052
   - 적금 : https://finlife.fss.or.kr/finlife/api/fdrmEntyApi/list.do?menuNo=700053
-- 한국투자증권 API
-  - [https://apiportal.koreainvestment.com/apiservice/apiservice-domestic-stock-quotations2#L_07802512-4f49-4486-91b4-1050b6f5dc9d](https://apiportal.koreainvestment.com/apiservice/apiservice-domestic-stock-quotations2#L_a08c3421-e50f-4f24-b1fe-64c12f723c77)
-- 코인 API
-  - [https://docs.upbit.com/reference/ticker현재가-정보](https://docs.upbit.com/reference/%EC%A0%84%EC%B2%B4-%EA%B3%84%EC%A2%8C-%EC%A1%B0%ED%9A%8C)
+- 한국 수출입 은행 환율정보
+  - https://www.koreaexim.go.kr/ir/HPHKIR020M01?apino=2&viewtype=C&searchselect=&searchword=
+- ## 코인 API
+  - https://api.upbit.com/v1/market/all
+  - https://api.upbit.com/v1/candles/minutes/
+  - wss://api.upbit.com/websocket/v1/
 
 #### ERD-Cloud 링크
 
