@@ -43,21 +43,24 @@
         <!-- 수정 모달 -->
         <v-dialog v-model="editModal" max-width="600">
           <v-card class="edit-modal">
-            <v-card-title class="pa-6 bg-primary">
-              <span class="text-h6 text-white">게시글 수정</span>
-              <v-btn icon="mdi-close" variant="text" color="white" @click="closeEditModal"></v-btn>
+            <v-card-title class="d-flex flex-column align-center pt-10 pb-6">
+              <v-avatar color="#1976D2" size="56" class="mb-4">
+                <v-icon color="white" size="32">mdi-pencil</v-icon>
+              </v-avatar>
+              <span class="text-h5 font-weight-bold text-primary">게시글 수정</span>
+              <span class="text-subtitle-1 text-grey-darken-1 mt-2">내용을 작성해 주세요!</span>
             </v-card-title>
 
-            <v-card-text class="pa-6">
-              <v-text-field v-model="editedTitle" label="제목" variant="outlined" class="mb-4" density="comfortable"></v-text-field>
+            <v-card-text class="px-8 py-6">
+              <v-text-field v-model="editedTitle" label="제목을 입력해주세요" variant="outlined" class="mb-4" density="comfortable" bg-color="grey-lighten-4" hide-details></v-text-field>
 
-              <v-textarea v-model="editedContent" label="내용" variant="outlined" rows="6" density="comfortable"></v-textarea>
+              <v-textarea v-model="editedContent" label="내용을 입력해주세요" variant="outlined" rows="6" density="comfortable" bg-color="grey-lighten-4" hide-details></v-textarea>
             </v-card-text>
 
-            <v-card-actions class="pa-6">
+            <v-card-actions class="pa-8">
               <v-spacer></v-spacer>
-              <v-btn color="grey" variant="text" @click="closeEditModal" class="mr-2">취소</v-btn>
-              <v-btn color="primary" @click="updateArticle" elevation="0">수정하기</v-btn>
+              <v-btn color="grey" variant="text" @click="closeEditModal" class="mr-2 px-6" elevation="0">취소</v-btn>
+              <v-btn color="primary" @click="updateArticle" class="px-6" elevation="0">작성하기</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -367,5 +370,25 @@ watchEffect(() => {
 .v-dialog-transition-leave-to {
   opacity: 0;
   transform: scale(0.9);
+}
+
+.edit-modal {
+  border-radius: 16px;
+}
+
+.v-text-field,
+.v-textarea {
+  border-radius: 8px;
+}
+
+:deep(.v-field) {
+  border-radius: 8px;
+}
+
+:deep(.v-btn) {
+  text-transform: none;
+  font-weight: 500;
+  height: 42px;
+  border-radius: 8px;
 }
 </style>
